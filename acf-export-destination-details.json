@@ -1,0 +1,60 @@
+[
+  {
+    "key": "group_rasm_destination_fields",
+    "title": "Destination Details",
+    "fields": [
+      {
+        "key": "field_dest_tagline",
+        "label": "Destination Tagline",
+        "name": "destination_tagline",
+        "type": "text",
+        "default_value": "Royal Heritage & Palatial Grandeur",
+        "show_in_graphql": 1
+      },
+      {
+        "key": "field_dest_budget_estimate",
+        "label": "Starting Budget",
+        "name": "starting_budget",
+        "type": "text",
+        "default_value": "From ₹25 Lakhs",
+        "show_in_graphql": 1
+      },
+      {
+        "key": "field_dest_best_season",
+        "label": "Best Season",
+        "name": "best_season",
+        "type": "text",
+        "default_value": "September to March",
+        "show_in_graphql": 1
+      },
+      {
+        "key": "field_dest_popular_venues",
+        "label": "Top Venues",
+        "name": "popular_venues",
+        "type": "textarea",
+        "default_value": "City Palace, Jagmandir Island, The Leela, Taj Lake Palace, Fateh Garh",
+        "rows": 3,
+        "show_in_graphql": 1
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "post_type",
+          "operator": "==",
+          "value": "post"
+        }
+      ],
+      [
+        {
+          "param": "post_type",
+          "operator": "==",
+          "value": "page"
+        }
+      ]
+    ],
+    "active": true,
+    "show_in_graphql": 1,
+    "graphql_field_name": "destinationDetails"
+  }
+]

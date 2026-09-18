@@ -1,0 +1,155 @@
+[
+  {
+    "key": "group_rasm_site_settings",
+    "title": "Rasm Theme & Site Settings",
+    "fields": [
+      {
+        "key": "field_rasm_site_logo",
+        "label": "Custom Site Logo",
+        "name": "rasm_site_logo",
+        "type": "image",
+        "instructions": "Upload custom logo for header and footer (overrides default WordPress site logo).",
+        "required": 0,
+        "return_format": "url",
+        "preview_size": "medium",
+        "library": "all",
+        "show_in_graphql": 1
+      },
+      {
+        "key": "field_rasm_phone_number",
+        "label": "Contact Phone Number",
+        "name": "rasm_phone_number",
+        "type": "text",
+        "instructions": "Phone number shown on header and contact sections.",
+        "required": 0,
+        "default_value": "+91 98290 12345",
+        "placeholder": "+91 98290 12345",
+        "show_in_graphql": 1
+      },
+      {
+        "key": "field_rasm_whatsapp_number",
+        "label": "WhatsApp Contact Number",
+        "name": "rasm_whatsapp_number",
+        "type": "text",
+        "instructions": "WhatsApp number with country code (without + sign), e.g., 919829012345",
+        "required": 0,
+        "default_value": "919829012345",
+        "placeholder": "919829012345",
+        "show_in_graphql": 1
+      },
+      {
+        "key": "field_rasm_email_address",
+        "label": "Primary Contact Email",
+        "name": "rasm_email_address",
+        "type": "email",
+        "instructions": "Inquiry email address.",
+        "required": 0,
+        "default_value": "weddings@rasmwed.com",
+        "placeholder": "weddings@rasmwed.com",
+        "show_in_graphql": 1
+      },
+      {
+        "key": "field_rasm_office_address",
+        "label": "Office Address",
+        "name": "rasm_office_address",
+        "type": "textarea",
+        "instructions": "Physical studio/office address.",
+        "required": 0,
+        "default_value": "Rasm Wedding Studio, Near Lake Pichola, Haridas Ji Ki Magri, Udaipur, Rajasthan 313001",
+        "placeholder": "Udaipur, Rajasthan",
+        "rows": 3,
+        "show_in_graphql": 1
+      },
+      {
+        "key": "field_rasm_hero_headline",
+        "label": "Hero Banner Headline",
+        "name": "rasm_hero_headline",
+        "type": "text",
+        "instructions": "Main headline on the homepage hero section.",
+        "required": 0,
+        "default_value": "Crafting Royal Destination Weddings",
+        "placeholder": "Crafting Royal Destination Weddings",
+        "show_in_graphql": 1
+      },
+      {
+        "key": "field_rasm_hero_subheadline",
+        "label": "Hero Sub-headline",
+        "name": "rasm_hero_subheadline",
+        "type": "textarea",
+        "instructions": "Sub-title or description under hero headline.",
+        "required": 0,
+        "default_value": "Premier luxury wedding architects in Udaipur, Jaipur, Mount Abu, Rishikesh & Goa. We orchestrate timeless celebrations filled with regal heritage and modern elegance.",
+        "rows": 3,
+        "show_in_graphql": 1
+      },
+      {
+        "key": "field_rasm_instagram_url",
+        "label": "Instagram Profile URL",
+        "name": "rasm_instagram_url",
+        "type": "url",
+        "instructions": "Link to Instagram page.",
+        "required": 0,
+        "default_value": "https://www.instagram.com/rasmwed/",
+        "show_in_graphql": 1
+      },
+      {
+        "key": "field_rasm_experience_years",
+        "label": "Years of Experience",
+        "name": "rasm_experience_years",
+        "type": "text",
+        "instructions": "Statistic number (e.g. 10+)",
+        "required": 0,
+        "default_value": "12+",
+        "show_in_graphql": 1
+      },
+      {
+        "key": "field_rasm_weddings_planned",
+        "label": "Weddings Curated",
+        "name": "rasm_weddings_planned",
+        "type": "text",
+        "instructions": "Statistic number (e.g. 450+)",
+        "required": 0,
+        "default_value": "450+",
+        "show_in_graphql": 1
+      },
+      {
+        "key": "field_rasm_destinations_count",
+        "label": "Destinations Managed",
+        "name": "rasm_destinations_count",
+        "type": "text",
+        "instructions": "Statistic number (e.g. 18+)",
+        "required": 0,
+        "default_value": "18+",
+        "show_in_graphql": 1
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "page_type",
+          "operator": "==",
+          "value": "front_page"
+        }
+      ],
+      [
+        {
+          "param": "post_type",
+          "operator": "==",
+          "value": "page"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Rasm Wedding Settings and Contact details for Headless Frontend",
+    "show_in_graphql": 1,
+    "graphql_field_name": "rasmSiteSettings",
+    "map_graphql_types_from_location_rules": 0,
+    "graphql_types": ["Page", "RootQuery"]
+  }
+]
