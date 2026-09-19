@@ -225,7 +225,7 @@ const VENUES_DATABASE: VenueItem[] = [
       'https://rasmwed.com/wp-content/uploads/2024/08/The-Oberoi-Udaivilas.webp',
       'https://rasmwed.com/wp-content/uploads/2024/08/Fateh-Garh-Palace.webp'
     ],
-    description: 'The undisputed jewel of Jaipur. Built in 1835, this living royal palace delivers an authentic regal experience with private royal gardens and marble pavilions.',
+    description: 'The undisputed jewel of Jaipur. Built in 1835, this living royal palace delivers an authentic rasm experience with private royal gardens and marble pavilions.',
     spacesDetail: [
       { name: 'Mughal Sunken Garden', capacity: '700 Guests', type: 'Heritage Mughal Lawn' },
       { name: 'Jaigarh Hall', capacity: '300 Guests', type: 'Royal Banquet Hall' }
@@ -627,7 +627,7 @@ export const VenueCatalogueView: React.FC<VenueCatalogueViewProps> = ({
             <span>Verified Royal Palaces & Heritage Venues</span>
           </div>
           
-          <h1 className="font-cinzel text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-charcoal-900 leading-tight">
+          <h1 className="font-manrope font-medium text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-charcoal-900 leading-[1.2] tracking-tight">
             Discover best royal wedding venues in <span className="gold-gradient-text italic">{activeRegionName}</span>
           </h1>
           
@@ -702,7 +702,7 @@ export const VenueCatalogueView: React.FC<VenueCatalogueViewProps> = ({
               <Sparkle className="w-3.5 h-3.5 text-gold animate-spin" />
               <span>Bespoke Royal Venue Matchmaker</span>
             </div>
-            <h2 className="text-2xl md:text-3xl lg:text-4xl font-cinzel font-normal text-charcoal-900 leading-tight">
+            <h2 className="text-2xl md:text-3xl lg:text-4xl font-manrope font-medium text-charcoal-900 leading-[1.2] tracking-tight">
               Get 5 palace venues recommended in 60 seconds
             </h2>
             <p className="text-xs md:text-sm text-charcoal-600 mt-2 font-light max-w-2xl">
@@ -759,7 +759,7 @@ export const VenueCatalogueView: React.FC<VenueCatalogueViewProps> = ({
         </div>
 
         <div className="mb-6">
-          <h2 className="font-cinzel text-2xl sm:text-3xl lg:text-4xl text-charcoal-900 font-normal tracking-tight">
+          <h2 className="font-manrope text-2xl sm:text-3xl lg:text-4xl text-charcoal-900 font-medium tracking-tight leading-snug">
             Wedding Venues In {activeRegionName}
           </h2>
           <p className="leading-relaxed text-charcoal-600 text-xs sm:text-sm my-3 max-w-3xl font-light">
@@ -865,7 +865,7 @@ export const VenueCatalogueView: React.FC<VenueCatalogueViewProps> = ({
         {filteredVenues.length === 0 ? (
           <div className="text-center py-20 bg-[#FAF8F5] rounded-3xl border border-gold/20 p-8">
             <Castle className="w-12 h-12 text-gold mx-auto mb-4 opacity-50" />
-            <h3 className="font-cinzel text-xl text-charcoal-900 mb-2">
+            <h3 className="font-manrope font-semibold text-xl text-charcoal-900 mb-2 tracking-tight">
               No matching palace venues found
             </h3>
             <p className="text-xs sm:text-sm text-charcoal-600 max-w-md mx-auto mb-6 font-light">
@@ -933,7 +933,7 @@ export const VenueCatalogueView: React.FC<VenueCatalogueViewProps> = ({
                       <h3
                         title={venue.name}
                         onClick={() => setQuickViewVenue(venue)}
-                        className="font-cinzel text-xl font-normal text-charcoal-900 truncate hover:text-gold-dark cursor-pointer transition-colors"
+                        className="font-manrope text-xl font-bold text-charcoal-900 truncate hover:text-gold-dark cursor-pointer transition-colors tracking-tight"
                       >
                         {venue.name}
                       </h3>
@@ -1045,7 +1045,7 @@ export const VenueCatalogueView: React.FC<VenueCatalogueViewProps> = ({
             <span className="text-gold-dark text-xs uppercase tracking-[0.25em] font-semibold block mb-2">
               Essential Clarity
             </span>
-            <h2 className="font-cinzel text-2xl md:text-3xl lg:text-4xl text-charcoal-900 font-normal">
+            <h2 className="font-manrope text-2xl md:text-3xl lg:text-4xl text-charcoal-900 font-medium tracking-tight leading-snug">
               Palace Venue FAQs
             </h2>
             <p className="text-xs sm:text-sm text-charcoal-600 mt-2 font-light">
@@ -1088,7 +1088,7 @@ export const VenueCatalogueView: React.FC<VenueCatalogueViewProps> = ({
         <section className="mt-16 py-12 px-6 sm:px-10 rounded-3xl bg-gradient-to-b from-[#FAF8F5] to-white border border-gold/30 text-center relative overflow-hidden">
           <div className="max-w-3xl mx-auto space-y-4 relative z-10">
             <Crown className="w-10 h-10 text-gold mx-auto" />
-            <h3 className="font-cinzel text-2xl sm:text-3xl text-charcoal-900 font-normal">
+            <h3 className="font-manrope text-2xl sm:text-3xl text-charcoal-900 font-medium tracking-tight leading-snug">
               Can't Decide on the Perfect Palace Venue?
             </h3>
             <p className="text-xs sm:text-sm text-charcoal-600 font-light max-w-xl mx-auto">
@@ -1132,7 +1132,7 @@ export const VenueCatalogueView: React.FC<VenueCatalogueViewProps> = ({
               <span className="text-[10px] text-gold-dark uppercase tracking-[0.25em] font-semibold block mb-1">
                 {quickViewVenue.venueType} · {quickViewVenue.region.toUpperCase()}
               </span>
-              <h3 className="font-cinzel text-2xl sm:text-3xl text-charcoal-900">
+              <h3 className="font-manrope text-2xl sm:text-3xl text-charcoal-900 font-medium tracking-tight leading-snug">
                 {quickViewVenue.name}
               </h3>
               <p className="text-xs text-charcoal-500 mt-1 flex items-center gap-1 font-light">
@@ -1180,7 +1180,7 @@ export const VenueCatalogueView: React.FC<VenueCatalogueViewProps> = ({
             {/* Celebration Spaces Breakdown */}
             {quickViewVenue.spacesDetail && quickViewVenue.spacesDetail.length > 0 && (
               <div className="mt-6">
-                <h4 className="font-cinzel text-base text-charcoal-900 mb-3">
+                <h4 className="font-manrope font-medium text-base text-charcoal-900 mb-3 tracking-tight">
                   Event Lawns & Courtyards
                 </h4>
                 <div className="space-y-2">
@@ -1204,7 +1204,7 @@ export const VenueCatalogueView: React.FC<VenueCatalogueViewProps> = ({
 
             {/* Key Royal Features */}
             <div className="mt-6">
-              <h4 className="font-cinzel text-base text-charcoal-900 mb-2">
+              <h4 className="font-manrope font-medium text-base text-charcoal-900 mb-2 tracking-tight">
                 Palace Amenities & Clearances
               </h4>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-charcoal-700">

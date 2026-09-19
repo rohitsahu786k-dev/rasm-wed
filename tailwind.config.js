@@ -29,14 +29,11 @@ export default {
         }
       },
       fontFamily: {
-        serif: ['"Cinzel"', 'serif'],
-        cinzel: ['"Cinzel"', 'serif'],
+        serif: ['"Manrope"', 'system-ui', 'sans-serif'],
+        cinzel: ['"Manrope"', 'system-ui', 'sans-serif'],
         body: ['"Manrope"', 'system-ui', 'sans-serif'],
         sans: ['"Manrope"', 'system-ui', 'sans-serif'],
         manrope: ['"Manrope"', 'system-ui', 'sans-serif'],
-      },
-      fontWeight: {
-        normal: '400',
       },
       animation: {
         'shimmer-slide': 'shimmerSlide 3s infinite linear',

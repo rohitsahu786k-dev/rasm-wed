@@ -51,15 +51,14 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
           {/* Left Column: Direct Info */}
           <div className="lg:col-span-5 space-y-8">
             <div>
-              <div className="inline-flex items-center gap-2 text-gold-dark text-xs uppercase tracking-[0.3em] font-medium mb-3">
-                <Sparkles className="w-3.5 h-3.5 text-gold" />
-                <span>Private Consultation</span>
+              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-ivory-200 border border-gold/35 shadow-2xs mb-3">
+                <Sparkles className="w-3.5 h-3.5 text-[#C5A059]" />
+                <span className="text-[11px] font-medium uppercase tracking-normal gold-gradient-text">Private Consultation</span>
               </div>
-              {/* Cinzel 400 heading */}
-              <h2 className="font-cinzel font-normal text-3xl sm:text-5xl text-charcoal-900 mb-4 tracking-[0.03em]">
+              <h2 className="font-manrope font-medium text-3xl sm:text-5xl text-charcoal-900 mb-4 tracking-tight leading-[1.2]">
                 Let’s Begin Your <span className="gold-gradient-text italic font-normal">Royal Story</span>
               </h2>
-              <p className="text-charcoal-600 text-sm sm:text-base font-light leading-relaxed">
+              <p className="text-charcoal-600 text-sm sm:text-base font-light leading-relaxed tracking-normal">
                 Connect with our senior wedding architects in Udaipur. Whether you reside in the US, UK, Middle East, or India, we ensure every detail is curated with royal distinction.
               </p>
             </div>
@@ -68,10 +67,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
             <div className="space-y-4">
               <div className="p-5 rounded-2xl bg-ivory-200 border border-gold/25 flex items-start gap-4">
                 <div className="w-10 h-10 rounded-xl bg-white border border-gold/30 flex items-center justify-center shrink-0 shadow-2xs">
-                  <MapPin className="w-5 h-5 text-gold-dark" />
+                  <MapPin className="w-5 h-5 text-[#C5A059]" />
                 </div>
                 <div>
-                  <h4 className="text-[11px] uppercase tracking-widest text-gold-dark font-medium mb-1">
+                  <h4 className="text-[11px] uppercase tracking-normal gold-gradient-text font-medium mb-1">
                     Udaipur Studio & Office
                   </h4>
                   <p className="text-charcoal-700 text-xs sm:text-sm font-light leading-relaxed">
@@ -140,7 +139,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   <div className="w-16 h-16 rounded-full bg-emerald-50 border border-emerald-500/40 flex items-center justify-center mx-auto">
                     <CheckCircle2 className="w-8 h-8 text-emerald-600" />
                   </div>
-                  <h3 className="font-cinzel font-normal text-2xl text-charcoal-900">
+                  <h3 className="font-manrope font-medium text-2xl text-charcoal-900 tracking-tight">
                     Thank You, {name || 'Esteemed Couple'}
                   </h3>
                   <p className="text-charcoal-600 text-sm font-light max-w-md mx-auto">
@@ -155,7 +154,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-5">
-                  <h3 className="font-cinzel font-normal text-2xl text-charcoal-900 mb-1">
+                  <h3 className="font-manrope font-medium text-2xl text-charcoal-900 mb-1 tracking-tight">
                     Request a Bespoke Proposal
                   </h3>
                   <p className="text-charcoal-500 text-xs sm:text-sm font-light mb-6">

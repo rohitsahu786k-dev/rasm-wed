@@ -1,219 +1,323 @@
-import React, { useState } from 'react';
-import { Sparkles, MapPin, Heart, ArrowRight, Star, Quote, CheckCircle2, Grid3X3, LayoutGrid } from 'lucide-react';
+import React from 'react';
+import { Heart, Star, CheckCircle2, ArrowRight } from 'lucide-react';
 
-interface CoupleStory {
+interface TestimonialCard {
   id: string;
-  names: string;
-  origin: string;
-  city: string;
+  name: string;
+  handle: string;
+  avatar: string;
+  weddingLocation: string;
   venue: string;
-  guestCount: string;
-  image: string;
-  quote: string;
+  rating: number;
+  review: string;
   tag: string;
 }
+
+const TESTIMONIALS_COL1: TestimonialCard[] = [
+  {
+    id: 't1',
+    name: 'Ananya & Siddharth',
+    handle: '@ananya_sid',
+    avatar: 'https://rasmwed.com/wp-content/uploads/2026/04/Romantic-Indian-Wedding-Moment.jpg',
+    weddingLocation: 'Udaipur, Rajasthan',
+    venue: 'The Oberoi Udaivilas',
+    rating: 5,
+    review: 'Rasm turned Lake Pichola into our royal kingdom. The private jetty arrivals and sunset floating mandap pheras left our international guests in absolute awe.',
+    tag: 'Palace Mandap'
+  },
+  {
+    id: 't2',
+    name: 'Rhea & Vikram',
+    handle: '@rhea.kapoor',
+    avatar: 'https://rasmwed.com/wp-content/uploads/2024/08/The-Oberoi-Udaivilas.webp',
+    weddingLocation: 'Udaipur, Rajasthan',
+    venue: 'Taj Lake Palace & Jagmandir',
+    rating: 5,
+    review: 'Planning our wedding from London was effortless with Rasm\'s 24/7 NRI liaison. Every floral canopy and lighting cue matched their 3D render down to the millimeter.',
+    tag: 'Island Buyout'
+  },
+  {
+    id: 't3',
+    name: 'Tara & Kabir',
+    handle: '@tarakabir',
+    avatar: 'https://rasmwed.com/wp-content/uploads/2026/04/download-50.jpg',
+    weddingLocation: 'Jodhpur, Rajasthan',
+    venue: 'Umaid Bhawan Palace',
+    rating: 5,
+    review: 'The vintage car procession and royal Mewari dhol welcome set a regal benchmark. Zero vendor fees, completely transparent budgeting, and stellar execution.',
+    tag: 'Royal Baraat'
+  },
+];
+
+const TESTIMONIALS_COL2: TestimonialCard[] = [
+  {
+    id: 't4',
+    name: 'Pooja & Dev',
+    handle: '@pooja.dev',
+    avatar: 'https://rasmwed.com/wp-content/uploads/2026/04/download-49.jpg',
+    weddingLocation: 'Jaipur, Rajasthan',
+    venue: 'Rambagh Palace Courtyard',
+    rating: 5,
+    review: 'Securing GM-level approvals and palace buyouts felt like magic. Rasm took away 100% of our planning anxiety. Unparalleled 5-star white-glove hospitality.',
+    tag: 'Heritage Court'
+  },
+  {
+    id: 't5',
+    name: 'Suhani & Aditya',
+    handle: '@suhani.adi',
+    avatar: 'https://rasmwed.com/wp-content/uploads/2024/07/MLVR0388-scaled.webp',
+    weddingLocation: 'Udaipur, Rajasthan',
+    venue: 'City Palace Complex',
+    rating: 5,
+    review: 'When unseasonal rain threatened our open terrace sangeet, their 30-minute contingency plan activated flawlessly. The ballroom setup was even more stunning.',
+    tag: 'Contingency Guarantee'
+  },
+  {
+    id: 't6',
+    name: 'Mira & Arjun',
+    handle: '@mira_arjun',
+    avatar: 'https://rasmwed.com/wp-content/uploads/2024/07/PTIG5387.webp',
+    weddingLocation: 'Udaipur, Rajasthan',
+    venue: 'Fateh Garh Heritage Fort',
+    rating: 5,
+    review: 'Hilltop sunsets, bespoke royal Mewari gastronomy by generational khansamas, and curated mixology. Our guests from New York still call it the wedding of the decade.',
+    tag: 'Fort Celebration'
+  },
+];
+
+const TESTIMONIALS_COL3: TestimonialCard[] = [
+  {
+    id: 't7',
+    name: 'Natasha & Kunal',
+    handle: '@natashakunal',
+    avatar: 'https://rasmwed.com/wp-content/uploads/2026/04/download-51.jpg',
+    weddingLocation: 'Goa Coastal Luxury',
+    venue: 'Grand Hyatt Goa',
+    rating: 5,
+    review: 'The beach sunset mandap was ethereal. The team managed multi-city airport liaisons and chartered arrivals for all 220 guests without a single glitch.',
+    tag: 'Coastal Sunset'
+  },
+  {
+    id: 't8',
+    name: 'Tanvi & Harsh',
+    handle: '@tanvi.harsh',
+    avatar: 'https://rasmwed.com/wp-content/uploads/2024/08/Fateh-Garh-Palace.webp',
+    weddingLocation: 'Udaipur, Rajasthan',
+    venue: 'The Leela Palace Udaipur',
+    rating: 5,
+    review: 'From VIP boat escorts to Vedic scholars conducting the pheras with translated English liturgy, every single detail was thoughtful and deeply meaningful.',
+    tag: 'Vedic Pheras'
+  },
+  {
+    id: 't9',
+    name: 'Lavanya & Sameer',
+    handle: '@lavanya_s',
+    avatar: 'https://rasmwed.com/wp-content/uploads/2024/07/IMG_E5208.webp',
+    weddingLocation: 'Jaipur, Rajasthan',
+    venue: 'Fairmont Jaipur',
+    rating: 5,
+    review: 'The royal welcome with rose petal showers from balconies and ceremonial trumpets created memories of a lifetime. The Rasm team is in a league of their own.',
+    tag: 'Palatial Sangeet'
+  },
+];
+
+const TESTIMONIALS_COL4: TestimonialCard[] = [
+  {
+    id: 't10',
+    name: 'Nisha & Rohan',
+    handle: '@nisharohan',
+    avatar: 'https://rasmwed.com/wp-content/uploads/2024/08/Jagmandir-Island-Palace.webp',
+    weddingLocation: 'Udaipur, Rajasthan',
+    venue: 'Jagmandir Island Palace',
+    rating: 5,
+    review: 'An island buyout wedding on Lake Pichola felt like an impossible dream until Rasm handled the permits, barge logistics, and luxury sound grids seamlessly.',
+    tag: 'Island Palace'
+  },
+  {
+    id: 't11',
+    name: 'Divya & Nikhil',
+    handle: '@divyanikhil',
+    avatar: 'https://rasmwed.com/wp-content/uploads/2024/07/IMG_E5217.webp',
+    weddingLocation: 'Udaipur, Rajasthan',
+    venue: 'The Ananta Udaipur',
+    rating: 5,
+    review: 'Their 3D spatial pre-visualization gave our parents total peace of mind. On the wedding night, the mandap was an exact replica of the render. True artistry.',
+    tag: '3D Spatial Design'
+  },
+  {
+    id: 't12',
+    name: 'Priyanka & Gautam',
+    handle: '@priyagautam',
+    avatar: 'https://rasmwed.com/wp-content/uploads/2026/04/Romantic-Indian-Wedding-Moment.jpg',
+    weddingLocation: 'Udaipur, Rajasthan',
+    venue: 'Zenana Mahal City Palace',
+    rating: 5,
+    review: 'Five-star catering curation, custom fireworks over the lake, and flawless hospitality. Rasm gave us a royal celebration worthy of Mewari kings.',
+    tag: 'Royal Heritage'
+  },
+];
+
+interface TestimonialCardItemProps {
+  card: TestimonialCard;
+}
+
+const TestimonialCardItem: React.FC<TestimonialCardItemProps> = ({ card }) => {
+  return (
+    <div className="group relative flex flex-col justify-between rounded-2xl bg-white p-5 sm:p-6 border border-stone-200/80 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_12px_32px_rgba(197,160,89,0.14)] hover:border-gold/40 transition-all duration-300">
+      <div>
+        {/* Author Header */}
+        <div className="flex items-center gap-3 mb-3.5">
+          <div className="relative">
+            <img
+              src={card.avatar}
+              alt={card.name}
+              className="w-11 h-11 rounded-full object-cover border-2 border-gold/30 shadow-2xs group-hover:scale-105 transition-transform duration-300"
+            />
+            <div className="absolute -bottom-1 -right-1 bg-white rounded-full p-0.5 shadow-xs">
+              <CheckCircle2 className="w-3.5 h-3.5 text-[#C5A059] fill-[#C5A059]/20" />
+            </div>
+          </div>
+          <div className="min-w-0 flex-1">
+            <div className="flex items-center gap-1.5">
+              <h4 className="font-manrope font-medium text-sm text-charcoal-900 truncate">
+                {card.name}
+              </h4>
+            </div>
+            <p className="text-xs text-charcoal-500 truncate font-light">
+              {card.venue}
+            </p>
+          </div>
+        </div>
+
+        {/* 5-Star Rating */}
+        <div className="flex items-center gap-1 mb-3">
+          {[...Array(card.rating)].map((_, i) => (
+            <Star key={i} className="w-3.5 h-3.5 text-[#C5A059] fill-[#C5A059]" />
+          ))}
+          <span className="text-[11px] text-charcoal-400 ml-1.5 font-light">5.0 Verified</span>
+        </div>
+
+        {/* Quote */}
+        <p className="text-charcoal-700 text-xs sm:text-[13px] leading-relaxed font-normal">
+          "{card.review}"
+        </p>
+      </div>
+
+      {/* Footer Tag */}
+      <div className="mt-4 pt-3 border-t border-stone-100 flex items-center justify-between">
+        <span className="text-[11px] font-medium text-charcoal-500 uppercase tracking-wider">
+          {card.tag}
+        </span>
+        <span className="text-[11px] text-charcoal-400 font-light">
+          {card.weddingLocation.split(',')[0]}
+        </span>
+      </div>
+    </div>
+  );
+};
+
+interface MarqueeColumnProps {
+  cards: TestimonialCard[];
+  duration?: string;
+  reverse?: boolean;
+}
+
+const MarqueeColumn: React.FC<MarqueeColumnProps> = ({ cards, duration = '35s', reverse = false }) => {
+  return (
+    <div className="flex flex-col overflow-hidden h-[620px] relative">
+      <div
+        className={`flex flex-col gap-4 py-2 hover:[animation-play-state:paused]`}
+        style={{
+          animation: `${reverse ? 'marquee-vertical-reverse' : 'marquee-vertical'} ${duration} linear infinite`,
+        }}
+      >
+        {/* Double array for seamless vertical loop */}
+        {[...cards, ...cards].map((card, idx) => (
+          <TestimonialCardItem key={`${card.id}-${idx}`} card={card} />
+        ))}
+      </div>
+    </div>
+  );
+};
 
 interface RealCouplesStoriesProps {
   onOpenInquiry?: (context?: string) => void;
 }
 
-const STORIES: CoupleStory[] = [
-  {
-    id: 'c1',
-    names: 'Ananya & Siddharth',
-    origin: 'New York & London',
-    city: 'Udaipur, Rajasthan',
-    venue: 'The Oberoi Udaivilas',
-    guestCount: '220 Guests',
-    image: 'https://rasmwed.com/wp-content/uploads/2026/04/Romantic-Indian-Wedding-Moment.jpg',
-    quote: 'Rasm turned Lake Pichola into our royal kingdom. The private boat arrivals and sunset floating mandap pheras left our international guests speechless.',
-    tag: 'Lake Mandap & Royal Pheras'
-  },
-  {
-    id: 'c2',
-    names: 'Pooja & Dev',
-    origin: 'California & Mumbai',
-    city: 'Jaipur, Rajasthan',
-    venue: 'Rambagh Palace & Fairmont',
-    guestCount: '350 Guests',
-    image: 'https://rasmwed.com/wp-content/uploads/2026/04/download-49.jpg',
-    quote: 'From getting GM buyouts to 3D spatial simulations before we landed in India, Rasm took away every ounce of stress. Utter 5-star perfection.',
-    tag: 'Rajputana Vintage Baraat'
-  },
-  {
-    id: 'c3',
-    names: 'Natasha & Kabir',
-    origin: 'Dubai & Singapore',
-    city: 'Goa Coastal Luxury',
-    venue: 'Grand Hyatt Goa',
-    guestCount: '180 Guests',
-    image: 'https://rasmwed.com/wp-content/uploads/2026/04/download-51.jpg',
-    quote: 'The beach sunset mandap was ethereal. The team managed multi-city airport liaisons and chartered arrivals for all 180 guests without a hiccup.',
-    tag: 'Coastal Sunset Mandap'
-  },
-  {
-    id: 'c4',
-    names: 'Meera & Arjun',
-    origin: 'Toronto & New Delhi',
-    city: 'Jodhpur, Rajasthan',
-    venue: 'Umaid Bhawan Palace',
-    guestCount: '280 Guests',
-    image: 'https://rasmwed.com/wp-content/uploads/2024/07/MLVR0388-scaled.webp',
-    quote: 'A grand imperial palace wedding executed with clockwork precision. The Mewari welcome and royal dhol troupe set the tone for three unforgettable days.',
-    tag: 'Heritage Fort Celebration'
-  },
-  {
-    id: 'c5',
-    names: 'Rhea & Vikram',
-    origin: 'London & Sydney',
-    city: 'Udaipur, Rajasthan',
-    venue: 'Taj Lake Palace & Jagmandir',
-    guestCount: '160 Guests',
-    image: 'https://rasmwed.com/wp-content/uploads/2024/08/The-Oberoi-Udaivilas.webp',
-    quote: 'Planning our wedding from London was so easy with their 24/7 NRI liaison. Every floral arrangement and lighting cue was exact to the 3D model.',
-    tag: 'Island Palace Buyout'
-  },
-];
-
 export const RealCouplesStories: React.FC<RealCouplesStoriesProps> = ({ onOpenInquiry }) => {
-  const [columns, setColumns] = useState<4 | 5>(5);
-
   return (
-    <section className="py-24 bg-[#FAF8F5] relative border-b border-gold/15">
-      <div className="rasm-container relative z-10">
-        
-        {/* Header with 4 / 5 Grid Selector */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-14 gap-6">
-          <div>
-            <div className="inline-flex items-center gap-2 text-gold-dark text-xs uppercase tracking-[0.3em] font-medium mb-3">
-              <Heart className="w-3.5 h-3.5 text-gold-dark fill-gold-light/40" />
-              <span>Real Royal Testimonials</span>
-            </div>
-            <h2 className="font-cinzel font-normal text-3xl sm:text-4xl md:text-5xl text-charcoal-900 tracking-[0.02em]">
-              Love Stories, <span className="gold-gradient-text italic font-normal">Imperial Memories</span>
-            </h2>
-            <p className="text-charcoal-600 text-sm sm:text-base font-light leading-relaxed mt-2 max-w-2xl">
-              Discerning couples from New York, London, Dubai & across India who entrusted their royal wedding vision to Rasm.
-            </p>
+    <section className="py-24 bg-[#FAF8F5] relative border-b border-gold/15 overflow-hidden">
+      {/* Inject Keyframe Animation Styles for Vertical Marquee (marquee-03) */}
+      <style>{`
+        @keyframes marquee-vertical {
+          0% { transform: translateY(0%); }
+          100% { transform: translateY(-50%); }
+        }
+        @keyframes marquee-vertical-reverse {
+          0% { transform: translateY(-50%); }
+          100% { transform: translateY(0%); }
+        }
+      `}</style>
+
+      {/* Subtle Golden Ambient Glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-gradient-to-tr from-gold/10 via-amber-100/20 to-transparent blur-3xl pointer-events-none rounded-full" />
+
+      <div className="w-[90%] max-w-7xl mx-auto relative z-10">
+        {/* Section Header */}
+        <div className="text-center max-w-3xl mx-auto mb-14">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gradient-to-r from-ivory-200 to-amber-50/60 border border-gold/35 shadow-2xs mb-3">
+            <Heart className="w-3.5 h-3.5 text-[#C5A059]" />
+            <span className="text-xs uppercase font-medium gold-gradient-text tracking-normal">
+              Real Royal Testimonials
+            </span>
           </div>
 
-          {/* 4 or 5 Grid Toggle */}
-          <div className="flex items-center gap-2 self-start md:self-end bg-white p-1.5 rounded-2xl border border-gold/25 shadow-xs">
-            <span className="text-[11px] uppercase tracking-wider text-charcoal-500 font-medium px-2 hidden sm:inline">
-              Layout:
-            </span>
-            <button
-              onClick={() => setColumns(4)}
-              className={`px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all ${
-                columns === 4
-                  ? 'bg-charcoal-900 text-gold shadow-xs'
-                  : 'text-charcoal-600 hover:text-gold-dark'
-              }`}
-              title="View 4 Column Grid"
-            >
-              <LayoutGrid className="w-3.5 h-3.5" />
-              <span>4 Grid</span>
-            </button>
-            <button
-              onClick={() => setColumns(5)}
-              className={`px-3 py-1.5 rounded-xl text-xs font-semibold flex items-center gap-1.5 transition-all ${
-                columns === 5
-                  ? 'bg-charcoal-900 text-gold shadow-xs'
-                  : 'text-charcoal-600 hover:text-gold-dark'
-              }`}
-              title="View 5 Column Grid"
-            >
-              <Grid3X3 className="w-3.5 h-3.5" />
-              <span>5 Grid</span>
-            </button>
+          <h2 className="font-manrope font-medium text-3xl sm:text-4xl md:text-5xl text-charcoal-900 tracking-tight leading-[1.2]">
+            Love Stories, <span className="gold-gradient-text italic font-normal">Imperial Memories</span>
+          </h2>
+
+          <p className="text-charcoal-600 text-sm sm:text-base font-light leading-relaxed mt-3 max-w-2xl mx-auto">
+            Discerning couples from New York, London, Dubai & India who entrusted their once-in-a-lifetime palace wedding vision to Rasm.
+          </p>
+        </div>
+
+        {/* 4 Grid Vertical Testimonials Marquee (21st.dev @shadcnspace/components/marquee-03) */}
+        <div className="relative">
+          {/* Top Edge Fade Mask */}
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[#FAF8F5] via-[#FAF8F5]/90 to-transparent z-20" />
+          
+          {/* Bottom Edge Fade Mask */}
+          <div className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[#FAF8F5] via-[#FAF8F5]/90 to-transparent z-20" />
+
+          {/* 4 Grid Columns */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+            {/* Column 1 - Normal */}
+            <MarqueeColumn cards={TESTIMONIALS_COL1} duration="32s" reverse={false} />
+            
+            {/* Column 2 - Reverse */}
+            <MarqueeColumn cards={TESTIMONIALS_COL2} duration="38s" reverse={true} />
+            
+            {/* Column 3 - Normal */}
+            <MarqueeColumn cards={TESTIMONIALS_COL3} duration="34s" reverse={false} />
+            
+            {/* Column 4 - Reverse */}
+            <MarqueeColumn cards={TESTIMONIALS_COL4} duration="40s" reverse={true} />
           </div>
         </div>
 
-        {/* 4 or 5 Testimonials Grid */}
-        <div
-          className={`grid grid-cols-1 sm:grid-cols-2 gap-4 lg:gap-5 ${
-            columns === 5 ? 'lg:grid-cols-5' : 'lg:grid-cols-4'
-          }`}
-        >
-          {STORIES.slice(0, columns === 5 ? 5 : 4).map((story) => (
-            <div
-              key={story.id}
-              className="editorial-card rounded-2xl overflow-hidden bg-white border border-gold/25 shadow-md flex flex-col justify-between group hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
-            >
-              {/* Couple Visual Card Top */}
-              <div className="relative h-52 overflow-hidden bg-stone-100">
-                <img
-                  src={story.image}
-                  alt={story.names}
-                  referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent" />
-                
-                {/* Location Badge */}
-                <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-2.5 py-0.5 rounded-full text-[10px] font-semibold text-charcoal-900 border border-gold/30 flex items-center gap-1 shadow-xs">
-                  <MapPin className="w-2.5 h-2.5 text-gold-dark" />
-                  <span>{story.city.split(',')[0]}</span>
-                </div>
-
-                {/* Couple Names & Venue */}
-                <div className="absolute bottom-3 left-3 right-3 text-white">
-                  <span className="text-[10px] uppercase tracking-wider text-gold block font-medium">
-                    {story.origin}
-                  </span>
-                  <h3 className="font-cinzel font-normal text-lg sm:text-xl text-white leading-tight">
-                    {story.names}
-                  </h3>
-                  <span className="text-[10.5px] text-white/80 block truncate font-light mt-0.5">
-                    {story.venue}
-                  </span>
-                </div>
-              </div>
-
-              {/* Review Content */}
-              <div className="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-4">
-                <div className="space-y-2.5">
-                  {/* 5-Star Rating & Verified Badge */}
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-0.5 text-gold">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="w-3 h-3 fill-gold text-gold" />
-                      ))}
-                    </div>
-                    <span className="inline-flex items-center gap-1 text-[10px] font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
-                      <CheckCircle2 className="w-2.5 h-2.5" />
-                      <span>Verified</span>
-                    </span>
-                  </div>
-
-                  {/* Quote */}
-                  <p className="text-charcoal-700 text-xs font-light leading-relaxed italic line-clamp-5">
-                    "{story.quote}"
-                  </p>
-                </div>
-
-                {/* Highlight Tag & Action */}
-                <div className="pt-3 border-t border-gold/15 space-y-3">
-                  <div className="text-[10.5px] font-medium text-gold-dark bg-ivory-200 px-2.5 py-1 rounded-lg border border-gold/25 truncate text-center">
-                    ✦ {story.tag}
-                  </div>
-
-                  {onOpenInquiry && (
-                    <button
-                      onClick={() => onOpenInquiry(`Inspired by ${story.names} at ${story.venue}`)}
-                      className="w-full py-2 rounded-lg border border-gold/30 hover:border-gold hover:bg-gold hover:text-charcoal-900 text-charcoal-800 text-[11px] font-semibold uppercase tracking-wider transition-all flex items-center justify-center gap-1 group/btn"
-                    >
-                      <span>Inquire Vision</span>
-                      <ArrowRight className="w-3 h-3 transition-transform group-hover/btn:translate-x-1" />
-                    </button>
-                  )}
-                </div>
-              </div>
-            </div>
-          ))}
+        {/* Bottom CTA */}
+        <div className="mt-14 text-center">
+          <button
+            onClick={() => onOpenInquiry?.('Palace Wedding Experience')}
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-charcoal-950 text-white hover:bg-black font-manrope font-medium text-sm tracking-normal shadow-[0_10px_25px_rgba(0,0,0,0.15)] hover:shadow-[0_14px_35px_rgba(197,160,89,0.25)] transition-all duration-300 group"
+          >
+            <span>Begin Your Royal Journey</span>
+            <ArrowRight className="w-4 h-4 text-[#E2C785] group-hover:translate-x-1 transition-transform" />
+          </button>
         </div>
       </div>
     </section>
   );
 };
+
 export default RealCouplesStories;

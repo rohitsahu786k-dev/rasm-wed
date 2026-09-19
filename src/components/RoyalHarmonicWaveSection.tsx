@@ -12,7 +12,7 @@ export const RoyalHarmonicWaveSection: React.FC = () => {
             <Camera className="w-3.5 h-3.5 text-gold" />
             <span>Harmonic Scenography & Motion</span>
           </div>
-          <h2 className="font-cinzel font-normal text-3xl sm:text-4xl md:text-5xl text-charcoal-900 mb-3 tracking-[0.02em]">
+          <h2 className="font-manrope font-medium text-3xl sm:text-4xl md:text-5xl text-charcoal-900 mb-3 tracking-tight leading-[1.22]">
             The <span className="gold-gradient-text italic font-normal">Royal Cinematic</span> Showcase
           </h2>
           <p className="text-charcoal-600 text-xs sm:text-sm md:text-base font-light leading-relaxed max-w-2xl mx-auto">

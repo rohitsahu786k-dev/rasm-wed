@@ -138,7 +138,7 @@ export const RoyalCommunityOrbitSection: React.FC<RoyalCommunityOrbitSectionProp
           items={items}
           stats={stats}
           headline={
-            <span className="font-cinzel font-normal text-charcoal-900 block text-2xl sm:text-3xl md:text-4xl">
+            <span className="font-manrope font-bold text-charcoal-900 block text-2xl sm:text-3xl md:text-4xl tracking-tight">
               Where Royal Dreams <br className="hidden sm:block" />
               <span className="gold-gradient-text italic font-normal">Turn Into Palatial Reality</span>
             </span>

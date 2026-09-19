@@ -20,11 +20,26 @@
     -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Strict constraint: Heading weight 400 max */
+  /* Modern Luxury Headings with Manrope (Weight 400 - 500 max) */
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Cinzel', serif;
-    font-weight: 400 !important;
-    letter-spacing: 0.04em;
+    font-family: 'Manrope', system-ui, sans-serif;
+    letter-spacing: -0.01em;
+    overflow: visible;
+  }
+
+  h1 {
+    font-weight: 500;
+    line-height: 1.18;
+  }
+
+  h2 {
+    font-weight: 500;
+    line-height: 1.22;
+  }
+
+  h3, h4, h5, h6 {
+    font-weight: 450;
+    line-height: 1.28;
   }
 
   p, span, a, li, button, input, textarea, label {
@@ -32,11 +47,18 @@
   }
 }
 
-/* Luxury Editorial Gold Gradient Text */
+/* Luxury Editorial Gold Gradient Text (Unclipped Italics & Descenders) */
 .gold-gradient-text {
   background: linear-gradient(135deg, #A88434 0%, #C5A059 40%, #D4AF37 70%, #997316 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  display: inline-block;
+  padding-right: 0.16em;
+  padding-bottom: 0.10em;
+  margin-right: -0.16em;
+  margin-bottom: -0.10em;
+  overflow: visible;
+  vertical-align: baseline;
 }
 
 .gold-gradient-bg {

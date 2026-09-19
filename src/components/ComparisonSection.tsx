@@ -54,7 +54,7 @@ export const ComparisonSection: React.FC<ComparisonSectionProps> = ({ onOpenInqu
             <ShieldCheck className="w-3.5 h-3.5 text-gold-dark" />
             <span>The Transparency Difference</span>
           </div>
-          <h2 className="font-cinzel font-normal text-3xl sm:text-5xl text-charcoal-900 mb-4 tracking-[0.03em]">
+          <h2 className="font-manrope font-medium text-3xl sm:text-5xl text-charcoal-900 mb-4 tracking-tight leading-[1.2]">
             The <span className="gold-gradient-text italic font-normal">Rasm Standard</span> vs Traditional Planners
           </h2>
           <p className="text-charcoal-600 text-sm sm:text-base font-light leading-relaxed">
@@ -74,7 +74,7 @@ export const ComparisonSection: React.FC<ComparisonSectionProps> = ({ onOpenInqu
                   <th className="py-4 px-4 text-xs uppercase tracking-wider font-semibold w-1/3 bg-white/80 rounded-t-2xl border-t border-x border-gold/30 text-charcoal-900">
                     <div className="flex items-center gap-2">
                       <Crown className="w-4 h-4 text-gold-dark" />
-                      <span className="font-cinzel text-sm text-gold-dark font-medium">Rasm Weddings</span>
+                      <span className="font-manrope text-sm text-gold-dark font-bold tracking-wide">Rasm Weddings</span>
                     </div>
                   </th>
                   <th className="py-4 px-4 text-xs uppercase tracking-wider text-charcoal-400 font-semibold w-1/3">

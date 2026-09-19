@@ -242,7 +242,7 @@ export const SingleBlogView: React.FC<SingleBlogViewProps> = ({
               <span>{post.category || 'Royal Palaces & Destination Guides'}</span>
             </div>
 
-            <h1 className="font-cinzel text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-normal leading-tight tracking-normal">
+            <h1 className="font-manrope text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white font-medium leading-[1.2] tracking-tight">
               {post.title}
             </h1>
 
@@ -410,14 +410,14 @@ export const SingleBlogView: React.FC<SingleBlogViewProps> = ({
             {/* B. OVERVIEW & EDITORIAL ARTICLE BODY */}
             <section id="overview" className="prose prose-stone max-w-none">
               <div className="border-l-2 border-gold pl-5 mb-8">
-                <p className="font-cinzel text-lg sm:text-xl text-charcoal-900 italic font-normal leading-relaxed">
+                <p className="font-manrope text-lg sm:text-xl text-charcoal-900 italic font-medium leading-relaxed">
                   "{post.excerpt || 'An imperial destination where centuries of royal Rajputana heritage harmonize with contemporary luxury hospitality, creating unforgettable memories for discerning families from across the globe.'}"
                 </p>
               </div>
 
               {post.content ? (
                 <div
-                  className="text-charcoal-700 text-sm sm:text-base leading-relaxed font-light space-y-6 [&_h2]:font-cinzel [&_h2]:font-normal [&_h2]:text-2xl [&_h2]:text-charcoal-900 [&_h3]:font-cinzel [&_h3]:font-normal [&_h3]:text-xl [&_p]:leading-relaxed [&_img]:rounded-2xl [&_img]:my-6 [&_ul]:list-disc [&_ul]:pl-5"
+                  className="text-charcoal-700 text-sm sm:text-base leading-relaxed font-light space-y-6 [&_h2]:font-manrope [&_h2]:font-bold [&_h2]:tracking-tight [&_h2]:text-2xl [&_h2]:text-charcoal-900 [&_h3]:font-manrope [&_h3]:font-semibold [&_h3]:tracking-tight [&_h3]:text-xl [&_p]:leading-relaxed [&_img]:rounded-2xl [&_img]:my-6 [&_ul]:list-disc [&_ul]:pl-5"
                   dangerouslySetInnerHTML={{ __html: post.content }}
                 />
               ) : (
@@ -438,7 +438,7 @@ export const SingleBlogView: React.FC<SingleBlogViewProps> = ({
                 <span className="text-gold-dark text-xs uppercase tracking-[0.25em] font-semibold block mb-1">
                   Architectural Distinction
                 </span>
-                <h2 className="font-cinzel text-2xl sm:text-3xl text-charcoal-900 font-normal">
+                <h2 className="font-manrope text-2xl sm:text-3xl text-charcoal-900 font-medium tracking-tight leading-snug">
                   Why We Love This Setting
                 </h2>
                 <p className="text-xs sm:text-sm text-charcoal-600 mt-1 font-light">
@@ -456,7 +456,7 @@ export const SingleBlogView: React.FC<SingleBlogViewProps> = ({
                       <div className="w-10 h-10 rounded-xl bg-white border border-gold/30 flex items-center justify-center mb-4 shadow-2xs">
                         {item.icon}
                       </div>
-                      <h3 className="font-cinzel text-lg text-charcoal-900 font-normal mb-2">
+                      <h3 className="font-manrope text-lg text-charcoal-900 font-medium mb-2 tracking-tight">
                         {item.title}
                       </h3>
                       <p className="text-xs sm:text-sm text-charcoal-600 font-light leading-relaxed">
@@ -474,7 +474,7 @@ export const SingleBlogView: React.FC<SingleBlogViewProps> = ({
                 <span className="text-gold-dark text-xs uppercase tracking-[0.25em] font-semibold block mb-1">
                   Event Layouts
                 </span>
-                <h2 className="font-cinzel text-2xl sm:text-3xl text-charcoal-900 font-normal">
+                <h2 className="font-manrope text-2xl sm:text-3xl text-charcoal-900 font-medium tracking-tight leading-snug">
                   Spaces Designed for Celebration
                 </h2>
                 <p className="text-xs sm:text-sm text-charcoal-600 mt-1 font-light">
@@ -507,7 +507,7 @@ export const SingleBlogView: React.FC<SingleBlogViewProps> = ({
                       <span className="text-[10px] uppercase tracking-widest text-gold-dark font-semibold">
                         {spaces[activeSpaceTab].type}
                       </span>
-                      <h3 className="font-cinzel text-xl sm:text-2xl text-charcoal-900 font-normal mt-0.5">
+                      <h3 className="font-manrope text-xl sm:text-2xl text-charcoal-900 font-medium mt-0.5 tracking-tight">
                         {spaces[activeSpaceTab].name}
                       </h3>
                     </div>
@@ -552,7 +552,7 @@ export const SingleBlogView: React.FC<SingleBlogViewProps> = ({
                 <span className="text-gold-dark text-xs uppercase tracking-[0.25em] font-semibold block mb-1">
                   Guest Experience
                 </span>
-                <h2 className="font-cinzel text-2xl sm:text-3xl text-charcoal-900 font-normal">
+                <h2 className="font-manrope text-2xl sm:text-3xl text-charcoal-900 font-medium tracking-tight leading-snug">
                   Accommodation & Palatial Suites
                 </h2>
                 <p className="text-xs sm:text-sm text-charcoal-600 mt-1 font-light">
@@ -594,7 +594,7 @@ export const SingleBlogView: React.FC<SingleBlogViewProps> = ({
                 <span className="text-gold-dark text-xs uppercase tracking-[0.25em] font-semibold block mb-1">
                   Seamless Connectivity
                 </span>
-                <h2 className="font-cinzel text-2xl sm:text-3xl text-charcoal-900 font-normal">
+                <h2 className="font-manrope text-2xl sm:text-3xl text-charcoal-900 font-medium tracking-tight leading-snug">
                   Getting There & VIP Logistics
                 </h2>
                 <p className="text-xs sm:text-sm text-charcoal-600 mt-1 font-light">
@@ -635,7 +635,7 @@ export const SingleBlogView: React.FC<SingleBlogViewProps> = ({
                 <span className="text-gold-dark text-xs uppercase tracking-[0.25em] font-semibold block mb-1">
                   Scenography & Moments
                 </span>
-                <h2 className="font-cinzel text-2xl sm:text-3xl text-charcoal-900 font-normal">
+                <h2 className="font-manrope text-2xl sm:text-3xl text-charcoal-900 font-medium tracking-tight leading-snug">
                   Real Celebrations Executed
                 </h2>
                 <p className="text-xs sm:text-sm text-charcoal-600 mt-1 font-light">
@@ -670,7 +670,7 @@ export const SingleBlogView: React.FC<SingleBlogViewProps> = ({
                 <span className="text-gold-dark text-xs uppercase tracking-[0.25em] font-semibold block mb-1">
                   Clarity For Couples
                 </span>
-                <h2 className="font-cinzel text-2xl sm:text-3xl text-charcoal-900 font-normal">
+                <h2 className="font-manrope text-2xl sm:text-3xl text-charcoal-900 font-medium tracking-tight leading-snug">
                   Frequently Asked Questions
                 </h2>
               </div>
@@ -718,7 +718,7 @@ export const SingleBlogView: React.FC<SingleBlogViewProps> = ({
                     <Crown className="w-3 h-3 text-gold-dark" />
                     <span>Direct Royal Desk</span>
                   </div>
-                  <h3 className="font-cinzel text-xl text-charcoal-900 font-normal">
+                  <h3 className="font-manrope text-xl text-charcoal-900 font-medium tracking-tight">
                     Inquire Venue Dates & Terms
                   </h3>
                   <p className="text-xs text-charcoal-500 font-light mt-1">
@@ -867,7 +867,7 @@ export const SingleBlogView: React.FC<SingleBlogViewProps> = ({
               <span className="text-gold-dark text-xs uppercase tracking-[0.25em] font-semibold block mb-1">
                 Curated Recommendations
               </span>
-              <h2 className="font-cinzel text-2xl sm:text-3xl text-charcoal-900 font-normal">
+              <h2 className="font-manrope text-2xl sm:text-3xl text-charcoal-900 font-medium tracking-tight leading-snug">
                 Similar Royal Venues & Guides
               </h2>
             </div>
@@ -893,7 +893,7 @@ export const SingleBlogView: React.FC<SingleBlogViewProps> = ({
 
                   <div className="p-5 flex flex-col justify-between flex-1">
                     <div>
-                      <h3 className="font-cinzel text-base text-charcoal-900 font-normal group-hover:text-gold-dark transition-colors line-clamp-2 mb-2">
+                      <h3 className="font-manrope text-base text-charcoal-900 font-medium group-hover:text-gold-dark transition-colors line-clamp-2 mb-2 tracking-tight">
                         {p.title}
                       </h3>
                       <p className="text-xs text-charcoal-600 font-light line-clamp-2 leading-relaxed">

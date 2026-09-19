@@ -158,7 +158,7 @@ const CITY_DATABASE: Record<string, CityData> = {
   jaipur: {
     city: 'Jaipur',
     state: 'Rajasthan',
-    tagline: 'The Pink City · Imperial Fortresses, Royal Havelis & Regal Grandeur',
+    tagline: 'The Pink City · Imperial Fortresses, Royal Havelis & Rasm Grandeur',
     heroImage: 'https://rasmwed.com/wp-content/uploads/2024/08/Fateh-Garh-Palace.webp',
     season: 'October to March (Pleasant sunshine, cool royal evenings)',
     connectivity: 'Jaipur International Airport (JAI) · Direct flights from Dubai, Delhi, Mumbai, Bengaluru',
@@ -641,7 +641,7 @@ export const CityPageView: React.FC<CityPageViewProps> = ({
             <span>Royal Destination Blueprint · {data.city}</span>
           </div>
 
-          <h1 className="font-cinzel font-normal text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-charcoal-900 tracking-wide mb-6 leading-tight">
+          <h1 className="font-manrope font-medium text-3xl sm:text-5xl md:text-6xl lg:text-7xl text-charcoal-900 tracking-tight mb-6 leading-[1.2]">
             Luxury Destination Wedding Planner in <br />
             <span className="gold-gradient-text italic font-normal">{data.city}</span>
           </h1>
@@ -656,7 +656,7 @@ export const CityPageView: React.FC<CityPageViewProps> = ({
               <span className="text-[10px] uppercase tracking-wider text-charcoal-400 font-medium block">
                 Ideal Season
               </span>
-              <span className="font-cinzel text-xs sm:text-sm text-charcoal-900 font-medium mt-1 block">
+              <span className="font-manrope text-xs sm:text-sm text-charcoal-900 font-semibold mt-1 block">
                 {data.season.split('(')[0]}
               </span>
             </div>
@@ -665,7 +665,7 @@ export const CityPageView: React.FC<CityPageViewProps> = ({
               <span className="text-[10px] uppercase tracking-wider text-charcoal-400 font-medium block">
                 Palace Access
               </span>
-              <span className="font-cinzel text-xs sm:text-sm text-charcoal-900 font-medium mt-1 block">
+              <span className="font-manrope text-xs sm:text-sm text-charcoal-900 font-semibold mt-1 block">
                 Direct GM Holds
               </span>
             </div>
@@ -674,7 +674,7 @@ export const CityPageView: React.FC<CityPageViewProps> = ({
               <span className="text-[10px] uppercase tracking-wider text-charcoal-400 font-medium block">
                 NRI Concierge
               </span>
-              <span className="font-cinzel text-xs sm:text-sm text-charcoal-900 font-medium mt-1 block">
+              <span className="font-manrope text-xs sm:text-sm text-charcoal-900 font-semibold mt-1 block">
                 24/7 Global Desk
               </span>
             </div>
@@ -683,7 +683,7 @@ export const CityPageView: React.FC<CityPageViewProps> = ({
               <span className="text-[10px] uppercase tracking-wider text-charcoal-400 font-medium block">
                 Celebration Scale
               </span>
-              <span className="font-cinzel text-xs sm:text-sm text-charcoal-900 font-medium mt-1 block">
+              <span className="font-manrope text-xs sm:text-sm text-charcoal-900 font-semibold mt-1 block">
                 Bespoke & Private
               </span>
             </div>
@@ -719,7 +719,7 @@ export const CityPageView: React.FC<CityPageViewProps> = ({
           <span className="text-gold-dark text-xs uppercase tracking-[0.3em] font-medium block mb-2">
             The Imperial Destination
           </span>
-          <h2 className="font-cinzel font-normal text-3xl sm:text-4xl text-charcoal-900">
+          <h2 className="font-manrope font-medium text-3xl sm:text-4xl text-charcoal-900 tracking-tight leading-snug">
             Why Marry in <span className="gold-gradient-text italic">{data.city}</span>?
           </h2>
         </div>
@@ -752,7 +752,7 @@ export const CityPageView: React.FC<CityPageViewProps> = ({
           <span className="text-gold-dark text-xs uppercase tracking-[0.3em] font-medium block mb-2">
             Curated Palaces & Estates
           </span>
-          <h2 className="font-cinzel font-normal text-3xl sm:text-5xl text-charcoal-900 mb-4">
+          <h2 className="font-manrope font-medium text-3xl sm:text-5xl text-charcoal-900 mb-4 tracking-tight leading-[1.2]">
             Iconic Wedding Venues in <span className="gold-gradient-text italic">{data.city}</span>
           </h2>
           <p className="text-charcoal-600 text-sm sm:text-base font-light leading-relaxed">
@@ -778,7 +778,7 @@ export const CityPageView: React.FC<CityPageViewProps> = ({
                   {venue.tag}
                 </div>
                 <div className="absolute bottom-4 left-4 right-4 text-white">
-                  <h3 className="font-cinzel font-normal text-xl text-white">
+                  <h3 className="font-manrope font-medium text-xl text-white tracking-tight">
                     {venue.name}
                   </h3>
                   <span className="text-[11px] text-stone-200 font-light block mt-0.5">
@@ -823,7 +823,7 @@ export const CityPageView: React.FC<CityPageViewProps> = ({
             <span className="text-gold-dark text-xs uppercase tracking-[0.3em] font-medium block mb-2">
               Timeline of Celebrations
             </span>
-            <h2 className="font-cinzel font-normal text-3xl sm:text-5xl text-charcoal-900 mb-4">
+            <h2 className="font-manrope font-medium text-3xl sm:text-5xl text-charcoal-900 mb-4 tracking-tight leading-[1.2]">
               Curated 3-Day <span className="gold-gradient-text italic">Wedding Experience</span>
             </h2>
             <p className="text-charcoal-600 text-sm sm:text-base font-light leading-relaxed">
@@ -840,7 +840,7 @@ export const CityPageView: React.FC<CityPageViewProps> = ({
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-gold to-transparent opacity-50" />
                 <div>
                   <div className="flex items-center justify-between mb-4">
-                    <span className="font-cinzel text-lg font-medium text-gold-dark">
+                    <span className="font-manrope text-lg font-bold text-gold-dark tracking-tight">
                       {item.day}
                     </span>
                     <span className="text-[11px] uppercase tracking-wider text-charcoal-500 bg-ivory-200 px-3 py-1 rounded-full border border-gold/20">
@@ -848,7 +848,7 @@ export const CityPageView: React.FC<CityPageViewProps> = ({
                     </span>
                   </div>
 
-                  <h3 className="font-cinzel font-normal text-xl text-charcoal-900 mb-3">
+                  <h3 className="font-manrope font-medium text-xl text-charcoal-900 mb-3 tracking-tight">
                     {item.title}
                   </h3>
 
@@ -880,7 +880,7 @@ export const CityPageView: React.FC<CityPageViewProps> = ({
           <span className="text-gold-dark text-xs uppercase tracking-[0.3em] font-medium block mb-2">
             The Rasm Privilege
           </span>
-          <h2 className="font-cinzel font-normal text-3xl sm:text-5xl text-charcoal-900 mb-4">
+          <h2 className="font-manrope font-medium text-3xl sm:text-5xl text-charcoal-900 mb-4 tracking-tight leading-[1.2]">
             Why Discerning Couples Choose Us in <span className="gold-gradient-text italic">{data.city}</span>
           </h2>
         </div>
@@ -892,7 +892,7 @@ export const CityPageView: React.FC<CityPageViewProps> = ({
                 <Crown className="w-6 h-6 text-gold-dark" />
               </div>
               <div>
-                <h3 className="font-cinzel font-normal text-xl text-charcoal-900 mb-2">
+                <h3 className="font-manrope font-medium text-xl text-charcoal-900 mb-2 tracking-tight">
                   {adv.title}
                 </h3>
                 <p className="text-charcoal-600 text-xs sm:text-sm font-light leading-relaxed">
@@ -910,7 +910,7 @@ export const CityPageView: React.FC<CityPageViewProps> = ({
           <span className="text-gold-dark text-xs uppercase tracking-[0.3em] font-medium block mb-2">
             Essential Guidance
           </span>
-          <h2 className="font-cinzel font-normal text-3xl sm:text-4xl text-charcoal-900">
+          <h2 className="font-manrope font-medium text-3xl sm:text-4xl text-charcoal-900 tracking-tight leading-snug">
             Frequently Asked Questions for <span className="gold-gradient-text italic">{data.city}</span> Weddings
           </h2>
         </div>
@@ -925,7 +925,7 @@ export const CityPageView: React.FC<CityPageViewProps> = ({
                 onClick={() => setOpenFaq(openFaq === fIdx ? null : fIdx)}
                 className="w-full p-6 text-left flex items-center justify-between gap-4 hover:bg-ivory-100 transition-colors"
               >
-                <span className="font-cinzel font-normal text-base sm:text-lg text-charcoal-900">
+                <span className="font-manrope font-semibold text-base sm:text-lg text-charcoal-900 tracking-tight">
                   {faq.q}
                 </span>
                 {openFaq === fIdx ? (
@@ -952,7 +952,7 @@ export const CityPageView: React.FC<CityPageViewProps> = ({
             <span>Direct Palatial Consultation</span>
           </div>
 
-          <h2 className="font-cinzel font-normal text-3xl sm:text-5xl text-charcoal-900 leading-snug">
+          <h2 className="font-manrope font-bold text-3xl sm:text-5xl text-charcoal-900 leading-snug tracking-tight">
             Ready to Begin Your Royal Story in <span className="gold-gradient-text italic">{data.city}</span>?
           </h2>
 

@@ -44,7 +44,7 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div className="fixed inset-0 z-[200] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
       <div
         className="bg-white border border-gold/40 rounded-3xl max-w-lg w-full p-6 sm:p-8 relative shadow-2xl animate-fade-in"
         onClick={(e) => e.stopPropagation()}
@@ -60,7 +60,7 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
         {submitted ? (
           <div className="py-8 text-center space-y-3">
             <CheckCircle2 className="w-12 h-12 text-emerald-600 mx-auto" />
-            <h3 className="font-cinzel font-normal text-2xl text-charcoal-900">Opening WhatsApp...</h3>
+            <h3 className="font-manrope font-medium text-2xl text-charcoal-900 tracking-tight">Opening WhatsApp...</h3>
             <p className="text-charcoal-600 text-sm">Connecting with our senior wedding concierge.</p>
           </div>
         ) : (
@@ -69,8 +69,7 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
               <Sparkles className="w-3.5 h-3.5 text-gold" />
               <span>Private Consultation</span>
             </div>
-            {/* Cinzel 400 heading */}
-            <h3 className="font-cinzel font-normal text-2xl sm:text-3xl text-charcoal-900">
+            <h3 className="font-manrope font-medium text-2xl sm:text-3xl text-charcoal-900 tracking-tight leading-snug">
               Plan Your Royal Celebration
             </h3>
             <p className="text-charcoal-500 text-xs font-light">

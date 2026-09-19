@@ -58,7 +58,7 @@ export const ServiceCategoriesStrip: React.FC<ServiceCategoriesStripProps> = ({ 
           <span className="text-gold-dark text-xs uppercase tracking-[0.3em] font-medium block mb-2">
             The Complete Royal Ecosystem
           </span>
-          <h2 className="font-cinzel font-normal text-3xl sm:text-4xl text-charcoal-900">
+          <h2 className="font-manrope font-medium text-3xl sm:text-4xl text-charcoal-900 tracking-tight leading-snug">
             Explore Wedding <span className="gold-gradient-text italic font-normal">Specializations</span>
           </h2>
           <p className="text-charcoal-600 text-sm font-light leading-relaxed mt-2">
@@ -95,7 +95,7 @@ export const ServiceCategoriesStrip: React.FC<ServiceCategoriesStripProps> = ({ 
                 </div>
 
                 <div>
-                  <h3 className="font-cinzel font-normal text-sm text-charcoal-900 group-hover:text-gold-dark transition-colors line-clamp-1">
+                  <h3 className="font-manrope font-semibold text-sm text-charcoal-900 group-hover:text-gold-dark transition-colors line-clamp-1">
                     {cat.title}
                   </h3>
                   <p className="text-[11px] text-charcoal-500 font-light mt-0.5 line-clamp-1">

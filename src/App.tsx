@@ -8,11 +8,14 @@ import { USPSection } from './components/USPSection';
 import { ServicesBento } from './components/ServicesBento';
 import { InternationalConcierge } from './components/InternationalConcierge';
 import { RealWeddingsGallery } from './components/RealWeddingsGallery';
+import { HomeGallerySection } from './components/HomeGallerySection';
 import { RoyalCommunityOrbitSection } from './components/RoyalCommunityOrbitSection';
 import { RoyalHarmonicWaveSection } from './components/RoyalHarmonicWaveSection';
 import { RealCouplesStories } from './components/RealCouplesStories';
 import { BlogFeed } from './components/BlogFeed';
 import { ContactSection } from './components/ContactSection';
+import { InstagramFeedSection } from './components/InstagramFeedSection';
+import { LuxuryTextMarquee } from './components/LuxuryTextMarquee';
 import { Footer } from './components/Footer';
 import { InquiryModal } from './components/InquiryModal';
 import { PageView } from './components/PageView';
@@ -29,7 +32,7 @@ const DEFAULT_SETTINGS: SiteSettings = {
   email: 'ankitab890@gmail.com',
   address: 'Near Lake Pichola, Haridas Ji Ki Magri, Udaipur, Rajasthan 313001',
   heroHeadline: 'Where Royal Heritage Meets Timeless Romance',
-  heroSubheadline: 'Curating bespoke palatial celebrations across Udaipur, Jaipur, and iconic regal destinations for discerning couples worldwide.',
+  heroSubheadline: 'Curating bespoke palatial celebrations across Udaipur, Jaipur, and iconic rasm destinations for discerning couples worldwide.',
   instagramUrl: 'https://instagram.com/rasmwed',
   stats: {
     experience: '12+ Years',
@@ -101,7 +104,7 @@ export const App: React.FC = () => {
   const isHome = currentPath === '/' || currentPath === '';
 
   return (
-    <div className="min-h-screen bg-white text-charcoal-900 flex flex-col selection:bg-gold selection:text-white" ref={mainRef}>
+    <div className="min-h-screen bg-white text-charcoal-900 flex flex-col selection:bg-gold selection:text-white">
       {/* Top Navigation with Mega Menu */}
       <Navbar
         settings={settings}
@@ -112,7 +115,7 @@ export const App: React.FC = () => {
         onOpenInquiry={() => setInquiryOpen(true)}
       />
 
-      <main className="flex-grow">
+      <main className="flex-grow" ref={mainRef}>
         {isHome ? (
           <>
             {/* Hero Section */}
@@ -126,6 +129,9 @@ export const App: React.FC = () => {
               destinations={destinations}
               onSelectDestination={handleSelectDestination}
             />
+
+            {/* Modern Luxury Text Marquee Ticker */}
+            <LuxuryTextMarquee />
 
             {/* World-Class USP Section */}
             <USPSection
@@ -146,6 +152,9 @@ export const App: React.FC = () => {
             {/* Harmonic Palatial Wave (Interactive Spatial Wave Gallery) */}
             <RoyalHarmonicWaveSection />
 
+            {/* Imperial Visual Archives: 21st.dev Style Masonry Lightbox Gallery */}
+            <HomeGallerySection onNavigate={navigateTo} />
+
             {/* Real Royal Testimonials: 4 & 5 Grid Testimonials Section */}
             <RealCouplesStories
               onOpenInquiry={(ctx) => {
@@ -156,6 +165,9 @@ export const App: React.FC = () => {
 
             {/* Real Live WordPress Blog Feed */}
             <BlogFeed posts={posts} onNavigate={navigateTo} />
+
+            {/* Live Instagram Feed Section */}
+            <InstagramFeedSection />
 
             {/* Contact & Consultation Desk */}
             <ContactSection
@@ -179,7 +191,7 @@ export const App: React.FC = () => {
       </main>
 
       {/* Footer */}
-      <Footer settings={settings} />
+      <Footer settings={settings} onNavigate={navigateTo} />
 
       {/* Private Inquiry Modal */}
       <InquiryModal

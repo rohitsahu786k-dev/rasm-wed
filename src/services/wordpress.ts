@@ -22,7 +22,7 @@ export async function fetchSiteData(): Promise<{
     email: 'ankitab890@gmail.com',
     address: 'Near Lake Pichola, Haridas Ji Ki Magri, Udaipur, Rajasthan 313001',
     heroHeadline: 'Where Royal Heritage Meets Timeless Romance',
-    heroSubheadline: 'Curating bespoke palatial celebrations across Udaipur, Jaipur, and iconic regal destinations for discerning couples worldwide.',
+    heroSubheadline: 'Curating bespoke palatial celebrations across Udaipur, Jaipur, and iconic rasm destinations for discerning couples worldwide.',
     instagramUrl: 'https://instagram.com/rasmwed',
     stats: {
       experience: '12+ Years',

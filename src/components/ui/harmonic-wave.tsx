@@ -362,7 +362,7 @@ function StackSpreadStage({
           }}
         >
           <h2
-            className="w-full whitespace-pre-line text-[4.2vw] font-cinzel font-normal tracking-tight max-md:text-[8vw] text-charcoal-900"
+            className="w-full whitespace-pre-line text-[4.2vw] font-manrope font-medium tracking-tight max-md:text-[8vw] text-charcoal-900 leading-tight"
             style={textColor ? { color: textColor } : undefined}
           >
             Harmonic <span className="gold-gradient-text italic font-normal">Palatial</span> Motion.

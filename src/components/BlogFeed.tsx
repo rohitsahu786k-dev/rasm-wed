@@ -14,12 +14,11 @@ export const BlogFeed: React.FC<BlogFeedProps> = ({ posts, onNavigate }) => {
     <section id="journal" className="py-24 bg-[#FDFCFA] relative border-b border-gold/15">
       <div className="rasm-container relative z-10">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-2 text-gold-dark text-xs uppercase tracking-[0.3em] font-medium mb-3">
-            <BookOpen className="w-3.5 h-3.5 text-gold" />
-            <span>The Wedding Journal</span>
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-ivory-200 border border-gold/35 shadow-2xs mb-3">
+            <BookOpen className="w-3.5 h-3.5 text-[#C5A059]" />
+            <span className="text-[11px] font-medium uppercase tracking-normal gold-gradient-text">The Wedding Journal</span>
           </div>
-          {/* Cinzel 400 heading */}
-          <h2 className="font-cinzel font-normal text-3xl sm:text-5xl text-charcoal-900 mb-4 tracking-[0.03em]">
+          <h2 className="font-manrope font-medium text-3xl sm:text-5xl text-charcoal-900 mb-4 tracking-tight leading-[1.2]">
             Destination Guides & <span className="gold-gradient-text italic">Editorial Insights</span>
           </h2>
           <p className="text-charcoal-600 text-sm sm:text-base font-light leading-relaxed">
@@ -54,10 +53,9 @@ export const BlogFeed: React.FC<BlogFeedProps> = ({ posts, onNavigate }) => {
               {/* Body */}
               <div className="p-6 flex-1 flex flex-col justify-between">
                 <div>
-                  {/* Cinzel 400 heading */}
                   <h3 
                     onClick={() => onNavigate ? onNavigate(`/${post.slug}`) : setActiveArticle(post)}
-                    className="font-cinzel font-normal text-xl text-charcoal-900 mb-3 group-hover:text-gold-dark transition-colors line-clamp-2 leading-snug cursor-pointer"
+                    className="font-manrope font-medium text-xl text-charcoal-900 mb-3 group-hover:text-gold-dark transition-colors line-clamp-2 leading-snug cursor-pointer tracking-tight"
                   >
                     {post.title}
                   </h3>
@@ -122,7 +120,7 @@ export const BlogFeed: React.FC<BlogFeedProps> = ({ posts, onNavigate }) => {
               <span>Published {activeArticle.date}</span>
             </div>
 
-            <h3 className="font-cinzel font-normal text-2xl sm:text-3xl text-charcoal-900 mb-4">
+            <h3 className="font-manrope font-bold text-2xl sm:text-3xl text-charcoal-900 mb-4 tracking-tight">
               {activeArticle.title}
             </h3>
 

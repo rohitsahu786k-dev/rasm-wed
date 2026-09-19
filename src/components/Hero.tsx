@@ -65,9 +65,9 @@ export const Hero: React.FC<HeroProps> = ({ onOpenInquiry }) => {
 
             {/* Label pill */}
             <div className="inline-flex items-center gap-2 mb-8 self-start">
-              <div className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-amber-50 border border-amber-200/80">
-                <Crown className="w-3 h-3 text-[#997316]" />
-                <span className="text-[11px] font-semibold uppercase tracking-[0.22em] text-[#997316] font-manrope">
+              <div className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-ivory-200 border border-gold/35 shadow-2xs">
+                <Crown className="w-3 h-3 text-[#C5A059]" />
+                <span className="text-[11px] font-medium uppercase tracking-normal gold-gradient-text font-manrope">
                   Royal Wedding Architects
                 </span>
               </div>
@@ -76,7 +76,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenInquiry }) => {
             {/* Main Headline */}
             <h1
               ref={headlineRef}
-              className="font-cinzel font-normal text-[2.4rem] sm:text-[3.2rem] md:text-[3.8rem] lg:text-[4rem] xl:text-[4.5rem] text-[#1a1a1a] leading-[1.12] tracking-[-0.01em] mb-6"
+              className="font-manrope font-medium text-[2.5rem] sm:text-[3.2rem] md:text-[3.8rem] lg:text-[4.2rem] xl:text-[4.6rem] text-[#1a1a1a] leading-[1.18] tracking-tight mb-6"
             >
               Your Palace
               <br />
@@ -97,7 +97,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenInquiry }) => {
             <div ref={ctaRef} className="flex flex-wrap gap-3 mb-12">
               <button
                 onClick={onOpenInquiry}
-                className="group inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-[#1a1a1a] text-white text-sm font-semibold font-manrope tracking-wide hover:bg-[#2a2a2a] transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+                className="group inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-[#1a1a1a] text-white text-sm font-medium font-manrope tracking-wide hover:bg-[#2a2a2a] transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
               >
                 Plan Your Wedding
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -107,7 +107,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenInquiry }) => {
                   const el = document.getElementById('destinations');
                   if (el) el.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-[#C5A059]/60 text-[#1a1a1a] text-sm font-semibold font-manrope tracking-wide hover:border-[#C5A059] hover:bg-amber-50/50 transition-all duration-300"
+                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-[#C5A059]/60 text-[#1a1a1a] text-sm font-medium font-manrope tracking-wide hover:border-[#C5A059] hover:bg-amber-50/50 transition-all duration-300"
               >
                 <span className="gold-gradient-text">Explore Venues</span>
               </button>
@@ -120,7 +120,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenInquiry }) => {
             >
               {stats.map((s) => (
                 <div key={s.value} className="text-center">
-                  <div className="font-cinzel font-normal text-xl sm:text-2xl text-[#1a1a1a] leading-none mb-1.5 gold-gradient-text">
+                  <div className="font-manrope font-medium text-xl sm:text-2xl text-[#1a1a1a] leading-none mb-1.5 gold-gradient-text">
                     {s.value}
                   </div>
                   <div className="text-[10px] sm:text-[11px] text-[#888] font-manrope font-medium uppercase tracking-wide leading-tight">

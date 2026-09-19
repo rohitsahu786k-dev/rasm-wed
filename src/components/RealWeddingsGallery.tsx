@@ -99,7 +99,7 @@ export const RealWeddingsGallery: React.FC<RealWeddingsGalleryProps> = ({ media 
             <Sparkles className="w-3.5 h-3.5 text-gold" />
             <span>Visual Archives</span>
           </div>
-          <h2 className="font-cinzel font-normal text-3xl sm:text-5xl text-charcoal-900 mb-4 tracking-[0.03em]">
+          <h2 className="font-manrope font-medium text-3xl sm:text-5xl text-charcoal-900 mb-4 tracking-tight leading-[1.2]">
             The <span className="gold-gradient-text italic font-normal">Royal Gallery</span>
           </h2>
           <p className="text-charcoal-600 text-sm sm:text-base font-light leading-relaxed">
@@ -154,7 +154,7 @@ export const RealWeddingsGallery: React.FC<RealWeddingsGalleryProps> = ({ media 
               </div>
 
               <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-1 group-hover:translate-y-0 transition-transform">
-                <h3 className="font-cinzel font-normal text-xl text-white group-hover:text-gold-light transition-colors line-clamp-1">
+                <h3 className="font-manrope font-medium text-xl text-white group-hover:text-gold-light transition-colors line-clamp-1 tracking-tight">
                   {item.title}
                 </h3>
                 <p className="text-xs text-stone-300 font-light mt-1 line-clamp-1">
@@ -203,7 +203,7 @@ export const RealWeddingsGallery: React.FC<RealWeddingsGalleryProps> = ({ media 
                     <span>Real Celebration Archive</span>
                   </div>
 
-                  <h3 className="font-cinzel font-normal text-2xl sm:text-3xl text-white">
+                  <h3 className="font-manrope font-medium text-2xl sm:text-3xl text-white tracking-tight leading-snug">
                     {selectedImage.title}
                   </h3>
 

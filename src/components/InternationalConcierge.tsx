@@ -45,7 +45,7 @@ export const InternationalConcierge: React.FC<InternationalConciergeProps> = ({ 
             <span className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[#997316] font-manrope block mb-5">
               ✦ Worldwide NRI & Destination Desk
             </span>
-            <h2 className="font-cinzel font-normal text-3xl sm:text-4xl md:text-5xl text-[#1a1a1a] leading-[1.15] mb-6">
+            <h2 className="font-manrope font-medium text-3xl sm:text-4xl md:text-5xl text-[#1a1a1a] leading-[1.22] mb-6 tracking-tight">
               Planning from London,
               <br />
               New York or Dubai?
@@ -89,7 +89,7 @@ export const InternationalConcierge: React.FC<InternationalConciergeProps> = ({ 
                   <div className="w-10 h-10 rounded-xl bg-amber-50 border border-amber-200/50 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
                     <Icon className="w-5 h-5 text-[#997316]" />
                   </div>
-                  <h3 className="font-cinzel font-normal text-base text-[#1a1a1a] mb-2 group-hover:text-[#997316] transition-colors">
+                  <h3 className="font-manrope font-medium text-base text-[#1a1a1a] mb-2 group-hover:text-[#997316] transition-colors tracking-tight">
                     {perk.title}
                   </h3>
                   <p className="text-xs text-[#777] font-manrope font-light leading-relaxed">
@@ -102,17 +102,17 @@ export const InternationalConcierge: React.FC<InternationalConciergeProps> = ({ 
             {/* Stats card */}
             <div className="sm:col-span-2 p-6 rounded-2xl bg-[#1a1a1a] flex items-center justify-between gap-4">
               <div className="text-center flex-1">
-                <p className="font-cinzel font-normal text-2xl text-white mb-1">40%+</p>
+                <p className="font-manrope font-bold text-2xl text-white mb-1 tracking-tight">40%+</p>
                 <p className="text-[10px] font-manrope uppercase tracking-wide text-white/50">International Couples</p>
               </div>
               <div className="w-px h-12 bg-white/10" />
               <div className="text-center flex-1">
-                <p className="font-cinzel font-normal text-2xl text-white mb-1">24/7</p>
+                <p className="font-manrope font-bold text-2xl text-white mb-1 tracking-tight">24/7</p>
                 <p className="text-[10px] font-manrope uppercase tracking-wide text-white/50">Global Support</p>
               </div>
               <div className="w-px h-12 bg-white/10" />
               <div className="text-center flex-1">
-                <p className="font-cinzel font-normal text-2xl text-white mb-1">3</p>
+                <p className="font-manrope font-bold text-2xl text-white mb-1 tracking-tight">3</p>
                 <p className="text-[10px] font-manrope uppercase tracking-wide text-white/50">Major Currencies</p>
               </div>
             </div>

@@ -148,7 +148,7 @@ export const PageView: React.FC<PageViewProps> = ({
           <span className="text-gold-dark text-xs uppercase tracking-[0.3em] font-medium block mb-2">
             World-Class Orchestration
           </span>
-          <h1 className="font-cinzel font-normal text-3xl sm:text-5xl md:text-6xl text-charcoal-900 mb-4">
+          <h1 className="font-manrope font-medium text-3xl sm:text-5xl md:text-6xl text-charcoal-900 mb-4 tracking-tight leading-[1.2]">
             Bespoke Royal <span className="gold-gradient-text italic">Wedding Services</span>
           </h1>
           <p className="max-w-2xl mx-auto text-charcoal-600 text-sm sm:text-base font-light">
@@ -196,7 +196,7 @@ export const PageView: React.FC<PageViewProps> = ({
               <Crown className="w-3.5 h-3.5 text-gold-dark" />
               <span>12+ Years of Royal Heritage</span>
             </div>
-            <h1 className="font-cinzel font-normal text-3xl sm:text-5xl md:text-6xl text-charcoal-900 mb-6">
+            <h1 className="font-manrope font-medium text-3xl sm:text-5xl md:text-6xl text-charcoal-900 mb-6 tracking-tight leading-[1.2]">
               Architects of Royal <span className="gold-gradient-text italic">Indian Celebrations</span>
             </h1>
             <p className="max-w-3xl mx-auto text-charcoal-600 text-sm sm:text-base md:text-lg font-light leading-relaxed mb-10">
@@ -210,7 +210,7 @@ export const PageView: React.FC<PageViewProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="p-8 rounded-2xl bg-white border border-gold/20 shadow-xs text-center">
               <Award className="w-10 h-10 text-gold-dark mx-auto mb-4" />
-              <h3 className="font-cinzel font-normal text-2xl text-charcoal-900 mb-3">
+              <h3 className="font-manrope font-medium text-2xl text-charcoal-900 mb-3 tracking-tight">
                 Direct Palatial Access
               </h3>
               <p className="text-charcoal-600 text-xs sm:text-sm font-light leading-relaxed">
@@ -220,7 +220,7 @@ export const PageView: React.FC<PageViewProps> = ({
 
             <div className="p-8 rounded-2xl bg-white border border-gold/20 shadow-xs text-center">
               <Users className="w-10 h-10 text-gold-dark mx-auto mb-4" />
-              <h3 className="font-cinzel font-normal text-2xl text-charcoal-900 mb-3">
+              <h3 className="font-manrope font-medium text-2xl text-charcoal-900 mb-3 tracking-tight">
                 White-Glove NRI Care
               </h3>
               <p className="text-charcoal-600 text-xs sm:text-sm font-light leading-relaxed">
@@ -230,7 +230,7 @@ export const PageView: React.FC<PageViewProps> = ({
 
             <div className="p-8 rounded-2xl bg-white border border-gold/20 shadow-xs text-center">
               <ShieldCheck className="w-10 h-10 text-gold-dark mx-auto mb-4" />
-              <h3 className="font-cinzel font-normal text-2xl text-charcoal-900 mb-3">
+              <h3 className="font-manrope font-medium text-2xl text-charcoal-900 mb-3 tracking-tight">
                 3D Spatial Simulations
               </h3>
               <p className="text-charcoal-600 text-xs sm:text-sm font-light leading-relaxed">
@@ -243,7 +243,7 @@ export const PageView: React.FC<PageViewProps> = ({
         {/* Call to Action */}
         <section className="py-20 bg-[#FAF8F5] text-center">
           <div className="max-w-3xl mx-auto px-4 space-y-6">
-            <h2 className="font-cinzel font-normal text-3xl sm:text-4xl text-charcoal-900">
+            <h2 className="font-manrope font-medium text-3xl sm:text-4xl text-charcoal-900 tracking-tight leading-snug">
               Let’s Plan Your Royal Celebration
             </h2>
             <p className="text-charcoal-600 text-sm font-light">
@@ -273,7 +273,7 @@ export const PageView: React.FC<PageViewProps> = ({
             <span className="text-gold-dark text-xs uppercase tracking-[0.3em] font-medium block mb-2">
               Heritage Scenography
             </span>
-            <h1 className="font-cinzel font-normal text-3xl sm:text-5xl md:text-6xl text-charcoal-900 mb-6">
+            <h1 className="font-manrope font-medium text-3xl sm:text-5xl md:text-6xl text-charcoal-900 mb-6 tracking-tight leading-[1.2]">
               Traditional Royal <span className="gold-gradient-text italic">Wedding Decoration</span>
             </h1>
             <p className="max-w-2xl mx-auto text-charcoal-600 text-sm sm:text-base font-light leading-relaxed mb-10">
@@ -300,7 +300,7 @@ export const PageView: React.FC<PageViewProps> = ({
                 className="w-full h-56 object-cover"
               />
               <div className="p-6">
-                <h3 className="font-cinzel font-normal text-xl text-charcoal-900 mb-2">Vedic Lake Mandaps</h3>
+                <h3 className="font-manrope font-medium text-xl text-charcoal-900 mb-2 tracking-tight">Vedic Lake Mandaps</h3>
                 <p className="text-charcoal-600 text-xs leading-relaxed font-light">
                   Handcrafted mandap pavilions with real tuberose, marigolds, and sacred copper havan kund setups.
                 </p>
@@ -315,7 +315,7 @@ export const PageView: React.FC<PageViewProps> = ({
                 className="w-full h-56 object-cover"
               />
               <div className="p-6">
-                <h3 className="font-cinzel font-normal text-xl text-charcoal-900 mb-2">Rajputana Courtyards</h3>
+                <h3 className="font-manrope font-medium text-xl text-charcoal-900 mb-2 tracking-tight">Rajputana Courtyards</h3>
                 <p className="text-charcoal-600 text-xs leading-relaxed font-light">
                   Traditional Mewari lighting, candlelit water basins, and royal velvet drapery for sangeet nights.
                 </p>
@@ -330,7 +330,7 @@ export const PageView: React.FC<PageViewProps> = ({
                 className="w-full h-56 object-cover"
               />
               <div className="p-6">
-                <h3 className="font-cinzel font-normal text-xl text-charcoal-900 mb-2">Floral Architecture</h3>
+                <h3 className="font-manrope font-medium text-xl text-charcoal-900 mb-2 tracking-tight">Floral Architecture</h3>
                 <p className="text-charcoal-600 text-xs leading-relaxed font-light">
                   Exotic imported orchids, Mogra arches, and organic rose petal carpets for aisle entries.
                 </p>
@@ -350,7 +350,7 @@ export const PageView: React.FC<PageViewProps> = ({
             <span className="text-gold-dark text-xs uppercase tracking-[0.3em] font-medium block mb-2">
               Executive Heritage Galas
             </span>
-            <h1 className="font-cinzel font-normal text-3xl sm:text-5xl md:text-6xl text-charcoal-900 mb-6">
+            <h1 className="font-manrope font-medium text-3xl sm:text-5xl md:text-6xl text-charcoal-900 mb-6 tracking-tight leading-[1.2]">
               Corporate & VIP <span className="gold-gradient-text italic">Event Management</span>
             </h1>
             <p className="max-w-2xl mx-auto text-charcoal-600 text-sm sm:text-base font-light leading-relaxed mb-10">
@@ -370,13 +370,13 @@ export const PageView: React.FC<PageViewProps> = ({
         <section className="py-20 rasm-container">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div className="p-8 rounded-2xl bg-white border border-gold/20 shadow-xs">
-              <h3 className="font-cinzel font-normal text-xl text-charcoal-900 mb-2">Palace Retreats & Summits</h3>
+              <h3 className="font-manrope font-medium text-xl text-charcoal-900 mb-2 tracking-tight">Palace Retreats & Summits</h3>
               <p className="text-charcoal-600 text-xs sm:text-sm font-light leading-relaxed">
                 Full-service buyout management of boutique heritage fortresses with boardroom AV and luxury dining.
               </p>
             </div>
             <div className="p-8 rounded-2xl bg-white border border-gold/20 shadow-xs">
-              <h3 className="font-cinzel font-normal text-xl text-charcoal-900 mb-2">VIP Chauffeur & Charter Logistics</h3>
+              <h3 className="font-manrope font-medium text-xl text-charcoal-900 mb-2 tracking-tight">VIP Chauffeur & Charter Logistics</h3>
               <p className="text-charcoal-600 text-xs sm:text-sm font-light leading-relaxed">
                 Armored vehicle escorts, airport tarmac welcomes, and coordinated fleet management for C-suite dignitaries.
               </p>
@@ -409,7 +409,7 @@ export const PageView: React.FC<PageViewProps> = ({
             <Sparkles className="w-3.5 h-3.5 text-gold" />
             <span>Official Policy & Information</span>
           </div>
-          <h1 className="font-cinzel font-normal text-3xl sm:text-4xl text-charcoal-900 mb-3">
+          <h1 className="font-manrope font-medium text-3xl sm:text-4xl text-charcoal-900 mb-3 tracking-tight leading-snug">
             {cleanTitle}
           </h1>
           <p className="text-charcoal-500 text-xs uppercase tracking-wider font-light">
@@ -419,7 +419,7 @@ export const PageView: React.FC<PageViewProps> = ({
 
         {cleanContent ? (
           <div
-            className="prose prose-stone max-w-none text-charcoal-700 text-sm leading-relaxed font-light space-y-6 [&_h2]:font-cinzel [&_h2]:font-normal [&_h2]:text-2xl [&_h2]:text-charcoal-900 [&_h3]:font-cinzel [&_h3]:font-normal [&_h3]:text-xl [&_p]:leading-relaxed p-8 rounded-3xl bg-[#FAF8F5] border border-gold/20"
+            className="prose prose-stone max-w-none text-charcoal-700 text-sm leading-relaxed font-light space-y-6 [&_h2]:font-manrope [&_h2]:font-bold [&_h2]:text-2xl [&_h2]:text-charcoal-900 [&_h3]:font-manrope [&_h3]:font-bold [&_h3]:text-xl [&_p]:leading-relaxed p-8 rounded-3xl bg-[#FAF8F5] border border-gold/20"
             dangerouslySetInnerHTML={{ __html: cleanContent }}
           />
         ) : (

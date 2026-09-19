@@ -60,7 +60,7 @@ export const QuickPlannerBar: React.FC<QuickPlannerBarProps> = ({ onPlan }) => {
             <select
               value={selectedCity}
               onChange={(e) => setSelectedCity(e.target.value)}
-              className="w-full bg-transparent font-cinzel text-xs sm:text-sm text-charcoal-900 font-medium focus:outline-none cursor-pointer"
+              className="w-full bg-transparent font-manrope text-xs sm:text-sm text-charcoal-900 font-semibold focus:outline-none cursor-pointer"
             >
               {cities.map((c) => (
                 <option key={c.name} value={c.name}>
@@ -79,7 +79,7 @@ export const QuickPlannerBar: React.FC<QuickPlannerBarProps> = ({ onPlan }) => {
             <select
               value={selectedVenue}
               onChange={(e) => setSelectedVenue(e.target.value)}
-              className="w-full bg-transparent font-cinzel text-xs sm:text-sm text-charcoal-900 font-medium focus:outline-none cursor-pointer"
+              className="w-full bg-transparent font-manrope text-xs sm:text-sm text-charcoal-900 font-semibold focus:outline-none cursor-pointer"
             >
               {venueTypes.map((v) => (
                 <option key={v} value={v}>
@@ -98,7 +98,7 @@ export const QuickPlannerBar: React.FC<QuickPlannerBarProps> = ({ onPlan }) => {
             <select
               value={selectedGuests}
               onChange={(e) => setSelectedGuests(e.target.value)}
-              className="w-full bg-transparent font-cinzel text-xs sm:text-sm text-charcoal-900 font-medium focus:outline-none cursor-pointer"
+              className="w-full bg-transparent font-manrope text-xs sm:text-sm text-charcoal-900 font-semibold focus:outline-none cursor-pointer"
             >
               {guestBrackets.map((g) => (
                 <option key={g} value={g}>
