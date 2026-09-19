@@ -309,9 +309,9 @@ export const RealCouplesStories: React.FC<RealCouplesStoriesProps> = ({ onOpenIn
         <div className="mt-14 text-center">
           <button
             onClick={() => onOpenInquiry?.('Palace Wedding Experience')}
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-charcoal-950 text-white hover:bg-black font-manrope font-medium text-sm tracking-normal shadow-[0_10px_25px_rgba(0,0,0,0.15)] hover:shadow-[0_14px_35px_rgba(197,160,89,0.25)] transition-all duration-300 group"
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#0F1012] text-white hover:bg-black font-manrope font-medium text-sm tracking-normal shadow-[0_10px_25px_rgba(0,0,0,0.2)] hover:shadow-[0_14px_35px_rgba(197,160,89,0.25)] transition-all duration-300 group"
           >
-            <span>Begin Your Royal Journey</span>
+            <span className="text-white">Begin Your Royal Journey</span>
             <ArrowRight className="w-4 h-4 text-[#E2C785] group-hover:translate-x-1 transition-transform" />
           </button>
         </div>

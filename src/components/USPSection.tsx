@@ -238,7 +238,7 @@ export const USPSection: React.FC<USPSectionProps> = ({ onOpenInquiry }) => {
 
           <button
             onClick={onOpenInquiry}
-            className="shrink-0 inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-charcoal-950 hover:bg-black text-white font-manrope font-medium text-sm tracking-normal shadow-[0_8px_25px_rgba(0,0,0,0.18)] hover:shadow-[0_12px_32px_rgba(197,160,89,0.25)] transition-all duration-300 group"
+            className="shrink-0 inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#0F1012] hover:bg-black text-white font-manrope font-medium text-sm tracking-normal shadow-[0_8px_25px_rgba(0,0,0,0.22)] hover:shadow-[0_12px_32px_rgba(197,160,89,0.25)] transition-all duration-300 group"
           >
             <span className="text-white">Request Private Consultation</span>
             <ArrowRight className="w-4 h-4 text-[#E2C785] group-hover:translate-x-1 transition-transform" />
