@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { SiteSettings } from '../types';
 import { X, Send, Sparkles, CheckCircle2 } from 'lucide-react';
 import { AnimatedButton } from './ui/AnimatedButton';
@@ -16,13 +17,23 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
   settings,
   defaultDestination = 'Udaipur, Rajasthan',
 }) => {
-  if (!isOpen) return null;
-
   const [name, setName] = useState('');
   const [contact, setContact] = useState('');
   const [destination, setDestination] = useState(defaultDestination);
   const [grandeur, setGrandeur] = useState('Signature Royal Celebration');
   const [submitted, setSubmitted] = useState(false);
+
+  // Lock body scroll when modal is open so page doesn't scroll underneath
+  useEffect(() => {
+    if (!isOpen) return;
+    const originalOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = originalOverflow;
+    };
+  }, [isOpen]);
+
+  if (!isOpen) return null;
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -43,15 +54,20 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
     }, 800);
   };
 
-  return (
-    <div className="fixed inset-0 z-[200] bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+  // Render modal directly to document.body via createPortal
+  // This guarantees it is ALWAYS dead-centered in the current active screen viewport!
+  return createPortal(
+    <div
+      className="fixed inset-0 z-[99999] bg-black/75 backdrop-blur-md flex items-center justify-center p-4 sm:p-6 overflow-y-auto"
+      onClick={onClose}
+    >
       <div
-        className="bg-white border border-gold/40 rounded-3xl max-w-lg w-full p-6 sm:p-8 relative shadow-2xl animate-fade-in"
+        className="bg-white border border-gold/40 rounded-3xl max-w-lg w-full p-6 sm:p-8 relative shadow-[0_25px_70px_rgba(0,0,0,0.35)] my-auto transition-all animate-fade-in"
         onClick={(e) => e.stopPropagation()}
       >
         <button
           onClick={onClose}
-          className="absolute top-5 right-5 p-2 rounded-full bg-stone-100 text-charcoal-700 hover:bg-stone-200"
+          className="absolute top-5 right-5 p-2 rounded-full bg-stone-100 text-charcoal-700 hover:bg-stone-200 transition-colors"
           aria-label="Close"
         >
           <X className="w-5 h-5" />
@@ -66,13 +82,13 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="flex items-center gap-2 text-gold-dark text-xs uppercase tracking-[0.2em] font-medium mb-1">
-              <Sparkles className="w-3.5 h-3.5 text-gold" />
-              <span>Private Consultation</span>
+              <Sparkles className="w-3.5 h-3.5 text-[#C5A059]" />
+              <span className="gold-gradient-text font-semibold">Private Consultation</span>
             </div>
             <h3 className="font-manrope font-medium text-2xl sm:text-3xl text-charcoal-900 tracking-tight leading-snug">
               Plan Your Royal Celebration
             </h3>
-            <p className="text-charcoal-500 text-xs font-light">
+            <p className="text-charcoal-600 text-xs sm:text-sm font-light leading-relaxed">
               Connect directly with our Udaipur planners for date availability, palace shortlists, and budget blueprints.
             </p>
 
@@ -86,7 +102,7 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 placeholder="e.g. Radhika Sharma"
-                className="w-full px-4 py-2.5 rounded-xl bg-ivory-100 border border-gold/25 text-charcoal-900 text-sm focus:outline-none focus:border-gold"
+                className="w-full px-4 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-charcoal-900 text-sm focus:outline-none focus:border-gold focus:bg-white transition-colors"
               />
             </div>
 
@@ -100,7 +116,7 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
                 value={contact}
                 onChange={(e) => setContact(e.target.value)}
                 placeholder="+1 555-0192 or +91 98290 12345"
-                className="w-full px-4 py-2.5 rounded-xl bg-ivory-100 border border-gold/25 text-charcoal-900 text-sm focus:outline-none focus:border-gold"
+                className="w-full px-4 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-charcoal-900 text-sm focus:outline-none focus:border-gold focus:bg-white transition-colors"
               />
             </div>
 
@@ -112,10 +128,11 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
                 <select
                   value={destination}
                   onChange={(e) => setDestination(e.target.value)}
-                  className="w-full px-3 py-2.5 rounded-xl bg-ivory-100 border border-gold/25 text-charcoal-900 text-xs focus:outline-none focus:border-gold"
+                  className="w-full px-3 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-charcoal-900 text-xs focus:outline-none focus:border-gold focus:bg-white transition-colors"
                 >
-                  <option value="Udaipur">Udaipur, RJ</option>
-                  <option value="Jaipur">Jaipur, RJ</option>
+                  <option value="Udaipur, Rajasthan">Udaipur, RJ</option>
+                  <option value="Jaipur, Rajasthan">Jaipur, RJ</option>
+                  <option value="Jodhpur, Rajasthan">Jodhpur, RJ</option>
                   <option value="Rishikesh">Rishikesh</option>
                   <option value="Goa">Goa</option>
                   <option value="Jim Corbett">Jim Corbett</option>
@@ -130,7 +147,7 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
                 <select
                   value={grandeur}
                   onChange={(e) => setGrandeur(e.target.value)}
-                  className="w-full px-3 py-2.5 rounded-xl bg-ivory-100 border border-gold/25 text-charcoal-900 text-xs focus:outline-none focus:border-gold"
+                  className="w-full px-3 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-charcoal-900 text-xs focus:outline-none focus:border-gold focus:bg-white transition-colors"
                 >
                   <option value="Intimate Palatial (< 100 Guests)">Intimate Palatial (&lt; 100 Guests)</option>
                   <option value="Signature Royal (150 - 300 Guests)">Signature Royal (150 - 300 Guests)</option>
@@ -140,13 +157,13 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
               </div>
             </div>
 
-            <div className="pt-2">
+            <div className="pt-3">
               <AnimatedButton
                 variant="gold-shimmer"
                 size="md"
                 type="submit"
-                className="w-full justify-center"
-                icon={<Send className="w-3.5 h-3.5" />}
+                className="w-full justify-center text-sm py-3 font-medium shadow-md"
+                icon={<Send className="w-4 h-4 text-[#E2C785]" />}
               >
                 Connect on WhatsApp
               </AnimatedButton>
@@ -154,6 +171,9 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
           </form>
         )}
       </div>
-    </div>
+    </div>,
+    document.body
   );
 };
+
+export default InquiryModal;
