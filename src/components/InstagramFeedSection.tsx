@@ -38,7 +38,7 @@ export const InstagramFeedSection: React.FC = () => {
         }
       `}</style>
 
-      <div className="w-[90%] mx-auto relative z-10">
+      <div className="w-full sm:w-[90%] max-w-7xl mx-0 sm:mx-auto px-[10px] sm:px-6 md:px-8 relative z-10">
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
@@ -59,9 +59,9 @@ export const InstagramFeedSection: React.FC = () => {
 
         </div>
 
-        {/* Instagram Embed Outer Frame (100% width, 0 border, 90% section width) */}
+        {/* Instagram Embed Outer Frame (100% width, 0 border, responsive padding) */}
         <div className="w-full flex justify-center items-center">
-          <div className="w-full bg-white/95 backdrop-blur-xl rounded-3xl p-3 sm:p-6 md:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.04)] border-0 flex justify-center items-center overflow-hidden">
+          <div className="w-full bg-white/95 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-1 sm:p-6 md:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.04)] border-0 flex justify-center items-center overflow-hidden">
             <div className="w-full flex justify-center">
               <blockquote
                 className="instagram-media"

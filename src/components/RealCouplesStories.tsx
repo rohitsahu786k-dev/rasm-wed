@@ -262,7 +262,7 @@ export const RealCouplesStories: React.FC<RealCouplesStoriesProps> = ({ onOpenIn
       {/* Subtle Golden Ambient Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-gradient-to-tr from-gold/10 via-amber-100/20 to-transparent blur-3xl pointer-events-none rounded-full" />
 
-      <div className="w-[90%] max-w-7xl mx-auto relative z-10">
+      <div className="w-full sm:w-[90%] max-w-7xl mx-0 sm:mx-auto px-[10px] sm:px-6 md:px-8 relative z-10">
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gradient-to-r from-ivory-200 to-amber-50/60 border border-gold/35 shadow-2xs mb-3">

@@ -12,10 +12,10 @@ export const USPSection: React.FC<USPSectionProps> = ({ onOpenInquiry }) => {
       {/* Subtle Golden Ambient Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[550px] bg-gradient-to-tr from-gold/10 via-amber-100/20 to-transparent blur-3xl pointer-events-none rounded-full" />
 
-      <div className="w-[92%] max-w-7xl mx-auto relative z-10">
+      <div className="w-full max-w-7xl mx-0 sm:mx-auto px-[10px] sm:px-6 md:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
+        <div className="text-center max-w-3xl mx-auto mb-14 sm:mb-16">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gradient-to-r from-ivory-200 to-amber-50/60 border border-gold/35 shadow-2xs mb-3">
             <Crown className="w-3.5 h-3.5 text-[#C5A059]" />
             <span className="text-xs uppercase font-medium gold-gradient-text tracking-normal">
@@ -33,51 +33,51 @@ export const USPSection: React.FC<USPSectionProps> = ({ onOpenInquiry }) => {
         </div>
 
         {/* High-Contrast Luxury Feature Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-6 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-6 gap-5 sm:gap-6">
           
-          {/* Card 1: Direct Palace Partnerships & Island Buyouts (Grand Obsidian Card - Spans 4 Columns) */}
+          {/* Card 1: Direct Palace Partnerships & Island Buyouts (Grand Palatial Card - Spans 4 Columns) */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
-            className="md:col-span-4 group relative overflow-hidden rounded-3xl bg-[#121214] text-white min-h-[380px] sm:min-h-[420px] flex flex-col justify-end p-7 sm:p-10 shadow-[0_16px_45px_rgba(0,0,0,0.18)] border border-stone-800"
+            className="md:col-span-4 group relative overflow-hidden rounded-3xl bg-white text-charcoal-900 min-h-[360px] sm:min-h-[420px] flex flex-col justify-end p-6 sm:p-10 shadow-[0_8px_30px_rgba(0,0,0,0.04)] border border-stone-200/90 hover:border-gold/50 transition-all duration-300"
           >
-            {/* Dark royal backdrop image with high-contrast gradient */}
+            {/* Soft architectural palace backdrop */}
             <div
-              className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105 opacity-40"
+              className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105 opacity-20 pointer-events-none"
               style={{
                 backgroundImage: `url('https://rasmwed.com/wp-content/uploads/2024/08/Fateh-Garh-Palace.webp')`,
               }}
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#121214] via-[#121214]/80 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-white via-white/85 to-transparent pointer-events-none" />
 
-            {/* Content with 100% readable white text and gold accents */}
+            {/* Content with high contrast dark text and gold badges */}
             <div className="relative z-10">
-              <div className="flex flex-wrap items-center gap-2.5 mb-3.5">
-                <span className="px-3.5 py-1 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-[11px] uppercase tracking-wider font-semibold text-[#E2C785]">
+              <div className="flex flex-wrap items-center gap-2 mb-3">
+                <span className="px-3.5 py-1 rounded-full bg-amber-50/90 backdrop-blur-md border border-gold/35 text-[11px] uppercase tracking-wider font-semibold text-gold-dark">
                   Exclusive Access
                 </span>
-                <span className="px-3.5 py-1 rounded-full bg-[#C5A059]/25 backdrop-blur-md border border-[#C5A059]/50 text-[11px] font-medium text-[#E2C785]">
-                  Zero Vendor Fees
+                <span className="px-3.5 py-1 rounded-full bg-stone-100/90 backdrop-blur-md border border-stone-200 text-[11px] font-medium text-charcoal-700">
+                  Zero Vendor Markup
                 </span>
               </div>
 
-              <h3 className="font-manrope font-medium text-2xl sm:text-3xl text-white tracking-tight leading-snug mb-2.5">
+              <h3 className="font-manrope font-medium text-2xl sm:text-3xl text-charcoal-900 tracking-tight leading-snug mb-2.5">
                 Direct Palace Partnerships & Island Buyouts
               </h3>
 
-              <p className="text-stone-300 text-xs sm:text-sm font-light leading-relaxed max-w-2xl mb-6">
+              <p className="text-charcoal-600 text-xs sm:text-sm font-light leading-relaxed max-w-2xl mb-5">
                 Priority direct access to Taj Lake Palace, Jagmandir Island, Oberoi Udaivilas, The Leela, and City Palace complexes — without broker commissions or third-party markups.
               </p>
 
-              <div className="flex flex-wrap items-center gap-6 pt-4 border-t border-white/15 text-xs font-light text-stone-200">
+              <div className="flex flex-wrap items-center gap-4 sm:gap-6 pt-4 border-t border-stone-150 text-xs font-medium text-charcoal-800">
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#E2C785]" />
+                  <CheckCircle2 className="w-4 h-4 text-[#C5A059]" />
                   <span>100% Direct Venue Allocation</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <CheckCircle2 className="w-4 h-4 text-[#E2C785]" />
+                  <CheckCircle2 className="w-4 h-4 text-[#C5A059]" />
                   <span>Lake Jetty & Barge Permits</span>
                 </div>
               </div>

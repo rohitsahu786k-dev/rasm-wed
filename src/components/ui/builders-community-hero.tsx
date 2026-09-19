@@ -92,7 +92,7 @@ function arcPath(r: number) {
 function OrbitAvatar({ src, icon, alt, color, size = 72 }: OrbitAvatarItem) {
   return (
     <div
-      className="rounded-full border border-gold/40 bg-white p-[3px] shadow-[0_4px_14px_rgba(197,160,89,0.2)] dark:border-white/10 dark:bg-[#161616]"
+      className="rounded-full border border-gold/40 bg-white p-[3px] shadow-[0_4px_14px_rgba(197,160,89,0.2)]"
       style={{ width: size, height: size }}
     >
       <div
@@ -145,8 +145,8 @@ function OrbitCard({ emoji, icon, badge }: OrbitCardItem) {
 
 function OrbitStatus({ label }: OrbitStatusItem) {
   return (
-    <div className="flex h-[30px] items-center gap-1.5 whitespace-nowrap rounded-full border border-[#a3d5b3] bg-[#cbe8d3] px-2.5 text-[13.5px] font-medium text-[#2f5b3a] shadow-[0_2px_6px_rgba(0,0,0,0.05)] dark:border-[#2f5b3a] dark:bg-[#17301f] dark:text-[#a8e0b8]">
-      <CircleCheck size={15} strokeWidth={2.2} className="fill-[#2e7d3e] text-[#cbe8d3] dark:fill-[#3fa456] dark:text-[#17301f]" />
+    <div className="flex h-[30px] items-center gap-1.5 whitespace-nowrap rounded-full border border-[#a3d5b3] bg-[#cbe8d3] px-2.5 text-[13.5px] font-medium text-[#2f5b3a] shadow-[0_2px_6px_rgba(0,0,0,0.05)]">
+      <CircleCheck size={15} strokeWidth={2.2} className="fill-[#2e7d3e] text-[#cbe8d3]" />
       {label}
     </div>
   );
@@ -154,8 +154,8 @@ function OrbitStatus({ label }: OrbitStatusItem) {
 
 function OrbitCheck() {
   return (
-    <div className="flex h-[50px] w-[50px] items-center justify-center rounded-full border border-[#a9d8b8] bg-[#c3e5cd] shadow-[0_2px_8px_rgba(0,0,0,0.06)] dark:border-[#2f5b3a] dark:bg-[#1c3a26]">
-      <CircleCheck size={17} strokeWidth={2.4} className="fill-[#2e7d3e] text-[#c3e5cd] dark:fill-[#3fa456] dark:text-[#1c3a26]" />
+    <div className="flex h-[50px] w-[50px] items-center justify-center rounded-full border border-[#a9d8b8] bg-[#c3e5cd] shadow-[0_2px_8px_rgba(0,0,0,0.06)]">
+      <CircleCheck size={17} strokeWidth={2.4} className="fill-[#2e7d3e] text-[#c3e5cd]" />
     </div>
   );
 }
@@ -237,7 +237,7 @@ export default function CommunityOrbit({
 
   return (
     <section
-      className={`w-full bg-white px-4 pb-14 text-[#1f1f1f] dark:bg-[#0a0a0a] dark:text-white ${className ?? ''}`}
+      className={`w-full bg-white px-[10px] sm:px-6 md:px-8 pb-14 text-[#1f1f1f] ${className ?? ''}`}
     >
       <div
         ref={frameRef}
@@ -266,7 +266,7 @@ export default function CommunityOrbit({
           >
             <motion.path
               d={arcPath(RADIUS.outer)}
-              className="stroke-[#e4e4e4] dark:stroke-white/10"
+              className="stroke-[#e4e4e4]"
               strokeWidth={2}
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
@@ -274,7 +274,7 @@ export default function CommunityOrbit({
             />
             <motion.path
               d={arcPath(RADIUS.inner)}
-              className="stroke-[#dcdcdc] dark:stroke-white/[0.13]"
+              className="stroke-[#dcdcdc]"
               strokeWidth={3}
               initial={{ pathLength: 0 }}
               animate={{ pathLength: 1 }}
@@ -316,10 +316,10 @@ export default function CommunityOrbit({
                 animate="show"
                 transition={{ duration: 0.6, delay: 0.9 + i * 0.12, ease: [0.22, 1, 0.36, 1] }}
               >
-                <span className="text-[48px] font-medium leading-none tracking-[-0.02em] text-[#0b2921] tabular-nums dark:text-white">
+                <span className="text-[48px] font-medium leading-none tracking-[-0.02em] text-[#0b2921] tabular-nums">
                   <CountUp value={s.value} delay={0.9 + i * 0.12} />
                 </span>
-                <span className="mt-[15px] text-[14px] leading-none text-[#5e6966] dark:text-white/50">
+                <span className="mt-[15px] text-[14px] leading-none text-[#5e6966]">
                   {s.label}
                 </span>
               </motion.div>

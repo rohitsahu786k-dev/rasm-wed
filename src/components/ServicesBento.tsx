@@ -215,7 +215,7 @@ export const ServicesBento: React.FC<ServicesBentoProps> = ({ onOpenInquiry }) =
       <div
         ref={trackRef}
         onScroll={updateScrollState}
-        className="flex gap-6 overflow-x-auto scrollbar-hide px-4 sm:px-8 md:px-12 pt-3 pb-14 cursor-grab active:cursor-grabbing relative z-10"
+        className="flex gap-4 sm:gap-6 overflow-x-auto scrollbar-hide px-[10px] sm:px-8 md:px-12 pt-3 pb-14 cursor-grab active:cursor-grabbing relative z-10"
         style={{ scrollSnapType: 'x mandatory', WebkitOverflowScrolling: 'touch' }}
         onMouseDown={(e) => {
           const el = trackRef.current;
@@ -265,8 +265,8 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ srv, index, onInquire }) => {
 
   return (
     <motion.div
-      className="srv-slide-card shrink-0 relative rounded-[28px] sm:rounded-[32px] bg-white overflow-hidden shadow-[0_10px_32px_rgba(0,0,0,0.06)] hover:shadow-[0_20px_45px_rgba(0,0,0,0.11)] transition-all duration-500 flex flex-col group border-0"
-      style={{ width: '360px', height: '540px', scrollSnapAlign: 'start' }}
+      className="srv-slide-card shrink-0 relative rounded-[24px] sm:rounded-[32px] bg-white overflow-hidden shadow-[0_10px_32px_rgba(0,0,0,0.06)] hover:shadow-[0_20px_45px_rgba(0,0,0,0.11)] transition-all duration-500 flex flex-col group border-0 w-[84vw] max-w-[360px] h-[500px] sm:h-[540px]"
+      style={{ scrollSnapAlign: 'start' }}
       onHoverStart={() => setHovered(true)}
       onHoverEnd={() => setHovered(false)}
       initial={{ opacity: 0, y: 24 }}

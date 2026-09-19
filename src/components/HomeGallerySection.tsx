@@ -14,45 +14,50 @@ const DECOR_BENTO_PHOTOS: DecorBentoPhoto[] = [
     id: 1,
     url: 'https://rasmwed.com/wp-content/uploads/2024/07/MLVR0388-scaled.webp',
     title: 'Palatial Crystal Chandelier Mandap Scenography',
-    // Large Hero Bento Card (Spans 2 cols, 2 rows on desktop)
-    bentoClass: 'col-span-1 md:col-span-2 row-span-2 h-[340px] sm:h-[420px] md:h-[500px]',
+    // Mobile: Spans 2 cols (Hero Banner) | Desktop: Spans 2 cols, 2 rows
+    bentoClass: 'col-span-2 md:col-span-2 md:row-span-2 h-[220px] sm:h-[320px] md:h-[500px]',
   },
   {
     id: 2,
     url: 'https://rasmwed.com/wp-content/uploads/2024/07/IMG_E5217.webp',
     title: 'Royal Stage Banquet & Floral Architecture',
-    // Tall Portrait Bento Card
-    bentoClass: 'col-span-1 md:col-span-1 row-span-2 h-[340px] sm:h-[420px] md:h-[500px]',
+    // Mobile: 1 col | Desktop: 1 col, 2 rows
+    bentoClass: 'col-span-1 md:col-span-1 md:row-span-2 h-[190px] sm:h-[240px] md:h-[500px]',
   },
   {
     id: 3,
     url: 'https://rasmwed.com/wp-content/uploads/2024/07/IMG_E5208.webp',
     title: 'Royal Baraat Floral Arches & Rajputana Regalia',
-    bentoClass: 'col-span-1 md:col-span-1 h-[240px] sm:h-[280px]',
+    // Mobile: 1 col (Pairs with Card 2!) | Desktop: 1 col
+    bentoClass: 'col-span-1 md:col-span-1 h-[190px] sm:h-[240px] md:h-[280px]',
   },
   {
     id: 4,
     url: 'https://rasmwed.com/wp-content/uploads/2024/07/PTIG5387.webp',
     title: 'Twilight Courtyard Mixology & Canopy Lighting',
-    bentoClass: 'col-span-1 md:col-span-2 h-[240px] sm:h-[280px]',
+    // Mobile: 2 cols (Wide Bento Feature) | Desktop: 2 cols
+    bentoClass: 'col-span-2 md:col-span-2 h-[200px] sm:h-[240px] md:h-[280px]',
   },
   {
     id: 5,
     url: 'https://rasmwed.com/wp-content/uploads/2024/08/Jagmandir-Island-Palace.webp',
     title: 'Jagmandir Island Palace Lakeview Mandap',
-    bentoClass: 'col-span-1 md:col-span-1 h-[240px] sm:h-[280px]',
+    // Mobile: 1 col | Desktop: 1 col
+    bentoClass: 'col-span-1 md:col-span-1 h-[190px] sm:h-[240px] md:h-[280px]',
   },
   {
     id: 6,
     url: 'https://rasmwed.com/wp-content/uploads/2026/04/download-49.jpg',
     title: 'Sacred Vedic Fire Mandap Floral Canopy',
-    bentoClass: 'col-span-1 md:col-span-1 h-[240px] sm:h-[280px]',
+    // Mobile: 1 col (Pairs with Card 5!) | Desktop: 1 col
+    bentoClass: 'col-span-1 md:col-span-1 h-[190px] sm:h-[240px] md:h-[280px]',
   },
   {
     id: 7,
     url: 'https://rasmwed.com/wp-content/uploads/2026/04/Romantic-Indian-Wedding-Moment.jpg',
     title: 'Lake Pichola Sunset Mandap & Marigold Florals',
-    bentoClass: 'col-span-1 md:col-span-1 h-[240px] sm:h-[280px]',
+    // Mobile: 2 cols (Wide Anchor Bento) | Desktop: 1 col
+    bentoClass: 'col-span-2 md:col-span-1 h-[200px] sm:h-[240px] md:h-[280px]',
   },
 ];
 
@@ -104,14 +109,14 @@ export const HomeGallerySection: React.FC<HomeGallerySectionProps> = ({ onNaviga
   };
 
   return (
-    <section className="py-24 sm:py-28 bg-gradient-to-b from-[#FFFFFF] via-[#FAF8F5] to-[#FFFFFF] relative border-b border-gold/15 overflow-hidden">
+    <section className="py-20 sm:py-28 bg-gradient-to-b from-[#FFFFFF] via-[#FAF8F5] to-[#FFFFFF] relative border-b border-gold/15 overflow-hidden">
       {/* Golden Ambient Glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-gradient-to-tr from-gold/10 via-amber-100/20 to-transparent blur-3xl pointer-events-none rounded-full" />
 
-      <div className="w-[92%] max-w-7xl mx-auto relative z-10">
+      <div className="w-full max-w-7xl mx-0 sm:mx-auto px-[10px] sm:px-6 md:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
+        <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-14">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gradient-to-r from-ivory-200 to-amber-50/60 border border-gold/35 shadow-2xs mb-3">
             <Sparkles className="w-3.5 h-3.5 text-[#C5A059]" />
             <span className="text-xs uppercase font-medium gold-gradient-text tracking-normal">
@@ -128,13 +133,13 @@ export const HomeGallerySection: React.FC<HomeGallerySectionProps> = ({ onNaviga
           </p>
         </div>
 
-        {/* Wedding Decor Bento Grid Layout */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 sm:gap-6">
+        {/* Wedding Decor Bento Grid Layout: 2 Columns on Phone, 3 Columns on Desktop */}
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-2.5 sm:gap-5 md:gap-6">
           {DECOR_BENTO_PHOTOS.map((photo, index) => (
             <div
               key={photo.id}
               onClick={() => setSelectedIndex(index)}
-              className={`group relative rounded-3xl overflow-hidden cursor-pointer bg-stone-100 border border-stone-200/90 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_16px_40px_rgba(197,160,89,0.18)] hover:border-gold/60 transition-all duration-500 ${photo.bentoClass}`}
+              className={`group relative rounded-2xl sm:rounded-3xl overflow-hidden cursor-pointer bg-stone-100 border border-stone-200/90 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_16px_40px_rgba(197,160,89,0.18)] hover:border-gold/60 transition-all duration-500 ${photo.bentoClass}`}
             >
               {/* Pure decor image without ANY text superimposed on top */}
               <img
