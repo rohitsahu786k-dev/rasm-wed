@@ -5,8 +5,8 @@ import { runJob } from '@/lib/automation/jobs';
 export const dynamic = 'force-dynamic';
 export const maxDuration = 300;
 
-/** Daily health audit. Thin wrapper: the same job also runs from GitHub Actions via scripts/agent-run.ts. */
+/** Auto-fix safe WordPress-level issues; diagnose code-level ones. Thin wrapper: the same job also runs from GitHub Actions via scripts/agent-run.ts. */
 export async function GET(req: Request) {
   if (!isAuthorizedCron(req)) return new NextResponse('Unauthorized', { status: 401 });
-  return NextResponse.json(await runJob('health', { dry: new URL(req.url).searchParams.get('dry') === '1' }));
+  return NextResponse.json(await runJob('autofix', { dry: new URL(req.url).searchParams.get('dry') === '1' }));
 }

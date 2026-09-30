@@ -13,6 +13,9 @@ import { evaluateArticle, type ArticleDraft } from './quality.ts';
 import { generateWebp, imageFilename } from '../images/generate.ts';
 import { createPost, uploadMedia, type WpCreds } from './wp-publisher.ts';
 import { googleCredsFromEnv } from '../google/auth.ts';
+import { fetchRetry } from '../net.ts';
+import { measureUniqueness, isUniqueEnough } from './uniqueness.ts';
+import { nextCandidate, withinCaps } from './programmatic.ts';
 import { daysAgo, query } from '../google/search-console.ts';
 
 export interface PipelineOptions {
@@ -21,6 +24,8 @@ export interface PipelineOptions {
   dryRun?: boolean;
   /** Publish even if a post already went out in the last 20 hours (manual runs only). */
   force?: boolean;
+  /** 'programmatic' = demand-scored intent x destination pages with hard caps and a body-uniqueness gate. */
+  mode?: 'daily' | 'programmatic';
   store?: Store;
   fetchImpl?: typeof fetch;
 }
@@ -78,6 +83,15 @@ export async function loadContext(o: PipelineOptions, store: Store) {
   };
 }
 
+/** Full bodies of every published post and page (uniqueness corpus). */
+export async function loadBodies(c: WpCreds, f: typeof fetch): Promise<{ id: string; html: string }[]> {
+  const [posts, pages] = await Promise.all([
+    wpGet<{ slug: string; content: { rendered: string } }[]>(c, '/posts?per_page=100&status=publish&_fields=slug,content', f),
+    wpGet<{ slug: string; content: { rendered: string } }[]>(c, '/pages?per_page=100&status=publish&_fields=slug,content', f),
+  ]);
+  return [...posts, ...pages].map((p) => ({ id: p.slug, html: p.content.rendered }));
+}
+
 function embedImages(html: string, imgs: { source_url: string; alt: string; width: number; height: number }[]) {
   return imgs.reduce(
     (out, im, i) =>
@@ -99,13 +113,24 @@ export async function runContentPipeline(o: PipelineOptions): Promise<PipelineRe
   if ((audit?.counts?.CRITICAL ?? 0) > 0) return { status: 'skipped', reason: 'open CRITICAL site-health issue; content paused' };
 
   const { existing, latestPostAt, links, ctx } = await loadContext(o, store);
-  if (!o.force && latestPostAt && Date.now() - Date.parse(`${latestPostAt}Z`.replace('ZZ', 'Z')) < 20 * 3600_000) {
+  const programmatic = o.mode === 'programmatic';
+  if (!programmatic && !o.force && latestPostAt && Date.now() - Date.parse(`${latestPostAt}Z`.replace('ZZ', 'Z')) < 20 * 3600_000) {
     return { status: 'skipped', reason: 'a post was already published in the last 20 hours' };
   }
 
-  const plan = await chooseTopic(ctx);
-  if (plan.skip) return { status: 'skipped', reason: plan.reason ?? 'no worthwhile topic today' };
-  if (isDuplicateTopic(plan, ctx)) return { status: 'skipped', reason: `topic "${plan.topic}" overlaps existing content` };
+  let plan;
+  if (programmatic) {
+    const history = await store.list<{ ts: string; kind?: string; slug: string }>('content_articles');
+    const caps = withinCaps(history);
+    if (!caps.ok && !o.force) return { status: 'skipped', reason: `programmatic cap reached (${caps.lastWeek} this week, ${caps.total} total)` };
+    const cand = nextCandidate({ existing, queries: ctx.queries, programmaticSlugs: history.filter((h) => h.kind === 'programmatic').map((h) => h.slug) });
+    if (!cand) return { status: 'skipped', reason: 'no programmatic candidate left within per-city caps' };
+    plan = cand.plan;
+  } else {
+    plan = await chooseTopic(ctx);
+    if (plan.skip) return { status: 'skipped', reason: plan.reason ?? 'no worthwhile topic today' };
+    if (isDuplicateTopic(plan, ctx)) return { status: 'skipped', reason: `topic "${plan.topic}" overlaps existing content` };
+  }
 
   const gateCtx = {
     allowedInternalPaths: new Set(links.map((l) => l.path)),
@@ -116,10 +141,18 @@ export async function runContentPipeline(o: PipelineOptions): Promise<PipelineRe
   let article: ArticleDraft | undefined;
   let feedback: string[] = [];
   let gate = { pass: false, words: 0, failures: [] as string[], warnings: [] as string[] };
+  let corpus: { id: string; html: string }[] = [];
+  if (programmatic) corpus = await loadBodies(o.creds, f);
   for (let attempt = 0; attempt < 2; attempt++) {
     article = await writeArticle(plan, links, feedback);
     article.slug = article.slug || plan.slug;
     gate = evaluateArticle(article, gateCtx);
+    if (gate.pass && programmatic) {
+      const u = measureUniqueness(article.html, corpus);
+      if (!isUniqueEnough(u)) {
+        gate = { ...gate, pass: false, failures: [`too much overlap with existing content (${Math.round(u.maxContainment * 100)}% of one page, ${Math.round(u.totalContainment * 100)}% overall; most similar: ${u.mostSimilar}). Rewrite with entirely original structure, examples and wording specific to this intent.`] };
+      }
+    }
     if (gate.pass) break;
     feedback = gate.failures;
   }
@@ -197,7 +230,7 @@ export async function publishPrepared(
     await f(`${siteOrigin}/api/revalidate/`, { method: 'POST', headers: { Authorization: `Bearer ${secret}`, 'Content-Type': 'application/json' }, body: JSON.stringify({ slug: article.slug }) }).catch(() => undefined);
   }
 
-  await store.append('content_articles', { ts: new Date().toISOString(), topic: plan.topic, primaryKeyword: plan.primaryKeyword, slug: article.slug, wpId: post.id, url: post.link, words: gate.words, images: media.length, status: post.status });
+  await store.append('content_articles', { ts: new Date().toISOString(), topic: plan.topic, primaryKeyword: plan.primaryKeyword, slug: article.slug, wpId: post.id, url: post.link, words: gate.words, images: media.length, status: post.status, kind: o.mode === 'programmatic' ? 'programmatic' : 'daily' });
   await logAction(store, { agent: 'content-writer', task: 'publish-article', reason: plan.whyNeeded, target: post.link, after: { words: gate.words, images: media.length }, risk: 2, tests: { gate: 'passed', warnings: gate.warnings }, result: `published wp#${post.id}` });
   return { status: 'published', id: post.id, link: post.link, slug: article.slug, words: gate.words, images: media.length };
 }

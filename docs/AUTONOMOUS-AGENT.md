@@ -77,3 +77,14 @@ Measured cost per article (real API usage): topic ~$0.008 + article ~$0.04 per a
 - `about-us`, `traditional-decoration`, `corporate-events` now render owner-written WordPress copy (corporate-events was empty and was filled) under the designed sections.
 - Health audit gained a thin-content rule; score 96/100 with 0 CRITICAL/HIGH/MEDIUM.
 - Trackers load with `lazyOnload`. Lighthouse "best practices" stays at 77 on pages because the Meta Pixel sets a third-party cookie (inherent to the pixel).
+
+## Update: programmatic SEO, auto-fix, scheduling and real monthly cost
+**Programmatic SEO (safe form).** `src/lib/content/programmatic.ts`: approved destination x distinct intent (rituals, decor, food, guest logistics, honeymoon), ranked by real Search Console demand, never a city-name find-and-replace. Guards: distinct search intent per page; per-city cap (3); global cap (40) and weekly cap (2); title similarity vs existing content; **body uniqueness gate** (`uniqueness.ts`: reject if >18% of any existing page's 5-word shingles or >30% overall is reused, one rewrite allowed); the full 1000+ word quality gate; one image. Google's scaled-content-abuse policy targets mass low-value pages, so volume is deliberately small.
+
+**Technical auto-fix.** `monitoring/autofix.ts`. Level 1 (automatic, WordPress-level, logged): missing/duplicate meta descriptions (cheap model, saved in Rank Math), empty image alt text (from image titles, no AI). Level 3 (never automatic): anything needing a code change is diagnosed by the strong model (root cause + proposed fix + files) and stored in `recommendations` for review/PR. Code-level self-repair, PR creation and rollback need a GitHub push/Vercel connection.
+
+**Scheduling.** `.github/workflows/seo-agent.yml` runs the jobs on GitHub Actions (no serverless time limit, free tier): daily health+autofix, daily article, Tue/Fri programmatic, Monday weekly report + guideline check. The same jobs are also exposed as `/api/cron/*` for Vercel Cron. Add the repository secrets listed in the workflow.
+
+**Resilience.** WordPress calls use retry/backoff (`net.ts`): the WordPress host returned Cloudflare 521 for about 2 minutes during testing.
+
+**Measured cost (real API usage, `scripts/cost-report.ts`).** Article: gpt-6.1-sol ~$0.040 per attempt; image ~$0.0113; topic selection ~$0.009. Typical month: 30 daily articles ~$2.2 + ~9 programmatic pages ~$0.75 + auto-fix/diagnosis ~$0.2 + guideline interpretation ~$0.05 = **about $3-4**, worst case ~$5-6; the hard cap is $10.

@@ -10,6 +10,7 @@ const result = await runContentPipeline({
   creds,
   siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? 'https://rasmwed.com',
   dryRun: process.argv.includes('--dry'),
+  mode: process.argv.includes('--programmatic') ? 'programmatic' : 'daily',
   force: process.argv.includes('--force'),
 });
 console.log(JSON.stringify(result, null, 2));

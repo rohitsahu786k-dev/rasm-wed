@@ -50,14 +50,22 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const r = await resolve(slug);
   if (!r) return { title: 'Page not found', robots: { index: false, follow: false } };
   const path = `/${slug}/`;
+  // Rank Math on WordPress is the source of truth for SEO title/description (so auto-fixes and editor changes apply live).
+  const rm = await getRankMathMeta(slug);
+  const meta = (o: Parameters<typeof buildMetadata>[0]) =>
+    buildMetadata({
+      ...o,
+      ...(rm?.title ? { title: rm.title, titleIsFinal: true, preferOpts: true } : {}),
+      ...(rm?.description ? { description: rm.description, preferOpts: true } : {}),
+    });
   switch (r.kind) {
     case 'static': {
       const s = STATIC_PAGES[slug];
-      return buildMetadata({ title: s.title, description: s.description, path });
+      return meta({ title: s.title, description: s.description, path });
     }
     case 'city': {
       const c = CITY_DATABASE[r.cityKey];
-      return buildMetadata({
+      return meta({
         title: `${c.city} Destination Wedding Planner`,
         description: c.overview,
         path,
@@ -65,11 +73,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       });
     }
     case 'post': {
-      const rm = await getRankMathMeta(slug);
-      return buildMetadata({
-        title: rm?.title || r.post.title,
-        titleIsFinal: Boolean(rm?.title),
-        description: rm?.description || r.post.excerpt,
+      return meta({
+        title: r.post.title,
+        description: r.post.excerpt,
         path,
         image: r.post.image,
         type: 'article',
@@ -78,7 +84,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
       });
     }
     case 'page':
-      return buildMetadata({
+      return meta({
         title: r.page.title,
         description: `${r.page.title} – Rasm Weddings & Events, luxury destination wedding planners in Udaipur, Rajasthan.`,
         path,

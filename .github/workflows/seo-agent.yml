@@ -1,0 +1,79 @@
+# Scheduled SEO agent. Runs the jobs directly on GitHub's runners (free tier is plenty), so there are no
+# serverless time limits and no hosting plan is needed for the automation itself.
+#
+# One-time setup: repo Settings > Secrets and variables > Actions > add the secrets listed under `env:` below.
+name: SEO agent
+
+on:
+  schedule:
+    - cron: '0 3 * * *'    # daily: health audit, then auto-fix
+    - cron: '30 4 * * *'   # daily: publish one quality-gated article
+    - cron: '30 5 * * 2,5' # Tue/Fri: programmatic pages (hard-capped per week)
+    - cron: '0 5 * * 1'    # Monday: weekly report + Google guideline check
+  workflow_dispatch:
+    inputs:
+      job:
+        description: 'Job to run now'
+        required: true
+        type: choice
+        options: [health, autofix, content, programmatic, weekly, guidelines]
+      dry:
+        description: 'Dry run (generate, do not publish)'
+        type: boolean
+        default: false
+
+concurrency:
+  group: seo-agent
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      NEXT_PUBLIC_SITE_URL: ${{ vars.SITE_URL || 'https://rasmwed.com' }}
+      WP_URL: ${{ secrets.WP_URL }}
+      WP_USERNAME: ${{ secrets.WP_USERNAME }}
+      WP_APP_PASSWORD: ${{ secrets.WP_APP_PASSWORD }}
+      AI_STORE: wordpress
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      GOOGLE_SERVICE_ACCOUNT_EMAIL: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_EMAIL }}
+      GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY }}
+      GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
+      REVALIDATE_SECRET: ${{ secrets.REVALIDATE_SECRET }}
+      ALERT_WEBHOOK_URL: ${{ secrets.ALERT_WEBHOOK_URL }}
+      AI_MONTHLY_BUDGET_USD: ${{ vars.AI_MONTHLY_BUDGET_USD || '10' }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 12
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+
+      - name: Pick job
+        id: pick
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "jobs=${{ inputs.job }}" >> "$GITHUB_OUTPUT"
+            echo "dry=${{ inputs.dry && '--dry' || '' }}" >> "$GITHUB_OUTPUT"
+          else
+            case "${{ github.event.schedule }}" in
+              "0 3 * * *")    echo "jobs=health autofix" >> "$GITHUB_OUTPUT" ;;
+              "30 4 * * *")   echo "jobs=content" >> "$GITHUB_OUTPUT" ;;
+              "30 5 * * 2,5") echo "jobs=programmatic" >> "$GITHUB_OUTPUT" ;;
+              "0 5 * * 1")    echo "jobs=weekly guidelines" >> "$GITHUB_OUTPUT" ;;
+            esac
+            echo "dry=" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Run
+        run: |
+          for j in ${{ steps.pick.outputs.jobs }}; do
+            echo "::group::$j"
+            node --experimental-strip-types scripts/agent-run.ts "$j" ${{ steps.pick.outputs.dry }}
+            echo "::endgroup::"
+          done

@@ -9,6 +9,7 @@
  */
 import type { Store } from './store.ts';
 import type { WpCreds } from '../content/wp-publisher.ts';
+import { fetchRetry } from '../net.ts';
 
 const MAX_LINES = 3000;
 
@@ -32,7 +33,7 @@ export class WpPostStore implements Store {
   }
 
   private async api<T>(path: string, init: RequestInit = {}): Promise<T> {
-    const res = await this.f(`${this.c.url}/wp-json/wp/v2${path}`, { ...init, headers: this.headers(), signal: AbortSignal.timeout(30_000) });
+    const res = await fetchRetry(this.f, `${this.c.url}/wp-json/wp/v2${path}`, { ...init, headers: this.headers(), signal: AbortSignal.timeout(30_000) });
     const body = (await res.json().catch(() => ({}))) as T & { message?: string };
     if (!res.ok) throw new Error(`WP store ${path} -> ${res.status} ${body.message ?? ''}`);
     return body;

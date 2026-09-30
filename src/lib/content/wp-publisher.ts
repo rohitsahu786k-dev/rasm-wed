@@ -42,11 +42,12 @@ export interface CreatedPost {
   slug: string;
 }
 
+import { fetchRetry } from '../net.ts';
 type F = typeof fetch;
 const auth = (c: WpCreds) => `Basic ${Buffer.from(`${c.username}:${c.appPassword}`).toString('base64')}`;
 
 async function wpFetch<T>(c: WpCreds, path: string, init: RequestInit, f: F): Promise<T> {
-  const res = await f(`${c.url}/wp-json/wp/v2${path}`, {
+  const res = await fetchRetry(f, `${c.url}/wp-json/wp/v2${path}`, {
     ...init,
     headers: { Authorization: auth(c), ...(init.headers ?? {}) },
     signal: AbortSignal.timeout(60_000),

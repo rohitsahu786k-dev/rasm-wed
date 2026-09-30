@@ -296,3 +296,67 @@ test('WpPostStore keeps state in private WordPress posts using core REST only', 
   assert.ok([...posts.values()].every((p) => p.status === 'private'));
   assert.equal(posts.size, 2, 'one private post per collection/key, updated in place');
 });
+
+import { measureUniqueness, isUniqueEnough } from '../src/lib/content/uniqueness.ts';
+import { buildCandidates, withinCaps, PER_CITY_CAP } from '../src/lib/content/programmatic.ts';
+import { fixMediaAlt, fixDescriptions, diagnoseUnfixable, validDescription } from '../src/lib/monitoring/autofix.ts';
+
+test('uniqueness gate rejects template-swapped pages and accepts original ones', () => {
+  const base = '<p>' + 'The old fort stands above the lake and the main courtyard hosts the ceremony while guests gather on the terrace at sunset. '.repeat(8) + '</p>';
+  const swapped = base.replace(/lake/g, 'desert');
+  const original = '<p>' + 'Guests arriving by train should plan luggage transfers, room keys and a welcome lunch, because family elders often prefer a quiet first evening before the rituals begin. '.repeat(8) + '</p>';
+  assert.equal(isUniqueEnough(measureUniqueness(swapped, [{ id: 'a', html: base }])), false);
+  assert.equal(isUniqueEnough(measureUniqueness(original, [{ id: 'a', html: base }])), true);
+});
+
+test('programmatic candidates: distinct intents, demand-ranked, capped, no duplicates of existing pages', () => {
+  const ctx = { existing: [{ title: 'Wedding Rituals and Local Traditions in Udaipur: A Guide for Families', slug: 'x' }], queries: [{ query: 'jodhpur wedding catering', impressions: 40, clicks: 0, position: 30 }], programmaticSlugs: [] };
+  const c = buildCandidates(ctx);
+  assert.ok(c.length > 30);
+  assert.equal(c[0].city, 'Jodhpur', 'demand wins');
+  assert.ok(!c.some((x) => x.city === 'Udaipur' && x.intent.id === 'rituals'), 'existing page not re-proposed');
+  assert.equal(new Set(c.map((x) => x.plan.slug)).size, c.length, 'unique slugs');
+  const capped = buildCandidates({ ...ctx, programmaticSlugs: Array.from({ length: PER_CITY_CAP }, (_, i) => `goa-page-${i}-goa`) });
+  assert.ok(!capped.some((x) => x.city === 'Goa'), 'per-city cap');
+  const now = Date.now();
+  assert.equal(withinCaps([{ ts: new Date(now - 86400_000).toISOString(), kind: 'programmatic' }, { ts: new Date(now - 2 * 86400_000).toISOString(), kind: 'programmatic' }], now, 2, 40).ok, false);
+  assert.equal(withinCaps([{ ts: new Date(now - 9 * 86400_000).toISOString(), kind: 'programmatic' }], now, 2, 40).ok, true);
+});
+
+test('autofix: alt text from titles only, descriptions validated, code issues only diagnosed', async () => {
+  const store = tmpStore();
+  const c = { url: 'https://wp.test', username: 'u', appPassword: 'p' };
+  const updated: number[] = [];
+  const f = (async (url: string, init: RequestInit = {}) => {
+    if (url.includes('/media?')) return new Response(JSON.stringify([{ id: 1, alt_text: '', title: { rendered: 'Jagmandir Island Palace' }, source_url: 'x/a.webp' }, { id: 2, alt_text: '', title: { rendered: 'IMG 5208' }, source_url: 'x/IMG_5208.webp' }, { id: 3, alt_text: 'has alt', title: { rendered: 'Fine' }, source_url: 'x/b.webp' }]));
+    if (url.includes('/media/') && init.method === 'POST') { updated.push(Number(url.split('/').pop())); return new Response('{}'); }
+    return new Response('[]');
+  }) as unknown as typeof fetch;
+  assert.equal(await fixMediaAlt(c, store, { fetchImpl: f }), 1);
+  assert.deepEqual(updated, [1], 'meaningless names (IMG_5208) and existing alts untouched');
+  assert.equal(validDescription('too short'), false);
+  assert.equal(validDescription('x'.repeat(130)), true);
+  assert.deepEqual(await fixDescriptions(c, [{ severity: 'MEDIUM', code: 'missing-description', url: 'https://s.test/nothing/', message: '' }], store, { fetchImpl: f, run: (async () => { throw new Error('must not call AI when no WP object'); }) as never }), []);
+  const calls: string[] = [];
+  const run = (async (r: { task: string }) => { calls.push(r.task); return { output: { rootCause: 'rc', proposedFix: 'pf', filesLikelyInvolved: [], risk: 'low' }, model: 'm', tokensIn: 1, tokensOut: 1, costUsd: 0.001 }; }) as never;
+  const issues = [
+    { severity: 'HIGH' as const, code: 'canonical-mismatch', url: 'https://s.test/a/', message: '' },
+    { severity: 'HIGH' as const, code: 'missing-description', url: 'https://s.test/b/', message: '' },
+  ];
+  const d = await diagnoseUnfixable(issues, store, { run });
+  assert.equal(d.length, 1);
+  assert.deepEqual(calls, ['code-repair']);
+  assert.equal((await diagnoseUnfixable(issues, store, { run })).length, 0, 'not re-diagnosed within 7 days');
+});
+
+import { fetchRetry } from '../src/lib/net.ts';
+test('fetchRetry rides out transient origin errors (521) but not client errors', async () => {
+  let n = 0;
+  const flaky = (async () => new Response('{}', { status: ++n < 3 ? 521 : 200 })) as unknown as typeof fetch;
+  assert.equal((await fetchRetry(flaky, 'https://x.test', {}, { baseDelayMs: 1 })).status, 200);
+  assert.equal(n, 3);
+  let m = 0;
+  const notFound = (async () => { m++; return new Response('{}', { status: 404 }); }) as unknown as typeof fetch;
+  assert.equal((await fetchRetry(notFound, 'https://x.test', {}, { baseDelayMs: 1 })).status, 404);
+  assert.equal(m, 1, '404 is not retried');
+});
