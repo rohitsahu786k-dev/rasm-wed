@@ -71,3 +71,9 @@ No system can guarantee rankings; this agent optimises measurable inputs. AI-wri
 
 ## Update: $10/month budget mode
 Measured cost per article (real API usage): topic ~$0.008 + article ~$0.04 per attempt (up to 2 attempts) + one WebP image ~$0.011 = **~$0.06-0.10**, i.e. **~$2-3/month** for one article a day. Models: `gpt-6.1-sol` for topic/article ($2/$10 per 1M tokens), `gpt-6-luna` ($0.1/$0.5) for cheap tasks and fallback, `gpt-image-2.5-sunburst` medium (~343 output tokens at $30/1M). Hard caps: $10/month, $0.60/day, 1 image/day; near 80% only critical work may spend. One image per article (featured, centred with safe margins, no text).
+
+## Update: technical/city-page fixes
+- The 8 city pages (Mount Abu, Nathdwara, Jaisalmer, Pushkar, Kota, Ranakpur, Ahmedabad, Gandhinagar) were cloned Jaipur-template Elementor pages (Kota described Jaipur, venue images reused across cities, Ahmedabad/Gandhinagar empty). Each now has unique 2,200-2,400 word content (quality-gated, one image), rendered by `CityLanding`. Originals (incl. Elementor JSON) are backed up in `.data/backups/pages/` and WordPress keeps revisions; Elementor edit mode is switched off per page so WordPress serves the new HTML.
+- `about-us`, `traditional-decoration`, `corporate-events` now render owner-written WordPress copy (corporate-events was empty and was filled) under the designed sections.
+- Health audit gained a thin-content rule; score 96/100 with 0 CRITICAL/HIGH/MEDIUM.
+- Trackers load with `lazyOnload`. Lighthouse "best practices" stays at 77 on pages because the Meta Pixel sets a third-party cookie (inherent to the pixel).

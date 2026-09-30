@@ -23,6 +23,7 @@ export interface PageFacts {
   h1Count: number;
   noindex: boolean;
   imagesWithoutAlt: number;
+  mainWords: number;
   jsonLdInvalid: number;
   jsonLdCount: number;
   internalLinks: string[];
@@ -30,6 +31,11 @@ export interface PageFacts {
 
 const decode = (s: string) => s.replace(/&amp;/g, '&').replace(/&quot;/g, '"').replace(/&#x27;|&#39;/g, "'").replace(/&lt;/g, '<').replace(/&gt;/g, '>');
 const count = (html: string, re: RegExp) => (html.match(re) ?? []).length;
+
+const mainWordCount = (html: string) => {
+  const main = /<main[\s\S]*?<\/main>/i.exec(html)?.[0] ?? html;
+  return (main.replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>/gi, ' ').replace(/<[^>]+>/g, ' ').match(/[\p{L}\p{N}]+/gu) ?? []).length;
+};
 
 export function extractFacts(url: string, status: number, html: string, headers: Headers, origin: string): PageFacts {
   const title = decode(/<title[^>]*>([\s\S]*?)<\/title>/i.exec(html)?.[1] ?? '').trim();
@@ -70,6 +76,7 @@ export function extractFacts(url: string, status: number, html: string, headers:
     h1Count: count(html, /<h1[\s>]/gi),
     noindex,
     imagesWithoutAlt: count(html, /<img(?![^>]*\balt=)[^>]*>/gi),
+    mainWords: mainWordCount(html),
     jsonLdInvalid,
     jsonLdCount,
     internalLinks: [...links],
@@ -77,6 +84,8 @@ export function extractFacts(url: string, status: number, html: string, headers:
 }
 
 /** Per-page rules. `expectIndexable` is true for every URL that appears in the sitemap. */
+const THIN_EXEMPT = /^\/(thank-you-page|gallery|contact-us|privacy-policy|terms-and-conditions|refund-policy|shipping-policy)\/$/;
+
 export function pageIssues(f: PageFacts, expectIndexable = true): Issue[] {
   const out: Issue[] = [];
   const add = (severity: Severity, code: string, message: string, autofixable = false) => out.push({ severity, code, url: f.url, message, autofixable });
@@ -104,6 +113,7 @@ export function pageIssues(f: PageFacts, expectIndexable = true): Issue[] {
   }
   if (f.h1Count === 0) add('MEDIUM', 'missing-h1', 'no <h1>');
   if (f.h1Count > 1) add('LOW', 'multiple-h1', `${f.h1Count} <h1> elements`);
+  if (expectIndexable && f.mainWords < 200 && !THIN_EXEMPT.test(path)) add('HIGH', 'thin-content', `only ${f.mainWords} words of main content on an indexable page`);
   if (f.imagesWithoutAlt > 0) add('LOW', 'image-alt-missing', `${f.imagesWithoutAlt} <img> without alt`, true);
   if (f.jsonLdInvalid > 0) add('HIGH', 'invalid-jsonld', `${f.jsonLdInvalid} JSON-LD block(s) fail to parse`);
   return out;

@@ -9,12 +9,16 @@ import { CITY_DATABASE, CITY_SLUGS } from '@/data/cities';
 import { NOINDEX_SLUGS, STATIC_PAGES } from '@/data/routes';
 import { JsonLd } from '@/components/JsonLd';
 import { PageView } from '@/components/PageView';
+import { CityLanding } from '@/components/CityLanding';
 import { CityPageView } from '@/components/CityPageView';
 import { VenueCatalogueView } from '@/components/VenueCatalogueView';
 import { SingleBlogView } from '@/components/SingleBlogView';
 import { BlogFeed } from '@/components/BlogFeed';
 
 export const revalidate = 3600;
+
+/** Designed pages that also render the copy written in WordPress underneath (real text for users and crawlers). */
+const WP_COPY_PAGES = new Set(['about-us', 'traditional-decoration', 'corporate-events']);
 
 type Resolved =
   | { kind: 'static'; slug: string }
@@ -99,7 +103,7 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
           </div>
         );
       }
-      return <PageView slug={slug} />;
+      return <PageView slug={slug} wpPage={WP_COPY_PAGES.has(slug) ? await getPage(slug) : null} />;
     }
     case 'city':
       return (
@@ -127,6 +131,6 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
       );
     }
     case 'page':
-      return <PageView slug={slug} wpPage={r.page} />;
+      return slug.startsWith('wedding-planner-in-') ? <CityLanding page={r.page} /> : <PageView slug={slug} wpPage={r.page} />;
   }
 }

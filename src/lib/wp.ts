@@ -6,6 +6,11 @@ export interface WPPage {
   title: string;
   content: string;
   modified: string;
+  excerpt?: string;
+  image?: string;
+  imageAlt?: string;
+  imageWidth?: number;
+  imageHeight?: number;
 }
 export interface WPPost extends WPPage {
   date: string;
@@ -48,8 +53,17 @@ export async function getPages(): Promise<WPPage[]> {
 }
 
 export async function getPage(slug: string): Promise<WPPage | null> {
-  const data = await wp<any[]>(`/pages?slug=${encodeURIComponent(slug)}&_fields=slug,title,content,modified_gmt`);
-  return data?.[0] ? toPage(data[0]) : null;
+  const data = await wp<any[]>(`/pages?slug=${encodeURIComponent(slug)}&_embed=wp:featuredmedia&_fields=slug,title,content,excerpt,modified_gmt,_links,_embedded`);
+  if (!data?.[0]) return null;
+  const media = data[0]._embedded?.['wp:featuredmedia']?.[0];
+  return {
+    ...toPage(data[0]),
+    excerpt: strip(data[0].excerpt?.rendered ?? ''),
+    image: media?.source_url,
+    imageAlt: media?.alt_text || undefined,
+    imageWidth: media?.media_details?.width,
+    imageHeight: media?.media_details?.height,
+  };
 }
 
 export async function getPosts(): Promise<WPPost[]> {

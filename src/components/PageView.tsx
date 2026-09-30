@@ -10,6 +10,7 @@ import { AnimatedButton } from '@/components/ui/AnimatedButton';
 import { ServicesBento } from '@/components/ServicesBento';
 import { RealWeddingsGallery } from '@/components/RealWeddingsGallery';
 import { ContactSection } from '@/components/ContactSection';
+import { WpBody } from '@/components/WpBody';
 
 interface PageViewProps {
   slug: string;
@@ -17,6 +18,13 @@ interface PageViewProps {
 }
 
 export const PageView: React.FC<PageViewProps> = ({ slug: cleanSlug, wpPage }) => {
+  const extra = ['about-us', 'about', 'traditional-decoration', 'corporate-events'].includes(cleanSlug) && wpPage?.content ? (
+    <section className="py-16 bg-white border-t border-gold/15">
+      <div className="rasm-container max-w-3xl">
+        <WpBody content={wpPage.content} />
+      </div>
+    </section>
+  ) : null;
 
   // 2. Specialized Non-City Pages
   if (cleanSlug === 'services') {
@@ -141,6 +149,7 @@ export const PageView: React.FC<PageViewProps> = ({ slug: cleanSlug, wpPage }) =
             </div>
           </div>
         </section>
+        {extra}
       </div>
     );
   }
@@ -215,6 +224,7 @@ export const PageView: React.FC<PageViewProps> = ({ slug: cleanSlug, wpPage }) =
             </div>
           </div>
         </section>
+        {extra}
       </div>
     );
   }
@@ -260,6 +270,7 @@ export const PageView: React.FC<PageViewProps> = ({ slug: cleanSlug, wpPage }) =
             </div>
           </div>
         </section>
+        {extra}
       </div>
     );
   }
@@ -298,7 +309,7 @@ export const PageView: React.FC<PageViewProps> = ({ slug: cleanSlug, wpPage }) =
 
         {cleanContent ? (
           <div
-            className="prose prose-stone max-w-none text-charcoal-700 text-sm leading-relaxed font-light space-y-6 [&_h2]:font-manrope [&_h2]:font-bold [&_h2]:text-2xl [&_h2]:text-charcoal-900 [&_h3]:font-manrope [&_h3]:font-bold [&_h3]:text-xl [&_p]:leading-relaxed p-8 rounded-3xl bg-[#FAF8F5] border border-gold/20"
+            className="wp-content max-w-none p-8 rounded-3xl bg-[#FAF8F5] border border-gold/20"
             dangerouslySetInnerHTML={{ __html: cleanContent }}
           />
         ) : (

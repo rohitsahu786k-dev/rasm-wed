@@ -95,7 +95,8 @@ ${o.ld ? `<script type="application/ld+json">${o.ld}</script>` : ''}
 const facts = (h: string, status = 200) => extractFacts('https://site.test/p/', status, h, new Headers(), 'https://site.test');
 
 test('page audit flags the SEO regressions that matter', () => {
-  assert.deepEqual(pageIssues(facts(html({ canon: 'https://site.test/p/' }))), []);
+  assert.deepEqual(pageIssues(facts(html({ canon: 'https://site.test/p/' }))).filter((i) => i.code !== 'thin-content'), []);
+  assert.ok(pageIssues(facts(html({ canon: 'https://site.test/p/' }))).some((i) => i.code === 'thin-content'), 'short pages are flagged');
   const codes = (h: string, s = 200) => pageIssues(facts(h, s)).map((i) => i.code);
   assert.ok(codes(html({ canon: 'https://site.test/p/', noindex: true })).includes('unexpected-noindex'));
   assert.ok(codes(html({ canon: 'https://site.test/other/' })).includes('canonical-mismatch'));

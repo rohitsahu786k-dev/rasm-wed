@@ -137,3 +137,19 @@ export async function uploadMedia(c: WpCreds, file: { bytes: Uint8Array; filenam
 export async function deletePost(c: WpCreds, id: number, f: F = fetch) {
   return wpFetch(c, `/posts/${id}?force=true`, { method: 'DELETE' }, f);
 }
+
+/** Replaces the body of an existing WordPress PAGE (revisions are kept by WordPress, so this is reversible). */
+export async function updatePage(c: WpCreds, id: number, patch: { html: string; featuredMediaId?: number; excerpt?: string }, f: F = fetch) {
+  return wpFetch<CreatedPost>(
+    c,
+    `/pages/${id}`,
+    {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      // Elementor renders from its own JSON and ignores post_content; switching edit mode off makes WordPress serve our HTML.
+      // The original Elementor data stays in the database (and in .data/backups) so this is reversible.
+      body: JSON.stringify({ content: sanitizeHtml(patch.html), meta: { _elementor_edit_mode: '' }, ...(patch.featuredMediaId ? { featured_media: patch.featuredMediaId } : {}), ...(patch.excerpt ? { excerpt: patch.excerpt } : {}) }),
+    },
+    f,
+  );
+}
