@@ -81,7 +81,7 @@ export function buildCandidates(ctx: ProgrammaticContext): Candidate[] {
     for (const intent of INTENTS) {
       const title = intent.title(city);
       const keyword = intent.keyword(city);
-      const slug = slugify(title);
+      const slug = slugify(keyword); // short, keyword-first URL (e.g. udaipur-wedding-decor-ideas)
       if (ctx.existing.some((p) => p.slug === slug || similarity(`${title} ${keyword}`, p.title) >= 0.5)) continue;
 
       // Demand: impressions on queries that mention the city AND an intent word.

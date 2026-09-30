@@ -145,7 +145,7 @@ export async function runContentPipeline(o: PipelineOptions): Promise<PipelineRe
   if (programmatic) corpus = await loadBodies(o.creds, f);
   for (let attempt = 0; attempt < 2; attempt++) {
     article = await writeArticle(plan, links, feedback);
-    article.slug = article.slug || plan.slug;
+    article.slug = programmatic ? plan.slug : article.slug || plan.slug;
     gate = evaluateArticle(article, gateCtx);
     if (gate.pass && programmatic) {
       const u = measureUniqueness(article.html, corpus);
