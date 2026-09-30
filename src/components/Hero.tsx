@@ -24,10 +24,10 @@ const heroImages = [
 ];
 
 const stats = [
-  { value: '450+', label: 'Royal Celebrations' },
-  { value: '12+', label: 'Years of Heritage' },
-  { value: '15+', label: 'Palace Venues' },
-  { value: '40+', label: 'Global Countries' },
+  { value: '500+', label: 'Successful Events' },
+  { value: '10+', label: 'Years of Experience' },
+  { value: '12', label: 'Wedding Destinations' },
+  { value: '9', label: 'Planning Services' },
 ];
 
 export const Hero: React.FC = () => {
@@ -159,7 +159,7 @@ export const Hero: React.FC = () => {
             {/* Floating gold badge */}
             <div className="absolute top-3 left-[38%] z-20 bg-[#1a1a1a] text-white px-3 py-1.5 rounded-full shadow-lg">
               <p className="text-[10px] font-manrope font-semibold tracking-wider uppercase">
-                ✦ Since 2012
+                ✦ Udaipur, Rajasthan
               </p>
             </div>
 

@@ -324,6 +324,14 @@ export const DestinationsSection: React.FC<DestinationsSectionProps> = ({
             <ChevronRight className="w-5 h-5" />
           </button>
         </div>
+        <nav aria-label="Wedding destinations" className="mt-10 flex flex-wrap justify-center gap-2 px-4 relative z-40">
+          {displayDestinations.map((d) => (
+            <Link key={d.id} href={`/${d.slug}/`} className="px-4 py-2 rounded-full border border-gold/30 bg-white text-xs uppercase tracking-wider text-charcoal-700 hover:border-gold hover:text-charcoal-950 transition-colors">
+              Wedding in {d.title}
+            </Link>
+          ))}
+        </nav>
+
 
         {/* Bottom CTA to View All Venues */}
         <div className="mt-8 text-center z-40">
@@ -331,7 +339,7 @@ export const DestinationsSection: React.FC<DestinationsSectionProps> = ({
             href="/wedding-destination"
             className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-bold text-charcoal-800 hover:text-gold-dark transition-colors border-b border-gold/40 pb-1"
           >
-            <span>Explore All 18+ Rasm Palaces & Venues</span>
+            <span>Explore All 12 Wedding Destinations</span>
             <ArrowRight className="w-3.5 h-3.5 text-gold-dark" />
           </Link>
         </div>

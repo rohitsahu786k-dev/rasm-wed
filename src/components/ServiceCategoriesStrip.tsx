@@ -15,7 +15,7 @@ export const ServiceCategoriesStrip: React.FC<ServiceCategoriesStripProps> = ({ 
       desc: 'Lake Palaces & Fortresses',
       icon: Crown,
       image: 'https://rasmwed.com/wp-content/uploads/2024/08/The-Oberoi-Udaivilas.webp',
-      badge: 'Direct GM Access',
+      badge: 'Venue Consultation',
     },
     {
       title: 'Mandap Scenography',

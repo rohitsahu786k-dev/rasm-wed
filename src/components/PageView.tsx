@@ -4,7 +4,7 @@ import Image from 'next/image';
 import React from 'react';
 import type { WPPage } from '@/lib/wp';
 import { settings } from '@/data/settings';
-import { media } from '@/data/media';
+import type { MediaItem } from '@/types';
 import { Sparkles, MapPin, Calendar, CheckCircle2, ArrowRight, ShieldCheck, Heart, Crown, Award, Users, Phone, Mail } from 'lucide-react';
 import { AnimatedButton } from '@/components/ui/AnimatedButton';
 import { ServicesBento } from '@/components/ServicesBento';
@@ -15,9 +15,10 @@ import { WpBody } from '@/components/WpBody';
 interface PageViewProps {
   slug: string;
   wpPage?: WPPage | null;
+  media?: MediaItem[];
 }
 
-export const PageView: React.FC<PageViewProps> = ({ slug: cleanSlug, wpPage }) => {
+export const PageView: React.FC<PageViewProps> = ({ slug: cleanSlug, wpPage, media = [] }) => {
   const extra = ['about-us', 'about', 'traditional-decoration', 'corporate-events'].includes(cleanSlug) && wpPage?.content ? (
     <section className="py-16 bg-white border-t border-gold/15">
       <div className="rasm-container max-w-3xl">
@@ -82,13 +83,13 @@ export const PageView: React.FC<PageViewProps> = ({ slug: cleanSlug, wpPage }) =
           <div className="rasm-container relative z-10">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-ivory-200 border border-gold/40 text-gold-dark text-xs uppercase tracking-[0.28em] font-medium mb-6">
               <Crown className="w-3.5 h-3.5 text-gold-dark" />
-              <span>12+ Years of Royal Heritage</span>
+              <span>Over a Decade of Celebrations</span>
             </div>
             <h1 className="font-manrope font-medium text-3xl sm:text-5xl md:text-6xl text-charcoal-900 mb-6 tracking-tight leading-[1.2]">
               Architects of Royal <span className="gold-gradient-text italic">Indian Celebrations</span>
             </h1>
             <p className="max-w-3xl mx-auto text-charcoal-600 text-sm sm:text-base md:text-lg font-light leading-relaxed mb-10">
-              Founded in the imperial city of Udaipur, Rasm Wedding & Events was created to bridge timeless Rajputana heritage with contemporary high-fashion wedding production. Over the past decade, we have orchestrated 450+ bespoke celebrations for couples from the US, UK, Middle East, and India.
+              Founded in the imperial city of Udaipur, Rasm Wedding & Events was created to bridge timeless Rajputana heritage with contemporary high-fashion wedding production. Rasm has planned over 500 successful events for couples from India and abroad.
             </p>
           </div>
         </section>

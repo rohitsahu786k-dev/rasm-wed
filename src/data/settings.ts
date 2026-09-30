@@ -13,11 +13,11 @@ export const settings: SiteSettings = {
   heroHeadline: 'Where Royal Heritage Meets Timeless Romance',
   heroSubheadline:
     'Curating bespoke palatial celebrations across Udaipur, Jaipur, and iconic rasm destinations for discerning couples worldwide.',
-  instagramUrl: 'https://instagram.com/rasmwed',
+  instagramUrl: SITE.instagram,
   stats: {
-    experience: '12+ Years',
-    weddings: '450+ Curated',
-    destinations: '18+ Palaces',
-    satisfaction: '100% Bliss',
+    experience: '10+ Years',
+    weddings: '500+ Events',
+    destinations: '12 Destinations',
+    satisfaction: '9 Planning Services',
   },
 };

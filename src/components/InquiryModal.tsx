@@ -117,7 +117,7 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
                 required
                 value={contact}
                 onChange={(e) => setContact(e.target.value)}
-                placeholder="+1 555-0192 or +91 98290 12345"
+                placeholder="Your phone / WhatsApp number with country code"
                 className="w-full px-4 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-charcoal-900 text-sm focus:outline-none focus:border-gold focus:bg-white transition-colors"
               />
             </div>

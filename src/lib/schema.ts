@@ -11,10 +11,12 @@ export const organizationSchema = (): Json => ({
   url: `${SITE_URL}/`,
   logo: `${SITE_URL}${SITE.logo}`,
   image: SITE.ogImage,
-  address: { '@type': 'PostalAddress', addressLocality: 'Udaipur', addressRegion: 'Rajasthan', addressCountry: 'IN' },
+  telephone: SITE.phone,
+  email: SITE.email,
+  address: { '@type': 'PostalAddress', streetAddress: SITE.street, addressLocality: 'Udaipur', addressRegion: 'Rajasthan', postalCode: SITE.postalCode, addressCountry: 'IN' },
   geo: { '@type': 'GeoCoordinates', latitude: 24.5854, longitude: 73.7125 },
   areaServed: ['India', 'United Kingdom', 'United States', 'United Arab Emirates', 'Canada', 'Australia'],
-  sameAs: [SITE.instagram],
+  sameAs: [SITE.instagram, SITE.facebook, SITE.youtube],
 });
 
 export const websiteSchema = (): Json => ({

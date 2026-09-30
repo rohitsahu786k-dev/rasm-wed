@@ -24,7 +24,7 @@ export const STATIC_PAGES: Record<string, { title: string; description: string; 
     label: 'About Us',
     title: 'About Us',
     description:
-      'Founded in Udaipur, Rasm Weddings & Events has orchestrated 450+ bespoke destination weddings for couples from the US, UK, Middle East and India.',
+      'Founded in Udaipur, Rasm Weddings & Events has planned over 500 events for couples from India and abroad.',
   },
   'contact-us': {
     label: 'Contact',

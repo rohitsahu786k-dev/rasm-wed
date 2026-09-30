@@ -4,28 +4,48 @@
     "name": "Rasm Weddings & Events",
     "shortName": "Rasm",
     "base": "Udaipur, Rajasthan, India",
-    "positioning": "Luxury destination wedding planner for NRI and international couples, focused on palace and heritage venues in Rajasthan and select destinations."
+    "positioning": "Luxury destination wedding planner for NRI and international couples, focused on palace and heritage venues in Rajasthan and select destinations.",
+    "address": "510, City Centre, Ashok Nagar, Udaipur, Rajasthan 313001"
   },
   "approvedClaims": [
-    "Rasm Weddings & Events is based in Udaipur, Rajasthan.",
-    "Rasm has planned 450+ celebrations.",
-    "Rasm has 12+ years of experience.",
-    "Rasm works with 18+ palace and heritage venues.",
-    "Rasm serves couples from the US, UK, UAE, Canada, Australia and India."
+    "Rasm Weddings & Events is based in Udaipur, Rajasthan (office: 510, City Centre, Ashok Nagar, Udaipur 313001).",
+    "Rasm states on its website that it has planned over 500 successful events.",
+    "Rasm has over a decade of experience in wedding and event planning.",
+    "Rasm offers wedding planning packages that start from ₹30,00,000 (30 lakh) and go up to ₹1 crore or more, depending on requirements, scale, venue and customisation.",
+    "Package inclusions: venue selection and booking, hospitality and guest management, catering, photography and videography, celebrity and artist management, entertainment and DJ, logistics and transportation, complete on-ground execution.",
+    "Rasm arranges special room rates for wedding groups at partner hotels.",
+    "Rasm serves couples from India and abroad."
   ],
   "services": [
-    "Destination wedding planning",
-    "Palace and heritage venue sourcing in Udaipur, Jaipur, Jodhpur, Jaisalmer, Kumbhalgarh, Pushkar and other Rajasthan cities",
-    "Traditional decoration and mandap design",
-    "Guest hospitality and logistics",
-    "Corporate and VIP events"
+    "Logistics",
+    "Decor management",
+    "Invitations and gifting",
+    "Destination and venues",
+    "Vendor management",
+    "Budget management",
+    "Food and beverage",
+    "Entertainment",
+    "Hospitality and guest management"
   ],
   "destinationsWithPages": [
-    "Udaipur", "Jaipur", "Jodhpur", "Jaisalmer", "Goa", "Kumbhalgarh", "Mount Abu", "Nathdwara", "Pushkar", "Kota", "Ranakpur", "Ahmedabad", "Gandhinagar", "Thailand"
+    "Udaipur",
+    "Jaipur",
+    "Jodhpur",
+    "Jaisalmer",
+    "Goa",
+    "Kumbhalgarh",
+    "Mount Abu",
+    "Nathdwara",
+    "Pushkar",
+    "Kota",
+    "Ranakpur",
+    "Ahmedabad",
+    "Gandhinagar",
+    "Thailand"
   ],
   "forbidden": [
     "invented statistics, survey results or studies",
-    "prices or budgets presented as Rasm quotes",
+    "any prices other than the approved package statement (never invent figures)",
     "client names, testimonials, awards or certifications",
     "claims that a specific venue is partnered with Rasm unless listed above",
     "guarantees or ranking promises",

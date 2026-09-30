@@ -1,5 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { WP_ORIGIN } from './site';
+import type { Destination } from '@/types';
+import { parseElementor } from './elementor';
 
 export interface WPPage {
   slug: string;
@@ -17,6 +19,8 @@ export interface WPPost extends WPPage {
   excerpt: string;
   image?: string;
   imageAlt?: string;
+  imageWidth?: number;
+  imageHeight?: number;
 }
 
 const REVALIDATE = 3600; // ISR: content refreshes hourly without a redeploy.
@@ -78,6 +82,8 @@ export async function getPosts(): Promise<WPPost[]> {
       excerpt: strip(p.excerpt?.rendered ?? ''),
       image: media?.source_url,
       imageAlt: media?.alt_text || undefined,
+      imageWidth: media?.media_details?.width,
+      imageHeight: media?.media_details?.height,
     };
   });
 }
@@ -99,6 +105,8 @@ export async function getPost(slug: string): Promise<WPPostFull | null> {
     excerpt: strip(p.excerpt?.rendered ?? ''),
     image: media?.source_url,
     imageAlt: media?.alt_text || undefined,
+    imageWidth: media?.media_details?.width,
+    imageHeight: media?.media_details?.height,
   };
 }
 
@@ -119,4 +127,49 @@ export async function getRankMathMeta(slug: string): Promise<{ title: string; de
   } catch {
     return null;
   }
+}
+
+/** The 12 destinations featured on the WordPress homepage, in its order. Ahmedabad/Gandhinagar have pages but are not featured. */
+export const FEATURED_DESTINATIONS = ['udaipur', 'nathdwara', 'kumbhalgarh', 'mount-abu', 'pushkar', 'ranakpur', 'jaisalmer', 'jodhpur', 'jaipur', 'kota', 'goa', 'thailand'];
+
+const firstSentence = (t: string, max = 110) => {
+  const s1 = t.split(/(?<=[.!?])\s/)[0] ?? t;
+  return s1.length <= max ? s1 : `${s1.slice(0, max - 1).replace(/\s+\S*$/, '')}\u2026`;
+};
+
+/** Destination cards built from the real WordPress city pages (text + photo), not hard-coded copy. */
+export async function getDestinations(slugs: string[] = FEATURED_DESTINATIONS): Promise<Destination[]> {
+  const pages = await Promise.all(slugs.map((s) => getPage(`wedding-planner-in-${s}`)));
+  return pages.flatMap((p, i) => {
+    if (!p) return [];
+    const blocks = parseElementor(p.content);
+    const imgBlock = blocks.find((b) => b.type === 'img' && b.width && b.width >= 400 && !/border|icon/i.test(b.src));
+    const img = p.image ?? (imgBlock && imgBlock.type === 'img' ? imgBlock.src : undefined);
+    const lead = p.excerpt || (blocks.find((b) => b.type === 'p' && b.text.length > 60) as { text: string } | undefined)?.text || '';
+    const name = p.title.replace(/^wedding planner in /i, '').trim() || slugs[i];
+    return [{
+      id: slugs[i],
+      title: name,
+      slug: p.slug,
+      tagline: lead ? firstSentence(lead) : `Destination wedding in ${name}`,
+      season: '',
+      venues: '',
+      imageUrl: (img as string | undefined) ?? '',
+    }];
+  });
+}
+
+/** The 9 planning services and thumbnails from the WordPress "services" page. */
+export async function getServices(): Promise<{ title: string; image?: string }[]> {
+  const page = await getPage('services');
+  if (!page) return [];
+  const blocks = parseElementor(page.content);
+  const out: { title: string; image?: string }[] = [];
+  for (let i = 0; i < blocks.length; i++) {
+    const b = blocks[i];
+    if (b.type !== 'h3') continue;
+    const prev = blocks[i - 1];
+    out.push({ title: b.text.toLowerCase().replace(/\b\w/g, (c) => c.toUpperCase()).replace(' And ', ' & '), image: prev?.type === 'img' && /elementor\/thumbs|uploads/.test(prev.src) ? prev.src : undefined });
+  }
+  return out.slice(0, 12);
 }

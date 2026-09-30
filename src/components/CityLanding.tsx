@@ -3,7 +3,8 @@ import Link from 'next/link';
 import { ArrowRight, Crown, MapPin } from 'lucide-react';
 import { InquiryAnimatedButton } from '@/components/InquiryClient';
 import type { WPPage } from '@/lib/wp';
-import { WpBody } from '@/components/WpBody';
+import { WpBody, cleanBlocks } from '@/components/WpBody';
+import { parseElementor } from '@/lib/elementor';
 
 /**
  * Landing page for a city whose content lives in WordPress. Renders clean semantic HTML in the site's design:
@@ -11,7 +12,13 @@ import { WpBody } from '@/components/WpBody';
  * The featured image is shown uncropped at its natural ratio.
  */
 export function CityLanding({ page }: { page: WPPage }) {
-  const city = page.title.replace(/^wedding planner in /i, '').trim();
+  // City from the URL slug (titles vary: "Best Wedding Planner In Udaipur").
+  const city = page.slug.replace(/^wedding-planner-in-/, '').split('-').map((w) => w[0].toUpperCase() + w.slice(1)).join(' ');
+  // WordPress auto-excerpts of Elementor pages are garbage (counters, headings); use the first real paragraph instead.
+  const lead = /elementor/.test(page.content)
+    ? (cleanBlocks(parseElementor(page.content)).find((b) => b.type === 'p' && b.text.length > 80) as { text: string } | undefined)?.text
+    : page.excerpt;
+  const leadShort = lead && lead.length > 220 ? `${lead.slice(0, 217).replace(/s+S*$/, '')}…` : lead;
 
   return (
     <div className="bg-white min-h-screen text-charcoal-900">
@@ -22,7 +29,7 @@ export function CityLanding({ page }: { page: WPPage }) {
             <span>Destination Weddings</span>
           </div>
           <h1 className="font-manrope font-medium text-3xl sm:text-5xl md:text-6xl text-charcoal-900 tracking-tight leading-[1.2] mb-5">{page.title}</h1>
-          {page.excerpt && <p className="text-charcoal-600 text-base sm:text-lg font-light leading-relaxed max-w-2xl mx-auto">{page.excerpt}</p>}
+          {leadShort && <p className="text-charcoal-600 text-base sm:text-lg font-light leading-relaxed max-w-2xl mx-auto">{leadShort}</p>}
           <div className="mt-8 flex justify-center">
             <InquiryAnimatedButton variant="gold-shimmer" size="lg" context={`${city} wedding`} icon={<ArrowRight className="w-4 h-4" />}>
               Plan Your {city} Wedding
