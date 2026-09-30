@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import { settings } from '@/data/settings';
+import type { FullSettings } from '@/components/SiteSettingsProvider';
 import { NewsletterForm, BackToTop } from '@/components/FooterClient';
 import { MessageCircle, Mail, MapPin, Heart, Sparkles, ShieldCheck, Crown } from 'lucide-react';
 
@@ -55,7 +55,7 @@ const footerLinks = {
   ],
 };
 
-export const Footer: React.FC = () => {
+export const Footer: React.FC<{ settings: FullSettings }> = ({ settings }) => {
   return (
     <footer className="relative bg-gradient-to-b from-[#FFFFFF] via-[#FDFBF7] to-[#F4EBDB] text-charcoal-800 overflow-hidden pt-16 pb-10 font-manrope font-normal border-t border-gold/30 select-none z-10">
       {/* Signature Watermark Stroke Typography in Subtle Gold */}

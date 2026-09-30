@@ -2,7 +2,7 @@ import { absoluteUrl, SITE, SITE_URL } from './site';
 
 type Json = Record<string, unknown>;
 
-export const organizationSchema = (): Json => ({
+export const organizationSchema = (o: { phone?: string; email?: string; sameAs?: string[] } = {}): Json => ({
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
   '@id': `${SITE_URL}/#organization`,
@@ -11,12 +11,12 @@ export const organizationSchema = (): Json => ({
   url: `${SITE_URL}/`,
   logo: `${SITE_URL}${SITE.logo}`,
   image: SITE.ogImage,
-  telephone: SITE.phone,
-  email: SITE.email,
+  telephone: o.phone ?? SITE.phone,
+  email: o.email ?? SITE.email,
   address: { '@type': 'PostalAddress', streetAddress: SITE.street, addressLocality: 'Udaipur', addressRegion: 'Rajasthan', postalCode: SITE.postalCode, addressCountry: 'IN' },
   geo: { '@type': 'GeoCoordinates', latitude: 24.5854, longitude: 73.7125 },
   areaServed: ['India', 'United Kingdom', 'United States', 'United Arab Emirates', 'Canada', 'Australia'],
-  sameAs: [SITE.instagram, SITE.facebook, SITE.youtube],
+  sameAs: o.sameAs ?? [SITE.instagram, SITE.facebook, SITE.youtube],
 });
 
 export const websiteSchema = (): Json => ({

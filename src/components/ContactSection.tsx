@@ -2,11 +2,12 @@
 
 import React, { useState } from 'react';
 import { useInquiry } from '@/components/InquiryProvider';
-import { settings } from '@/data/settings';
+import { useSettings } from '@/components/SiteSettingsProvider';
 import { MapPin, Mail, MessageCircle, Send, Sparkles, CheckCircle2, Clock, Globe } from 'lucide-react';
 import { AnimatedButton } from '@/components/ui/AnimatedButton';
 
 export const ContactSection: React.FC = () => {
+  const settings = useSettings();
   const { destination: prefilledDestination } = useInquiry();
   const [name, setName] = useState('');
   const [contact, setContact] = useState('');

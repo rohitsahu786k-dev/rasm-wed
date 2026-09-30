@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import React from 'react';
 import type { WPPage } from '@/lib/wp';
-import { settings } from '@/data/settings';
+import { getSiteSettings } from '@/lib/acf';
 import type { MediaItem } from '@/types';
 import { Sparkles, MapPin, Calendar, CheckCircle2, ArrowRight, ShieldCheck, Heart, Crown, Award, Users, Phone, Mail } from 'lucide-react';
 import { AnimatedButton } from '@/components/ui/AnimatedButton';
@@ -18,7 +18,8 @@ interface PageViewProps {
   media?: MediaItem[];
 }
 
-export const PageView: React.FC<PageViewProps> = ({ slug: cleanSlug, wpPage, media = [] }) => {
+export async function PageView({ slug: cleanSlug, wpPage, media = [] }: PageViewProps) {
+  const settings = await getSiteSettings();
   const extra = ['about-us', 'about', 'traditional-decoration', 'corporate-events'].includes(cleanSlug) && wpPage?.content ? (
     <section className="py-16 bg-white border-t border-gold/15">
       <div className="rasm-container max-w-3xl">

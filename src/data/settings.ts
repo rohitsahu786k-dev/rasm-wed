@@ -1,5 +1,5 @@
-import type { SiteSettings } from '@/types';
-import { SITE, SITE_URL } from '@/lib/site';
+import type { SiteSettings } from '../types/index.ts';
+import { SITE, SITE_URL } from '../lib/site.ts';
 
 export const settings: SiteSettings = {
   title: 'Rasm Wedding & Events',

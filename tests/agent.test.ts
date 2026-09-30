@@ -435,3 +435,32 @@ test('owner facts are read from the private post, comments and short lines ignor
   const f = (async () => new Response(JSON.stringify([{ content: { raw: '<p># instructions</p>\n<p>- December sangeet lawns in Udaipur need heaters from about 6 pm.</p><p>short</p>' } }]))) as unknown as typeof fetch;
   assert.deepEqual(await loadOwnerFacts({ url: 'https://wp.test', username: 'u', appPassword: 'p' }, f), ['December sangeet lawns in Udaipur need heaters from about 6 pm.']);
 });
+
+import { parseHome, safeHref, toImage, DEFAULT_SLIDES } from '../src/lib/acf.ts';
+test('ACF homepage parsing: valid slides used, invalid ignored, defaults when empty, links sanitised', () => {
+  assert.equal(parseHome({}).slides, DEFAULT_SLIDES, 'empty ACF -> real default banners');
+  assert.equal(parseHome({ hero_slides: [] }).slides.length, DEFAULT_SLIDES.length);
+  const img = (url: string) => ({ url, width: 1920, height: 900, alt: 'a' });
+  const p = parseHome({
+    hero_autoplay_seconds: '4',
+    hero_slides: [
+      { desktop_image: img('https://x.test/d.jpg'), mobile_image: img('https://x.test/m.jpg'), heading: 'Hello', button_label: 'Go', button_link: { url: 'https://rasmwed.com/services/' }, text_align: 'center', overlay: '200' },
+      { desktop_image: 123, heading: 'numeric id is ignored' },
+      { desktop_image: img('https://x.test/z.jpg'), heading: '' },
+      { desktop_image: img('javascript:alert(1)'), heading: 'bad url' },
+    ],
+    home_stats: [{ value: '500+', label: 'Events' }, { value: '', label: 'x' }],
+  });
+  assert.equal(p.slides.length, 1);
+  assert.equal(p.slides[0].mobile?.url, 'https://x.test/m.jpg');
+  assert.equal(p.slides[0].buttonHref, '/services/', 'own-domain links become relative');
+  assert.equal(p.slides[0].align, 'center');
+  assert.equal(p.slides[0].overlay, 80, 'overlay clamped');
+  assert.equal(p.autoplaySeconds, 4);
+  assert.deepEqual(p.stats, [{ value: '500+', label: 'Events' }]);
+  assert.equal(safeHref('javascript:alert(1)'), undefined);
+  assert.equal(safeHref('//evil.test'), undefined);
+  assert.equal(safeHref('/about-us/'), '/about-us/');
+  assert.equal(safeHref('https://wa.me/918094875504'), 'https://wa.me/918094875504');
+  assert.equal(toImage({ url: '/relative.jpg', width: 1, height: 1 }), undefined);
+});

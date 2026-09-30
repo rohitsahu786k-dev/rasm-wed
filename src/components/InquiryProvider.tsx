@@ -2,7 +2,7 @@
 
 import { createContext, useCallback, useContext, useMemo, useState } from 'react';
 import { InquiryModal } from '@/components/InquiryModal';
-import { settings } from '@/data/settings';
+import { useSettings } from '@/components/SiteSettingsProvider';
 
 interface InquiryCtx {
   destination: string;
@@ -14,6 +14,7 @@ export const useInquiry = () => useContext(Ctx);
 
 /** Tiny client boundary: holds only the modal-open state. Page content stays server-rendered. */
 export function InquiryProvider({ children }: { children: React.ReactNode }) {
+  const settings = useSettings();
   const [isOpen, setOpen] = useState(false);
   const [destination, setDestination] = useState('Udaipur, Rajasthan');
 

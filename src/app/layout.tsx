@@ -3,6 +3,8 @@ import { Manrope } from 'next/font/google';
 import '@/styles/globals.css';
 import { IS_PRODUCTION, SITE, SITE_URL } from '@/lib/site';
 import { InquiryProvider } from '@/components/InquiryProvider';
+import { SiteSettingsProvider } from '@/components/SiteSettingsProvider';
+import { getSiteSettings } from '@/lib/acf';
 import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { JsonLd } from '@/components/JsonLd';
@@ -31,7 +33,8 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = { width: 'device-width', initialScale: 1, themeColor: '#ffffff' };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const settings = await getSiteSettings();
   return (
     <html lang="en" className={`${manrope.variable} scroll-smooth`}>
       <body className="bg-white text-[#1a1a1a] font-body selection:bg-[#D4AF37] selection:text-white antialiased overflow-x-hidden">
@@ -41,17 +44,19 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         >
           Skip to content
         </a>
-        <JsonLd data={[organizationSchema(), websiteSchema()]} />
+        <JsonLd data={[organizationSchema({ phone: settings.phone, email: settings.email, sameAs: [settings.instagramUrl, settings.facebookUrl, settings.youtubeUrl] }), websiteSchema()]} />
         <Analytics />
+        <SiteSettingsProvider value={settings}>
         <InquiryProvider>
           <div className="min-h-screen bg-white text-charcoal-900 flex flex-col selection:bg-gold selection:text-white">
             <Navbar />
             <main id="main" className="flex-grow">
               {children}
             </main>
-            <Footer />
+            <Footer settings={settings} />
           </div>
         </InquiryProvider>
+        </SiteSettingsProvider>
       </body>
     </html>
   );

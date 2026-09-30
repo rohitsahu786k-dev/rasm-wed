@@ -5,7 +5,7 @@ import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation';
-import { settings } from '@/data/settings';
+import { useSettings } from '@/components/SiteSettingsProvider';
 import { useInquiry } from '@/components/InquiryProvider';
 import { MessageCircle, Menu, X, Sparkles, ChevronDown, MapPin, Crown, ArrowRight, Building2 } from 'lucide-react';
 import { AnimatedButton } from '@/components/ui/AnimatedButton';
@@ -18,6 +18,7 @@ const menuTransition = {
 };
 
 export const Navbar: React.FC = () => {
+  const settings = useSettings();
   const currentPath = (usePathname() || '/').replace(/(.)\/$/, '$1');
   const { open } = useInquiry();
   const onOpenInquiry = () => open();

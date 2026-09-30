@@ -146,7 +146,8 @@ export async function getDestinations(slugs: string[] = FEATURED_DESTINATIONS): 
     const imgBlock = blocks.find((b) => b.type === 'img' && b.width && b.width >= 400 && !/border|icon/i.test(b.src));
     const img = p.image ?? (imgBlock && imgBlock.type === 'img' ? imgBlock.src : undefined);
     const lead = p.excerpt || (blocks.find((b) => b.type === 'p' && b.text.length > 60) as { text: string } | undefined)?.text || '';
-    const name = p.title.replace(/^wedding planner in /i, '').trim() || slugs[i];
+    // City name from the slug: WordPress titles vary ("Best Wedding Planner In Udaipur").
+    const name = slugs[i].split('-').map((w) => w[0].toUpperCase() + w.slice(1)).join(' ');
     return [{
       id: slugs[i],
       title: name,
