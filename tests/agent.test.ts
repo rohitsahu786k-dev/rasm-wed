@@ -266,3 +266,32 @@ test('dedicated-page heuristic ignores stop words and brand queries', () => {
   assert.equal(isBrandQuery('rasm wedding'), true);
   assert.equal(isBrandQuery('wedding planner'), false);
 });
+
+import { WpPostStore } from '../src/lib/automation/wp-post-store.ts';
+test('WpPostStore keeps state in private WordPress posts using core REST only', async () => {
+  const posts = new Map<number, { slug: string; status: string; raw: string }>();
+  let next = 1;
+  const f = (async (url: string, init: RequestInit = {}) => {
+    const u = new URL(url);
+    const m = init.method ?? 'GET';
+    if (m === 'GET') {
+      const slug = u.searchParams.get('slug')!;
+      const hit = [...posts.entries()].find(([, p]) => p.slug === slug && u.searchParams.get('status') === p.status);
+      return new Response(JSON.stringify(hit ? [{ id: hit[0], content: { raw: hit[1].raw } }] : []), { status: 200 });
+    }
+    const body = JSON.parse(init.body as string);
+    const id = Number(u.pathname.split('/').pop()) || next++;
+    posts.set(id, { slug: body.slug, status: body.status, raw: body.content });
+    return new Response(JSON.stringify({ id }), { status: 200 });
+  }) as unknown as typeof fetch;
+  const s = new WpPostStore({ url: 'https://wp.test', username: 'u', appPassword: 'p' }, f);
+  await s.append('ai_usage', { ts: '1', a: 1 });
+  await s.append('ai_usage', { ts: '2', a: 2 });
+  assert.deepEqual(await s.list('ai_usage'), [{ ts: '1', a: 1 }, { ts: '2', a: 2 }]);
+  assert.deepEqual(await s.list('ai_usage', { since: '2' }), [{ ts: '2', a: 2 }]);
+  await s.setJson('latest_audit', { score: 90 });
+  assert.deepEqual(await s.getJson('latest_audit'), { score: 90 });
+  assert.equal(await s.getJson('missing'), null);
+  assert.ok([...posts.values()].every((p) => p.status === 'private'));
+  assert.equal(posts.size, 2, 'one private post per collection/key, updated in place');
+});

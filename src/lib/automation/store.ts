@@ -6,6 +6,7 @@
 import { promises as fs } from 'node:fs';
 import path from 'node:path';
 import { WpStore } from './wp-store.ts';
+import { WpPostStore } from './wp-post-store.ts';
 import { wpCredsFromEnv } from '../content/wp-publisher.ts';
 
 export type Risk = 0 | 1 | 2 | 3;
@@ -90,11 +91,12 @@ export class FileStore implements Store {
 }
 
 let singleton: Store | undefined;
-/** AI_STORE=wordpress keeps all agent state in the WordPress MySQL database (needs the Rasm Agent Store plugin). */
+/** AI_STORE=wordpress keeps all agent state in the WordPress MySQL database via core REST (no plugin). AI_STORE=wordpress-plugin uses the optional Rasm Agent Store plugin. */
 export function getStore(): Store {
   if (singleton) return singleton;
-  const creds = process.env.AI_STORE === 'wordpress' ? wpCredsFromEnv() : null;
-  singleton = creds ? new WpStore(creds) : new FileStore(process.env.AI_DATA_DIR || path.join(process.cwd(), '.data'));
+  const mode = process.env.AI_STORE;
+  const creds = mode === 'wordpress' || mode === 'wordpress-plugin' ? wpCredsFromEnv() : null;
+  singleton = creds ? (mode === 'wordpress-plugin' ? new WpStore(creds) : new WpPostStore(creds)) : new FileStore(process.env.AI_DATA_DIR || path.join(process.cwd(), '.data'));
   return singleton;
 }
 
