@@ -1,3 +1,7 @@
+'use client';
+
+import Image from 'next/image';
+import { useInquiry } from '@/components/InquiryProvider';
 import React from 'react';
 import { Heart, Star, CheckCircle2, ArrowRight } from 'lucide-react';
 
@@ -168,20 +172,20 @@ const TestimonialCardItem: React.FC<TestimonialCardItemProps> = ({ card }) => {
         {/* Author Header */}
         <div className="flex items-center gap-3 mb-3.5">
           <div className="relative">
-            <img
+            <Image
               src={card.avatar}
               alt={card.name}
               className="w-11 h-11 rounded-full object-cover border-2 border-gold/30 shadow-2xs group-hover:scale-105 transition-transform duration-300"
-            />
+             width={1200} height={800} sizes="(min-width: 1024px) 33vw, 100vw" />
             <div className="absolute -bottom-1 -right-1 bg-white rounded-full p-0.5 shadow-xs">
               <CheckCircle2 className="w-3.5 h-3.5 text-[#C5A059] fill-[#C5A059]/20" />
             </div>
           </div>
           <div className="min-w-0 flex-1">
             <div className="flex items-center gap-1.5">
-              <h4 className="font-manrope font-medium text-sm text-charcoal-900 truncate">
+              <h3 className="font-manrope font-medium text-sm text-charcoal-900 truncate">
                 {card.name}
-              </h4>
+              </h3>
             </div>
             <p className="text-xs text-charcoal-500 truncate font-light">
               {card.venue}
@@ -240,11 +244,9 @@ const MarqueeColumn: React.FC<MarqueeColumnProps> = ({ cards, duration = '35s', 
   );
 };
 
-interface RealCouplesStoriesProps {
-  onOpenInquiry?: (context?: string) => void;
-}
 
-export const RealCouplesStories: React.FC<RealCouplesStoriesProps> = ({ onOpenInquiry }) => {
+export const RealCouplesStories: React.FC = () => {
+  const { open: onOpenInquiry } = useInquiry();
   return (
     <section className="py-24 bg-[#FAF8F5] relative border-b border-gold/15 overflow-hidden">
       {/* Inject Keyframe Animation Styles for Vertical Marquee (marquee-03) */}

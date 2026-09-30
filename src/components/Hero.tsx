@@ -1,12 +1,9 @@
-import React, { useEffect, useRef } from 'react';
-import { SiteSettings } from '../types';
+import Image from 'next/image';
+import { InquiryButton } from '@/components/InquiryClient';
+import React from 'react';
+import { SiteSettings } from '@/types';
 import { ArrowRight, Crown, ChevronDown } from 'lucide-react';
-import gsap from 'gsap';
 
-interface HeroProps {
-  settings: SiteSettings;
-  onOpenInquiry: () => void;
-}
 
 const heroImages = [
   {
@@ -33,21 +30,7 @@ const stats = [
   { value: '40+', label: 'Global Countries' },
 ];
 
-export const Hero: React.FC<HeroProps> = ({ onOpenInquiry }) => {
-  const headlineRef = useRef<HTMLHeadingElement>(null);
-  const subRef = useRef<HTMLParagraphElement>(null);
-  const ctaRef = useRef<HTMLDivElement>(null);
-  const statsRef = useRef<HTMLDivElement>(null);
-  const imagesRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
-    tl.fromTo(headlineRef.current, { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 1 })
-      .fromTo(subRef.current, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.8 }, '-=0.5')
-      .fromTo(ctaRef.current, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.6 }, '-=0.4')
-      .fromTo(statsRef.current, { opacity: 0 }, { opacity: 1, duration: 0.7 }, '-=0.3')
-      .fromTo(imagesRef.current, { opacity: 0, x: 30 }, { opacity: 1, x: 0, duration: 1 }, '-=0.8');
-  }, []);
+export const Hero: React.FC = () => {
 
   return (
     <section className="relative min-h-screen flex items-center pt-20 pb-0 bg-white overflow-hidden">
@@ -75,7 +58,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenInquiry }) => {
 
             {/* Main Headline */}
             <h1
-              ref={headlineRef}
+              style={{ animation: "hero-rise 0.9s cubic-bezier(0.22,1,0.36,1) both" }}
               className="font-manrope font-medium text-[2.5rem] sm:text-[3.2rem] md:text-[3.8rem] lg:text-[4.2rem] xl:text-[4.6rem] text-[#1a1a1a] leading-[1.18] tracking-tight mb-6"
             >
               Your Palace
@@ -87,35 +70,28 @@ export const Hero: React.FC<HeroProps> = ({ onOpenInquiry }) => {
 
             {/* Sub Headline */}
             <p
-              ref={subRef}
+              style={{ animation: "hero-fade 0.8s ease-out 0.25s both" }}
               className="text-[#4a4a4a] text-base sm:text-lg leading-relaxed font-manrope font-light max-w-md mb-10"
             >
               India's premier luxury destination wedding studio — crafting bespoke royal celebrations for NRI & international couples at the most iconic palace venues of Udaipur, Rajasthan & beyond.
             </p>
 
             {/* CTAs */}
-            <div ref={ctaRef} className="flex flex-wrap gap-3 mb-12">
-              <button
-                onClick={onOpenInquiry}
+            <div style={{ animation: "hero-fade 0.6s ease-out 0.45s both" }} className="flex flex-wrap gap-3 mb-12">
+              <InquiryButton
                 className="group inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-[#1a1a1a] text-white text-sm font-medium font-manrope tracking-wide hover:bg-[#2a2a2a] transition-all duration-300 shadow-lg hover:shadow-xl hover:-translate-y-0.5"
               >
                 Plan Your Wedding
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </button>
-              <button
-                onClick={() => {
-                  const el = document.getElementById('destinations');
-                  if (el) el.scrollIntoView({ behavior: 'smooth' });
-                }}
-                className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-[#C5A059]/60 text-[#1a1a1a] text-sm font-medium font-manrope tracking-wide hover:border-[#C5A059] hover:bg-amber-50/50 transition-all duration-300"
-              >
+              </InquiryButton>
+              <a href="#destinations" className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-[#C5A059]/60 text-[#1a1a1a] text-sm font-medium font-manrope tracking-wide hover:border-[#C5A059] hover:bg-amber-50/50 transition-all duration-300">
                 <span className="gold-gradient-text">Explore Venues</span>
-              </button>
+              </a>
             </div>
 
             {/* Stats Row */}
             <div
-              ref={statsRef}
+              style={{ animation: "hero-fade 0.7s ease-out 0.6s both" }}
               className="grid grid-cols-4 gap-3 pt-8 border-t border-stone-100"
             >
               {stats.map((s) => (
@@ -123,7 +99,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenInquiry }) => {
                   <div className="font-manrope font-medium text-xl sm:text-2xl text-[#1a1a1a] leading-none mb-1.5 gold-gradient-text">
                     {s.value}
                   </div>
-                  <div className="text-[10px] sm:text-[11px] text-[#888] font-manrope font-medium uppercase tracking-wide leading-tight">
+                  <div className="text-[10px] sm:text-[11px] text-[#6b6b6b] font-manrope font-medium uppercase tracking-wide leading-tight">
                     {s.label}
                   </div>
                 </div>
@@ -132,22 +108,21 @@ export const Hero: React.FC<HeroProps> = ({ onOpenInquiry }) => {
           </div>
 
           {/* RIGHT: Editorial Image Stack */}
-          <div ref={imagesRef} className="relative flex items-center justify-center lg:justify-end h-full min-h-[520px]">
+          <div style={{ animation: "hero-fade 1s ease-out 0.2s both" }} className="relative flex items-center justify-center lg:justify-end h-full min-h-[520px]">
             {/* Main large image */}
             <div className="absolute right-0 top-6 w-[70%] h-[460px] rounded-3xl overflow-hidden shadow-2xl">
-              <img
+              <Image
                 src={heroImages[0].src}
                 alt={heroImages[0].label}
-                referrerPolicy="no-referrer"
                 className="w-full h-full object-cover"
-              />
+               width={900} height={600} priority sizes="(min-width: 1024px) 40vw, 90vw" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
               <div className="absolute bottom-5 left-5 right-5">
                 <div className="bg-white/90 backdrop-blur-sm rounded-xl px-4 py-2.5 inline-flex items-center gap-2">
                   <Crown className="w-3.5 h-3.5 text-[#997316]" />
                   <div>
                     <p className="text-[11px] font-semibold text-[#1a1a1a] font-manrope leading-none">{heroImages[0].label}</p>
-                    <p className="text-[10px] text-[#888] font-manrope">{heroImages[0].sub}</p>
+                    <p className="text-[10px] text-[#6b6b6b] font-manrope">{heroImages[0].sub}</p>
                   </div>
                 </div>
               </div>
@@ -155,12 +130,11 @@ export const Hero: React.FC<HeroProps> = ({ onOpenInquiry }) => {
 
             {/* Secondary image - top left overlap */}
             <div className="absolute left-0 top-0 w-[44%] h-[220px] rounded-2xl overflow-hidden shadow-xl border-2 border-white z-10">
-              <img
+              <Image
                 src={heroImages[1].src}
                 alt={heroImages[1].label}
-                referrerPolicy="no-referrer"
                 className="w-full h-full object-cover"
-              />
+               width={1200} height={800} sizes="(min-width: 1024px) 33vw, 100vw" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
               <div className="absolute bottom-3 left-3">
                 <p className="text-[10px] text-white font-manrope font-medium leading-tight">{heroImages[1].label}</p>
@@ -170,12 +144,11 @@ export const Hero: React.FC<HeroProps> = ({ onOpenInquiry }) => {
 
             {/* Third image - bottom left */}
             <div className="absolute left-4 bottom-0 w-[42%] h-[200px] rounded-2xl overflow-hidden shadow-xl border-2 border-white z-10">
-              <img
+              <Image
                 src={heroImages[2].src}
                 alt={heroImages[2].label}
-                referrerPolicy="no-referrer"
                 className="w-full h-full object-cover"
-              />
+               width={1200} height={800} sizes="(min-width: 1024px) 33vw, 100vw" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
               <div className="absolute bottom-3 left-3">
                 <p className="text-[10px] text-white font-manrope font-medium leading-tight">{heroImages[2].label}</p>
@@ -198,7 +171,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenInquiry }) => {
 
         {/* Scroll indicator */}
         <div className="flex justify-center pb-6 animate-bounce">
-          <div className="flex flex-col items-center gap-1.5 text-[#aaa]">
+          <div className="flex flex-col items-center gap-1.5 text-[#767676]">
             <span className="text-[10px] font-manrope uppercase tracking-[0.2em]">Scroll</span>
             <ChevronDown className="w-4 h-4" />
           </div>

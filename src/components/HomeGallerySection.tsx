@@ -1,3 +1,7 @@
+'use client';
+
+import Link from 'next/link';
+import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { Sparkles, X, ChevronLeft, ChevronRight, Maximize2, ArrowRight } from 'lucide-react';
@@ -61,11 +65,8 @@ const DECOR_BENTO_PHOTOS: DecorBentoPhoto[] = [
   },
 ];
 
-interface HomeGallerySectionProps {
-  onNavigate?: (path: string) => void;
-}
 
-export const HomeGallerySection: React.FC<HomeGallerySectionProps> = ({ onNavigate }) => {
+export const HomeGallerySection: React.FC = () => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
 
   // Lock body scroll when lightbox modal is open
@@ -142,13 +143,12 @@ export const HomeGallerySection: React.FC<HomeGallerySectionProps> = ({ onNaviga
               className={`group relative rounded-2xl sm:rounded-3xl overflow-hidden cursor-pointer bg-stone-100 border border-stone-200/90 shadow-[0_4px_20px_rgba(0,0,0,0.03)] hover:shadow-[0_16px_40px_rgba(197,160,89,0.18)] hover:border-gold/60 transition-all duration-500 ${photo.bentoClass}`}
             >
               {/* Pure decor image without ANY text superimposed on top */}
-              <img
+              <Image
                 src={photo.url}
                 alt={photo.title}
                 className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-106"
-                loading="lazy"
                 decoding="async"
-              />
+               width={1200} height={800} sizes="(min-width: 1024px) 33vw, 100vw" />
 
               {/* Clean hover zoom overlay - ZERO text on image */}
               <div className="absolute inset-0 bg-black/15 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
@@ -161,15 +161,15 @@ export const HomeGallerySection: React.FC<HomeGallerySectionProps> = ({ onNaviga
         </div>
 
         {/* Explore Full Archives Button */}
-        {onNavigate && (
+        {(
           <div className="text-center mt-12">
-            <button
-              onClick={() => onNavigate('/gallery')}
+            <Link href={'/gallery'}
+              
               className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#0F1012] text-white hover:bg-black font-manrope font-medium text-sm tracking-normal shadow-[0_8px_20px_rgba(0,0,0,0.15)] hover:shadow-[0_12px_28px_rgba(197,160,89,0.22)] transition-all duration-300 group"
             >
               <span className="text-white">Explore Complete Archives (200+ Photos)</span>
               <ArrowRight className="w-4 h-4 text-[#E2C785] group-hover:translate-x-1 transition-transform" />
-            </button>
+            </Link>
           </div>
         )}
       </div>
@@ -218,11 +218,11 @@ export const HomeGallerySection: React.FC<HomeGallerySectionProps> = ({ onNaviga
               className="relative max-w-5xl max-h-[85vh] w-auto h-auto flex items-center justify-center"
               onClick={(e) => e.stopPropagation()}
             >
-              <img
+              <Image
                 src={DECOR_BENTO_PHOTOS[selectedIndex].url}
                 alt={DECOR_BENTO_PHOTOS[selectedIndex].title}
                 className="max-h-[82vh] max-w-[90vw] object-contain rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.6)] border border-white/10"
-              />
+               width={1200} height={800} sizes="(min-width: 1024px) 33vw, 100vw" />
             </div>
           </div>,
           document.body

@@ -1,5 +1,8 @@
+'use client';
+
+import Image from 'next/image';
 import React, { useState } from 'react';
-import { MediaItem } from '../types';
+import { MediaItem } from '@/types';
 import { Sparkles, Maximize2, X, Crown, MapPin } from 'lucide-react';
 
 interface RealWeddingsGalleryProps {
@@ -117,7 +120,7 @@ export const RealWeddingsGallery: React.FC<RealWeddingsGalleryProps> = ({ media 
             ].map((tab) => (
               <button
                 key={tab.id}
-                onClick={() => setActiveFilter(tab.id as any)}
+                onClick={() => setActiveFilter(tab.id as typeof activeFilter)}
                 className={`px-4 py-2 rounded-full text-xs uppercase tracking-wider transition-all duration-300 ${
                   activeFilter === tab.id
                     ? 'bg-charcoal-900 text-gold-light shadow-md border border-gold/40'
@@ -138,12 +141,11 @@ export const RealWeddingsGallery: React.FC<RealWeddingsGalleryProps> = ({ media 
               onClick={() => setSelectedImage(item)}
               className="editorial-card rounded-2xl overflow-hidden cursor-pointer group relative h-80 bg-stone-100 border border-gold/20"
             >
-              <img
+              <Image
                 src={item.sourceUrl}
                 alt={item.altText || item.title}
-                referrerPolicy="no-referrer"
                 className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
-              />
+               width={1200} height={800} sizes="(min-width: 1024px) 33vw, 100vw" />
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-75 group-hover:opacity-90 transition-opacity" />
 
               <div className="absolute top-4 left-4">
@@ -188,12 +190,11 @@ export const RealWeddingsGallery: React.FC<RealWeddingsGalleryProps> = ({ media 
               onClick={(e) => e.stopPropagation()}
             >
               <div className="md:w-2/3 h-80 md:h-auto relative bg-black flex items-center justify-center">
-                <img
+                <Image
                   src={selectedImage.sourceUrl}
                   alt={selectedImage.altText || selectedImage.title}
-                  referrerPolicy="no-referrer"
                   className="max-h-[80vh] w-auto max-w-full object-contain"
-                />
+                 width={1200} height={800} sizes="(min-width: 1024px) 33vw, 100vw" />
               </div>
 
               <div className="md:w-1/3 p-8 flex flex-col justify-between bg-stone-900 text-white">

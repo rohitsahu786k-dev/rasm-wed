@@ -1,3 +1,6 @@
+'use client';
+
+import Image from 'next/image';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import type { CSSProperties, ReactNode } from 'react';
 import { animate, motion } from 'framer-motion';
@@ -100,12 +103,12 @@ function OrbitAvatar({ src, icon, alt, color, size = 72 }: OrbitAvatarItem) {
         style={{ backgroundColor: color }}
       >
         {src ? (
-          <img
+          <Image
             src={src}
             alt={alt ?? ''}
             draggable={false}
             className="h-full w-full object-cover object-top select-none"
-          />
+           width={1200} height={800} sizes="(min-width: 1024px) 33vw, 100vw" />
         ) : (
           <div className="flex items-center justify-center text-gold-dark">
             {icon}

@@ -1,6 +1,8 @@
+'use client';
+
 import React, { useState } from 'react';
 import { MapPin, Building2, Users, Sparkles, ArrowRight } from 'lucide-react';
-import { AnimatedButton } from './ui/AnimatedButton';
+import { AnimatedButton } from '@/components/ui/AnimatedButton';
 
 interface QuickPlannerBarProps {
   onPlan: (city: string, venueType: string, guestCount: string) => void;

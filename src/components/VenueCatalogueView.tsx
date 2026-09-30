@@ -1,3 +1,9 @@
+'use client';
+
+import { useInquiry } from '@/components/InquiryProvider';
+import { settings } from '@/data/settings';
+import Link from 'next/link';
+import Image from 'next/image';
 import React, { useState, useMemo } from 'react';
 import { 
   Sparkles, 
@@ -26,8 +32,8 @@ import {
   Layers,
   Sparkle
 } from 'lucide-react';
-import { AnimatedButton } from './ui/AnimatedButton';
-import { Destination, SiteSettings } from '../types';
+import { AnimatedButton } from '@/components/ui/AnimatedButton';
+import { Destination, SiteSettings } from '@/types';
 
 export interface VenueItem {
   id: string;
@@ -543,18 +549,8 @@ const FAQS = [
   }
 ];
 
-interface VenueCatalogueViewProps {
-  destinations?: Destination[];
-  settings: SiteSettings;
-  onOpenInquiry: (venueName?: string) => void;
-  onNavigate: (path: string) => void;
-}
-
-export const VenueCatalogueView: React.FC<VenueCatalogueViewProps> = ({
-  settings,
-  onOpenInquiry,
-  onNavigate,
-}) => {
+export const VenueCatalogueView: React.FC = () => {
+  const { open: onOpenInquiry } = useInquiry();
   const [selectedRegion, setSelectedRegion] = useState<string>('all');
   const [searchQuery, setSearchQuery] = useState<string>('');
   const [selectedType, setSelectedType] = useState<string>('All Types');
@@ -672,12 +668,11 @@ export const VenueCatalogueView: React.FC<VenueCatalogueViewProps> = ({
                   <div className={`w-14 h-14 sm:w-16 sm:h-16 rounded-full overflow-hidden p-0.5 transition-transform duration-300 group-hover:scale-105 ${
                     isSelected ? 'ring-2 ring-gold' : 'ring-1 ring-charcoal-200'
                   }`}>
-                    <img
+                    <Image
                       src={region.image}
                       alt={region.label}
-                      referrerPolicy="no-referrer"
                       className="w-full h-full rounded-full object-cover"
-                    />
+                     width={1200} height={800} sizes="(min-width: 1024px) 33vw, 100vw" />
                   </div>
                   <span className={`mt-2 text-[11px] sm:text-xs font-medium tracking-wider uppercase truncate max-w-full ${
                     isSelected ? 'font-bold text-gold-dark' : 'text-charcoal-700'
@@ -734,9 +729,9 @@ export const VenueCatalogueView: React.FC<VenueCatalogueViewProps> = ({
           <nav aria-label="Breadcrumb">
             <ol className="flex items-center gap-1.5 text-xs uppercase tracking-wider text-gold-dark font-medium">
               <li>
-                <button onClick={() => onNavigate('/')} className="hover:text-charcoal-900 transition-colors">
+                <Link href={'/'}  className="hover:text-charcoal-900 transition-colors">
                   Home
-                </button>
+                </Link>
               </li>
               <li className="text-charcoal-400">/</li>
               <li>
@@ -890,12 +885,11 @@ export const VenueCatalogueView: React.FC<VenueCatalogueViewProps> = ({
                 >
                   {/* Photo Container */}
                   <div className="relative h-56 sm:h-60 overflow-hidden bg-charcoal-100">
-                    <img
+                    <Image
                       src={venue.imageUrl}
                       alt={venue.name}
-                      referrerPolicy="no-referrer"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
-                    />
+                     width={1200} height={800} sizes="(min-width: 1024px) 33vw, 100vw" />
 
                     {/* Gradient Overlay for Text Readability */}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-black/20 pointer-events-none" />
@@ -1103,7 +1097,7 @@ export const VenueCatalogueView: React.FC<VenueCatalogueViewProps> = ({
               </button>
               
               <a
-                href="https://wa.me/919999999999"
+                href={`https://wa.me/${settings.whatsapp}`}
                 target="_blank"
                 rel="noreferrer"
                 className="px-6 py-3.5 bg-white border border-gold/40 text-charcoal-800 font-semibold rounded-lg hover:bg-ivory-100 transition-colors text-xs uppercase tracking-wider flex items-center gap-2"
@@ -1143,12 +1137,11 @@ export const VenueCatalogueView: React.FC<VenueCatalogueViewProps> = ({
 
             {/* Image Preview */}
             <div className="mt-5 h-56 sm:h-64 rounded-2xl overflow-hidden relative">
-              <img
+              <Image
                 src={quickViewVenue.imageUrl}
                 alt={quickViewVenue.name}
-                referrerPolicy="no-referrer"
                 className="w-full h-full object-cover"
-              />
+               width={1200} height={800} sizes="(min-width: 1024px) 33vw, 100vw" />
               <div className="absolute top-3 left-3 px-3 py-1 rounded-full bg-white/95 text-[10px] uppercase font-bold text-charcoal-900 border border-gold/40 shadow-xs">
                 {quickViewVenue.badge}
               </div>

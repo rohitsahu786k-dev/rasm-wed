@@ -1,17 +1,14 @@
+'use client';
+
+import Link from 'next/link';
+import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { SiteSettings, MenuItem, WPPage } from '../types';
+import { usePathname } from 'next/navigation';
+import { settings } from '@/data/settings';
+import { useInquiry } from '@/components/InquiryProvider';
 import { MessageCircle, Menu, X, Sparkles, ChevronDown, MapPin, Crown, ArrowRight, Building2 } from 'lucide-react';
-import { AnimatedButton } from './ui/AnimatedButton';
-
-interface NavbarProps {
-  settings: SiteSettings;
-  menus: MenuItem[];
-  pages: WPPage[];
-  currentPath: string;
-  onNavigate: (path: string) => void;
-  onOpenInquiry: () => void;
-}
+import { AnimatedButton } from '@/components/ui/AnimatedButton';
 
 const menuTransition = {
   type: 'spring' as const,
@@ -20,14 +17,10 @@ const menuTransition = {
   stiffness: 110,
 };
 
-export const Navbar: React.FC<NavbarProps> = ({
-  settings,
-  menus,
-  pages,
-  currentPath,
-  onNavigate,
-  onOpenInquiry,
-}) => {
+export const Navbar: React.FC = () => {
+  const currentPath = (usePathname() || '/').replace(/(.)\/$/, '$1');
+  const { open } = useInquiry();
+  const onOpenInquiry = () => open();
   const [scrolled, setScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [activeMenu, setActiveMenu] = useState<'destinations' | 'services' | 'explore' | null>(null);
@@ -81,10 +74,9 @@ export const Navbar: React.FC<NavbarProps> = ({
     },
   ];
 
-  const handleNavClick = (path: string) => {
+  const closeNav = () => {
     setActiveMenu(null);
     setMobileMenuOpen(false);
-    onNavigate(path);
   };
 
   return (
@@ -103,18 +95,17 @@ export const Navbar: React.FC<NavbarProps> = ({
         {/* Floating Glass Bar Container */}
         <div className="relative flex items-center justify-between px-2 sm:px-3 py-1">
           {/* Brand Logo */}
-          <button
-            onClick={() => handleNavClick('/')}
+          <Link href={'/'} onClick={closeNav}
+            
             className="flex items-center gap-3 text-left focus:outline-none group py-0.5"
             aria-label="Rasm Weddings Home"
           >
-            <img
+            <Image
               src="/rasm-official-logo.png"
               alt="Rasm Wedding & Events"
-              referrerPolicy="no-referrer"
               className="h-10 sm:h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-105 drop-shadow-xs"
-            />
-          </button>
+             width={1024} height={497} priority sizes="120px" />
+          </Link>
 
           {/* Center Navigation with Floating Pill Indicator (21st.dev style) */}
           <nav className="hidden lg:flex items-center space-x-1.5 text-[14px] tracking-[0.02em] font-medium text-charcoal-800">
@@ -126,14 +117,14 @@ export const Navbar: React.FC<NavbarProps> = ({
                 setActiveMenu(null);
               }}
             >
-              <button
-                onClick={() => handleNavClick('/')}
+              <Link href={'/'} onClick={closeNav}
+                
                 className={`relative px-3.5 py-2 rounded-xl transition-colors z-10 text-[14px] font-medium tracking-[0.02em] ${
                   currentPath === '/' ? 'text-gold-dark font-semibold' : 'hover:text-gold-dark'
                 }`}
               >
                 Home
-              </button>
+              </Link>
               {hoveredNav === 'home' && (
                 <motion.div
                   layoutId="navbar-pill"
@@ -151,8 +142,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                 setActiveMenu('destinations');
               }}
             >
-              <button
-                onClick={() => handleNavClick('/wedding-destination')}
+              <Link href={'/wedding-destination'} onClick={closeNav}
+                
                 className={`relative px-3.5 py-2 rounded-xl transition-colors flex items-center gap-1.5 z-10 ${
                   currentPath.includes('wedding-planner') || currentPath === '/wedding-destination'
                     ? 'text-gold-dark font-semibold'
@@ -165,7 +156,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     activeMenu === 'destinations' ? 'rotate-180' : ''
                   }`}
                 />
-              </button>
+              </Link>
               {hoveredNav === 'destinations' && (
                 <motion.div
                   layoutId="navbar-pill"
@@ -183,8 +174,8 @@ export const Navbar: React.FC<NavbarProps> = ({
                 setActiveMenu('services');
               }}
             >
-              <button
-                onClick={() => handleNavClick('/services')}
+              <Link href={'/services'} onClick={closeNav}
+                
                 className={`relative px-3.5 py-2 rounded-xl transition-colors flex items-center gap-1.5 z-10 ${
                   currentPath === '/services' || currentPath === '/traditional-decoration' || currentPath === '/corporate-events'
                     ? 'text-gold-dark font-semibold'
@@ -197,7 +188,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                     activeMenu === 'services' ? 'rotate-180' : ''
                   }`}
                 />
-              </button>
+              </Link>
               {hoveredNav === 'services' && (
                 <motion.div
                   layoutId="navbar-pill"
@@ -215,14 +206,14 @@ export const Navbar: React.FC<NavbarProps> = ({
                 setActiveMenu(null);
               }}
             >
-              <button
-                onClick={() => handleNavClick('/gallery')}
+              <Link href={'/gallery'} onClick={closeNav}
+                
                 className={`relative px-3.5 py-2 rounded-xl transition-colors z-10 ${
                   currentPath === '/gallery' ? 'text-gold-dark font-semibold' : 'hover:text-gold-dark'
                 }`}
               >
                 Gallery
-              </button>
+              </Link>
               {hoveredNav === 'gallery' && (
                 <motion.div
                   layoutId="navbar-pill"
@@ -269,14 +260,14 @@ export const Navbar: React.FC<NavbarProps> = ({
                 setActiveMenu(null);
               }}
             >
-              <button
-                onClick={() => handleNavClick('/blog')}
+              <Link href={'/blog'} onClick={closeNav}
+                
                 className={`relative px-3.5 py-2 rounded-xl transition-colors z-10 ${
                   currentPath === '/blog' ? 'text-gold-dark font-semibold' : 'hover:text-gold-dark'
                 }`}
               >
                 Journal
-              </button>
+              </Link>
               {hoveredNav === 'journal' && (
                 <motion.div
                   layoutId="navbar-pill"
@@ -294,14 +285,14 @@ export const Navbar: React.FC<NavbarProps> = ({
                 setActiveMenu(null);
               }}
             >
-              <button
-                onClick={() => handleNavClick('/contact-us')}
+              <Link href={'/contact-us'} onClick={closeNav}
+                
                 className={`relative px-3.5 py-2 rounded-xl transition-colors z-10 ${
                   currentPath === '/contact-us' ? 'text-gold-dark font-semibold' : 'hover:text-gold-dark'
                 }`}
               >
                 Contact
-              </button>
+              </Link>
               {hoveredNav === 'contact' && (
                 <motion.div
                   layoutId="navbar-pill"
@@ -381,9 +372,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                     </div>
                     <div className="space-y-1.5">
                       {rajasthanDestinations.map((d, i) => (
-                        <button
+                        <Link href={`/${d.slug}`} onClick={closeNav}
                           key={i}
-                          onClick={() => handleNavClick(`/${d.slug}`)}
+                          
                           className="w-full text-left p-2.5 rounded-xl hover:bg-gold/10 transition-all flex items-start justify-between group"
                         >
                           <div>
@@ -393,7 +384,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                             <p className="text-[11px] text-charcoal-500 font-light mt-0.5">{d.desc}</p>
                           </div>
                           <ArrowRight className="w-3.5 h-3.5 text-gold-dark opacity-0 group-hover:opacity-100 transition-opacity mt-1 shrink-0" />
-                        </button>
+                        </Link>
                       ))}
                     </div>
                   </div>
@@ -408,9 +399,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                     </div>
                     <div className="space-y-1.5">
                       {otherDestinations.map((d, i) => (
-                        <button
+                        <Link href={`/${d.slug}`} onClick={closeNav}
                           key={i}
-                          onClick={() => handleNavClick(`/${d.slug}`)}
+                          
                           className="w-full text-left p-2.5 rounded-xl hover:bg-gold/10 transition-all flex items-start justify-between group"
                         >
                           <div>
@@ -420,19 +411,18 @@ export const Navbar: React.FC<NavbarProps> = ({
                             <p className="text-[11px] text-charcoal-500 font-light mt-0.5">{d.desc}</p>
                           </div>
                           <ArrowRight className="w-3.5 h-3.5 text-gold-dark opacity-0 group-hover:opacity-100 transition-opacity mt-1 shrink-0" />
-                        </button>
+                        </Link>
                       ))}
                     </div>
                   </div>
 
                   {/* Column 3: Featured Visual Card */}
                   <div className="col-span-4 rounded-2xl overflow-hidden relative group p-6 flex flex-col justify-end bg-stone-900 shadow-md">
-                    <img
+                    <Image
                       src="https://rasmwed.com/wp-content/uploads/2024/08/The-Oberoi-Udaivilas.webp"
                       alt="Lake Pichola Udaipur"
-                      referrerPolicy="no-referrer"
                       className="absolute inset-0 w-full h-full object-cover opacity-70 group-hover:scale-105 transition-transform duration-700"
-                    />
+                     width={1200} height={800} sizes="(min-width: 1024px) 33vw, 100vw" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
                     <div className="relative z-10 space-y-2 text-white">
                       <span className="text-[10px] uppercase tracking-widest text-gold-light font-semibold bg-gold/30 backdrop-blur-md px-2.5 py-1 rounded-full border border-gold/40 inline-block">
@@ -444,13 +434,13 @@ export const Navbar: React.FC<NavbarProps> = ({
                       <p className="text-xs text-stone-300 font-light leading-relaxed">
                         World-renowned royal palatial wedding capital. Explore The Oberoi Udaivilas, Taj Lake Palace & Leela Palace.
                       </p>
-                      <button
-                        onClick={() => handleNavClick('/wedding-planner-in-udaipur')}
+                      <Link href={'/wedding-planner-in-udaipur'} onClick={closeNav}
+                        
                         className="inline-flex items-center gap-1.5 text-xs text-gold-light hover:text-white font-medium pt-2 group-hover:translate-x-1 transition-transform"
                       >
                         <span>View Udaipur Palaces</span>
                         <ArrowRight className="w-3.5 h-3.5" />
-                      </button>
+                      </Link>
                     </div>
                   </div>
                 </div>
@@ -474,9 +464,9 @@ export const Navbar: React.FC<NavbarProps> = ({
                   {servicesList.map((srv, idx) => {
                     const Icon = srv.icon;
                     return (
-                      <button
+                      <Link href={srv.path} onClick={closeNav}
                         key={idx}
-                        onClick={() => handleNavClick(srv.path)}
+                        
                         className="text-left p-6 rounded-2xl border border-gold/20 hover:border-gold hover:bg-gold/5 transition-all duration-300 group relative overflow-hidden"
                       >
                         <div className="flex items-center justify-between mb-4">
@@ -497,7 +487,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                           <span>Explore Service</span>
                           <ArrowRight className="w-3.5 h-3.5" />
                         </div>
-                      </button>
+                      </Link>
                     );
                   })}
                 </div>
@@ -524,29 +514,29 @@ export const Navbar: React.FC<NavbarProps> = ({
                     </span>
                     <ul className="space-y-2 text-xs text-charcoal-700">
                       <li>
-                        <button onClick={() => handleNavClick('/about-us')} className="hover:text-gold-dark transition-colors">
+                        <Link href={'/about-us'} onClick={closeNav}  className="hover:text-gold-dark transition-colors">
                           About Rasm Legacy
-                        </button>
+                        </Link>
                       </li>
                       <li>
-                        <button onClick={() => handleNavClick('/services')} className="hover:text-gold-dark transition-colors">
+                        <Link href={'/services'} onClick={closeNav}  className="hover:text-gold-dark transition-colors">
                           All Bespoke Services
-                        </button>
+                        </Link>
                       </li>
                       <li>
-                        <button onClick={() => handleNavClick('/gallery')} className="hover:text-gold-dark transition-colors">
+                        <Link href={'/gallery'} onClick={closeNav}  className="hover:text-gold-dark transition-colors">
                           Royal Photo Gallery
-                        </button>
+                        </Link>
                       </li>
                       <li>
-                        <button onClick={() => handleNavClick('/blog')} className="hover:text-gold-dark transition-colors">
+                        <Link href={'/blog'} onClick={closeNav}  className="hover:text-gold-dark transition-colors">
                           Wedding Journal & Guides
-                        </button>
+                        </Link>
                       </li>
                       <li>
-                        <button onClick={() => handleNavClick('/contact-us')} className="hover:text-gold-dark transition-colors">
+                        <Link href={'/contact-us'} onClick={closeNav}  className="hover:text-gold-dark transition-colors">
                           Contact Concierge Desk
-                        </button>
+                        </Link>
                       </li>
                     </ul>
                   </div>
@@ -557,24 +547,24 @@ export const Navbar: React.FC<NavbarProps> = ({
                     </span>
                     <ul className="space-y-2 text-xs text-charcoal-700">
                       <li>
-                        <button onClick={() => handleNavClick('/traditional-decoration')} className="hover:text-gold-dark transition-colors">
+                        <Link href={'/traditional-decoration'} onClick={closeNav}  className="hover:text-gold-dark transition-colors">
                           Traditional Decoration
-                        </button>
+                        </Link>
                       </li>
                       <li>
-                        <button onClick={() => handleNavClick('/corporate-events')} className="hover:text-gold-dark transition-colors">
+                        <Link href={'/corporate-events'} onClick={closeNav}  className="hover:text-gold-dark transition-colors">
                           Corporate & VIP Galas
-                        </button>
+                        </Link>
                       </li>
                       <li>
-                        <button onClick={() => handleNavClick('/wedding-planner-in-mount-abu')} className="hover:text-gold-dark transition-colors">
+                        <Link href={'/wedding-planner-in-mount-abu'} onClick={closeNav}  className="hover:text-gold-dark transition-colors">
                           Mount Abu Weddings
-                        </button>
+                        </Link>
                       </li>
                       <li>
-                        <button onClick={() => handleNavClick('/wedding-planner-in-nathdwara')} className="hover:text-gold-dark transition-colors">
+                        <Link href={'/wedding-planner-in-nathdwara'} onClick={closeNav}  className="hover:text-gold-dark transition-colors">
                           Nathdwara Holy Weddings
-                        </button>
+                        </Link>
                       </li>
                     </ul>
                   </div>
@@ -585,24 +575,24 @@ export const Navbar: React.FC<NavbarProps> = ({
                     </span>
                     <ul className="space-y-2 text-xs text-charcoal-700">
                       <li>
-                        <button onClick={() => handleNavClick('/wedding-planner-in-udaipur')} className="hover:text-gold-dark transition-colors">
+                        <Link href={'/wedding-planner-in-udaipur'} onClick={closeNav}  className="hover:text-gold-dark transition-colors">
                           Udaipur Royal Palaces
-                        </button>
+                        </Link>
                       </li>
                       <li>
-                        <button onClick={() => handleNavClick('/wedding-planner-in-jaipur')} className="hover:text-gold-dark transition-colors">
+                        <Link href={'/wedding-planner-in-jaipur'} onClick={closeNav}  className="hover:text-gold-dark transition-colors">
                           Jaipur Heritage Forts
-                        </button>
+                        </Link>
                       </li>
                       <li>
-                        <button onClick={() => handleNavClick('/wedding-planner-in-jodhpur')} className="hover:text-gold-dark transition-colors">
+                        <Link href={'/wedding-planner-in-jodhpur'} onClick={closeNav}  className="hover:text-gold-dark transition-colors">
                           Jodhpur Sun City
-                        </button>
+                        </Link>
                       </li>
                       <li>
-                        <button onClick={() => handleNavClick('/wedding-planner-in-jaisalmer')} className="hover:text-gold-dark transition-colors">
+                        <Link href={'/wedding-planner-in-jaisalmer'} onClick={closeNav}  className="hover:text-gold-dark transition-colors">
                           Jaisalmer Golden Forts
-                        </button>
+                        </Link>
                       </li>
                     </ul>
                   </div>
@@ -613,24 +603,24 @@ export const Navbar: React.FC<NavbarProps> = ({
                     </span>
                     <ul className="space-y-2 text-xs text-charcoal-700">
                       <li>
-                        <button onClick={() => handleNavClick('/privacy-policy')} className="hover:text-gold-dark transition-colors">
+                        <Link href={'/privacy-policy'} onClick={closeNav}  className="hover:text-gold-dark transition-colors">
                           Privacy Policy
-                        </button>
+                        </Link>
                       </li>
                       <li>
-                        <button onClick={() => handleNavClick('/terms-and-conditions')} className="hover:text-gold-dark transition-colors">
+                        <Link href={'/terms-and-conditions'} onClick={closeNav}  className="hover:text-gold-dark transition-colors">
                           Terms & Conditions
-                        </button>
+                        </Link>
                       </li>
                       <li>
-                        <button onClick={() => handleNavClick('/refund-policy')} className="hover:text-gold-dark transition-colors">
+                        <Link href={'/refund-policy'} onClick={closeNav}  className="hover:text-gold-dark transition-colors">
                           Refund Policy
-                        </button>
+                        </Link>
                       </li>
                       <li>
-                        <button onClick={() => handleNavClick('/shipping-policy')} className="hover:text-gold-dark transition-colors">
+                        <Link href={'/shipping-policy'} onClick={closeNav}  className="hover:text-gold-dark transition-colors">
                           Booking & Concierge Policy
-                        </button>
+                        </Link>
                       </li>
                     </ul>
                   </div>
@@ -654,42 +644,42 @@ export const Navbar: React.FC<NavbarProps> = ({
             <div className="space-y-6">
               {/* Core Links */}
               <div className="flex flex-col space-y-3 pb-4 border-b border-gold/15">
-                <button
-                  onClick={() => handleNavClick('/')}
+                <Link href={'/'} onClick={closeNav}
+                  
                   className="text-left font-manrope font-semibold text-base text-charcoal-900 hover:text-gold-dark py-1"
                 >
                   Home
-                </button>
-                <button
-                  onClick={() => handleNavClick('/wedding-destination')}
+                </Link>
+                <Link href={'/wedding-destination'} onClick={closeNav}
+                  
                   className="text-left font-manrope font-semibold text-base text-charcoal-900 hover:text-gold-dark py-1"
                 >
                   Destinations Directory
-                </button>
-                <button
-                  onClick={() => handleNavClick('/services')}
+                </Link>
+                <Link href={'/services'} onClick={closeNav}
+                  
                   className="text-left font-manrope font-semibold text-base text-charcoal-900 hover:text-gold-dark py-1"
                 >
                   All Bespoke Services
-                </button>
-                <button
-                  onClick={() => handleNavClick('/gallery')}
+                </Link>
+                <Link href={'/gallery'} onClick={closeNav}
+                  
                   className="text-left font-manrope font-semibold text-base text-charcoal-900 hover:text-gold-dark py-1"
                 >
                   Royal Photo Gallery
-                </button>
-                <button
-                  onClick={() => handleNavClick('/blog')}
+                </Link>
+                <Link href={'/blog'} onClick={closeNav}
+                  
                   className="text-left font-manrope font-semibold text-base text-charcoal-900 hover:text-gold-dark py-1"
                 >
                   Wedding Journal & Guides
-                </button>
-                <button
-                  onClick={() => handleNavClick('/contact-us')}
+                </Link>
+                <Link href={'/contact-us'} onClick={closeNav}
+                  
                   className="text-left font-manrope font-semibold text-base text-charcoal-900 hover:text-gold-dark py-1"
                 >
                   Contact Concierge
-                </button>
+                </Link>
               </div>
 
               {/* Popular Destinations Quick Links */}
@@ -698,30 +688,30 @@ export const Navbar: React.FC<NavbarProps> = ({
                   Featured Palaces
                 </span>
                 <div className="grid grid-cols-2 gap-2">
-                  <button
-                    onClick={() => handleNavClick('/wedding-planner-in-udaipur')}
+                  <Link href={'/wedding-planner-in-udaipur'} onClick={closeNav}
+                    
                     className="text-left p-2.5 rounded-xl bg-ivory-200 text-xs font-medium text-charcoal-800 hover:bg-gold/15"
                   >
                     Udaipur Palaces
-                  </button>
-                  <button
-                    onClick={() => handleNavClick('/wedding-planner-in-jaipur')}
+                  </Link>
+                  <Link href={'/wedding-planner-in-jaipur'} onClick={closeNav}
+                    
                     className="text-left p-2.5 rounded-xl bg-ivory-200 text-xs font-medium text-charcoal-800 hover:bg-gold/15"
                   >
                     Jaipur Forts
-                  </button>
-                  <button
-                    onClick={() => handleNavClick('/wedding-planner-in-goa')}
+                  </Link>
+                  <Link href={'/wedding-planner-in-goa'} onClick={closeNav}
+                    
                     className="text-left p-2.5 rounded-xl bg-ivory-200 text-xs font-medium text-charcoal-800 hover:bg-gold/15"
                   >
                     Goa Mandaps
-                  </button>
-                  <button
-                    onClick={() => handleNavClick('/wedding-planner-in-jodhpur')}
+                  </Link>
+                  <Link href={'/wedding-planner-in-jodhpur'} onClick={closeNav}
+                    
                     className="text-left p-2.5 rounded-xl bg-ivory-200 text-xs font-medium text-charcoal-800 hover:bg-gold/15"
                   >
                     Jodhpur Dunes
-                  </button>
+                  </Link>
                 </div>
               </div>
 

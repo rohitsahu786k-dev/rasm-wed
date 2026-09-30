@@ -1,3 +1,9 @@
+'use client';
+
+import { useInquiry } from '@/components/InquiryProvider';
+import { settings } from '@/data/settings';
+import Link from 'next/link';
+import Image from 'next/image';
 import React, { useState } from 'react';
 import { 
   Sparkles, 
@@ -25,23 +31,15 @@ import {
   ChevronDown,
   Check
 } from 'lucide-react';
-import { BlogPost, SiteSettings } from '../types';
+import { BlogPost } from '@/types';
 
 interface SingleBlogViewProps {
   post: BlogPost;
   allPosts: BlogPost[];
-  settings: SiteSettings;
-  onOpenInquiry: (venueOrTopic?: string) => void;
-  onNavigate: (path: string) => void;
 }
 
-export const SingleBlogView: React.FC<SingleBlogViewProps> = ({
-  post,
-  allPosts,
-  settings,
-  onOpenInquiry,
-  onNavigate,
-}) => {
+export const SingleBlogView: React.FC<SingleBlogViewProps> = ({ post, allPosts }) => {
+  const { open: onOpenInquiry } = useInquiry();
   const [activeSpaceTab, setActiveSpaceTab] = useState<number>(0);
   const [openFaq, setOpenFaq] = useState<number | null>(0);
   const [copiedLink, setCopiedLink] = useState(false);
@@ -181,13 +179,13 @@ export const SingleBlogView: React.FC<SingleBlogViewProps> = ({
       {/* 1. TOP BREADCRUMB & BACK BAR */}
       <div className="bg-[#FAF8F5] border-b border-gold/20 py-3.5 w-full pl-0 pr-0 ml-0 mr-0">
         <div className="w-full flex items-center justify-between">
-          <button
-            onClick={() => onNavigate('/wedding-destination')}
+          <Link href={'/wedding-destination'}
+            
             className="inline-flex items-center gap-2 text-xs uppercase tracking-wider font-semibold text-charcoal-700 hover:text-gold-dark transition-colors"
           >
             <ArrowLeft className="w-4 h-4 text-gold-dark" />
             <span>Back to Royal Venues & Journal</span>
-          </button>
+          </Link>
 
           <div className="flex items-center gap-3 pr-2 sm:pr-0">
             <button
@@ -224,12 +222,11 @@ export const SingleBlogView: React.FC<SingleBlogViewProps> = ({
 
       {/* 2. IMMERSIVE HERO SECTION (Meragi Style, Royal Elevated) */}
       <section className="relative h-[65vh] min-h-[480px] max-h-[640px] w-full overflow-hidden bg-charcoal-900 pl-0 pr-0 ml-0 mr-0 rounded-2xl my-2">
-        <img
+        <Image
           src={post.featuredImageUrl || 'https://rasmwed.com/wp-content/uploads/2024/08/The-Oberoi-Udaivilas.webp'}
           alt={post.title}
-          referrerPolicy="no-referrer"
           className="w-full h-full object-cover opacity-85 scale-105 animate-subtle-zoom"
-        />
+         width={1600} height={900} priority sizes="100vw" />
         {/* Editorial Gradients */}
         <div className="absolute inset-0 bg-gradient-to-t from-charcoal-950 via-charcoal-950/45 to-transparent" />
         <div className="absolute inset-0 bg-gradient-to-r from-charcoal-950/70 via-transparent to-transparent" />
@@ -323,7 +320,7 @@ export const SingleBlogView: React.FC<SingleBlogViewProps> = ({
               </button>
 
               <a
-                href="https://wa.me/919999999999"
+                href={`https://wa.me/${settings.whatsapp}`}
                 target="_blank"
                 rel="noreferrer"
                 className="w-full py-2.5 px-4 rounded-xl border border-gold/40 text-charcoal-800 text-xs font-semibold uppercase tracking-wider hover:bg-[#FAF8F5] transition-colors flex items-center justify-center gap-2"
@@ -378,12 +375,11 @@ export const SingleBlogView: React.FC<SingleBlogViewProps> = ({
                 onClick={() => setLightboxImage(galleryImages[0])}
                 className="sm:col-span-8 h-72 sm:h-96 relative group cursor-pointer overflow-hidden rounded-xl bg-charcoal-100"
               >
-                <img
+                <Image
                   src={galleryImages[0]}
                   alt="Venue Primary Showcase"
-                  referrerPolicy="no-referrer"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                />
+                 width={1200} height={800} sizes="(min-width: 1024px) 33vw, 100vw" />
                 <div className="absolute inset-0 bg-black/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs font-semibold uppercase tracking-wider">
                   <span>Click to view full size</span>
                 </div>
@@ -396,12 +392,11 @@ export const SingleBlogView: React.FC<SingleBlogViewProps> = ({
                     onClick={() => setLightboxImage(img)}
                     className="h-34 sm:h-[186px] relative group cursor-pointer overflow-hidden rounded-xl bg-charcoal-100"
                   >
-                    <img
+                    <Image
                       src={img}
                       alt={`Gallery thumbnail ${i}`}
-                      referrerPolicy="no-referrer"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
+                     width={1200} height={800} sizes="(min-width: 1024px) 33vw, 100vw" />
                   </div>
                 ))}
               </div>
@@ -650,12 +645,11 @@ export const SingleBlogView: React.FC<SingleBlogViewProps> = ({
                     onClick={() => setLightboxImage(img)}
                     className="h-44 sm:h-52 rounded-xl overflow-hidden cursor-pointer group relative bg-charcoal-100"
                   >
-                    <img
+                    <Image
                       src={img}
                       alt={`Real wedding ${idx}`}
-                      referrerPolicy="no-referrer"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
+                     width={1200} height={800} sizes="(min-width: 1024px) 33vw, 100vw" />
                     <div className="absolute inset-0 bg-black/30 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white text-xs uppercase font-medium">
                       <span>Zoom Photo</span>
                     </div>
@@ -778,10 +772,8 @@ export const SingleBlogView: React.FC<SingleBlogViewProps> = ({
                         />
                       </div>
                       <div>
-                        <label className="block text-[10px] uppercase font-semibold text-charcoal-600 mb-1 tracking-wider">
-                          Guest Count
-                        </label>
-                        <select
+                        <label className="block text-[10px] uppercase font-semibold text-charcoal-600 mb-1 tracking-wider">Guest Count</label>
+                        <select aria-label="Guest Count"
                           value={formGuests}
                           onChange={(e) => setFormGuests(e.target.value)}
                           className="w-full px-2.5 py-2 text-xs rounded-lg border border-gold/30 bg-white focus:outline-none focus:ring-2 focus:ring-gold/50"
@@ -845,7 +837,7 @@ export const SingleBlogView: React.FC<SingleBlogViewProps> = ({
                   Speak directly with our senior wedding architects on WhatsApp.
                 </p>
                 <a
-                  href="https://wa.me/919999999999"
+                  href={`https://wa.me/${settings.whatsapp}`}
                   target="_blank"
                   rel="noreferrer"
                   className="inline-flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold uppercase tracking-wider shadow-xs transition-colors"
@@ -876,16 +868,15 @@ export const SingleBlogView: React.FC<SingleBlogViewProps> = ({
               {relatedPosts.map(p => (
                 <article
                   key={p.id}
-                  onClick={() => onNavigate(`/${p.slug}`)}
-                  className="rounded-2xl overflow-hidden bg-white border border-gold/20 hover:border-gold shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col group cursor-pointer"
+                  className="relative rounded-2xl overflow-hidden bg-white border border-gold/20 hover:border-gold shadow-xs hover:shadow-lg transition-all duration-300 flex flex-col group"
                 >
+                  <Link href={`/${p.slug}/`} className="absolute inset-0 z-10" aria-label={p.title} />
                   <div className="h-48 overflow-hidden bg-charcoal-100 relative">
-                    <img
+                    <Image
                       src={p.featuredImageUrl || 'https://rasmwed.com/wp-content/uploads/2024/08/The-Oberoi-Udaivilas.webp'}
                       alt={p.title}
-                      referrerPolicy="no-referrer"
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
+                     width={1200} height={800} sizes="(min-width: 1024px) 33vw, 100vw" />
                     <div className="absolute top-3 left-3 px-2.5 py-0.5 rounded-full bg-white/95 text-[10px] font-bold text-charcoal-900 border border-gold/30">
                       {p.date}
                     </div>
@@ -925,13 +916,12 @@ export const SingleBlogView: React.FC<SingleBlogViewProps> = ({
           >
             <X className="w-6 h-6" />
           </button>
-          <img
+          <Image
             src={lightboxImage}
             alt="Expanded view"
-            referrerPolicy="no-referrer"
             className="max-h-[85vh] max-w-[90vw] object-contain rounded-xl shadow-2xl"
             onClick={(e) => e.stopPropagation()}
-          />
+           width={1200} height={800} sizes="(min-width: 1024px) 33vw, 100vw" />
         </div>
       )}
 

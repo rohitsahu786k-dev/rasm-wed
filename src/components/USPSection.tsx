@@ -1,12 +1,14 @@
+'use client';
+
 import React from 'react';
+import { useInquiry } from '@/components/InquiryProvider';
 import { Crown, Eye, Globe2, ShieldCheck, ArrowRight, Utensils, CheckCircle2, Clock, Sparkles } from 'lucide-react';
 import { motion } from 'framer-motion';
 
-interface USPSectionProps {
-  onOpenInquiry: () => void;
-}
 
-export const USPSection: React.FC<USPSectionProps> = ({ onOpenInquiry }) => {
+export const USPSection: React.FC = () => {
+  const { open } = useInquiry();
+  const onOpenInquiry = () => open();
   return (
     <section className="py-24 sm:py-28 bg-[#FAF8F5] relative overflow-hidden border-b border-gold/15">
       {/* Subtle Golden Ambient Glow */}

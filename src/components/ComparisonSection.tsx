@@ -1,6 +1,8 @@
+'use client';
+
 import React from 'react';
 import { Check, X, Sparkles, Crown, ShieldCheck } from 'lucide-react';
-import { AnimatedButton } from './ui/AnimatedButton';
+import { AnimatedButton } from '@/components/ui/AnimatedButton';
 
 interface ComparisonSectionProps {
   onOpenInquiry?: () => void;

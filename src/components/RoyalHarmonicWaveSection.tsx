@@ -1,5 +1,5 @@
 import React from 'react';
-import HarmonicWave from './ui/harmonic-wave';
+import HarmonicWave from '@/components/ui/harmonic-wave';
 import { Camera } from 'lucide-react';
 
 export const RoyalHarmonicWaveSection: React.FC = () => {

@@ -1,0 +1,35 @@
+{
+  "_note": "Approved first-party facts. The content engine may make company-specific claims ONLY from this file. Edit this file (or replace it with a WordPress-backed source) to add or correct facts; never edit prompts.",
+  "brand": {
+    "name": "Rasm Weddings & Events",
+    "shortName": "Rasm",
+    "base": "Udaipur, Rajasthan, India",
+    "positioning": "Luxury destination wedding planner for NRI and international couples, focused on palace and heritage venues in Rajasthan and select destinations."
+  },
+  "approvedClaims": [
+    "Rasm Weddings & Events is based in Udaipur, Rajasthan.",
+    "Rasm has planned 450+ celebrations.",
+    "Rasm has 12+ years of experience.",
+    "Rasm works with 18+ palace and heritage venues.",
+    "Rasm serves couples from the US, UK, UAE, Canada, Australia and India."
+  ],
+  "services": [
+    "Destination wedding planning",
+    "Palace and heritage venue sourcing in Udaipur, Jaipur, Jodhpur, Jaisalmer, Kumbhalgarh, Pushkar and other Rajasthan cities",
+    "Traditional decoration and mandap design",
+    "Guest hospitality and logistics",
+    "Corporate and VIP events"
+  ],
+  "destinationsWithPages": [
+    "Udaipur", "Jaipur", "Jodhpur", "Jaisalmer", "Goa", "Kumbhalgarh", "Mount Abu", "Nathdwara", "Pushkar", "Kota", "Ranakpur", "Ahmedabad", "Gandhinagar", "Thailand"
+  ],
+  "forbidden": [
+    "invented statistics, survey results or studies",
+    "prices or budgets presented as Rasm quotes",
+    "client names, testimonials, awards or certifications",
+    "claims that a specific venue is partnered with Rasm unless listed above",
+    "guarantees or ranking promises",
+    "medical, legal or immigration advice"
+  ],
+  "tone": "Warm, expert, practical. Written for couples and their families planning a wedding. Plain English; explain Indian wedding terms briefly for NRI readers."
+}

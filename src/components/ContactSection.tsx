@@ -1,17 +1,13 @@
+'use client';
+
 import React, { useState } from 'react';
-import { SiteSettings } from '../types';
+import { useInquiry } from '@/components/InquiryProvider';
+import { settings } from '@/data/settings';
 import { MapPin, Mail, MessageCircle, Send, Sparkles, CheckCircle2, Clock, Globe } from 'lucide-react';
-import { AnimatedButton } from './ui/AnimatedButton';
+import { AnimatedButton } from '@/components/ui/AnimatedButton';
 
-interface ContactSectionProps {
-  settings: SiteSettings;
-  prefilledDestination?: string;
-}
-
-export const ContactSection: React.FC<ContactSectionProps> = ({
-  settings,
-  prefilledDestination = '',
-}) => {
+export const ContactSection: React.FC = () => {
+  const { destination: prefilledDestination } = useInquiry();
   const [name, setName] = useState('');
   const [contact, setContact] = useState('');
   const [country, setCountry] = useState('United States (+1)');
@@ -70,9 +66,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   <MapPin className="w-5 h-5 text-[#C5A059]" />
                 </div>
                 <div>
-                  <h4 className="text-[11px] uppercase tracking-normal gold-gradient-text font-medium mb-1">
+                  <h3 className="text-[11px] uppercase tracking-normal gold-gradient-text font-medium mb-1">
                     Udaipur Studio & Office
-                  </h4>
+                  </h3>
                   <p className="text-charcoal-700 text-xs sm:text-sm font-light leading-relaxed">
                     {settings.address}
                   </p>
@@ -84,9 +80,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   <MessageCircle className="w-5 h-5 text-emerald-600" />
                 </div>
                 <div>
-                  <h4 className="text-[11px] uppercase tracking-widest text-emerald-700 font-medium mb-1">
+                  <h3 className="text-[11px] uppercase tracking-widest text-emerald-700 font-medium mb-1">
                     Global WhatsApp Concierge
-                  </h4>
+                  </h3>
                   <a
                     href={`https://wa.me/${settings.whatsapp}`}
                     target="_blank"
@@ -103,9 +99,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   <Mail className="w-5 h-5 text-gold-dark" />
                 </div>
                 <div>
-                  <h4 className="text-[11px] uppercase tracking-widest text-gold-dark font-medium mb-1">
+                  <h3 className="text-[11px] uppercase tracking-widest text-gold-dark font-medium mb-1">
                     Official Inquiries & Proposals
-                  </h4>
+                  </h3>
                   <a
                     href={`mailto:${settings.email}`}
                     className="text-charcoal-800 text-xs sm:text-sm hover:text-gold-dark transition-colors font-normal"
@@ -120,9 +116,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                   <Clock className="w-5 h-5 text-gold-dark" />
                 </div>
                 <div>
-                  <h4 className="text-[11px] uppercase tracking-widest text-gold-dark font-medium mb-1">
+                  <h3 className="text-[11px] uppercase tracking-widest text-gold-dark font-medium mb-1">
                     International Call Windows
-                  </h4>
+                  </h3>
                   <p className="text-charcoal-700 text-xs sm:text-sm font-light">
                     US / UK / Europe / India hours coordinated daily.
                   </p>
@@ -177,10 +173,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     </div>
 
                     <div>
-                      <label className="block text-xs font-medium uppercase tracking-wider text-charcoal-700 mb-2">
-                        Your Current Country / City *
-                      </label>
-                      <select
+                      <label className="block text-xs font-medium uppercase tracking-wider text-charcoal-700 mb-2">Your Current Country / City *</label>
+                      <select aria-label="Your Current Country / City *"
                         value={country}
                         onChange={(e) => setCountry(e.target.value)}
                         className="w-full px-4 py-3 rounded-xl bg-ivory-100 border border-gold/25 text-charcoal-900 text-sm focus:outline-none focus:border-gold"
@@ -212,10 +206,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     </div>
 
                     <div>
-                      <label className="block text-xs font-medium uppercase tracking-wider text-charcoal-700 mb-2">
-                        Preferred Palace Destination
-                      </label>
-                      <select
+                      <label className="block text-xs font-medium uppercase tracking-wider text-charcoal-700 mb-2">Preferred Palace Destination</label>
+                      <select aria-label="Preferred Palace Destination"
                         value={destination}
                         onChange={(e) => setDestination(e.target.value)}
                         className="w-full px-4 py-3 rounded-xl bg-ivory-100 border border-gold/25 text-charcoal-900 text-sm focus:outline-none focus:border-gold"
@@ -246,10 +238,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({
                     </div>
 
                     <div>
-                      <label className="block text-xs font-medium uppercase tracking-wider text-charcoal-700 mb-2">
-                        Celebration Scale & Ambition
-                      </label>
-                      <select
+                      <label className="block text-xs font-medium uppercase tracking-wider text-charcoal-700 mb-2">Celebration Scale & Ambition</label>
+                      <select aria-label="Celebration Scale & Ambition"
                         value={grandeur}
                         onChange={(e) => setGrandeur(e.target.value)}
                         className="w-full px-4 py-3 rounded-xl bg-ivory-100 border border-gold/25 text-charcoal-900 text-sm focus:outline-none focus:border-gold"

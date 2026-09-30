@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { Globe, Plane, Clock, FileCheck, Languages, ArrowRight } from 'lucide-react';
 

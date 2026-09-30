@@ -1,5 +1,7 @@
+'use client';
+
+import Image from 'next/image';
 // Built using Hyperiux Vault (Harmonic Wave Edition - Fixed URLs)
-"use client";
 
 import {
   motion,
@@ -10,7 +12,7 @@ import {
   useSpring,
   useMotionValueEvent,
   type MotionValue,
-} from "motion/react";
+} from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
 // Curated Royal Heritage & Palatial Wedding Imagery (Verified 200 OK)
@@ -279,12 +281,12 @@ function Card({
         style={{ borderRadius: `${cardRadius}px` }}
       >
         <div className="absolute inset-0 bg-gradient-to-tr from-black/30 dark:from-black/50 via-transparent to-white/10 opacity-70 pointer-events-none z-10" />
-        <img
+        <Image
           src={item.src}
           alt={item.alt ?? ""}
           draggable={false}
           className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 hover:scale-105"
-        />
+         width={1200} height={800} sizes="(min-width: 1024px) 33vw, 100vw" />
       </div>
     </motion.div>
   );
@@ -329,7 +331,7 @@ function StackSpreadStage({
   );
 
   const [spread, setSpread] = useState(false);
-  useMotionValueEvent(progress, "change", (p) => {
+  useMotionValueEvent(progress, "change", (p: number) => {
     setSpread((was) => (was ? p > 0.985 : p >= 0.999));
   });
 

@@ -1,0 +1,20 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/health",
+      "schedule": "0 3 * * *"
+    },
+    {
+      "path": "/api/cron/guidelines",
+      "schedule": "0 4 * * 1"
+    },
+    {
+      "path": "/api/cron/content",
+      "schedule": "30 4 * * *"
+    },
+    {
+      "path": "/api/cron/weekly",
+      "schedule": "0 5 * * 1"
+    }
+  ]
+}

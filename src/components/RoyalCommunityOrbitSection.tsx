@@ -1,10 +1,10 @@
+'use client';
+
 import React from 'react';
-import CommunityOrbit, { type OrbitItem, type OrbitStat, type OrbitTag } from './ui/builders-community-hero';
+import { useInquiry } from '@/components/InquiryProvider';
+import CommunityOrbit, { type OrbitItem, type OrbitStat, type OrbitTag } from '@/components/ui/builders-community-hero';
 import { Crown, Sparkles, Building2, Star, MessageSquareText, ShieldCheck, Heart, MapPin, Compass, CheckCircle2 } from 'lucide-react';
 
-interface RoyalCommunityOrbitSectionProps {
-  onOpenInquiry?: (context?: string) => void;
-}
 
 const items: OrbitItem[] = [
   // Outer Ring (from left to right)
@@ -97,7 +97,8 @@ const stats: OrbitStat[] = [
   { value: '100%', label: 'Discreet NRI Trust' },
 ];
 
-export const RoyalCommunityOrbitSection: React.FC<RoyalCommunityOrbitSectionProps> = ({ onOpenInquiry }) => {
+export const RoyalCommunityOrbitSection: React.FC = () => {
+  const { open: onOpenInquiry } = useInquiry();
   const tags: OrbitTag[] = [
     {
       icon: <Building2 strokeWidth={2} />,

@@ -1,4 +1,7 @@
+'use client';
+
 import React, { useRef, useState, useEffect } from 'react';
+import { useInquiry } from '@/components/InquiryProvider';
 import { 
   Crown, 
   HeartHandshake, 
@@ -13,14 +16,9 @@ import {
   Layers3
 } from 'lucide-react';
 import { motion } from 'framer-motion';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Image from 'next/image';
 
-gsap.registerPlugin(ScrollTrigger);
 
-interface ServicesBentoProps {
-  onOpenInquiry?: () => void;
-}
 
 const services = [
   {
@@ -79,21 +77,14 @@ const services = [
   },
 ];
 
-export const ServicesBento: React.FC<ServicesBentoProps> = ({ onOpenInquiry }) => {
-  const headRef = useRef<HTMLDivElement>(null);
+export const ServicesBento: React.FC = () => {
+  const { open } = useInquiry();
+  const onOpenInquiry = () => open('Bespoke Wedding Services');
   const trackRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
   const [canScrollRight, setCanScrollRight] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
-
-  useEffect(() => {
-    if (!headRef.current) return;
-    gsap.fromTo(headRef.current, { opacity: 0, y: 24 }, {
-      opacity: 1, y: 0, duration: 0.8, ease: 'power3.out',
-      scrollTrigger: { trigger: headRef.current, start: 'top 82%' },
-    });
-  }, []);
 
   const updateScrollState = () => {
     const el = trackRef.current;
@@ -132,7 +123,7 @@ export const ServicesBento: React.FC<ServicesBentoProps> = ({ onOpenInquiry }) =
       <div className="absolute bottom-10 right-10 w-[400px] h-[300px] bg-gradient-to-tl from-amber-100/20 to-transparent rounded-full blur-3xl pointer-events-none" />
 
       {/* Header Container */}
-      <div ref={headRef} className="rasm-container mb-10 relative z-10">
+      <motion.div initial={{ opacity: 0, y: 24 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "0px 0px -18% 0px" }} transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }} className="rasm-container mb-10 relative z-10">
         <div className="flex flex-col lg:flex-row items-start lg:items-end justify-between gap-6">
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-ivory-200 border border-gold/35 shadow-xs mb-3">
@@ -209,7 +200,7 @@ export const ServicesBento: React.FC<ServicesBentoProps> = ({ onOpenInquiry }) =
             );
           })}
         </div>
-      </div>
+      </motion.div>
 
       {/* Horizontal Carousel Track with generous bottom padding so cards and shadows NEVER clip */}
       <div
@@ -259,6 +250,8 @@ interface ServiceCardProps {
   onInquire?: () => void;
 }
 
+const MotionImage = motion.create(Image);
+
 const ServiceCard: React.FC<ServiceCardProps> = ({ srv, index, onInquire }) => {
   const [hovered, setHovered] = useState(false);
   const Icon = srv.icon;
@@ -276,10 +269,12 @@ const ServiceCard: React.FC<ServiceCardProps> = ({ srv, index, onInquire }) => {
     >
       {/* Top Image Section — 46% height */}
       <div className="relative h-[46%] overflow-hidden bg-stone-100 shrink-0">
-        <motion.img
+        <MotionImage
           src={srv.imageUrl}
           alt={srv.title}
-          referrerPolicy="no-referrer"
+          width={800}
+          height={600}
+          sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 85vw"
           className="w-full h-full object-cover"
           animate={{ scale: hovered ? 1.07 : 1 }}
           transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
