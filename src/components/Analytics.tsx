@@ -1,6 +1,7 @@
 import Script from 'next/script';
 import { IS_PRODUCTION } from '@/lib/site';
 import { PixelRouteTracker } from '@/components/PixelRouteTracker';
+import { LeadTracking } from '@/components/LeadTracking';
 
 /**
  * Tracking carried over from the live WordPress site (Site Kit + PixelYourSite), same IDs so history continues.
@@ -30,6 +31,7 @@ export function Analytics() {
         fbq('track', 'PageView');
       `}</Script>
       <PixelRouteTracker />
+      <LeadTracking />
     </>
   );
 }

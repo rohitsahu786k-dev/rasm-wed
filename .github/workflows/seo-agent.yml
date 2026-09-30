@@ -8,15 +8,17 @@ on:
   schedule:
     - cron: '0 3 * * *'    # daily: health audit, then auto-fix
     - cron: '30 4 * * *'   # daily: publish one quality-gated article
-    - cron: '30 5 * * 2,5' # Tue/Fri: programmatic pages (hard-capped per week)
+    - cron: '30 5 * * 2,4,6' # Tue/Thu/Sat: programmatic pages (hard-capped per week)
     - cron: '0 5 * * 1'    # Monday: weekly report + Google guideline check
+    - cron: '0 4 * * 3'    # Wednesday: Search Console indexing check + sitemap resubmit + quality refresh
+    - cron: '0 5 * * 3'    # Wednesday: Core Web Vitals
   workflow_dispatch:
     inputs:
       job:
         description: 'Job to run now'
         required: true
         type: choice
-        options: [health, autofix, content, programmatic, weekly, guidelines]
+        options: [health, autofix, content, programmatic, weekly, guidelines, indexing, cwv]
       dry:
         description: 'Dry run (generate, do not publish)'
         type: boolean
@@ -40,6 +42,7 @@ jobs:
       GOOGLE_SERVICE_ACCOUNT_EMAIL: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_EMAIL }}
       GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY: ${{ secrets.GOOGLE_SERVICE_ACCOUNT_PRIVATE_KEY }}
       GA4_PROPERTY_ID: ${{ secrets.GA4_PROPERTY_ID }}
+      PAGESPEED_API_KEY: ${{ secrets.PAGESPEED_API_KEY }}
       REVALIDATE_SECRET: ${{ secrets.REVALIDATE_SECRET }}
       ALERT_WEBHOOK_URL: ${{ secrets.ALERT_WEBHOOK_URL }}
       AI_MONTHLY_BUDGET_USD: ${{ vars.AI_MONTHLY_BUDGET_USD || '10' }}
@@ -64,8 +67,10 @@ jobs:
             case "${{ github.event.schedule }}" in
               "0 3 * * *")    echo "jobs=health autofix" >> "$GITHUB_OUTPUT" ;;
               "30 4 * * *")   echo "jobs=content" >> "$GITHUB_OUTPUT" ;;
-              "30 5 * * 2,5") echo "jobs=programmatic" >> "$GITHUB_OUTPUT" ;;
+              "30 5 * * 2,4,6") echo "jobs=programmatic" >> "$GITHUB_OUTPUT" ;;
               "0 5 * * 1")    echo "jobs=weekly guidelines" >> "$GITHUB_OUTPUT" ;;
+              "0 4 * * 3")    echo "jobs=indexing" >> "$GITHUB_OUTPUT" ;;
+              "0 5 * * 3")    echo "jobs=cwv" >> "$GITHUB_OUTPUT" ;;
             esac
             echo "dry=" >> "$GITHUB_OUTPUT"
           fi

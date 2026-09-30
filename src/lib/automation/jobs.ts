@@ -17,9 +17,12 @@ import { runReport } from '../google/analytics.ts';
 import { runAi } from '../ai/client.ts';
 import { BudgetExceededError, spendSummary } from '../ai/budget.ts';
 import { loadAiConfig } from '../ai/config.ts';
-import type { AuditReport } from '../monitoring/health-audit.ts';
+import { fetchAllSitemapUrls, type AuditReport } from '../monitoring/health-audit.ts';
+import { runIndexingCheck } from '../monitoring/indexing.ts';
+import { refreshOne } from '../content/refresh.ts';
+import { runCwvCheck, cwvAlerts } from '../monitoring/cwv.ts';
 
-export type JobName = 'health' | 'autofix' | 'content' | 'programmatic' | 'weekly' | 'guidelines';
+export type JobName = 'health' | 'autofix' | 'content' | 'programmatic' | 'weekly' | 'guidelines' | 'indexing' | 'cwv';
 
 const redact = (m: string) => m.replace(/sk-[A-Za-z0-9_-]+/g, 'sk-***');
 
@@ -117,6 +120,34 @@ export async function runWeeklyJob() {
   return { clicks: t1.clicks, impressions: t1.impressions, opportunities: report.opportunityCounts };
 }
 
+export async function runIndexingJob() {
+  const creds = googleCredsFromEnv();
+  if (!creds) throw new Error('Google credentials not configured');
+  const store = getStore();
+  const property = process.env.GOOGLE_SEARCH_CONSOLE_PROPERTY || `${SITE_URL}/`;
+  const base = SITE_URL;
+  // Pages that are intentionally not indexable are not errors.
+  const urls = (await fetchAllSitemapUrls(`${base}/sitemap.xml`)).filter((u) => !/\/(thank-you-page|category)\//.test(u));
+  const report = await runIndexingCheck(creds, property, urls, store, { sitemapUrls: [`${base}/sitemap.xml`], delayMs: 400 });
+  const serious = report.issues.filter((i) => i.severity === 'CRITICAL' || i.severity === 'HIGH');
+  if (serious.length) {
+    await sendAlerts(store, serious.slice(0, 5).map((i) => ({ ts: new Date().toISOString(), level: (i.severity === 'CRITICAL' ? 'CRITICAL' : 'HIGH') as 'CRITICAL' | 'HIGH', code: `${i.code}:${i.url}`, message: `${i.code} ${i.url} ${i.message}` })));
+  }
+  const creds2 = wpCredsFromEnv();
+  const refreshed = creds2 ? await refreshOne(creds2, SITE_URL, store).catch((e) => ({ status: 'error', error: redact((e as Error).message) })) : { status: 'skipped' };
+  return { inspected: report.inspected, indexed: report.indexed, issues: report.issues.length, sitemapsSubmitted: report.sitemapsSubmitted, sitemapProblems: report.sitemapProblems, queuedForRefresh: report.refreshQueue.length, refresh: refreshed };
+}
+
+export async function runCwvJob() {
+  const store = getStore();
+  const posts = await fetchAllSitemapUrls(`${SITE_URL}/sitemap.xml`);
+  const pick = ['/', '/wedding-planner-in-udaipur/', '/services/', '/blog/', ...posts.map((u) => new URL(u).pathname).filter((p) => !['/', '/services/', '/blog/'].includes(p)).slice(-2)];
+  const results = await runCwvCheck([...new Set(pick)].map((p) => `${SITE_URL}${p}`), store);
+  const alerts = cwvAlerts(results);
+  if (alerts.length) await sendAlerts(store, alerts);
+  return { measured: results.length, field: results.filter((r) => r.source === 'field').length, alerts: alerts.length };
+}
+
 /** Runs a job and converts budget/API errors into a safe, secret-free result (a cron must never crash loudly with secrets). */
 export async function runJob(name: JobName, opts: { dry?: boolean } = {}): Promise<unknown> {
   try {
@@ -127,6 +158,8 @@ export async function runJob(name: JobName, opts: { dry?: boolean } = {}): Promi
       case 'programmatic': return await runProgrammaticJob(opts.dry);
       case 'weekly': return await runWeeklyJob();
       case 'guidelines': return await runGuidelinesJob();
+      case 'indexing': return await runIndexingJob();
+      case 'cwv': return await runCwvJob();
     }
   } catch (e) {
     if (e instanceof BudgetExceededError) return { status: 'skipped', reason: e.message };

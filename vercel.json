@@ -22,7 +22,15 @@
     },
     {
       "path": "/api/cron/programmatic",
-      "schedule": "30 5 * * 2,5"
+      "schedule": "30 5 * * 2,4,6"
+    },
+    {
+      "path": "/api/cron/indexing",
+      "schedule": "0 4 * * 3"
+    },
+    {
+      "path": "/api/cron/cwv",
+      "schedule": "0 5 * * 3"
     }
   ]
 }

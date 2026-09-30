@@ -11,8 +11,8 @@ export async function fetchRetry(
   init: RequestInit = {},
   opts: { tries?: number; baseDelayMs?: number; timeoutMs?: number } = {},
 ): Promise<Response> {
-  const tries = opts.tries ?? 5;
-  const base = opts.baseDelayMs ?? 3000;
+  const tries = opts.tries ?? 6;
+  const base = opts.baseDelayMs ?? 5000;
   let last: unknown;
   for (let i = 0; i < tries; i++) {
     try {

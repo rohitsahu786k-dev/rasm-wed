@@ -58,14 +58,15 @@ export function similarity(a: string, b: string) {
 
 export function evaluateArticle(
   a: ArticleDraft,
-  ctx: { allowedInternalPaths: Set<string>; existingTitles: string[]; siteOrigin: string },
+  ctx: { allowedInternalPaths: Set<string>; existingTitles: string[]; siteOrigin: string; minWords?: number; requiredLinks?: string[] },
 ): GateResult {
   const failures: string[] = [];
   const warnings: string[] = [];
   const words = countWords(a.html);
   const text = stripTags(a.html);
 
-  if (words < MIN_WORDS) failures.push(`only ${words} words (minimum ${MIN_WORDS})`);
+  const minWords = ctx.minWords ?? MIN_WORDS;
+  if (words < minWords) failures.push(`only ${words} words (minimum ${minWords})`);
   if (/<h1[\s>]/i.test(a.html)) failures.push('body contains an <h1> (title is the only H1)');
   const h2 = (a.html.match(/<h2[\s>]/gi) ?? []).length;
   if (h2 < 4) failures.push(`needs at least 4 <h2> sections (has ${h2})`);
@@ -87,6 +88,9 @@ export function evaluateArticle(
   if (internal.length < 3) failures.push(`needs at least 3 internal links (has ${internal.length})`);
   if (badInternal.length) failures.push(`internal links to non-existent pages: ${badInternal.join(', ')}`);
   if (hrefs.some((h) => /^javascript:/i.test(h))) failures.push('javascript: link');
+  for (const req of ctx.requiredLinks ?? []) {
+    if (!internal.some((h) => h.replace(ctx.siteOrigin, '').split('#')[0] === req)) failures.push(`must link to its pillar page ${req}`);
+  }
 
   // Images: exactly one featured image (budget mode), alt text present, no text-in-image prompts.
   const featured = a.images.filter((i) => i.role === 'featured');

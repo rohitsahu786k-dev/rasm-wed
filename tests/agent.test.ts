@@ -309,18 +309,42 @@ test('uniqueness gate rejects template-swapped pages and accepts original ones',
   assert.equal(isUniqueEnough(measureUniqueness(original, [{ id: 'a', html: base }])), true);
 });
 
-test('programmatic candidates: distinct intents, demand-ranked, capped, no duplicates of existing pages', () => {
-  const ctx = { existing: [{ title: 'Wedding Rituals and Local Traditions in Udaipur: A Guide for Families', slug: 'x' }], queries: [{ query: 'jodhpur wedding catering', impressions: 40, clicks: 0, position: 30 }], programmaticSlugs: [] };
-  const c = buildCandidates(ctx);
-  assert.ok(c.length > 30);
-  assert.equal(c[0].city, 'Jodhpur', 'demand wins');
-  assert.ok(!c.some((x) => x.city === 'Udaipur' && x.intent.id === 'rituals'), 'existing page not re-proposed');
+test('programmatic strategy: hubs first, spokes only after their hub exists, demand-ranked, capped', () => {
+  const none = { existing: [] as { title: string; slug: string }[], queries: [], programmaticSlugs: [] as string[] };
+  const first = buildCandidates(none);
+  assert.ok(first.length === 5 && first.every((c) => c.family === 'hub'), 'only the 5 pillar pages are offered before any hub exists');
+  const allHubs = strategyHubs.map((h) => ({ title: h.title, slug: h.slug }));
+  const c = buildCandidates({ ...none, existing: allHubs });
+  const fam = new Set(c.map((x) => x.family));
+  assert.deepEqual([...fam].sort(), ['cityIntent', 'community', 'market', 'month']);
+  assert.ok(c.filter((x) => x.family === 'market').length === 30, '6 markets x 5 needs');
+  assert.ok(c.every((x) => x.hubSlug && allHubs.some((h) => h.slug === x.hubSlug)), 'every spoke belongs to a hub');
   assert.equal(new Set(c.map((x) => x.plan.slug)).size, c.length, 'unique slugs');
-  const capped = buildCandidates({ ...ctx, programmaticSlugs: Array.from({ length: PER_CITY_CAP }, (_, i) => `goa-page-${i}-goa`) });
-  assert.ok(!capped.some((x) => x.city === 'Goa'), 'per-city cap');
+  assert.ok(c.find((x) => x.family === 'market')!.plan.searchIntent.length > 60, 'markets carry market-specific context');
+  // Only the NRI hub published -> only market spokes.
+  const nriOnly = buildCandidates({ ...none, existing: [allHubs[1]] });
+  assert.ok(nriOnly.filter((x) => x.family !== 'hub').every((x) => x.family === 'market'));
+  // Demand outranks strategy weight within reach.
+  const demand = buildCandidates({ ...none, existing: allHubs, queries: [{ query: 'jodhpur wedding catering', impressions: 40, clicks: 0, position: 30 }] });
+  assert.equal(demand[0].city, 'Jodhpur');
+  const capped = buildCandidates({ ...none, existing: allHubs, programmaticSlugs: Array.from({ length: PER_CITY_CAP }, (_, i) => `goa-page-${i}-goa`) });
+  assert.ok(!capped.some((x) => x.family === 'cityIntent' && x.city === 'Goa'), 'per-city cap');
   const now = Date.now();
-  assert.equal(withinCaps([{ ts: new Date(now - 86400_000).toISOString(), kind: 'programmatic' }, { ts: new Date(now - 2 * 86400_000).toISOString(), kind: 'programmatic' }], now, 2, 40).ok, false);
-  assert.equal(withinCaps([{ ts: new Date(now - 9 * 86400_000).toISOString(), kind: 'programmatic' }], now, 2, 40).ok, true);
+  assert.equal(withinCaps([1, 2, 3].map((d) => ({ ts: new Date(now - d * 3600_000).toISOString(), kind: 'programmatic' })), now, 3, 150).ok, false);
+  assert.equal(withinCaps([{ ts: new Date(now - 9 * 86400_000).toISOString(), kind: 'programmatic' }], now, 3, 150).ok, true);
+});
+
+import { withSpokeIndex } from '../src/lib/content/hubs.ts';
+import strategyData from '../src/data/keyword-strategy.json' with { type: 'json' };
+const strategyHubs = strategyData.hubs;
+test('hub index block is inserted once and replaced in place', () => {
+  const s1 = withSpokeIndex('<p>hub body</p>', [{ title: 'A & B', url: '/a/', family: 'market' }]);
+  assert.match(s1, /rasm:spokes/);
+  assert.match(s1, /A &amp; B/);
+  const s2 = withSpokeIndex(s1, [{ title: 'A & B', url: '/a/', family: 'market' }, { title: 'C', url: '/c/', family: 'month' }]);
+  assert.equal((s2.match(/<!-- rasm:spokes -->/g) ?? []).length, 1);
+  assert.match(s2, /By month/);
+  assert.ok(s2.startsWith('<p>hub body</p>'), 'editor content untouched');
 });
 
 test('autofix: alt text from titles only, descriptions validated, code issues only diagnosed', async () => {
@@ -359,4 +383,55 @@ test('fetchRetry rides out transient origin errors (521) but not client errors',
   const notFound = (async () => { m++; return new Response('{}', { status: 404 }); }) as unknown as typeof fetch;
   assert.equal((await fetchRetry(notFound, 'https://x.test', {}, { baseDelayMs: 1 })).status, 404);
   assert.equal(m, 1, '404 is not retried');
+});
+
+import { classify, runIndexingCheck } from '../src/lib/monitoring/indexing.ts';
+import { parsePsi, cwvAlerts } from '../src/lib/monitoring/cwv.ts';
+import { loadOwnerFacts } from '../src/lib/content/pipeline.ts';
+
+test('Search Console classifier maps coverage states to actions', () => {
+  const r = (over: Record<string, string | undefined>) => ({ url: 'u', verdict: 'NEUTRAL', coverageState: 'X', ...over });
+  assert.equal(classify(r({ verdict: 'PASS', coverageState: 'Submitted and indexed' })), null);
+  assert.equal(classify(r({ verdict: 'PASS', googleCanonical: 'https://a/x', userCanonical: 'https://a/y' }))!.code, 'gsc-canonical-mismatch');
+  assert.equal(classify(r({ coverageState: "Excluded by 'noindex' tag" }))!.severity, 'CRITICAL');
+  assert.equal(classify(r({ coverageState: 'Blocked by robots.txt' }))!.code, 'gsc-robots-blocked');
+  assert.equal(classify(r({ coverageState: 'Crawled - currently not indexed' }))!.contentFix, true);
+  assert.equal(classify(r({ coverageState: 'Discovered - currently not indexed' }))!.code, 'gsc-discovered-not-indexed');
+  assert.equal(classify(r({ coverageState: 'URL is unknown to Google' }))!.severity, 'LOW');
+  assert.equal(classify(r({ coverageState: 'Soft 404' }))!.code, 'gsc-soft-404');
+});
+
+test('indexing job: resubmits stale sitemap, ignores new unknown pages, queues refresh only after 2 weeks', async () => {
+  const store = tmpStore();
+  const submitted: string[] = [];
+  const states: Record<string, string> = { 'https://s/new/': 'URL is unknown to Google', 'https://s/thin/': 'Crawled - currently not indexed', 'https://s/ok/': 'Submitted and indexed' };
+  const deps = {
+    inspect: (async (_c: unknown, _p: string, url: string) => ({ url, verdict: states[url] === 'Submitted and indexed' ? 'PASS' : 'NEUTRAL', coverageState: states[url] })) as never,
+    submit: (async (_c: unknown, _p: string, sm: string) => { submitted.push(sm); return true; }) as never,
+    list: (async () => [{ path: 'https://s/sitemap.xml', lastSubmitted: '2024-01-01T00:00:00Z' }]) as never,
+    sitemapUrls: ['https://s/sitemap.xml'],
+  };
+  const c = { email: 'e', privateKey: 'k' };
+  const run1 = await runIndexingCheck(c, 'https://s/', Object.keys(states), store, deps);
+  assert.deepEqual(submitted, ['https://s/sitemap.xml']);
+  assert.equal(run1.indexed, 1);
+  assert.ok(!run1.issues.some((i) => i.url === 'https://s/new/'), 'new page unknown for <21 days is not an error');
+  assert.deepEqual(run1.refreshQueue, [], 'first sighting is not enough');
+  const run2 = await runIndexingCheck(c, 'https://s/', Object.keys(states), store, deps);
+  assert.deepEqual(run2.refreshQueue, ['https://s/thin/'], 'persisting two runs queues a quality refresh');
+});
+
+test('Core Web Vitals: field data wins, poor field values alert', () => {
+  const field = parsePsi('https://s/', { loadingExperience: { metrics: { LARGEST_CONTENTFUL_PAINT_MS: { percentile: 4800 }, CUMULATIVE_LAYOUT_SHIFT_SCORE: { percentile: 30 }, INTERACTION_TO_NEXT_PAINT: { percentile: 250 } } }, lighthouseResult: { categories: { performance: { score: 0.7 } } } });
+  assert.equal(field.source, 'field');
+  assert.equal(field.cls, 0.3);
+  assert.equal(cwvAlerts([field]).length, 2, 'LCP and CLS are poor, INP is fine');
+  const lab = parsePsi('https://s/', { lighthouseResult: { audits: { 'largest-contentful-paint': { numericValue: 5000 }, 'cumulative-layout-shift': { numericValue: 0 } } } });
+  assert.equal(lab.source, 'lab');
+  assert.equal(cwvAlerts([lab]).length, 0, 'lab data never raises alerts');
+});
+
+test('owner facts are read from the private post, comments and short lines ignored', async () => {
+  const f = (async () => new Response(JSON.stringify([{ content: { raw: '<p># instructions</p>\n<p>- December sangeet lawns in Udaipur need heaters from about 6 pm.</p><p>short</p>' } }]))) as unknown as typeof fetch;
+  assert.deepEqual(await loadOwnerFacts({ url: 'https://wp.test', username: 'u', appPassword: 'p' }, f), ['December sangeet lawns in Udaipur need heaters from about 6 pm.']);
 });

@@ -8,7 +8,7 @@ export interface LinkTarget {
   title: string;
 }
 
-const SYSTEM = (links: LinkTarget[]) =>
+const SYSTEM = (links: LinkTarget[], ownerFacts: string[] = [], hubSlug?: string, isHub = false) =>
   [
     `You are a senior wedding-industry editor writing for ${kb.brand.name}. Tone: ${kb.tone}`,
     `Write a genuinely useful, original, people-first article of AT LEAST ${MIN_WORDS + 200} words (never below ${MIN_WORDS}); write as long as the topic needs. Structure: a short intro that answers the reader's core question, 5-8 descriptive <h2> sections (use <h3> where useful), practical detail (timelines, checklists, trade-offs, what to ask vendors), one <ul> or <ol>, and a final <h2>Frequently asked questions</h2> with 3-5 real questions (each <h3> + <p>). End with a short, honest call to action linking to the contact page.`,
@@ -16,22 +16,26 @@ const SYSTEM = (links: LinkTarget[]) =>
     `Company facts: use ONLY these approved claims, verbatim in meaning: ${JSON.stringify(kb.approvedClaims)}. Services: ${JSON.stringify(kb.services)}. Never mention: ${JSON.stringify(kb.forbidden)}.`,
     'Real venues/hotels may be named only as neutral starting points to investigate (never as partners, never with capacities, room counts, prices, ratings or availability, and never ranked). If the plan has a specific search intent, cover ONLY that intent: do not restate generic destination overviews, best-season notes or venue lists that other pages already cover; use original structure, examples and wording. Do NOT invent statistics, studies, percentages, prices, quotes, client stories, awards or venue partnerships. General, widely known cultural/practical knowledge is fine; if unsure, be general or omit. Do not promise rankings or guarantees.',
     `Internal links: include 3 to 6 <a href="..."> links inside the body text, chosen ONLY from this list, with natural descriptive anchor text (never repeat identical anchor text): ${JSON.stringify(links)}`,
+    ownerFacts.length ? `Additional first-hand facts supplied by the business owner (you MAY use these as real experience, verbatim in meaning, and nothing beyond them): ${JSON.stringify(ownerFacts)}` : '',
+    hubSlug && !isHub ? `This page belongs to a topic cluster: it MUST include at least one natural link to its pillar guide at /${hubSlug}/ (descriptive anchor text).` : '',
+    isHub ? 'This is a PILLAR guide: aim for at least 1,800 words, cover the topic broadly and authoritatively, and link to the most relevant existing pages from the list. Do NOT add an index of guides at the end (a list is appended automatically).' : '',
     'Return JSON only with keys: title (natural, <=70 chars, the only H1), slug, seoTitle (35-60 chars), metaDescription (120-155 chars, specific, no clickbait), excerpt (1-2 sentences, <=200 chars), focusKeyword, html, images.',
     'images = an array with EXACTLY ONE item {"role":"featured","alt","prompt"} and nothing else. prompt = a vivid scene description (single centred subject with lots of empty space around it) of an atmospheric Indian wedding/palace/decor/destination visual relevant to the section; describe NO text, signs, logos or lettering. alt = plain descriptive sentence (15-140 chars), no keyword stuffing.',
-  ].join('\n');
+  ].filter(Boolean).join('\n');
 
 export async function writeArticle(
   plan: TopicPlan,
   links: LinkTarget[],
   feedback: string[] = [],
   run: typeof runAi = runAi,
+  opts: { ownerFacts?: string[]; hubSlug?: string; isHub?: boolean } = {},
 ): Promise<ArticleDraft> {
   const r = await run<ArticleDraft>({
     task: 'article-write',
     priority: 'P8',
     json: true,
     maxOutputTokens: 9000,
-    instructions: SYSTEM(links),
+    instructions: SYSTEM(links, opts.ownerFacts, opts.hubSlug, opts.isHub),
     input:
       `Write this article as JSON.\n${JSON.stringify(plan)}\n` +
       (feedback.length ? `\nYour previous attempt FAILED these checks, fix every one:\n- ${feedback.join('\n- ')}\n` : ''),

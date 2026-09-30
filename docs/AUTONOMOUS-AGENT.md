@@ -88,3 +88,6 @@ Measured cost per article (real API usage): topic ~$0.008 + article ~$0.04 per a
 **Resilience.** WordPress calls use retry/backoff (`net.ts`): the WordPress host returned Cloudflare 521 for about 2 minutes during testing.
 
 **Measured cost (real API usage, `scripts/cost-report.ts`).** Article: gpt-6.1-sol ~$0.040 per attempt; image ~$0.0113; topic selection ~$0.009. Typical month: 30 daily articles ~$2.2 + ~9 programmatic pages ~$0.75 + auto-fix/diagnosis ~$0.2 + guideline interpretation ~$0.05 = **about $3-4**, worst case ~$5-6; the hard cap is $10.
+
+## Update: strategy-driven programmatic SEO, Search Console monitor, lead tracking
+See `docs/SEO-STRATEGY.md`. Programmatic engine now has 5 pillar pages + 4 spoke families (market x need, community, city x intent, city x month), auto-maintained pillar indexes, owner facts (`agent-facts` private post), weekly Search Console indexing check (URL Inspection + Sitemaps API), quality refresh queue, Core Web Vitals check, GA4/Meta lead events.

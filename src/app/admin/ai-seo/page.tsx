@@ -6,6 +6,7 @@ import type { AuditReport } from '@/lib/monitoring/health-audit';
 import type { Alert } from '@/lib/monitoring/alerts';
 import type { GuidelineChange } from '@/lib/seo/guidelines';
 import type { Opportunity } from '@/lib/seo/opportunities';
+import type { IndexState } from '@/lib/monitoring/indexing';
 
 export const dynamic = 'force-dynamic';
 export const metadata: Metadata = { title: 'AI SEO Agent', robots: { index: false, follow: false } };
@@ -15,15 +16,18 @@ const sevColor: Record<string, string> = { CRITICAL: '#b91c1c', HIGH: '#c2410c',
 export default async function AdminAiSeo() {
   const store = getStore();
   const cfg = loadAiConfig();
-  const [audit, actions, alerts, updates, spend, opps, articles] = await Promise.all([
+  const [audit, actions, alerts, updates, spend, opps, articles, idx, recs] = await Promise.all([
     store.getJson<AuditReport>('latest_audit'),
     store.list<AiAction>('ai_actions', { limit: 25 }),
     store.list<Alert>('alerts', { limit: 10 }),
     store.list<GuidelineChange>('google_updates', { limit: 10 }),
     spendSummary(store),
     store.getJson<Opportunity[]>('latest_opportunities'),
-    store.list<{ ts: string; url: string; words: number; slug: string }>('content_articles', { limit: 10 }),
+    store.list<{ ts: string; url: string; words: number; slug: string; kind?: string }>('content_articles', { limit: 12 }),
+    store.getJson<IndexState>('gsc_index_state'),
+    store.list<{ ts: string; issue: { code: string; url: string }; rootCause: string; proposedFix: string; risk: string }>('recommendations', { limit: 8 }),
   ]);
+  const idxCounts = Object.values(idx?.results ?? {}).reduce<Record<string, number>>((m, r) => ((m[r.coverage] = (m[r.coverage] ?? 0) + 1), m), {});
 
   return (
     <main className="mx-auto max-w-6xl p-6 space-y-8 pt-28">
@@ -60,6 +64,23 @@ export default async function AdminAiSeo() {
       </section>
 
       <section>
+        <h2 className="text-xl font-medium mb-2">Google indexing (URL Inspection)</h2>
+        {!idx ? <p className="text-sm text-gray-500">Run the weekly indexing job.</p> : (
+          <>
+            <p className="text-sm mb-2">{Object.entries(idxCounts).map(([k, v]) => `${k}: ${v}`).join(' · ')}</p>
+            <ul className="text-sm space-y-1">{Object.entries(idx.results).filter(([, r]) => r.code).slice(0, 25).map(([u, r]) => <li key={u}><b>{r.code}</b> · {u.replace(/^https?:\/\/[^/]+/, '')} · seen {r.consecutive}x</li>)}</ul>
+          </>
+        )}
+      </section>
+
+      <section>
+        <h2 className="text-xl font-medium mb-2">Code-level issues: AI diagnosis (needs review)</h2>
+        {recs.length === 0 ? <p className="text-sm text-gray-500">None.</p> : (
+          <ul className="text-sm space-y-2">{recs.slice().reverse().map((r, i) => <li key={i}><b>{r.issue.code}</b> · {r.issue.url} · risk {r.risk}<br />{r.rootCause}<br /><i>Fix: {r.proposedFix}</i></li>)}</ul>
+        )}
+      </section>
+
+      <section>
         <h2 className="text-xl font-medium mb-2">Search opportunities</h2>
         {(opps ?? []).length === 0 ? <p className="text-sm text-gray-500">Run the weekly job to populate.</p> : (
           <ul className="text-sm space-y-1">{(opps ?? []).slice(0, 15).map((o, i) => <li key={i}><b>{o.type}</b> · {o.target} · {o.detail} · est. +{o.estimatedClicks} clicks · {o.confidence} confidence</li>)}</ul>
@@ -68,7 +89,7 @@ export default async function AdminAiSeo() {
 
       <section>
         <h2 className="text-xl font-medium mb-2">Published by the agent</h2>
-        <ul className="text-sm space-y-1">{articles.slice().reverse().map((a) => <li key={a.slug}>{a.ts.slice(0, 10)} · <a className="underline" href={a.url}>{a.slug}</a> · {a.words} words</li>)}</ul>
+        <ul className="text-sm space-y-1">{articles.slice().reverse().map((a) => <li key={a.slug}>{a.ts.slice(0, 10)} · <a className="underline" href={a.url}>{a.slug}</a> · {a.words} words{a.kind === 'programmatic' ? ' · programmatic' : ''}</li>)}</ul>
       </section>
 
       <section>

@@ -15,7 +15,8 @@ import { createPost, uploadMedia, type WpCreds } from './wp-publisher.ts';
 import { googleCredsFromEnv } from '../google/auth.ts';
 import { fetchRetry } from '../net.ts';
 import { measureUniqueness, isUniqueEnough } from './uniqueness.ts';
-import { nextCandidate, withinCaps } from './programmatic.ts';
+import { nextCandidate, withinCaps, type Candidate } from './programmatic.ts';
+import { updateHubIndex, type SpokeRef } from './hubs.ts';
 import { daysAgo, query } from '../google/search-console.ts';
 
 export interface PipelineOptions {
@@ -119,6 +120,7 @@ export async function runContentPipeline(o: PipelineOptions): Promise<PipelineRe
   }
 
   let plan;
+  let candidate: Candidate | undefined;
   if (programmatic) {
     const history = await store.list<{ ts: string; kind?: string; slug: string }>('content_articles');
     const caps = withinCaps(history);
@@ -126,16 +128,22 @@ export async function runContentPipeline(o: PipelineOptions): Promise<PipelineRe
     const cand = nextCandidate({ existing, queries: ctx.queries, programmaticSlugs: history.filter((h) => h.kind === 'programmatic').map((h) => h.slug) });
     if (!cand) return { status: 'skipped', reason: 'no programmatic candidate left within per-city caps' };
     plan = cand.plan;
+    candidate = cand;
   } else {
     plan = await chooseTopic(ctx);
     if (plan.skip) return { status: 'skipped', reason: plan.reason ?? 'no worthwhile topic today' };
     if (isDuplicateTopic(plan, ctx)) return { status: 'skipped', reason: `topic "${plan.topic}" overlaps existing content` };
   }
 
+  // Sibling programmatic pages legitimately share title words (e.g. "Udaipur Wedding in <Month>"); body uniqueness guards them instead.
+  const memory = await store.list<{ slug: string; kind?: string }>('content_articles');
+  const progSlugs = new Set(memory.filter((m) => m.kind === 'programmatic').map((m) => m.slug));
+  const ownerFacts = await loadOwnerFacts(o.creds, f);
   const gateCtx = {
     allowedInternalPaths: new Set(links.map((l) => l.path)),
-    existingTitles: existing.map((e) => e.title),
+    existingTitles: existing.filter((e) => !progSlugs.has(e.slug)).map((e) => e.title),
     siteOrigin,
+    ...(candidate ? { requiredLinks: candidate.family === 'hub' ? [] : [`/${candidate.hubSlug}/`], minWords: candidate.family === 'hub' ? 1600 : undefined } : {}),
   };
 
   let article: ArticleDraft | undefined;
@@ -144,7 +152,7 @@ export async function runContentPipeline(o: PipelineOptions): Promise<PipelineRe
   let corpus: { id: string; html: string }[] = [];
   if (programmatic) corpus = await loadBodies(o.creds, f);
   for (let attempt = 0; attempt < 2; attempt++) {
-    article = await writeArticle(plan, links, feedback);
+    article = await writeArticle(plan, links, feedback, undefined, { ownerFacts, hubSlug: candidate?.hubSlug, isHub: candidate?.family === 'hub' });
     article.slug = programmatic ? plan.slug : article.slug || plan.slug;
     gate = evaluateArticle(article, gateCtx);
     if (gate.pass && programmatic) {
@@ -179,7 +187,7 @@ export async function runContentPipeline(o: PipelineOptions): Promise<PipelineRe
     return { status: 'dry-run', slug: article.slug, words: gate.words, dir, warnings: gate.warnings };
   }
 
-  return publishPrepared(o, store, plan, article, gate, generated);
+  return publishPrepared(o, store, plan, article, gate, generated, candidate ? { family: candidate.family, hubSlug: candidate.hubSlug } : undefined);
 }
 
 export interface PreparedImage {
@@ -196,6 +204,7 @@ export async function publishPrepared(
   article: ArticleDraft,
   gate: { words: number; warnings: string[] },
   generated: PreparedImage[],
+  cluster?: { family: string; hubSlug: string },
 ): Promise<PipelineResult> {
   const f = o.fetchImpl ?? fetch;
   const siteOrigin = o.siteUrl.replace(/\/$/, '');
@@ -230,10 +239,36 @@ export async function publishPrepared(
     await f(`${siteOrigin}/api/revalidate/`, { method: 'POST', headers: { Authorization: `Bearer ${secret}`, 'Content-Type': 'application/json' }, body: JSON.stringify({ slug: article.slug }) }).catch(() => undefined);
   }
 
-  await store.append('content_articles', { ts: new Date().toISOString(), topic: plan.topic, primaryKeyword: plan.primaryKeyword, slug: article.slug, wpId: post.id, url: post.link, words: gate.words, images: media.length, status: post.status, kind: o.mode === 'programmatic' ? 'programmatic' : 'daily' });
+  await store.append('content_articles', { ts: new Date().toISOString(), topic: plan.topic, primaryKeyword: plan.primaryKeyword, slug: article.slug, wpId: post.id, url: post.link, words: gate.words, images: media.length, status: post.status, kind: o.mode === 'programmatic' ? 'programmatic' : 'daily', title: article.title, family: cluster?.family, hubSlug: cluster?.hubSlug });
+
+  // Keep the pillar page's index of detailed guides current (deterministic, no AI cost).
+  if (cluster) {
+    const all = await store.list<{ title: string; slug: string; family?: string; hubSlug?: string }>('content_articles');
+    const hubs = new Set([cluster.hubSlug]);
+    for (const hub of hubs) {
+      const spokes: SpokeRef[] = all.filter((a) => a.hubSlug === hub && a.family && a.family !== 'hub').map((a) => ({ title: a.title, url: `/${a.slug}/`, family: a.family! }));
+      await updateHubIndex(o.creds, hub, spokes, f).catch(() => false);
+    }
+  }
   await logAction(store, { agent: 'content-writer', task: 'publish-article', reason: plan.whyNeeded, target: post.link, after: { words: gate.words, images: media.length }, risk: 2, tests: { gate: 'passed', warnings: gate.warnings }, result: `published wp#${post.id}` });
   return { status: 'published', id: post.id, link: post.link, slug: article.slug, words: gate.words, images: media.length };
 }
 
 
 export { runAi };
+
+/** Facts the business owner types into the private WordPress post "agent-facts" (one per line). Real first-hand experience the writer may use. */
+export async function loadOwnerFacts(c: WpCreds, f: typeof fetch): Promise<string[]> {
+  try {
+    const r = await fetchRetry(f, `${c.url}/wp-json/wp/v2/posts?slug=agent-facts&status=private&context=edit&_fields=content`, { headers: { Authorization: basicAuth(c) } });
+    const [p] = ((await r.json()) as { content: { raw: string } }[]) ?? [];
+    return (p?.content.raw ?? '')
+      .replace(/<[^>]+>/g, '\n')
+      .split('\n')
+      .map((l) => l.replace(/^[-*\u2022]\s*/, '').trim())
+      .filter((l) => l.length > 10 && !l.startsWith('#'))
+      .slice(0, 60);
+  } catch {
+    return [];
+  }
+}

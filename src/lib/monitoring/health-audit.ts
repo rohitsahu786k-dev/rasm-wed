@@ -193,8 +193,12 @@ export async function auditSite(opts: AuditOptions): Promise<AuditReport> {
   let urls: string[] = [];
   try {
     const r = await get(`${base}/sitemap.xml`);
-    if (!r.ok) issues.push({ severity: 'HIGH', code: 'sitemap-missing', url: `${base}/sitemap.xml`, message: `sitemap.xml HTTP ${r.status}` });
-    else urls = sitemapUrls(await r.text());
+    if (r.status >= 300 && r.status < 400) urls = await fetchAllSitemapUrls(`${base}/sitemap.xml`, f); // e.g. WordPress: /sitemap.xml -> /sitemap_index.xml
+    else if (!r.ok) issues.push({ severity: 'HIGH', code: 'sitemap-missing', url: `${base}/sitemap.xml`, message: `sitemap.xml HTTP ${r.status}` });
+    else {
+      const text = await r.text();
+      urls = /<sitemapindex/i.test(text) ? await fetchAllSitemapUrls(`${base}/sitemap.xml`, f) : sitemapUrls(text);
+    }
   } catch (e) {
     issues.push({ severity: 'HIGH', code: 'sitemap-error', url: `${base}/sitemap.xml`, message: (e as Error).message });
   }
@@ -247,4 +251,13 @@ function finish(baseUrl: string, pages: PageFacts[], issues: Issue[]): AuditRepo
   const counts: Record<Severity, number> = { CRITICAL: 0, HIGH: 0, MEDIUM: 0, LOW: 0, INFO: 0 };
   for (const i of issues) counts[i.severity]++;
   return { ts: new Date().toISOString(), baseUrl, pagesCrawled: pages.length, score: scoreFor(issues), counts, issues };
+}
+
+/** Follows sitemap indexes (WordPress/Rank Math) up to two levels deep and returns page URLs only. */
+export async function fetchAllSitemapUrls(url: string, f: typeof fetch = fetch, depth = 0): Promise<string[]> {
+  const xml = await f(url, { redirect: 'follow', signal: AbortSignal.timeout(20_000) }).then((r) => (r.ok ? r.text() : '')).catch(() => '');
+  const locs = sitemapUrls(xml);
+  if (!/<sitemapindex/i.test(xml) || depth >= 2) return locs;
+  const nested = await Promise.all(locs.map((l) => fetchAllSitemapUrls(l, f, depth + 1)));
+  return [...new Set(nested.flat())];
 }
