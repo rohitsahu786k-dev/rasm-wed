@@ -3,6 +3,7 @@ import type { Metadata } from 'next';
 import { notFound } from 'next/navigation';
 import { buildMetadata, clip } from '@/lib/metadata';
 import { getDestinations, getPage, getPages, getPost, getPosts, getRankMathMeta, getServices } from '@/lib/wp';
+import { NEARBY, cityKeyFromSlug } from '@/lib/city';
 import { getGalleryMedia } from '@/lib/media';
 import { blogPostingSchema } from '@/lib/schema';
 import { NOINDEX_SLUGS, STATIC_PAGES } from '@/data/routes';
@@ -119,6 +120,10 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
       );
     }
     case 'page':
-      return slug.startsWith('wedding-planner-in-') ? <CityLanding page={r.page} /> : <PageView slug={slug} wpPage={r.page} />;
+      if (slug.startsWith('wedding-planner-in-')) {
+        const [nearby, posts, services] = await Promise.all([getDestinations(NEARBY[cityKeyFromSlug(slug)] ?? []), getPosts(), getServices()]);
+        return <CityLanding page={r.page} nearby={nearby} posts={posts} services={services.map((s) => s.title)} />;
+      }
+      return <PageView slug={slug} wpPage={r.page} />;
   }
 }

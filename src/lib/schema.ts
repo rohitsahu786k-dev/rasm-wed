@@ -65,3 +65,15 @@ export const blogPostingSchema = (p: {
   author: { '@type': 'Organization', name: SITE.name, url: `${SITE_URL}/` },
   publisher: { '@id': `${SITE_URL}/#organization` },
 });
+
+export const serviceSchema = (s: { name: string; description: string; area: string; path: string }): Json => ({
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  '@id': `${absoluteUrl(s.path)}#service`,
+  name: s.name,
+  serviceType: 'Wedding planning',
+  description: s.description,
+  url: absoluteUrl(s.path),
+  provider: { '@id': `${SITE_URL}/#organization` },
+  areaServed: { '@type': 'Place', name: s.area },
+});

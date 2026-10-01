@@ -1,35 +1,64 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, Crown, MapPin } from 'lucide-react';
+import { ArrowRight, Crown } from 'lucide-react';
 import { InquiryAnimatedButton } from '@/components/InquiryClient';
-import type { WPPage } from '@/lib/wp';
+import type { WPPage, WPPost } from '@/lib/wp';
+import type { Destination } from '@/types';
 import { WpBody, cleanBlocks } from '@/components/WpBody';
+import { CityFacts, FaqAccordion, HowWeHelp, NearbyDestinations, RelatedGuides } from '@/components/CityParts';
+import { JsonLd } from '@/components/JsonLd';
 import { parseElementor } from '@/lib/elementor';
+import { cityNameFromSlug, getCityProfile, parseFaqs, relatedPosts } from '@/lib/city';
+import { breadcrumbSchema, faqSchema, serviceSchema } from '@/lib/schema';
+
+const clip = (s: string, n: number) => (s.length > n ? `${s.slice(0, n - 1).replace(/\s+\S*$/, '')}…` : s);
 
 /**
- * Landing page for a city whose content lives in WordPress. Renders clean semantic HTML in the site's design:
- * either WordPress body HTML (AI/editor-authored) or, for legacy Elementor pages, blocks extracted from it.
- * The featured image is shown uncropped at its natural ratio.
+ * Complete destination landing page. Body text comes from WordPress (editor- or AI-authored). Around it:
+ * breadcrumbs, quick facts, how Rasm helps (services + package price), an FAQ accordion (with FAQPage schema),
+ * guides about the city, and nearby destinations, so every city page is a full, internally linked page.
  */
-export function CityLanding({ page }: { page: WPPage }) {
-  // City from the URL slug (titles vary: "Best Wedding Planner In Udaipur").
-  const city = page.slug.replace(/^wedding-planner-in-/, '').split('-').map((w) => w[0].toUpperCase() + w.slice(1)).join(' ');
-  // WordPress auto-excerpts of Elementor pages are garbage (counters, headings); use the first real paragraph instead.
-  const lead = /elementor/.test(page.content)
+export function CityLanding({ page, nearby, posts, services }: { page: WPPage; nearby: Destination[]; posts: WPPost[]; services: string[] }) {
+  const city = cityNameFromSlug(page.slug);
+  const profile = getCityProfile(page.slug);
+  const isElementor = /elementor/.test(page.content);
+
+  // FAQs: the page's own FAQ section when it has one (AI pages), otherwise the reviewed profile FAQs.
+  const parsed = isElementor ? { body: page.content, faqs: [], tail: '' } : parseFaqs(page.content);
+  const faqs = parsed.faqs.length ? parsed.faqs : (profile?.faqs ?? []);
+
+  const lead = isElementor
     ? (cleanBlocks(parseElementor(page.content)).find((b) => b.type === 'p' && b.text.length > 80) as { text: string } | undefined)?.text
-    : page.excerpt;
-  const leadShort = lead && lead.length > 220 ? `${lead.slice(0, 217).replace(/s+S*$/, '')}…` : lead;
+    : page.excerpt || profile?.tagline;
+  const path = `/${page.slug}/`;
 
   return (
     <div className="bg-white min-h-screen text-charcoal-900">
-      <section className="pt-32 pb-12 bg-[#FDFCFA] border-b border-gold/20">
+      <JsonLd
+        data={[
+          breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'Wedding Destinations', path: '/wedding-destination/' }, { name: `Wedding in ${city}`, path }]),
+          serviceSchema({ name: `Wedding planning in ${city}`, description: clip(lead ?? `Wedding planning services in ${city} by Rasm Weddings & Events.`, 300), area: city, path }),
+          ...(faqs.length ? [faqSchema(faqs.map((f) => ({ q: f.q, a: f.a })))] : []),
+        ]}
+      />
+
+      <section className="pt-28 pb-12 bg-[#FDFCFA] border-b border-gold/20">
         <div className="rasm-container max-w-4xl text-center">
+          <nav aria-label="Breadcrumb" className="text-xs text-charcoal-500 mb-6">
+            <ol className="flex flex-wrap justify-center items-center gap-1.5">
+              <li><Link href="/" className="hover:text-charcoal-900">Home</Link></li>
+              <li aria-hidden="true">/</li>
+              <li><Link href="/wedding-destination/" className="hover:text-charcoal-900">Wedding Destinations</Link></li>
+              <li aria-hidden="true">/</li>
+              <li aria-current="page" className="text-charcoal-700">{city}</li>
+            </ol>
+          </nav>
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-ivory-200 border border-gold/40 text-gold-dark text-xs uppercase tracking-[0.28em] font-medium mb-6">
             <Crown className="w-3.5 h-3.5" />
             <span>Destination Weddings</span>
           </div>
           <h1 className="font-manrope font-medium text-3xl sm:text-5xl md:text-6xl text-charcoal-900 tracking-tight leading-[1.2] mb-5">{page.title}</h1>
-          {leadShort && <p className="text-charcoal-600 text-base sm:text-lg font-light leading-relaxed max-w-2xl mx-auto">{leadShort}</p>}
+          {lead && <p className="text-charcoal-600 text-base sm:text-lg font-light leading-relaxed max-w-2xl mx-auto">{clip(lead, 220)}</p>}
           <div className="mt-8 flex justify-center">
             <InquiryAnimatedButton variant="gold-shimmer" size="lg" context={`${city} wedding`} icon={<ArrowRight className="w-4 h-4" />}>
               Plan Your {city} Wedding
@@ -38,8 +67,10 @@ export function CityLanding({ page }: { page: WPPage }) {
         </div>
       </section>
 
+      {profile && <CityFacts city={city} facts={profile.facts} />}
+
       {page.image && (
-        <div className="rasm-container max-w-5xl -mt-2 pt-10">
+        <div className="rasm-container max-w-5xl pt-10">
           <Image
             src={page.image}
             alt={page.imageAlt ?? `Wedding setting in ${city}`}
@@ -53,26 +84,14 @@ export function CityLanding({ page }: { page: WPPage }) {
       )}
 
       <article className="rasm-container max-w-3xl py-14">
-        <WpBody content={page.content} />
+        <WpBody content={parsed.body} />
+        {parsed.tail && <div className="wp-content mt-6" dangerouslySetInnerHTML={{ __html: parsed.tail }} />}
       </article>
 
-      <section className="py-16 bg-gradient-to-b from-[#FAF8F5] to-white text-center border-t border-gold/15">
-        <div className="rasm-container max-w-3xl space-y-6">
-          <div className="inline-flex items-center gap-2 text-gold-dark text-xs uppercase tracking-[0.3em] font-medium">
-            <MapPin className="w-4 h-4" />
-            <span>Talk to our Udaipur team</span>
-          </div>
-          <h2 className="font-manrope font-medium text-2xl sm:text-4xl tracking-tight">Ready to plan your {city} celebration?</h2>
-          <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <InquiryAnimatedButton variant="gold-shimmer" size="lg" context={`${city} wedding`} icon={<ArrowRight className="w-4 h-4" />}>
-              Request a Private Consultation
-            </InquiryAnimatedButton>
-            <Link href="/wedding-destination/" className="inline-flex items-center justify-center px-8 py-4 rounded-full border border-gold/40 text-sm tracking-[0.18em] uppercase text-charcoal-800 hover:bg-ivory-200 transition-colors">
-              Explore Destinations
-            </Link>
-          </div>
-        </div>
-      </section>
+      <HowWeHelp city={city} services={services} />
+      <FaqAccordion city={city} faqs={faqs} />
+      <RelatedGuides city={city} posts={relatedPosts(posts, city)} />
+      <NearbyDestinations items={nearby} />
     </div>
   );
 }

@@ -464,3 +464,30 @@ test('ACF homepage parsing: valid slides used, invalid ignored, defaults when em
   assert.equal(safeHref('https://wa.me/918094875504'), 'https://wa.me/918094875504');
   assert.equal(toImage({ url: '/relative.jpg', width: 1, height: 1 }), undefined);
 });
+
+import { parseFaqs, NEARBY, getCityProfile, relatedPosts, cityNameFromSlug } from '../src/lib/city.ts';
+import profilesData from '../src/data/city-profiles.json' with { type: 'json' };
+
+test('city pages: FAQ extraction, profiles and nearby links are complete and consistent', () => {
+  const html = '<h2>Why Pushkar</h2><p>Body.</p><h2>Frequently asked questions</h2><h3>When to go?</h3><p>October to March is comfortable.</p><h3>How to travel?</h3><p>Via Ajmer.</p><p>Talk to us at <a href="/contact-us/">contact</a>.</p><h2>Other</h2><p>More.</p>';
+  const r = parseFaqs(html);
+  assert.equal(r.faqs.length, 2);
+  assert.equal(r.faqs[0].q, 'When to go?');
+  assert.ok(!r.body.includes('Frequently'), 'FAQ section removed from body');
+  assert.ok(r.body.includes('<h2>Other</h2>'), 'later sections kept');
+  assert.ok(r.tail.includes('contact-us'), 'closing CTA kept');
+  assert.equal(parseFaqs('<h2>No faq here</h2><p>x</p>').faqs.length, 0);
+
+  const keys = Object.keys(NEARBY);
+  assert.equal(keys.length, 14);
+  for (const [k, list] of Object.entries(NEARBY)) {
+    assert.ok(list.length >= 3 && !list.includes(k), `${k}: 3+ nearby, not itself`);
+    for (const n of list) assert.ok(keys.includes(n), `${k} -> ${n} exists`);
+    const p = (profilesData as Record<string, { faqs: unknown[]; facts: { settings: string[] } }>)[k];
+    assert.ok(p && p.faqs.length >= 5 && p.facts.settings.length >= 3, `${k} profile complete`);
+  }
+  assert.equal(getCityProfile('wedding-planner-in-mount-abu')?.slug, 'mount-abu');
+  assert.equal(cityNameFromSlug('wedding-planner-in-mount-abu'), 'Mount Abu');
+  const posts = [{ slug: 'a', title: 'Goa beach wedding' }, { slug: 'destination-wedding-in-mount-abu', title: 'Hill wedding' }, { slug: 'x', title: 'Other' }];
+  assert.deepEqual(relatedPosts(posts, 'Mount Abu').map((p) => p.slug), ['destination-wedding-in-mount-abu']);
+});
