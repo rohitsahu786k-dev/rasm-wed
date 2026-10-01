@@ -35,6 +35,8 @@ export interface WPPage {
 }
 
 export interface MediaItem {
+  width?: number;
+  height?: number;
   id: string;
   title: string;
   sourceUrl: string;

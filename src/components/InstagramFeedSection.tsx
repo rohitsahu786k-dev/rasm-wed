@@ -1,28 +1,45 @@
-import React, { useEffect } from 'react';
+'use client';
+
+import React, { useEffect, useRef, useState } from 'react';
+import Script from 'next/script';
 import { Sparkles } from 'lucide-react';
 
+type InstgrmWindow = Window & { instgrm?: { Embeds: { process: () => void } } };
+const processEmbeds = () => (window as InstgrmWindow).instgrm?.Embeds.process();
+
 export const InstagramFeedSection: React.FC = () => {
+  // Third-party embed is only fetched when the section is about to scroll into view.
+  const wrapRef = useRef<HTMLElement>(null);
+  const [load, setLoad] = useState(false);
+
   useEffect(() => {
-    // Dynamically load Instagram embed script if not present
-    const existingScript = document.getElementById('instagram-embed-script');
-    if (!existingScript) {
-      const script = document.createElement('script');
-      script.id = 'instagram-embed-script';
-      script.src = '//platform.instagram.com/en_US/embeds.js';
-      script.async = true;
-      script.onload = () => {
-        if ((window as any).instgrm) {
-          (window as any).instgrm.Embeds.process();
+    const el = wrapRef.current;
+    if (!el || load) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setLoad(true);
+          io.disconnect();
         }
-      };
-      document.body.appendChild(script);
-    } else if ((window as any).instgrm) {
-      (window as any).instgrm.Embeds.process();
-    }
-  }, []);
+      },
+      { rootMargin: '600px 0px' },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, [load]);
+
+  // The embed script injects an untitled iframe; give it an accessible name.
+  useEffect(() => {
+    if (!load || !wrapRef.current) return;
+    const root = wrapRef.current;
+    const label = () => root.querySelectorAll('iframe:not([title])').forEach((f) => f.setAttribute('title', 'Instagram feed of Rasm Weddings'));
+    const mo = new MutationObserver(label);
+    mo.observe(root, { childList: true, subtree: true });
+    return () => mo.disconnect();
+  }, [load]);
 
   return (
-    <section className="py-20 sm:py-24 bg-gradient-to-b from-[#FFFFFF] via-[#FDFBF7] to-[#FFFFFF] relative z-10 overflow-hidden">
+    <section ref={wrapRef} className="py-20 sm:py-24 bg-gradient-to-b from-[#FFFFFF] via-[#FDFBF7] to-[#FFFFFF] relative z-10 overflow-hidden">
       {/* Remove unwanted border behind instagram, keep smooth ambient glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-gradient-to-tr from-gold/10 via-amber-100/15 to-transparent blur-3xl pointer-events-none rounded-full" />
 
@@ -60,7 +77,8 @@ export const InstagramFeedSection: React.FC = () => {
         </div>
 
         {/* Instagram Embed Outer Frame (100% width, 0 border, responsive padding) */}
-        <div className="w-full flex justify-center items-center">
+        {load && <Script src="https://www.instagram.com/embed.js" strategy="afterInteractive" onReady={processEmbeds} />}
+        <div className="w-full flex justify-center items-center min-h-[560px]">
           <div className="w-full bg-white/95 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-1 sm:p-6 md:p-8 shadow-[0_8px_30px_rgba(0,0,0,0.04)] border-0 flex justify-center items-center overflow-hidden">
             <div className="w-full flex justify-center">
               <blockquote

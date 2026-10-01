@@ -1,0 +1,206 @@
+[
+  {
+    "key": "group_rasm_homepage",
+    "title": "Rasm Homepage & Site Details",
+    "fields": [
+      {
+        "key": "field_rasm_tab_hero",
+        "label": "Hero Banner Carousel",
+        "name": "",
+        "type": "tab",
+        "placement": "top",
+        "endpoint": 0
+      },
+      {
+        "key": "field_rasm_hero_slides",
+        "label": "Hero Slides",
+        "name": "hero_slides",
+        "type": "repeater",
+        "instructions": "Add 1 to 6 slides. The first slide loads first and carries the page heading (H1). Recommended sizes: Desktop 1920 x 900 px, Mobile 900 x 1200 px (portrait). Use photos WITHOUT text inside the image; put text in the fields below.",
+        "required": 0,
+        "layout": "block",
+        "min": 0,
+        "max": 6,
+        "button_label": "Add Slide",
+        "collapsed": "field_rasm_slide_heading",
+        "sub_fields": [
+          {
+            "key": "field_rasm_slide_desktop",
+            "label": "Desktop Banner Image",
+            "name": "desktop_image",
+            "type": "image",
+            "instructions": "Landscape, about 1920 x 900 px (keep the subject in the centre).",
+            "required": 1,
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "parent_repeater": "field_rasm_hero_slides"
+          },
+          {
+            "key": "field_rasm_slide_mobile",
+            "label": "Mobile Banner Image",
+            "name": "mobile_image",
+            "type": "image",
+            "instructions": "Portrait, about 900 x 1200 px. If empty, the desktop image is used on mobile.",
+            "required": 0,
+            "return_format": "array",
+            "preview_size": "medium",
+            "library": "all",
+            "parent_repeater": "field_rasm_hero_slides"
+          },
+          {
+            "key": "field_rasm_slide_alt",
+            "label": "Image Description (alt text)",
+            "name": "alt_text",
+            "type": "text",
+            "instructions": "Describe the photo in one plain sentence, e.g. 'Wedding mandap overlooking Lake Pichola at sunset'.",
+            "required": 0,
+            "parent_repeater": "field_rasm_hero_slides"
+          },
+          {
+            "key": "field_rasm_slide_eyebrow",
+            "label": "Small Text Above Heading",
+            "name": "eyebrow",
+            "type": "text",
+            "required": 0,
+            "parent_repeater": "field_rasm_hero_slides"
+          },
+          {
+            "key": "field_rasm_slide_heading",
+            "label": "Heading",
+            "name": "heading",
+            "type": "text",
+            "required": 1,
+            "parent_repeater": "field_rasm_hero_slides"
+          },
+          {
+            "key": "field_rasm_slide_sub",
+            "label": "Sub Heading",
+            "name": "subheading",
+            "type": "textarea",
+            "rows": 2,
+            "required": 0,
+            "parent_repeater": "field_rasm_hero_slides"
+          },
+          {
+            "key": "field_rasm_slide_btn_label",
+            "label": "Button Text",
+            "name": "button_label",
+            "type": "text",
+            "required": 0,
+            "parent_repeater": "field_rasm_hero_slides"
+          },
+          {
+            "key": "field_rasm_slide_btn_link",
+            "label": "Button Link",
+            "name": "button_link",
+            "type": "link",
+            "return_format": "array",
+            "required": 0,
+            "parent_repeater": "field_rasm_hero_slides"
+          },
+          {
+            "key": "field_rasm_slide_align",
+            "label": "Text Position",
+            "name": "text_align",
+            "type": "select",
+            "choices": { "left": "Left", "center": "Centre", "right": "Right" },
+            "default_value": "left",
+            "return_format": "value",
+            "allow_null": 0,
+            "parent_repeater": "field_rasm_hero_slides"
+          },
+          {
+            "key": "field_rasm_slide_overlay",
+            "label": "Dark Overlay Strength (0 to 80)",
+            "name": "overlay",
+            "type": "number",
+            "instructions": "Makes text readable on bright photos. 35 is a good start.",
+            "default_value": 35,
+            "min": 0,
+            "max": 80,
+            "step": 5,
+            "parent_repeater": "field_rasm_hero_slides"
+          }
+        ]
+      },
+      {
+        "key": "field_rasm_hero_autoplay",
+        "label": "Seconds Per Slide",
+        "name": "hero_autoplay_seconds",
+        "type": "number",
+        "instructions": "0 turns auto-play off.",
+        "default_value": 6,
+        "min": 0,
+        "max": 20
+      },
+      {
+        "key": "field_rasm_tab_stats",
+        "label": "Trust Bar",
+        "name": "",
+        "type": "tab",
+        "placement": "top",
+        "endpoint": 0
+      },
+      {
+        "key": "field_rasm_home_stats",
+        "label": "Trust Bar Numbers",
+        "name": "home_stats",
+        "type": "repeater",
+        "instructions": "Shown under the banner. Only publish facts you can stand behind.",
+        "layout": "table",
+        "min": 0,
+        "max": 6,
+        "button_label": "Add Number",
+        "sub_fields": [
+          { "key": "field_rasm_stat_value", "label": "Number", "name": "value", "type": "text", "parent_repeater": "field_rasm_home_stats" },
+          { "key": "field_rasm_stat_label", "label": "Label", "name": "label", "type": "text", "parent_repeater": "field_rasm_home_stats" }
+        ]
+      },
+      {
+        "key": "field_rasm_tab_intro",
+        "label": "Welcome Section",
+        "name": "",
+        "type": "tab",
+        "placement": "top",
+        "endpoint": 0
+      },
+      { "key": "field_rasm_intro_eyebrow", "label": "Small Heading", "name": "intro_eyebrow", "type": "text" },
+      { "key": "field_rasm_intro_heading", "label": "Heading", "name": "intro_heading", "type": "text" },
+      { "key": "field_rasm_intro_text", "label": "Text", "name": "intro_text", "type": "textarea", "rows": 6, "new_lines": "br" },
+      { "key": "field_rasm_intro_image", "label": "Image", "name": "intro_image", "type": "image", "return_format": "array", "preview_size": "medium", "library": "all" },
+      { "key": "field_rasm_intro_btn_label", "label": "Button Text", "name": "intro_button_label", "type": "text" },
+      { "key": "field_rasm_intro_btn_link", "label": "Button Link", "name": "intro_button_link", "type": "link", "return_format": "array" },
+      {
+        "key": "field_rasm_tab_site",
+        "label": "Contact & Social",
+        "name": "",
+        "type": "tab",
+        "placement": "top",
+        "endpoint": 0
+      },
+      { "key": "field_rasm_phone", "label": "Phone Number", "name": "rasm_phone_number", "type": "text", "instructions": "Shown in the header, footer and contact page. Include country code, e.g. +91 80948 75504." },
+      { "key": "field_rasm_phone2", "label": "Second Phone Number", "name": "rasm_phone_number_2", "type": "text" },
+      { "key": "field_rasm_whatsapp", "label": "WhatsApp Number (digits only, with country code)", "name": "rasm_whatsapp_number", "type": "text", "instructions": "Example: 918094875504" },
+      { "key": "field_rasm_email", "label": "Email", "name": "rasm_email_address", "type": "email" },
+      { "key": "field_rasm_address", "label": "Office Address", "name": "rasm_office_address", "type": "textarea", "rows": 3 },
+      { "key": "field_rasm_instagram", "label": "Instagram URL", "name": "rasm_instagram_url", "type": "url" },
+      { "key": "field_rasm_facebook", "label": "Facebook URL", "name": "rasm_facebook_url", "type": "url" },
+      { "key": "field_rasm_youtube", "label": "YouTube URL", "name": "rasm_youtube_url", "type": "url" }
+    ],
+    "location": [
+      [
+        { "param": "page_type", "operator": "==", "value": "front_page" }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Controls the Next.js homepage banner carousel, trust bar, welcome section and contact details.",
+    "show_in_rest": 1
+  }
+]

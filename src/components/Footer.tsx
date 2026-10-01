@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
-import { SiteSettings } from '../types';
-import { MessageCircle, Mail, MapPin, Heart, ArrowUp, Sparkles, Send, CheckCircle2, ShieldCheck, Crown } from 'lucide-react';
-
-interface FooterProps {
-  settings: SiteSettings;
-  onNavigate?: (path: string) => void;
-}
+import Image from 'next/image';
+import Link from 'next/link';
+import React from 'react';
+import type { FullSettings } from '@/components/SiteSettingsProvider';
+import { NewsletterForm, BackToTop } from '@/components/FooterClient';
+import { MessageCircle, Mail, MapPin, Heart, Sparkles, ShieldCheck, Crown } from 'lucide-react';
 
 const footerLinks = {
   destinations: [
@@ -16,6 +14,14 @@ const footerLinks = {
     { label: 'Rishikesh Ganga Retreats', href: '/why-rishikesh-is-new-destination-wedding-hotspot' },
     { label: 'Kumbhalgarh & Aravali', href: '/wedding-planner-in-kumbhalgarh' },
     { label: 'Thailand Royal Villas', href: '/wedding-planner-in-thailand' },
+    { label: 'Mount Abu Hill Station', href: '/wedding-planner-in-mount-abu' },
+    { label: 'Nathdwara Temple Town', href: '/wedding-planner-in-nathdwara' },
+    { label: 'Pushkar Sacred Lake', href: '/wedding-planner-in-pushkar' },
+    { label: 'Kota Chambal Palaces', href: '/wedding-planner-in-kota' },
+    { label: 'Jaisalmer Desert Camps', href: '/wedding-planner-in-jaisalmer' },
+    { label: 'Ranakpur Jain Temples', href: '/wedding-planner-in-ranakpur' },
+    { label: 'Ahmedabad Weddings', href: '/wedding-planner-in-ahmedabad' },
+    { label: 'Gandhinagar Weddings', href: '/wedding-planner-in-gandhinagar' },
   ],
   services: [
     { label: 'Palatial Mandap Architecture', href: '/traditional-decoration' },
@@ -44,49 +50,19 @@ const footerLinks = {
     { label: 'Contact Concierge Desk', href: '/contact-us' },
     { label: 'Privacy Policy', href: '/privacy-policy' },
     { label: 'Terms & Conditions', href: '/terms-and-conditions' },
+    { label: 'Refund Policy', href: '/refund-policy' },
+    { label: 'Shipping Policy', href: '/shipping-policy' },
   ],
 };
 
-export const Footer: React.FC<FooterProps> = ({ settings, onNavigate }) => {
-  const [email, setEmail] = useState('');
-  const [subscribed, setSubscribed] = useState(false);
-
-  const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
-
-  const handleLinkClick = (href: string) => {
-    if (href.startsWith('#')) {
-      const el = document.getElementById(href.slice(1));
-      if (el) el.scrollIntoView({ behavior: 'smooth' });
-      return;
-    }
-
-    if (onNavigate) {
-      onNavigate(href);
-    } else {
-      window.history.pushState({}, '', href);
-      window.dispatchEvent(new PopStateEvent('popstate'));
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-  };
-
-  const handleSubscribe = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (email.trim()) {
-      setSubscribed(true);
-      setTimeout(() => {
-        setEmail('');
-        setSubscribed(false);
-      }, 5000);
-    }
-  };
-
+export const Footer: React.FC<{ settings: FullSettings }> = ({ settings }) => {
   return (
     <footer className="relative bg-gradient-to-b from-[#FFFFFF] via-[#FDFBF7] to-[#F4EBDB] text-charcoal-800 overflow-hidden pt-16 pb-10 font-manrope font-normal border-t border-gold/30 select-none z-10">
       {/* Signature Watermark Stroke Typography in Subtle Gold */}
       <div className="absolute inset-x-0 bottom-4 flex justify-center items-end pointer-events-none z-0 overflow-hidden">
-        <h2 className="text-[12vw] sm:text-[14vw] font-manrope font-medium text-transparent [-webkit-text-stroke:1px_rgba(197,160,89,0.12)] leading-none select-none tracking-normal opacity-70 whitespace-nowrap">
+        <p aria-hidden="true" className="text-[12vw] sm:text-[14vw] font-manrope font-medium text-transparent [-webkit-text-stroke:1px_rgba(197,160,89,0.12)] leading-none select-none tracking-normal opacity-70 whitespace-nowrap">
           RASM WEDDINGS
-        </h2>
+        </p>
       </div>
 
       {/* Golden Ambient Glows */}
@@ -118,30 +94,7 @@ export const Footer: React.FC<FooterProps> = ({ settings, onNavigate }) => {
 
             {/* Right: Form & WhatsApp Trigger */}
             <div className="lg:col-span-5 space-y-4">
-              <form onSubmit={handleSubscribe} className="relative flex items-center">
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Enter your email address..."
-                  required
-                  className="w-full bg-white/90 border border-gold/40 rounded-full pl-5 pr-32 py-3.5 text-sm text-charcoal-900 placeholder-stone-400 focus:outline-none focus:border-[#C5A059] focus:ring-1 focus:ring-[#C5A059] shadow-xs tracking-normal"
-                />
-                <button
-                  type="submit"
-                  className="absolute right-1.5 px-5 py-2.5 rounded-full bg-gradient-to-r from-[#C5A059] via-[#E2C785] to-[#B38E3C] text-charcoal-950 text-xs font-medium uppercase tracking-normal hover:opacity-95 transition-opacity flex items-center gap-1.5 shadow-md"
-                >
-                  <span>Join</span>
-                  <Send className="w-3.5 h-3.5" />
-                </button>
-              </form>
-
-              {subscribed && (
-                <div className="flex items-center gap-2 text-xs text-emerald-700 font-medium">
-                  <CheckCircle2 className="w-4 h-4" />
-                  <span>Thank you! Your complimentary royal lookbook is on its way.</span>
-                </div>
-              )}
+              <NewsletterForm />
 
               <div className="flex items-center justify-between text-xs text-charcoal-500 pt-1 tracking-normal">
                 <span className="flex items-center gap-1.5">
@@ -167,14 +120,13 @@ export const Footer: React.FC<FooterProps> = ({ settings, onNavigate }) => {
           
           {/* Brand Info */}
           <div className="lg:col-span-1 space-y-5">
-            <button onClick={scrollToTop} className="inline-block group focus:outline-none">
-              <img
+            <Link href="/" className="inline-block group focus:outline-none" aria-label="Rasm Weddings Home">
+              <Image
                 src="/rasm-official-logo.png"
                 alt="Rasm Wedding & Events"
-                referrerPolicy="no-referrer"
                 className="h-12 w-auto object-contain drop-shadow-xs transition-transform duration-300 group-hover:scale-105"
-              />
-            </button>
+               width={1024} height={497} sizes="100px" />
+            </Link>
             <p className="text-charcoal-600 text-sm leading-relaxed font-normal tracking-normal">
               {settings.description || 'Premier Luxury Destination Wedding Architects in Udaipur & Rajasthan'}. Crafting royal palatial celebrations, Vedic mandaps, and timeless memories across India’s most iconic palaces.
             </p>
@@ -226,12 +178,11 @@ export const Footer: React.FC<FooterProps> = ({ settings, onNavigate }) => {
             <ul className="space-y-2.5 text-[14.5px]">
               {footerLinks.destinations.map((l) => (
                 <li key={l.label}>
-                  <button
-                    onClick={() => handleLinkClick(l.href)}
+                  <Link href={l.href}
                     className="text-charcoal-600 hover:text-charcoal-950 hover:underline transition-colors text-left leading-relaxed tracking-normal inline-block"
                   >
                     {l.label}
-                  </button>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -245,12 +196,11 @@ export const Footer: React.FC<FooterProps> = ({ settings, onNavigate }) => {
             <ul className="space-y-2.5 text-[14.5px]">
               {footerLinks.services.map((l) => (
                 <li key={l.label}>
-                  <button
-                    onClick={() => handleLinkClick(l.href)}
+                  <Link href={l.href}
                     className="text-charcoal-600 hover:text-charcoal-950 hover:underline transition-colors text-left leading-relaxed tracking-normal inline-block"
                   >
                     {l.label}
-                  </button>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -264,12 +214,11 @@ export const Footer: React.FC<FooterProps> = ({ settings, onNavigate }) => {
             <ul className="space-y-2.5 text-[14.5px]">
               {footerLinks.venues.map((l) => (
                 <li key={l.label}>
-                  <button
-                    onClick={() => handleLinkClick(l.href)}
+                  <Link href={l.href}
                     className="text-charcoal-600 hover:text-charcoal-950 hover:underline transition-colors text-left leading-relaxed tracking-normal inline-block"
                   >
                     {l.label}
-                  </button>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -283,12 +232,11 @@ export const Footer: React.FC<FooterProps> = ({ settings, onNavigate }) => {
             <ul className="space-y-2.5 text-[14.5px]">
               {footerLinks.company.map((l) => (
                 <li key={l.label}>
-                  <button
-                    onClick={() => handleLinkClick(l.href)}
+                  <Link href={l.href}
                     className="text-charcoal-600 hover:text-charcoal-950 hover:underline transition-colors text-left leading-relaxed tracking-normal inline-block"
                   >
                     {l.label}
-                  </button>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -322,14 +270,7 @@ export const Footer: React.FC<FooterProps> = ({ settings, onNavigate }) => {
             <span className="text-xs text-charcoal-500 font-normal">
               Udaipur · Rajasthan · Serving Worldwide
             </span>
-            <button
-              onClick={scrollToTop}
-              className="p-2.5 rounded-full border border-gold/40 bg-white/90 text-charcoal-800 hover:bg-gradient-to-r hover:from-[#C5A059] hover:via-[#E2C785] hover:to-[#B38E3C] hover:text-charcoal-950 transition-all shadow-xs"
-              aria-label="Scroll to top"
-              title="Return to top"
-            >
-              <ArrowUp className="w-4 h-4" />
-            </button>
+            <BackToTop />
           </div>
 
         </div>

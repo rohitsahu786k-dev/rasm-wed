@@ -1,0 +1,78 @@
+{
+  "_note": "Programmatic SEO strategy data. Every family pairs an approved entity with a genuinely different search need. Edit here (not in code) to add markets, communities or months.",
+  "hubs": [
+    {
+      "id": "destination",
+      "slug": "destination-weddings-in-india-guide",
+      "title": "Destination Weddings in India: The Complete Planning Guide",
+      "keyword": "destination wedding in india",
+      "angle": "Pillar guide for couples and families choosing and planning a destination wedding in India: how to choose a region, venue types, seasons, guest logistics, budgeting framework, working with a planner. Links out to the city pages and every detailed guide in the series."
+    },
+    {
+      "id": "nri",
+      "slug": "nri-wedding-in-india-guide",
+      "title": "Planning an Indian Wedding from Abroad: The Complete NRI Guide",
+      "keyword": "nri wedding in india",
+      "angle": "Pillar guide for NRI and overseas families planning a wedding in India while living abroad: timelines across time zones, remote decision-making, family and guest travel, vendor coordination, what a planner handles. Links to the country-specific guides."
+    },
+    {
+      "id": "rituals",
+      "slug": "indian-wedding-rituals-and-ceremonies-guide",
+      "title": "Indian Wedding Rituals and Ceremonies: A Complete Guide",
+      "keyword": "indian wedding rituals",
+      "angle": "Pillar guide explaining the main Indian wedding ceremonies (roka, haldi, mehendi, sangeet, baraat, pheras and others), their meaning, typical order and planning implications, noting that customs vary by community and family. Links to community-specific guides."
+    },
+    {
+      "id": "venues",
+      "slug": "palace-and-heritage-weddings-in-rajasthan-guide",
+      "title": "Palace and Heritage Weddings in Rajasthan: A Venue Planning Guide",
+      "keyword": "palace wedding in rajasthan",
+      "angle": "Pillar guide to choosing palace, fort and heritage venues in Rajasthan: what to check (capacity per function, weather backup, permissions, accommodation), differences between palace, fort, lakefront and resort settings. Named venues only as neutral starting points."
+    },
+    {
+      "id": "checklist",
+      "slug": "indian-destination-wedding-checklist-and-timeline",
+      "title": "Indian Destination Wedding Checklist and Planning Timeline",
+      "keyword": "destination wedding checklist india",
+      "angle": "Practical checklist and month-by-month timeline for an Indian destination wedding, from first decisions to the week of the wedding, with what to confirm at each stage."
+    }
+  ],
+  "markets": [
+    { "id": "usa", "name": "the United States", "short": "USA", "context": "Long-haul travel to India, large time-zone gap (roughly 9.5 to 13.5 hours), planning calls scheduled around US evenings/mornings, holiday windows such as Thanksgiving and winter break shaping wedding dates." },
+    { "id": "uk", "name": "the United Kingdom", "short": "UK", "context": "Direct and one-stop flights to Indian cities, a 4.5 to 5.5 hour time difference, school-holiday windows and Christmas/New Year travel, large multi-generational guest lists." },
+    { "id": "uae", "name": "the UAE and Gulf", "short": "UAE", "context": "Short flights to India, small time difference, weekend structure (Friday/Saturday) affecting travel, many families with strong ties to specific Indian regions." },
+    { "id": "canada", "name": "Canada", "short": "Canada", "context": "Long-haul travel, large time-zone gap, winter travel windows, large Punjabi and Gujarati communities." },
+    { "id": "australia", "name": "Australia", "short": "Australia", "context": "Long flights, a 4.5 to 5.5 hour time difference depending on region and daylight saving, planning around the Indian wedding season and southern-hemisphere holidays." },
+    { "id": "singapore", "name": "Singapore", "short": "Singapore", "context": "Relatively short flights to India, small time difference, compact families who often travel as one group." }
+  ],
+  "marketNeeds": [
+    { "id": "timeline", "title": "Planning a Destination Wedding in India from {M}: A Month-by-Month Timeline", "slugTail": "timeline", "angle": "A realistic planning timeline for a couple or family living in {M}: decisions to make at each stage, what can be done remotely, when to travel for site visits, when guests should book travel." },
+    { "id": "guests", "title": "Guest Travel to an India Destination Wedding from {M}: A Family Logistics Guide", "slugTail": "guest-travel", "angle": "How guests from {M} reach the wedding: routing options in general terms, arrival-day planning, elderly relatives, children, jet lag, group coordination. For visas and entry rules, link readers to the official Indian government source and do NOT give visa or immigration advice." },
+    { "id": "budget", "title": "Budgeting for an India Destination Wedding from {M}: Cost Drivers to Plan Around", "slugTail": "budget", "angle": "A budgeting FRAMEWORK for families in {M}: the main cost drivers (venue, guest count, accommodation, decor, catering, travel), how to prioritise, currency awareness, hidden costs. NO specific prices, ranges or exchange rates." },
+    { "id": "destination", "title": "Choosing Your India Wedding Destination When You Live in {M}", "slugTail": "choosing-destination", "angle": "How to choose between regions/cities in India when living in {M}: guest comfort, season fit, accessibility, style of venue, without ranking places or naming partners." },
+    { "id": "planner", "title": "Working With a Wedding Planner in India When You Live in {M}: What to Expect", "slugTail": "working-with-a-planner", "angle": "How planning with an India-based planner works from {M}: communication rhythm across time zones, decision points, approvals, what a planner coordinates on the ground, questions to ask. Use only approved company claims." }
+  ],
+  "communities": [
+    { "id": "gujarati", "name": "Gujarati" },
+    { "id": "punjabi", "name": "Punjabi" },
+    { "id": "marwari", "name": "Marwari" },
+    { "id": "sindhi", "name": "Sindhi" },
+    { "id": "bengali", "name": "Bengali" },
+    { "id": "tamil", "name": "Tamil" },
+    { "id": "telugu", "name": "Telugu" },
+    { "id": "malayali", "name": "Malayali" },
+    { "id": "marathi", "name": "Marathi" },
+    { "id": "jain", "name": "Jain" },
+    { "id": "sikh", "name": "Sikh (Anand Karaj)" },
+    { "id": "muslim", "name": "Muslim (Nikah)" }
+  ],
+  "communityCities": { "gujarati": ["Udaipur"], "punjabi": ["Udaipur", "Jaipur"], "marwari": ["Udaipur", "Jodhpur"] },
+  "communityAngle": "How a {C} wedding is typically planned in Rajasthan{IN}: key ceremonies and their order in general terms, what families usually care about (food, rituals, timing), how a venue and planner should accommodate them. IMPORTANT: customs vary by family and region, so state that families should confirm details with their elders/priest; never present one practice as universal; be respectful and accurate, omit anything uncertain.",
+  "months": [
+    { "city": "Udaipur", "months": ["October", "November", "December", "January", "February", "March"] },
+    { "city": "Jaipur", "months": ["October", "November", "December", "January", "February", "March"] },
+    { "city": "Goa", "months": ["November", "December", "January", "February"] }
+  ],
+  "monthAngle": "What to expect for a wedding in {CITY} in {MONTH}: typical weather and how it affects ceremonies and decor, crowds and peak-season demand, festival or holiday overlaps in general terms, guest comfort, timing of functions, backup plans. No invented temperature or price figures; describe qualitatively and advise checking current forecasts.",
+  "weights": { "hub": 1000, "market": 60, "community": 45, "cityIntent": 30, "month": 20 }
+}

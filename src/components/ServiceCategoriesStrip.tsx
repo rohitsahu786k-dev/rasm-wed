@@ -1,3 +1,6 @@
+'use client';
+
+import Image from 'next/image';
 import React from 'react';
 import { Crown, Sparkles, Camera, Music, Utensils, HeartHandshake, ArrowRight } from 'lucide-react';
 
@@ -12,7 +15,7 @@ export const ServiceCategoriesStrip: React.FC<ServiceCategoriesStripProps> = ({ 
       desc: 'Lake Palaces & Fortresses',
       icon: Crown,
       image: 'https://rasmwed.com/wp-content/uploads/2024/08/The-Oberoi-Udaivilas.webp',
-      badge: 'Direct GM Access',
+      badge: 'Venue Consultation',
     },
     {
       title: 'Mandap Scenography',
@@ -77,12 +80,11 @@ export const ServiceCategoriesStrip: React.FC<ServiceCategoriesStripProps> = ({ 
                 className="group text-left p-3 rounded-2xl bg-[#FAF8F5] border border-gold/20 hover:border-gold hover:bg-white hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
               >
                 <div className="relative h-32 w-full rounded-xl overflow-hidden mb-3 bg-stone-100">
-                  <img
+                  <Image
                     src={cat.image}
                     alt={cat.title}
-                    referrerPolicy="no-referrer"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
+                   width={1200} height={800} sizes="(min-width: 1024px) 33vw, 100vw" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                   <div className="absolute top-2 right-2 w-7 h-7 rounded-full bg-white/90 backdrop-blur-md flex items-center justify-center shadow-xs">
                     <Icon className="w-3.5 h-3.5 text-gold-dark" />

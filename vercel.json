@@ -1,0 +1,36 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/health",
+      "schedule": "0 3 * * *"
+    },
+    {
+      "path": "/api/cron/guidelines",
+      "schedule": "0 4 * * 1"
+    },
+    {
+      "path": "/api/cron/content",
+      "schedule": "30 4 * * *"
+    },
+    {
+      "path": "/api/cron/weekly",
+      "schedule": "0 5 * * 1"
+    },
+    {
+      "path": "/api/cron/autofix",
+      "schedule": "30 3 * * *"
+    },
+    {
+      "path": "/api/cron/programmatic",
+      "schedule": "30 5 * * 2,4,6"
+    },
+    {
+      "path": "/api/cron/indexing",
+      "schedule": "0 4 * * 3"
+    },
+    {
+      "path": "/api/cron/cwv",
+      "schedule": "0 5 * * 3"
+    }
+  ]
+}

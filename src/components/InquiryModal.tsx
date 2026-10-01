@@ -1,8 +1,10 @@
+'use client';
+
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
-import { SiteSettings } from '../types';
+import { SiteSettings } from '@/types';
 import { X, Send, Sparkles, CheckCircle2 } from 'lucide-react';
-import { AnimatedButton } from './ui/AnimatedButton';
+import { AnimatedButton } from '@/components/ui/AnimatedButton';
 
 interface InquiryModalProps {
   isOpen: boolean;
@@ -115,17 +117,15 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
                 required
                 value={contact}
                 onChange={(e) => setContact(e.target.value)}
-                placeholder="+1 555-0192 or +91 98290 12345"
+                placeholder="Your phone / WhatsApp number with country code"
                 className="w-full px-4 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-charcoal-900 text-sm focus:outline-none focus:border-gold focus:bg-white transition-colors"
               />
             </div>
 
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block text-xs font-medium uppercase tracking-wider text-charcoal-700 mb-1">
-                  Destination
-                </label>
-                <select
+                <label className="block text-xs font-medium uppercase tracking-wider text-charcoal-700 mb-1">Destination</label>
+                <select aria-label="Destination"
                   value={destination}
                   onChange={(e) => setDestination(e.target.value)}
                   className="w-full px-3 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-charcoal-900 text-xs focus:outline-none focus:border-gold focus:bg-white transition-colors"
@@ -141,10 +141,8 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
               </div>
 
               <div>
-                <label className="block text-xs font-medium uppercase tracking-wider text-charcoal-700 mb-1">
-                  Celebration Scale
-                </label>
-                <select
+                <label className="block text-xs font-medium uppercase tracking-wider text-charcoal-700 mb-1">Celebration Scale</label>
+                <select aria-label="Celebration Scale"
                   value={grandeur}
                   onChange={(e) => setGrandeur(e.target.value)}
                   className="w-full px-3 py-2.5 rounded-xl bg-stone-50 border border-stone-200 text-charcoal-900 text-xs focus:outline-none focus:border-gold focus:bg-white transition-colors"

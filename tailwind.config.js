@@ -2,7 +2,6 @@
 export default {
   darkMode: 'class',
   content: [
-    "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
@@ -12,7 +11,7 @@ export default {
           light: '#F5E6C8',
           DEFAULT: '#C5A059',
           rich: '#D4AF37',
-          dark: '#997316',
+          dark: '#85610F',
           deep: '#78550E',
         },
         ivory: {
@@ -31,11 +30,11 @@ export default {
         }
       },
       fontFamily: {
-        serif: ['"Manrope"', 'system-ui', 'sans-serif'],
-        cinzel: ['"Manrope"', 'system-ui', 'sans-serif'],
-        body: ['"Manrope"', 'system-ui', 'sans-serif'],
-        sans: ['"Manrope"', 'system-ui', 'sans-serif'],
-        manrope: ['"Manrope"', 'system-ui', 'sans-serif'],
+        serif: ['var(--font-manrope)', 'system-ui', 'sans-serif'],
+        cinzel: ['var(--font-manrope)', 'system-ui', 'sans-serif'],
+        body: ['var(--font-manrope)', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-manrope)', 'system-ui', 'sans-serif'],
+        manrope: ['var(--font-manrope)', 'system-ui', 'sans-serif'],
       },
       animation: {
         'shimmer-slide': 'shimmerSlide 3s infinite linear',

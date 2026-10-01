@@ -1,32 +1,38 @@
 {
-  "name": "rasm-luxury-weddings",
+  "name": "rasm-luxury-weddings-next",
   "private": true,
-  "version": "1.0.0",
-  "type": "module",
+  "version": "2.0.0",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint .",
+    "typecheck": "tsc --noEmit",
+    "test": "node --test --experimental-strip-types tests/*.test.ts"
+  },
+  "engines": {
+    "node": ">=20.9"
   },
   "dependencies": {
     "clsx": "^2.1.1",
-    "framer-motion": "^12.4.7",
-    "gsap": "^3.15.0",
-    "lucide-react": "^1.16.0",
-    "motion": "^13.4.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "tailwind-merge": "^3.0.2"
+    "framer-motion": "^13.4.5",
+    "lucide-react": "^1.48.0",
+    "next": "16.3.7",
+    "react": "^19.3.0",
+    "react-dom": "^19.3.0",
+    "sharp": "^0.35.5",
+    "tailwind-merge": "^3.7.0"
   },
   "devDependencies": {
-    "@types/node": "^22.13.5",
-    "@types/react": "^19.0.10",
-    "@types/react-dom": "^19.0.4",
-    "@vitejs/plugin-react": "^4.3.4",
-    "autoprefixer": "^10.4.20",
-    "postcss": "^8.5.3",
-    "tailwindcss": "^3.4.17",
-    "typescript": "^5.7.3",
-    "vite": "^6.2.0"
-  }
+    "@types/node": "^26.6.3",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "autoprefixer": "^10.6.1",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "16.3.7",
+    "postcss": "^8.5.28",
+    "tailwindcss": "^3.4.19",
+    "typescript": "^6.0.3"
+  },
+  "type": "module"
 }

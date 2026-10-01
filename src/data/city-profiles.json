@@ -1,0 +1,690 @@
+{
+  "udaipur": {
+    "slug": "udaipur",
+    "tagline": "Weddings in Udaipur amid lakes, palace architecture and the Aravalli hills",
+    "facts": {
+      "nearestAirport": "Maharana Pratap Airport (UDR)",
+      "railAccess": "Udaipur City railway station; Rana Pratap Nagar railway station also serves the city.",
+      "bestMonths": "October to March are typically more comfortable for weddings, with generally cooler weather than summer.",
+      "settings": [
+        "Lakefront hotels",
+        "Palace and heritage properties",
+        "Heritage courtyards",
+        "Resort gardens",
+        "Hill-view resorts"
+      ],
+      "knownFor": [
+        "Lake Pichola and Fateh Sagar Lake",
+        "Palace architecture and Mewar heritage",
+        "Aravalli hill scenery",
+        "Rajasthani cuisine",
+        "Traditional crafts and folk performances"
+      ],
+      "gettingThere": "Guests usually arrive by air at Maharana Pratap Airport or by train at Udaipur City, then continue by road to their accommodation. Flight connections, train services and transfer arrangements vary; check current options."
+    },
+    "faqs": [
+      {
+        "q": "What is the best season for a wedding in Udaipur?",
+        "a": "October to March are generally preferred for more comfortable outdoor celebrations, although daytime warmth and evening temperatures vary. December and January evenings can feel cool, so consider wraps or an indoor option for older guests. Check current options for dates and accommodation."
+      },
+      {
+        "q": "How should we plan guest travel and accommodation?",
+        "a": "Guests commonly arrive through Maharana Pratap Airport or Udaipur City railway station, followed by road transfers. Keep accommodation close to the main celebrations where possible, and coordinate arrivals to simplify pickups. Connections and room availability vary by date; check current options."
+      },
+      {
+        "q": "What weather backup should we arrange for outdoor functions?",
+        "a": "Udaipur summers can be hot, and monsoon rain can disrupt outdoor events; cooler months still need an evening comfort plan. Ask venues about suitable indoor backup spaces, covered access and weather-related setup rules. Confirm how catering, sound and decor would move if conditions change."
+      },
+      {
+        "q": "What types of wedding venues are available, and how do we choose?",
+        "a": "Typical choices include lakefront hotels, palace or heritage properties, resort gardens and hill-view resorts. Compare guest accommodation, accessibility, ceremony space and the practical flow between functions rather than scenery alone. Ask each venue about event permissions and restrictions; check current options."
+      },
+      {
+        "q": "Can we include local traditions while keeping our own ceremony customs?",
+        "a": "Rajasthani food, folk music and locally made decor can add a sense of place without replacing your family's rituals. Discuss the ceremony with your officiant and confirm venue rules for sacred fires, processions and amplified music. Plan cultural elements respectfully and check current options for performers."
+      },
+      {
+        "q": "How can a wedding planner help, and how far ahead should we start?",
+        "a": "A planner can help compare venues, coordinate suppliers, organise guest logistics and build a weather backup plan. Starting around a year ahead is often useful for preferred dates and multi-day celebrations, though the right lead time depends on your brief. For shorter timelines, check current options before fixing the programme."
+      }
+    ]
+  },
+  "jaipur": {
+    "slug": "jaipur",
+    "tagline": "Weddings in Jaipur amid palace architecture, heritage courtyards and Rajasthani culture",
+    "facts": {
+      "nearestAirport": "Jaipur International Airport (JAI)",
+      "railAccess": "Jaipur Junction is the city's main railway station.",
+      "bestMonths": "October to March are generally more comfortable for weddings, with milder weather than summer; winter evenings can be chilly.",
+      "settings": [
+        "Palace-style hotel grounds",
+        "Heritage haveli courtyards",
+        "Fort settings",
+        "Resort lawns",
+        "Hotel banquet halls"
+      ],
+      "knownFor": [
+        "Pink City architecture",
+        "Palaces and forts",
+        "Rajasthani textiles and handicrafts",
+        "Traditional Rajasthani cuisine",
+        "Royal heritage"
+      ],
+      "gettingThere": "Guests usually arrive through Jaipur International Airport or Jaipur Junction, while some travel by road from Delhi and nearby cities. Flight and train connections vary; check current options before arranging transfers."
+    },
+    "faqs": [
+      {
+        "q": "What is the best season for a wedding in Jaipur?",
+        "a": "October to March is generally the most comfortable period, especially for outdoor functions. Winter evenings can feel cold, so consider warm layers and suitable heating arrangements. Popular dates may have limited availability; check current options before finalising."
+      },
+      {
+        "q": "How should we plan travel and accommodation for guests?",
+        "a": "Guests commonly arrive by air, rail or road, so collect arrival details before planning transfers. Keep accommodation close to the main venue where practical, and allow for city traffic between functions. Room availability and transport arrangements vary; check current options."
+      },
+      {
+        "q": "What weather backup should we arrange for outdoor functions?",
+        "a": "Jaipur summers can be very hot, and the monsoon can disrupt outdoor plans; even winter events need preparation for chilly evenings. Ask about a suitable indoor alternative before booking. Confirm how catering, decor and guest movement would work if the function has to move."
+      },
+      {
+        "q": "What venue types are available, and how do we choose?",
+        "a": "Jaipur offers heritage hotels, palace-style properties, resorts and banquet venues with different layouts. Choose around your guest list, room needs, accessibility and the number of functions rather than appearance alone. Check event permissions, indoor backup and current options directly."
+      },
+      {
+        "q": "Can we include local traditions alongside our own wedding rituals?",
+        "a": "Rajasthani textiles, food and folk performances can bring local character without replacing your family's rituals. Discuss ceremony needs with your officiant and venue, including sacred fire arrangements and baraat access. Confirm sound rules and performance arrangements in advance."
+      },
+      {
+        "q": "How can a planner help, and how far ahead should we start?",
+        "a": "A planner can help compare venues, coordinate vendors, organise guest transfers and build a practical event schedule. Begin well ahead, particularly if you want a winter weekend or several functions at one property. Fix a guest estimate and preferred dates first, then check current options."
+      }
+    ]
+  },
+  "jodhpur": {
+    "slug": "jodhpur",
+    "tagline": "Weddings in Jodhpur with sandstone architecture, heritage settings and Marwari traditions.",
+    "facts": {
+      "nearestAirport": "Jodhpur Airport (JDH)",
+      "railAccess": "Jodhpur Junction is the city's main railway station.",
+      "bestMonths": "October to March are generally more comfortable for weddings because the weather is typically cooler than in summer.",
+      "settings": [
+        "Palace-style hotels",
+        "Heritage haveli courtyards",
+        "Resort gardens",
+        "Desert-inspired outdoor settings"
+      ],
+      "knownFor": [
+        "Mehrangarh Fort and its dramatic skyline",
+        "Blue-painted houses in the old city",
+        "Sandstone architecture",
+        "Marwari food and hospitality",
+        "Rajasthani folk music and textiles"
+      ],
+      "gettingThere": "Guests usually arrive through Jodhpur Airport or Jodhpur Junction, with road transfers to their accommodation. Flight connections and onward transport vary; check current options."
+    },
+    "faqs": [
+      {
+        "q": "What is the best season for a wedding in Jodhpur?",
+        "a": "October to March is generally the most comfortable period, especially for outdoor celebrations. Winter evenings can feel cool, while the months at either end may have warmer afternoons. Match ceremony timings to the season and check current options for your preferred dates."
+      },
+      {
+        "q": "How should we plan guest travel and accommodation?",
+        "a": "Guests can usually travel via Jodhpur Airport or Jodhpur Junction, depending on their starting city. Keeping accommodation close to the main venue can simplify transfers, particularly for older guests. Confirm room availability and transport arrangements early; check current options."
+      },
+      {
+        "q": "What weather backup should we arrange for outdoor functions?",
+        "a": "Jodhpur can have strong daytime heat, and outdoor plans should also account for wind, dust and possible rain during the monsoon period. Choose a venue with a suitable indoor alternative or approved covered space. Plan shade, drinking water and evening layers according to the season."
+      },
+      {
+        "q": "What kinds of wedding venues should we consider in Jodhpur?",
+        "a": "Palace-style hotels, heritage havelis and resorts offer different combinations of atmosphere, rooms and event spaces. Compare accessibility, indoor backup, catering rules and restrictions on sound or decor before choosing. Heritage surroundings do not automatically permit events; check current options."
+      },
+      {
+        "q": "How can we include local traditions without complicating our ceremonies?",
+        "a": "Marwari dishes, Rajasthani folk performances and local textiles can bring a sense of place without changing your family's rituals. Discuss ceremony requirements with your officiant and confirm venue rules for sacred fires, processions and amplified music. Keep guest comfort and dietary needs in mind."
+      },
+      {
+        "q": "How can a planner help, and how far ahead should we start?",
+        "a": "A planner can help compare venues, coordinate suppliers, organise guest transfers and build a practical schedule across functions. Start several months ahead, preferably earlier for winter dates or a multi-day celebration. Availability and planning needs vary with your guest list; check current options."
+      }
+    ]
+  },
+  "jaisalmer": {
+    "slug": "jaisalmer",
+    "tagline": "Desert weddings amid Jaisalmer’s golden sandstone architecture and Thar landscapes.",
+    "facts": {
+      "nearestAirport": "Jaisalmer Airport (JSA); flight availability can vary, so check current options",
+      "railAccess": "Jaisalmer railway station",
+      "bestMonths": "October to March are generally more comfortable for weddings because daytime temperatures are usually milder than in summer.",
+      "settings": [
+        "Heritage hotel courtyards",
+        "Sandstone hotel terraces",
+        "Desert resorts",
+        "Desert camps",
+        "Hotel gardens and banquet spaces"
+      ],
+      "knownFor": [
+        "Golden sandstone architecture",
+        "Jaisalmer Fort and historic havelis",
+        "Thar Desert dunes",
+        "Rajasthani folk music and dance",
+        "Regional textiles and handicrafts"
+      ],
+      "gettingThere": "Guests usually arrive through Jaisalmer Airport or Jaisalmer railway station, depending on available connections; check current options. Jodhpur can be an alternative arrival point followed by a road transfer, though this adds a substantial journey."
+    },
+    "faqs": [
+      {
+        "q": "What is the best season for a wedding in Jaisalmer?",
+        "a": "October to March is generally the most comfortable period, with milder days than the summer months. Winter evenings can feel cold, especially at desert venues, so consider shawls or suitable heating arrangements. Check current options for dates and accommodation before committing."
+      },
+      {
+        "q": "How should we plan guest travel and accommodation?",
+        "a": "Check current options for flights to Jaisalmer and trains to Jaisalmer railway station before choosing dates. Jodhpur may offer an alternative arrival route, but the onward road journey needs careful planning. Grouping guests in nearby hotels can simplify transfers, particularly for celebrations outside the city."
+      },
+      {
+        "q": "What weather backup should we arrange for outdoor events?",
+        "a": "Desert settings can bring strong sun, wind, dust and chilly evenings, depending on the season. Ask venues about a sheltered or indoor alternative, safe decor installation and suitable heating or shade. Rain is less typical in the cooler wedding months, but an outdoor event should still have a backup plan."
+      },
+      {
+        "q": "What venue types should we consider, and how do we choose?",
+        "a": "Jaisalmer offers heritage hotels, desert resorts, camps and conventional hotel event spaces. Compare guest access, room availability, sheltered event areas and the practical needs of each ceremony. Do not assume that a historic monument or dune location permits private celebrations; check current options and permissions."
+      },
+      {
+        "q": "Are there local traditions or ceremony requirements to consider?",
+        "a": "Rajasthani folk music, regional food and local textiles can add a sense of place without replacing your family's traditions. Confirm ceremony needs with your officiant and venue, especially fire rituals, sound restrictions and event timings. Use historic or religious settings respectfully and seek permission where required."
+      },
+      {
+        "q": "How can a wedding planner help, and when should we start?",
+        "a": "A planner can help compare venues, coordinate guest transfers and align vendors with ceremony requirements and weather backups. Starting around a year ahead is often useful for preferred winter dates, though the right lead time depends on your plans. Check current options before fixing dates or sending invitations."
+      }
+    ]
+  },
+  "kumbhalgarh": {
+    "slug": "kumbhalgarh",
+    "tagline": "Weddings in the Aravalli hills, with Kumbhalgarh’s fort and Mewar heritage as a backdrop",
+    "facts": {
+      "nearestAirport": "Maharana Pratap Airport, Udaipur (UDR)",
+      "railAccess": "Falna and Udaipur City are useful rail gateways, followed by a road transfer; check current options.",
+      "bestMonths": "October to March are typically more comfortable for weddings because of cooler weather, though winter evenings can be cold.",
+      "settings": [
+        "Hill resort lawns",
+        "Heritage-style hotel courtyards",
+        "Scenic outdoor terraces",
+        "Indoor resort banquet spaces"
+      ],
+      "knownFor": [
+        "Kumbhalgarh Fort, part of the UNESCO-listed Hill Forts of Rajasthan",
+        "Aravalli hill scenery",
+        "Mewar history and heritage",
+        "Kumbhalgarh Wildlife Sanctuary"
+      ],
+      "gettingThere": "Guests usually arrive via Udaipur airport or rail gateways such as Falna and Udaipur City, then continue by road. Coordinate transfers around arrival times and hill-road travel; check current options."
+    },
+    "faqs": [
+      {
+        "q": "What is the best season for a wedding in Kumbhalgarh?",
+        "a": "October to March is generally a comfortable window, with cooler conditions for daytime functions. Winter evenings can feel cold in the hills, so consider warm seating areas or an indoor dinner option. Check current options for your dates before finalising outdoor arrangements."
+      },
+      {
+        "q": "How should we plan guest travel and accommodation?",
+        "a": "Guests commonly travel through Udaipur airport, Falna or Udaipur City railway station, then take a road transfer to Kumbhalgarh. Group arrivals where practical and confirm vehicle access at each hotel. Check current options for rooms, transport and rail or flight connections before sending travel guidance."
+      },
+      {
+        "q": "What weather backup should we arrange for outdoor functions?",
+        "a": "Plan for hot conditions in summer, rain during the monsoon and chilly winter evenings. Ask venues about a suitable indoor alternative, covered access and safe arrangements for sound and lighting. Check current options for weather protection, and agree on when to move a function indoors."
+      },
+      {
+        "q": "What types of wedding venues are available, and how do we choose?",
+        "a": "Hill resorts and heritage-style hotels may offer lawns, terraces, courtyards or indoor event spaces. Compare accommodation, guest accessibility, weather backups and event restrictions rather than scenery alone. Do not assume Kumbhalgarh Fort is available for private ceremonies; check current options and permissions."
+      },
+      {
+        "q": "Can we include local traditions or hold ceremonies near the fort?",
+        "a": "Rajasthani music, regional food and decor inspired by Mewar can add local character, subject to suitable vendors and venue rules. Discuss religious rituals, sacred-fire arrangements and procession access with your family, officiant and venue. The fort is a protected monument, so check current options and permissions before planning any activity there."
+      },
+      {
+        "q": "How can a wedding planner help, and when should we start?",
+        "a": "A planner can help compare venues, coordinate guest transfers and stays, organise vendors and prepare weather backups. Start well ahead, particularly if you need several functions or rooms across multiple hotels during the cooler season. Check current options early, as availability and permissions can shape the plan."
+      }
+    ]
+  },
+  "mount-abu": {
+    "slug": "mount-abu",
+    "tagline": "Hill-station weddings in Mount Abu, with garden settings and scenic Aravalli views.",
+    "facts": {
+      "nearestAirport": "Maharana Pratap Airport, Udaipur (UDR)",
+      "railAccess": "Abu Road railway station, followed by a road transfer uphill to Mount Abu.",
+      "bestMonths": "October to March are generally comfortable for weddings, with cooler weather; winter evenings can be chilly.",
+      "settings": [
+        "Hotel gardens and lawns",
+        "Resort terraces with hill views",
+        "Heritage-style hotel courtyards",
+        "Indoor hotel banquet spaces"
+      ],
+      "knownFor": [
+        "Rajasthan’s hill-station setting",
+        "Aravalli hills and wooded scenery",
+        "Nakki Lake",
+        "Dilwara Jain temples",
+        "Cooler weather than Rajasthan’s plains"
+      ],
+      "gettingThere": "Guests usually arrive by train at Abu Road or fly to Udaipur and continue by road. Ahmedabad may also suit some flight itineraries; check current options and arrange onward transfers in advance."
+    },
+    "faqs": [
+      {
+        "q": "What is the best season for a wedding in Mount Abu?",
+        "a": "October to March are generally comfortable for celebrations, although winter evenings can feel quite cold. Choose ceremony times around daylight and guest comfort, and check current options for accommodation around holidays and busy travel periods."
+      },
+      {
+        "q": "How should we plan travel and accommodation for our guests?",
+        "a": "Abu Road is the main rail arrival point, while Udaipur and Ahmedabad can be considered for flights; check current options. Arrange road transfers with room for luggage and allow extra time for the winding uphill approach. Keeping guests in one hotel or nearby properties can simplify wedding transport."
+      },
+      {
+        "q": "What weather backup should we arrange for outdoor functions?",
+        "a": "Monsoon rain can affect outdoor plans, and cooler months may require warm layers for evening functions. Ask venues about an indoor alternative, covered access and safe arrangements for temporary structures. Confirm how catering, decor and guest seating would move if conditions change."
+      },
+      {
+        "q": "What types of wedding venues are available, and how should we choose?",
+        "a": "Hotel lawns, resort terraces, heritage-style courtyards and indoor banquet spaces are typical choices. Compare usable event space, room availability, access for older guests and the rain backup rather than views alone. Check current options and confirm music timings and vendor rules directly."
+      },
+      {
+        "q": "Are there local traditions or ceremony rules we should consider?",
+        "a": "Plan rituals with your family and officiant, then confirm the venue’s rules for sacred fires, processions and amplified music. Mount Abu’s temples are places of worship, not assumed wedding venues; any visit or religious activity should follow site-specific permissions, dress expectations and photography rules."
+      },
+      {
+        "q": "How can a planner help, and how far ahead should we start?",
+        "a": "A planner can help compare venues, coordinate hill-road transfers and align accommodation, vendors and weather backups. Starting several months ahead is generally sensible, especially for a multi-day wedding or a holiday date. Check current options before fixing dates, since venue and room availability can vary."
+      }
+    ]
+  },
+  "nathdwara": {
+    "slug": "nathdwara",
+    "tagline": "Weddings in Nathdwara with temple-town character and traditional Rajasthani touches",
+    "facts": {
+      "nearestAirport": "Maharana Pratap Airport, Udaipur (UDR)",
+      "railAccess": "Nathdwara railway station, with Mavli Junction and Udaipur City as regional alternatives; check current options.",
+      "bestMonths": "October to March are generally more comfortable for weddings because the weather is typically cooler than summer.",
+      "settings": [
+        "Hotel banquet halls",
+        "Hotel courtyards",
+        "Resort gardens",
+        "Outdoor wedding lawns"
+      ],
+      "knownFor": [
+        "Shrinathji Temple and Krishna devotion",
+        "Pichwai paintings",
+        "Traditional haveli-style temple architecture",
+        "Rajasthani food and hospitality",
+        "Surrounding Aravalli landscape"
+      ],
+      "gettingThere": "Guests commonly arrive through Udaipur airport or regional railway stations and continue to Nathdwara by road. Flight and train connections, transfers and journey times vary; check current options."
+    },
+    "faqs": [
+      {
+        "q": "What is the best season for a wedding in Nathdwara?",
+        "a": "October to March is generally a comfortable window, particularly for outdoor functions, although winter evenings can feel cool. Temple festivals and holiday periods may increase visitor demand, so compare accommodation availability before fixing your dates and check current options."
+      },
+      {
+        "q": "How should we arrange travel and accommodation for guests?",
+        "a": "Guests can usually travel via Udaipur airport or regional railway stations, then continue by road. Staying in Nathdwara can simplify local movements, while a Udaipur base adds road travel for each function. Group transfers and room blocks may help; check current options before confirming arrangements."
+      },
+      {
+        "q": "What weather backup should we plan for outdoor functions?",
+        "a": "Summer can be hot, and the monsoon can disrupt outdoor arrangements; even cooler months may bring chilly evenings. Choose a venue with a usable indoor alternative and confirm how seating, catering and decor would move under cover. Plan shade, drinking water and suitable flooring for exposed areas."
+      },
+      {
+        "q": "What venue types should we consider, and how do we choose?",
+        "a": "Hotel banquet halls, courtyards, resort gardens and lawns are useful setting types to explore in and around Nathdwara. Compare guest rooms, access for older relatives, indoor backup and catering rules rather than appearance alone. Confirm event permissions and availability directly; check current options."
+      },
+      {
+        "q": "Can we include a Shrinathji Temple visit or local traditions in the wedding?",
+        "a": "A temple visit may be meaningful for families, but treat it as a separate plan rather than assuming wedding ceremonies are permitted there. Confirm current darshan timings, access rules and festival crowds with the temple. Discuss rituals and dietary preferences with your family, priest and caterer."
+      },
+      {
+        "q": "How can a planner help, and how far ahead should we start?",
+        "a": "A planner can coordinate venue enquiries, guest transfers, accommodation, vendors and backup arrangements around your family's priorities. Start once your likely dates and guest count are clear, preferably several months ahead. Allow more lead time for popular winter dates or temple festival periods."
+      }
+    ]
+  },
+  "pushkar": {
+    "slug": "pushkar",
+    "tagline": "Weddings amid Pushkar’s sacred lake, desert landscapes and Rajasthan traditions",
+    "facts": {
+      "nearestAirport": "Kishangarh Airport (KQH)",
+      "railAccess": "Ajmer Junction is the main rail gateway for guests travelling to Pushkar.",
+      "bestMonths": "October to March are generally more comfortable for weddings because of cooler weather, though winter evenings can be chilly.",
+      "settings": [
+        "Resort gardens",
+        "Hotel courtyards",
+        "Desert-style camps",
+        "Indoor banquet spaces"
+      ],
+      "knownFor": [
+        "Pushkar Lake and its ghats",
+        "The Brahma Temple",
+        "The annual Pushkar fair",
+        "Desert scenery",
+        "Rajasthani crafts and folk traditions"
+      ],
+      "gettingThere": "Guests usually reach Pushkar by road from Kishangarh Airport or Ajmer Junction; Jaipur airport can be an alternative depending on flight connections. Services and journey times vary, so check current options."
+    },
+    "faqs": [
+      {
+        "q": "What is the best season for a wedding in Pushkar?",
+        "a": "October to March is generally the most comfortable period, especially for outdoor functions. Winter evenings may need warm seating arrangements or wraps for guests. The annual Pushkar fair can affect crowds and accommodation availability, so check current options before fixing dates."
+      },
+      {
+        "q": "How should we plan guest travel and accommodation?",
+        "a": "Ajmer Junction is the usual rail gateway, while Kishangarh is the nearest airport; Jaipur may offer another route depending on connections. Group transfers can simplify arrivals and departures. Keep rooms close to the wedding venue where practical, and check current options for transport and accommodation."
+      },
+      {
+        "q": "What weather backup should we arrange for outdoor events?",
+        "a": "Pushkar can have hot days, chilly winter nights and rain during the monsoon, so outdoor plans should include a sheltered alternative. Ask venues about indoor space, safe covered areas and suitable power arrangements. Shade, drinking water and protection from wind or dust are also worth planning."
+      },
+      {
+        "q": "What types of venues work for a Pushkar wedding?",
+        "a": "Resort gardens, hotel courtyards, indoor halls and desert-style camps offer different atmospheres. Compare guest rooms, accessibility, indoor backup and the space needed for each ceremony rather than choosing on appearance alone. For event permissions and venue availability, check current options."
+      },
+      {
+        "q": "Are there local customs or restrictions we should consider?",
+        "a": "Pushkar is a sacred pilgrimage town, so respectful dress and conduct matter around temples and lake ghats. Many properties follow vegetarian dining or alcohol restrictions; confirm each venue’s rules early. Seek permission before planning ceremonies or photography at religious sites, and check current options."
+      },
+      {
+        "q": "How can a planner help, and when should we start?",
+        "a": "A planner can help compare venues, coordinate guest transfers and align suppliers with ceremony timings and venue rules. Starting several months ahead is sensible, with more lead time for busy-season dates or larger celebrations. Before committing to a date, check current options for rooms, venues and key suppliers."
+      }
+    ]
+  },
+  "kota": {
+    "slug": "kota",
+    "tagline": "Weddings in Kota with Rajasthani traditions, garden settings and Chambal scenery.",
+    "facts": {
+      "nearestAirport": "Kota Airport (KTU); check current options for passenger services. Jaipur International Airport (JAI) is an alternative gateway.",
+      "railAccess": "Kota Junction is the city's main railway station, with connections to major Indian cities.",
+      "bestMonths": "November to February are generally comfortable for weddings because the weather is cooler, though evenings can be chilly.",
+      "settings": [
+        "Hotel banquet halls",
+        "Resort lawns",
+        "Garden venues",
+        "Heritage-style courtyards"
+      ],
+      "knownFor": [
+        "The Chambal River and its scenery",
+        "Kota Doria textiles",
+        "Kota stone",
+        "The Rajput heritage of the Hadoti region"
+      ],
+      "gettingThere": "Guests commonly arrive by train at Kota Junction or travel by road from other Rajasthan cities. Those flying may need an onward road or rail transfer from an airport such as Jaipur; check current options."
+    },
+    "faqs": [
+      {
+        "q": "What is the best season for a wedding in Kota?",
+        "a": "November to February are usually the most comfortable months, especially for daytime ceremonies and outdoor receptions. Winter evenings can feel chilly, so consider wraps or an indoor gathering space. Check the forecast closer to the date rather than relying only on seasonal expectations."
+      },
+      {
+        "q": "How should we plan guest travel and accommodation in Kota?",
+        "a": "Kota Junction is a practical arrival point for many guests, while flyers may need an onward transfer from Jaipur or another suitable airport; check current options. Shortlist accommodation near the venue, confirm room availability directly, and coordinate station pickups around actual arrival times."
+      },
+      {
+        "q": "What weather backup should we arrange for an outdoor wedding?",
+        "a": "Kota's summers can be very hot, and monsoon rain can disrupt outdoor functions. Even in cooler months, an indoor backup is sensible. Ask the venue about a usable alternative space, safe covered access, power arrangements and how a weather-related layout change would be handled."
+      },
+      {
+        "q": "What types of wedding venues should we consider in Kota?",
+        "a": "Hotel banquet halls, resort lawns, garden venues and heritage-style spaces are useful categories to explore. Compare each property's actual guest capacity, accommodation, accessibility and indoor backup. Confirm catering, sound and event-timing rules directly before making a booking."
+      },
+      {
+        "q": "How can we include local traditions in our Kota wedding?",
+        "a": "Kota belongs to Rajasthan's Hadoti region, and Kota Doria textiles can provide a locally rooted detail in outfits or decor. Ceremony customs vary by family and community, so discuss rituals with your families and officiant. Confirm arrangements for sacred fire, processions and music with the venue."
+      },
+      {
+        "q": "How can a wedding planner help, and when should we start?",
+        "a": "A planner can help compare venues, coordinate vendors, organise guest transfers and build a workable ceremony schedule. Starting several months ahead is generally sensible, especially for winter dates or weddings with many travelling guests. Check current venue and vendor options before fixing the date."
+      }
+    ]
+  },
+  "ranakpur": {
+    "slug": "ranakpur",
+    "tagline": "Weddings amid Ranakpur’s Aravalli hills, rural scenery and resort gardens.",
+    "facts": {
+      "nearestAirport": "Maharana Pratap Airport, Udaipur (UDR)",
+      "railAccess": "Falna is a commonly used railway station for onward road travel to Ranakpur; check current options.",
+      "bestMonths": "October to March are generally more comfortable for weddings, with milder weather than summer; winter evenings can be cool.",
+      "settings": [
+        "Resort garden lawns",
+        "Hotel courtyards",
+        "Hill-view terraces",
+        "Indoor hotel event spaces"
+      ],
+      "knownFor": [
+        "Ranakpur Jain temple and its intricate marble carving",
+        "Aravalli hill scenery",
+        "Rural surroundings",
+        "A quieter setting away from major cities"
+      ],
+      "gettingThere": "Guests commonly arrive through Udaipur airport or Falna railway station and continue by road. Transfers usually need advance coordination; check current options for flights, trains and road travel."
+    },
+    "faqs": [
+      {
+        "q": "What is the best season for a wedding in Ranakpur?",
+        "a": "October to March are generally the more comfortable months, especially for outdoor functions. Winter evenings can feel chilly, so consider wraps and suitable heating arrangements where permitted. Check current options for dates and accommodation before finalising invitations."
+      },
+      {
+        "q": "How should we plan guest travel and accommodation?",
+        "a": "Guests commonly travel via Udaipur airport or Falna railway station, followed by a road transfer. Group arrivals where practical and confirm room availability, accessibility and meal arrangements early. Check current options for transport and stays rather than assuming everyone can stay at one property."
+      },
+      {
+        "q": "What weather backup should we arrange for outdoor functions?",
+        "a": "Summer can be hot, while the monsoon can disrupt outdoor celebrations; winter nights may also need extra comfort measures. Choose a venue with a workable covered or indoor alternative, and confirm its suitability for your guest list. Include sheltered access and weather-sensitive decor in the plan."
+      },
+      {
+        "q": "What venue types suit Ranakpur, and how do we choose?",
+        "a": "Resort lawns, hotel courtyards and hill-view terraces can suit celebrations here, subject to each property's event facilities. Compare accommodation, indoor backup, access for older guests and vendor rules before choosing. Check current options and verify that the proposed spaces are approved for your functions."
+      },
+      {
+        "q": "Can we include a temple visit or local traditions in the celebrations?",
+        "a": "A visit to the Ranakpur Jain temple can be planned separately from wedding functions, subject to its current visitor rules. Do not assume ceremonies, photography or event setups are permitted there. Confirm dress expectations, timings and any religious requirements, and discuss ceremony customs with your families and officiant."
+      },
+      {
+        "q": "How can a planner help, and how far ahead should we start?",
+        "a": "A planner can help coordinate venue checks, guest transfers, room allocations, vendors and backup arrangements in this quieter destination. Start several months ahead, or earlier if your dates are fixed or you need many rooms. Check current options before committing, as availability and event rules can vary."
+      }
+    ]
+  },
+  "goa": {
+    "slug": "goa",
+    "tagline": "Coastal weddings in Goa with beachside resorts, tropical gardens and sea views",
+    "facts": {
+      "nearestAirport": "Dabolim Airport (GOI) and Manohar International Airport, Mopa (GOX); the nearer option depends on your venue",
+      "railAccess": "Madgaon, Thivim, Karmali and Vasco da Gama are useful railway stations, depending on the venue location",
+      "bestMonths": "November to February are generally comfortable for weddings, with typically drier weather and cooler evenings.",
+      "settings": [
+        "Beachside resort",
+        "Sea-view terrace",
+        "Tropical garden",
+        "Indoor hotel ballroom",
+        "Heritage villa courtyard"
+      ],
+      "knownFor": [
+        "Arabian Sea beaches and sunsets",
+        "Portuguese-influenced architecture",
+        "Goan food and seafood",
+        "Tropical coastal scenery",
+        "Resort-based celebrations"
+      ],
+      "gettingThere": "Guests usually arrive by air through Dabolim or Mopa, or by train, then continue by road to their accommodation. Choose arrival points around the venue location and check current options for flights, trains and transfers."
+    },
+    "faqs": [
+      {
+        "q": "What is the best season for a wedding in Goa?",
+        "a": "November to February is generally a comfortable window, with typically drier days and cooler evenings. Holiday periods can be busy, so check current options for rooms and venues before fixing dates. Outdoor daytime ceremonies may still need shade."
+      },
+      {
+        "q": "How should we plan guest travel and accommodation?",
+        "a": "Choose the venue area before recommending an airport or railway station, as Goa has several arrival points. Keeping guests at the venue or nearby can simplify transfers between functions. Check current options for flights, trains, room availability and road transfers."
+      },
+      {
+        "q": "What weather backup should we arrange for an outdoor wedding?",
+        "a": "Goa's monsoon generally brings substantial rain from June to September, while coastal wind and unexpected showers can affect outdoor events in other months. Ask for a suitable covered or indoor backup. Plan shade, secure decor and weather protection for electrical equipment."
+      },
+      {
+        "q": "Which venue types work well for a Goa wedding?",
+        "a": "Beachside resorts, garden venues, sea-view terraces and heritage properties offer different atmospheres. Compare guest accommodation, indoor backup, accessibility and event restrictions rather than scenery alone. Do not assume an adjacent beach is available for private ceremonies."
+      },
+      {
+        "q": "Can we include our religious ceremonies and Goan traditions?",
+        "a": "Discuss rituals, sacred-fire requirements and ceremonial setups with the venue and your officiant before booking. If you want Goan food, music or cultural elements, involve knowledgeable local vendors. Beach use, sound and religious-site ceremonies may require separate approvals."
+      },
+      {
+        "q": "How can a wedding planner help, and when should we start?",
+        "a": "A planner can help compare locations, coordinate vendors, organise guest transfers and develop a weather backup plan. Starting around a year ahead is often useful for popular winter dates, though smaller celebrations may need less time. Check current options before committing to a date."
+      }
+    ]
+  },
+  "ahmedabad": {
+    "slug": "ahmedabad",
+    "tagline": "Ahmedabad weddings with Gujarati traditions, heritage settings and modern venues",
+    "facts": {
+      "nearestAirport": "Sardar Vallabhbhai Patel International Airport (AMD)",
+      "railAccess": "Ahmedabad Junction, commonly called Kalupur railway station, is the main rail gateway.",
+      "bestMonths": "November to February are typically more comfortable for weddings, with generally cooler weather than summer.",
+      "settings": [
+        "City hotels and banquet halls",
+        "Garden lawns",
+        "Resorts on the city outskirts",
+        "Heritage properties and courtyards"
+      ],
+      "knownFor": [
+        "Historic old-city neighbourhoods called pols",
+        "Gujarati cuisine and vegetarian dining traditions",
+        "Garba and Gujarati wedding customs",
+        "Textiles, embroidery and traditional crafts",
+        "Indo-Islamic architecture"
+      ],
+      "gettingThere": "Guests usually arrive through Ahmedabad's airport or Ahmedabad Junction and continue by road to their hotels and venues. Flight and train choices, as well as transfer times, depend on the itinerary and traffic; check current options."
+    },
+    "faqs": [
+      {
+        "q": "What is the best season for a wedding in Ahmedabad?",
+        "a": "November to February are usually the most comfortable months, particularly for outdoor functions, because conditions are generally cooler. Winter evenings can feel chilly, so consider guest comfort after sunset. Check current options for dates and venue availability before committing."
+      },
+      {
+        "q": "How should we plan travel and accommodation for guests?",
+        "a": "Guests can generally reach Ahmedabad by air or rail, then travel by road to their accommodation. Choose hotels near the main venue where practical, and group transfers around arrival times. Cross-city traffic can affect journeys, so allow buffers and check current options for transport and rooms."
+      },
+      {
+        "q": "What weather backup should we arrange for outdoor functions?",
+        "a": "Ahmedabad summers can be very hot, while the monsoon can disrupt outdoor functions with rain. Even for winter dates, ask about an indoor backup, covered access and arrangements for guest comfort. Confirm the backup space and changeover responsibilities in the venue contract."
+      },
+      {
+        "q": "What types of wedding venues are available, and how do we choose?",
+        "a": "Typical choices include hotels, banquet halls, garden lawns, outskirts resorts and heritage properties that permit events. Compare guest comfort, accommodation access, catering rules, sound restrictions and an indoor backup. Check current options and inspect the spaces before booking."
+      },
+      {
+        "q": "What local traditions and dining considerations should we discuss?",
+        "a": "Gujarati wedding celebrations may include garba and family-specific rituals, so confirm the programme with both families and the officiant. Discuss vegetarian or Jain dietary needs with the caterer. Gujarat has prohibition laws; do not assume alcohol service is permitted, and verify current rules."
+      },
+      {
+        "q": "How can a planner help, and how far ahead should we start?",
+        "a": "A planner can help compare venues, coordinate vendors, organise guest transfers and build a schedule around ceremonies and venue rules. Start once your likely dates and guest count are clear, ideally several months ahead, with more lead time for popular winter dates. Check current options before fixing the date."
+      }
+    ]
+  },
+  "gandhinagar": {
+    "slug": "gandhinagar",
+    "tagline": "Weddings in Gujarat’s green, planned capital, with hotel, lawn and banquet settings",
+    "facts": {
+      "nearestAirport": "Sardar Vallabhbhai Patel International Airport, Ahmedabad (AMD)",
+      "railAccess": "Gandhinagar Capital railway station serves the city; Ahmedabad Junction is another option for rail arrivals.",
+      "bestMonths": "November to February are typically more comfortable for weddings, with generally cooler weather than summer.",
+      "settings": [
+        "Hotel banquet halls",
+        "Landscaped wedding lawns",
+        "Resort-style properties in and around the city",
+        "Indoor community and event halls"
+      ],
+      "knownFor": [
+        "Gujarat’s planned state capital",
+        "Green spaces and broad avenues",
+        "Swaminarayan Akshardham",
+        "Gujarati food traditions",
+        "Garba and Gujarati cultural celebrations"
+      ],
+      "gettingThere": "Guests commonly fly into Ahmedabad and continue to Gandhinagar by road, or arrive by train at Gandhinagar Capital or Ahmedabad Junction. Flight and train services, transfers and journey times vary; check current options."
+    },
+    "faqs": [
+      {
+        "q": "What is the best season for a wedding in Gandhinagar?",
+        "a": "November to February are generally the most comfortable months, especially for outdoor functions, because the weather is usually cooler than in summer. Evenings can feel cool, so consider wraps or an indoor area for older guests. Confirm your date against local forecasts and venue availability; check current options."
+      },
+      {
+        "q": "How should we plan travel and accommodation for guests?",
+        "a": "Guests can usually arrive through Ahmedabad airport, Gandhinagar Capital railway station or Ahmedabad Junction, then continue by road. Choose accommodation near the venue where practical and coordinate shared transfers for major arrival groups. Room availability and transport arrangements vary; check current options."
+      },
+      {
+        "q": "What weather backup should we arrange for an outdoor wedding?",
+        "a": "Summer heat and monsoon rain can make outdoor functions less comfortable, while winter evenings may need extra guest comfort measures. Ask whether the venue has a suitable indoor backup and clarify the changeover plan before booking. Covered access, safe electrical arrangements and drinking water are worth reviewing."
+      },
+      {
+        "q": "What venue types are available, and how should we choose?",
+        "a": "Hotel banquet halls, wedding lawns and resort-style properties are typical settings to explore in and around Gandhinagar. Compare the indoor backup, guest accommodation, accessibility, catering rules and event timings rather than appearance alone. Spaces and booking conditions vary; check current options."
+      },
+      {
+        "q": "What local traditions or rules should we consider?",
+        "a": "Gujarati menus and garba can be meaningful additions if they suit your families, but ceremony requirements should be agreed with your officiant. Confirm vegetarian or other dietary preferences rather than assuming them. Gujarat has alcohol prohibition laws, so check current legal requirements and venue policies before planning service."
+      },
+      {
+        "q": "How can a wedding planner help, and when should we start?",
+        "a": "A planner can help compare venues, coordinate vendors, organise guest transfers and build a practical schedule around your ceremonies. Starting several months ahead is usually sensible, with more lead time for popular winter dates or multiple functions. Confirm responsibilities in writing and check current options before committing."
+      }
+    ]
+  },
+  "thailand": {
+    "slug": "thailand",
+    "tagline": "Weddings in Thailand span tropical beaches, island resorts and lively city settings.",
+    "facts": {
+      "nearestAirport": "Depends on the destination: Suvarnabhumi Airport, Bangkok (BKK), or Phuket International Airport (HKT); check nearest airport options.",
+      "railAccess": "Bangkok's Krung Thep Aphiwat Central Terminal is a main intercity hub. Chiang Mai and Surat Thani stations serve their respective regions; island destinations need onward transfers.",
+      "bestMonths": "November to February is often comfortable across much of Thailand because conditions are generally cooler and drier, though coastal weather varies by region.",
+      "settings": [
+        "Beachfront resort",
+        "Island villa",
+        "City hotel ballroom",
+        "Riverside terrace",
+        "Garden resort"
+      ],
+      "knownFor": [
+        "Tropical beaches and islands",
+        "Thai cuisine",
+        "Buddhist temples and cultural traditions",
+        "Bangkok's riverfront and city skyline",
+        "Northern mountain landscapes"
+      ],
+      "gettingThere": "Guests usually arrive by air through Bangkok or an airport serving the chosen wedding region, with domestic flights or road transfers where needed. Some island stays involve boat transfers; check current options."
+    },
+    "faqs": [
+      {
+        "q": "What is the best season for a wedding in Thailand?",
+        "a": "November to February is often a comfortable choice across much of Thailand, with generally cooler, drier conditions. Rainfall patterns differ between the Andaman coast and Gulf islands, so choose dates around the specific destination rather than a countrywide rule."
+      },
+      {
+        "q": "How should we plan guest travel and accommodation?",
+        "a": "Choose the wedding region before recommending flights, as Bangkok, Phuket and other destinations have different arrival routes. Keeping rooms close to the venue can simplify transfers, especially for older guests and children. For flight connections, entry requirements and island transfers, check current options."
+      },
+      {
+        "q": "What weather backup should we arrange for an outdoor wedding?",
+        "a": "Tropical showers, heat and humidity can affect outdoor celebrations even outside the wetter months. Ask the venue about a covered or indoor alternative, shade, ventilation and safe access between spaces. Confirm when a weather decision must be made and whether the backup accommodates your planned layout."
+      },
+      {
+        "q": "Which venue types suit a wedding in Thailand?",
+        "a": "Beach resorts and island villas suit coastal celebrations, while city hotels, riverside terraces and garden resorts offer different atmospheres. Compare guest access, privacy, indoor backup space and accommodation nearby. Ask about event permissions, catering rules and sound restrictions before choosing."
+      },
+      {
+        "q": "Can we include our own ceremony traditions or Thai cultural elements?",
+        "a": "Discuss your ceremony requirements with the venue early, including any sacred fire, outside officiant or specialist catering needs. Thai cultural elements should be arranged respectfully with knowledgeable local guidance. A ceremonial wedding may not create a legal marriage; confirm registration requirements with the relevant authorities."
+      },
+      {
+        "q": "How can a planner help, and how far ahead should we start?",
+        "a": "A planner can help compare locations, coordinate local suppliers and organise guest transfers and a weather backup. Start well ahead, particularly if you need several events, a large room block or popular holiday dates. Before fixing the date, check current options for venues, flights and accommodation."
+      }
+    ]
+  }
+}

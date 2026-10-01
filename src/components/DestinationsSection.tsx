@@ -1,12 +1,16 @@
+'use client';
+
+import Image from 'next/image';
+import Link from 'next/link';
+import { useInquiry } from '@/components/InquiryProvider';
 import React, { useRef, useState, useEffect, useMemo } from 'react';
-import { Destination } from '../types';
+import { Destination } from '@/types';
 import { MapPin, ArrowRight, ChevronLeft, ChevronRight, Calendar, Sparkles, Crown } from 'lucide-react';
 import { motion, useMotionValue, useTransform, animate, PanInfo, MotionValue } from 'framer-motion';
 
 interface DestinationsSectionProps {
   destinations: Destination[];
-  onSelectDestination: (destName: string) => void;
-}
+  }
 
 interface CarouselConfig {
   distanceDivisor: number;
@@ -131,8 +135,8 @@ const getCarouselConfig = (width: number): CarouselConfig => {
 
 export const DestinationsSection: React.FC<DestinationsSectionProps> = ({
   destinations,
-  onSelectDestination,
 }) => {
+  const { open: onSelectDestination } = useInquiry();
   const displayDestinations = destinations && destinations.length > 0 ? destinations : FALLBACK_DESTINATIONS;
   const total = displayDestinations.length;
 
@@ -296,12 +300,12 @@ export const DestinationsSection: React.FC<DestinationsSectionProps> = ({
           </button>
 
           {/* Dot Indicators */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-4">
             {displayDestinations.map((_, i) => (
               <button
                 key={i}
                 onClick={() => jumpToSlide(i)}
-                className={`h-2 rounded-full transition-all duration-300 ${
+                className={`relative before:absolute before:-inset-2.5 before:content-[''] h-2 rounded-full transition-all duration-300 ${
                   i === activeSlideIndex
                     ? 'w-8 bg-gradient-to-r from-[#C5A059] to-[#D4AF37] shadow-sm'
                     : 'w-2 bg-stone-300 hover:bg-gold/60'
@@ -320,16 +324,24 @@ export const DestinationsSection: React.FC<DestinationsSectionProps> = ({
             <ChevronRight className="w-5 h-5" />
           </button>
         </div>
+        <nav aria-label="Wedding destinations" className="mt-10 flex flex-wrap justify-center gap-2 px-4 relative z-40">
+          {displayDestinations.map((d) => (
+            <Link key={d.id} href={`/${d.slug}/`} className="px-4 py-2 rounded-full border border-gold/30 bg-white text-xs uppercase tracking-wider text-charcoal-700 hover:border-gold hover:text-charcoal-950 transition-colors">
+              Wedding in {d.title}
+            </Link>
+          ))}
+        </nav>
+
 
         {/* Bottom CTA to View All Venues */}
         <div className="mt-8 text-center z-40">
-          <a
+          <Link
             href="/wedding-destination"
             className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-bold text-charcoal-800 hover:text-gold-dark transition-colors border-b border-gold/40 pb-1"
           >
-            <span>Explore All 18+ Rasm Palaces & Venues</span>
+            <span>Explore All 12 Wedding Destinations</span>
             <ArrowRight className="w-3.5 h-3.5 text-gold-dark" />
-          </a>
+          </Link>
         </div>
       </div>
     </section>
@@ -409,12 +421,11 @@ const FannedCard: React.FC<FannedCardProps> = ({
       className="absolute rounded-[28px] sm:rounded-[32px] overflow-hidden bg-stone-900 cursor-pointer group shadow-[0_16px_45px_rgba(0,0,0,0.16)] hover:shadow-[0_26px_55px_rgba(0,0,0,0.24)] border-0 w-64 h-[420px] sm:w-72 sm:h-[470px] md:w-[310px] md:h-[510px] lg:w-[335px] lg:h-[530px]"
     >
       {/* Destination Image */}
-      <img
+      <Image
         src={dest.imageUrl}
         alt={dest.title}
-        referrerPolicy="no-referrer"
         className="absolute inset-0 w-full h-full object-cover pointer-events-none transition-transform duration-700 ease-out group-hover:scale-105"
-      />
+       width={1200} height={800} sizes="(min-width: 1024px) 33vw, 100vw" />
 
       {/* Dim Overlay for Inactive/Side Cards */}
       <motion.div

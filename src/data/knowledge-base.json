@@ -1,0 +1,55 @@
+{
+  "_note": "Approved first-party facts. The content engine may make company-specific claims ONLY from this file. Edit this file (or replace it with a WordPress-backed source) to add or correct facts; never edit prompts.",
+  "brand": {
+    "name": "Rasm Weddings & Events",
+    "shortName": "Rasm",
+    "base": "Udaipur, Rajasthan, India",
+    "positioning": "Luxury destination wedding planner for NRI and international couples, focused on palace and heritage venues in Rajasthan and select destinations.",
+    "address": "510, City Centre, Ashok Nagar, Udaipur, Rajasthan 313001"
+  },
+  "approvedClaims": [
+    "Rasm Weddings & Events is based in Udaipur, Rajasthan (office: 510, City Centre, Ashok Nagar, Udaipur 313001).",
+    "Rasm states on its website that it has planned over 500 successful events.",
+    "Rasm has over a decade of experience in wedding and event planning.",
+    "Rasm offers wedding planning packages that start from ₹30,00,000 (30 lakh) and go up to ₹1 crore or more, depending on requirements, scale, venue and customisation.",
+    "Package inclusions: venue selection and booking, hospitality and guest management, catering, photography and videography, celebrity and artist management, entertainment and DJ, logistics and transportation, complete on-ground execution.",
+    "Rasm arranges special room rates for wedding groups at partner hotels.",
+    "Rasm serves couples from India and abroad."
+  ],
+  "services": [
+    "Logistics",
+    "Decor management",
+    "Invitations and gifting",
+    "Destination and venues",
+    "Vendor management",
+    "Budget management",
+    "Food and beverage",
+    "Entertainment",
+    "Hospitality and guest management"
+  ],
+  "destinationsWithPages": [
+    "Udaipur",
+    "Jaipur",
+    "Jodhpur",
+    "Jaisalmer",
+    "Goa",
+    "Kumbhalgarh",
+    "Mount Abu",
+    "Nathdwara",
+    "Pushkar",
+    "Kota",
+    "Ranakpur",
+    "Ahmedabad",
+    "Gandhinagar",
+    "Thailand"
+  ],
+  "forbidden": [
+    "invented statistics, survey results or studies",
+    "any prices other than the approved package statement (never invent figures)",
+    "client names, testimonials, awards or certifications",
+    "claims that a specific venue is partnered with Rasm unless listed above",
+    "guarantees or ranking promises",
+    "medical, legal or immigration advice"
+  ],
+  "tone": "Warm, expert, practical. Written for couples and their families planning a wedding. Plain English; explain Indian wedding terms briefly for NRI readers."
+}

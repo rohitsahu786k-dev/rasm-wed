@@ -5,3 +5,13 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .eslintcache
+next-site
+reports
+.next
+dist
+out
+.env*.local
+*.tsbuildinfo
+next-env.d.ts
+.data
+.data-test
