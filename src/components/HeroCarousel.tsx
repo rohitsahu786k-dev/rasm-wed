@@ -91,7 +91,7 @@ export function HeroCarousel({ slides, autoplaySeconds }: { slides: HeroSlide[];
             <div className="absolute inset-0" style={{ background: `linear-gradient(90deg, rgba(9,10,12,${(s.overlay / 100).toFixed(2)}) 0%, rgba(9,10,12,${(s.overlay / 200).toFixed(2)}) 55%, rgba(9,10,12,${(s.overlay / 400).toFixed(2)}) 100%), linear-gradient(0deg, rgba(9,10,12,${Math.min(0.65, s.overlay / 100 + 0.15).toFixed(2)}) 0%, rgba(9,10,12,0) 45%)` }} />
 
             <div className="rasm-container relative h-full flex">
-              <div className={`flex flex-col justify-center gap-5 w-full max-w-2xl pb-24 pt-10 ${align} ${s.align === 'center' ? 'mx-auto' : s.align === 'right' ? 'ml-auto' : ''}`}>
+              <div className={`flex flex-col justify-end md:justify-center gap-5 w-full max-w-2xl pb-20 sm:pb-24 pt-0 ${align} ${s.align === 'center' ? 'mx-auto' : s.align === 'right' ? 'ml-auto' : ''}`}>
                 {s.eyebrow && <p className="text-[11px] sm:text-xs uppercase tracking-[0.3em] text-[#E2C785] font-medium">{s.eyebrow}</p>}
                 <H className={`font-manrope font-medium text-[2.1rem] leading-[1.15] sm:text-5xl lg:text-[3.75rem] tracking-tight text-white ${isActive ? 'hero-rise' : ''}`}>{s.heading}</H>
                 {s.subheading && <p className="text-base sm:text-lg text-white/85 font-light leading-relaxed max-w-xl">{s.subheading}</p>}

@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import { useSettings } from '@/components/SiteSettingsProvider';
 import { useInquiry } from '@/components/InquiryProvider';
-import { MessageCircle, Menu, X, Sparkles, ChevronDown, MapPin, Crown, ArrowRight, Building2 } from 'lucide-react';
+import { MessageCircle, Menu, X, Sparkles, ChevronDown, MapPin, Crown, ArrowRight, Building2, Home, Compass, Gem, Image as ImageIcon, BookOpen, Phone } from 'lucide-react';
 import { AnimatedButton } from '@/components/ui/AnimatedButton';
 
 const menuTransition = {
@@ -34,6 +34,14 @@ export const Navbar: React.FC = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
 
   const rajasthanDestinations = [
     { name: 'Udaipur Palaces', slug: 'wedding-planner-in-udaipur', desc: 'Lake Pichola & City Palace Heritage' },
@@ -632,92 +640,109 @@ export const Navbar: React.FC = () => {
         )}
       </AnimatePresence>
 
-      {/* Mobile Animated Glass Drawer */}
+      {/* Mobile Sidebar Drawer */}
       <AnimatePresence>
         {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.3 }}
-            className="lg:hidden fixed inset-x-0 top-[72px] bg-white/98 backdrop-blur-2xl border-b border-gold/30 shadow-2xl max-h-[85vh] overflow-y-auto px-6 py-6"
-          >
-            <div className="space-y-6">
-              {/* Core Links */}
-              <div className="flex flex-col space-y-3 pb-4 border-b border-gold/15">
-                <Link href={'/'} onClick={closeNav}
-                  
-                  className="text-left font-manrope font-semibold text-base text-charcoal-900 hover:text-gold-dark py-1"
-                >
-                  Home
+          <>
+            {/* Dimmed backdrop behind the sidebar */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              className="lg:hidden fixed inset-0 z-[105] bg-charcoal-950/55 backdrop-blur-sm"
+              onClick={closeNav}
+              aria-hidden="true"
+            />
+
+            {/* Solid sidebar panel */}
+            <motion.aside
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={menuTransition}
+              className="lg:hidden fixed top-0 right-0 z-[110] h-[100dvh] w-[86%] max-w-[380px] bg-white shadow-[-20px_0_60px_rgba(0,0,0,0.25)] flex flex-col"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Mobile navigation"
+            >
+              {/* Sidebar Header */}
+              <div className="flex items-center justify-between px-5 py-4 border-b border-gold/15 bg-ivory-100">
+                <Link href={'/'} onClick={closeNav} className="flex items-center gap-2" aria-label="Rasm Weddings Home">
+                  <Image
+                    src="/rasm-official-logo.png"
+                    alt="Rasm Wedding & Events"
+                    className="h-9 w-auto object-contain"
+                    width={1024} height={497} sizes="100px"
+                  />
                 </Link>
-                <Link href={'/wedding-destination'} onClick={closeNav}
-                  
-                  className="text-left font-manrope font-semibold text-base text-charcoal-900 hover:text-gold-dark py-1"
+                <button
+                  onClick={closeNav}
+                  className="p-2 rounded-xl text-charcoal-700 hover:text-gold-dark hover:bg-gold/10 transition-colors"
+                  aria-label="Close menu"
                 >
-                  Destinations Directory
-                </Link>
-                <Link href={'/services'} onClick={closeNav}
-                  
-                  className="text-left font-manrope font-semibold text-base text-charcoal-900 hover:text-gold-dark py-1"
-                >
-                  All Bespoke Services
-                </Link>
-                <Link href={'/gallery'} onClick={closeNav}
-                  
-                  className="text-left font-manrope font-semibold text-base text-charcoal-900 hover:text-gold-dark py-1"
-                >
-                  Royal Photo Gallery
-                </Link>
-                <Link href={'/blog'} onClick={closeNav}
-                  
-                  className="text-left font-manrope font-semibold text-base text-charcoal-900 hover:text-gold-dark py-1"
-                >
-                  Wedding Journal & Guides
-                </Link>
-                <Link href={'/contact-us'} onClick={closeNav}
-                  
-                  className="text-left font-manrope font-semibold text-base text-charcoal-900 hover:text-gold-dark py-1"
-                >
-                  Contact Concierge
-                </Link>
+                  <X className="w-5 h-5" />
+                </button>
               </div>
 
-              {/* Popular Destinations Quick Links */}
-              <div>
-                <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-gold-dark block mb-2">
-                  Featured Palaces
-                </span>
-                <div className="grid grid-cols-2 gap-2">
-                  <Link href={'/wedding-planner-in-udaipur'} onClick={closeNav}
-                    
-                    className="text-left p-2.5 rounded-xl bg-ivory-200 text-xs font-medium text-charcoal-800 hover:bg-gold/15"
-                  >
-                    Udaipur Palaces
-                  </Link>
-                  <Link href={'/wedding-planner-in-jaipur'} onClick={closeNav}
-                    
-                    className="text-left p-2.5 rounded-xl bg-ivory-200 text-xs font-medium text-charcoal-800 hover:bg-gold/15"
-                  >
-                    Jaipur Forts
-                  </Link>
-                  <Link href={'/wedding-planner-in-goa'} onClick={closeNav}
-                    
-                    className="text-left p-2.5 rounded-xl bg-ivory-200 text-xs font-medium text-charcoal-800 hover:bg-gold/15"
-                  >
-                    Goa Mandaps
-                  </Link>
-                  <Link href={'/wedding-planner-in-jodhpur'} onClick={closeNav}
-                    
-                    className="text-left p-2.5 rounded-xl bg-ivory-200 text-xs font-medium text-charcoal-800 hover:bg-gold/15"
-                  >
-                    Jodhpur Dunes
-                  </Link>
+              {/* Scrollable Nav Body */}
+              <div className="flex-1 overflow-y-auto px-5 py-5 space-y-7">
+                {/* Core Links */}
+                <div className="flex flex-col divide-y divide-gold/10 rounded-2xl border border-gold/15 overflow-hidden">
+                  {[
+                    { href: '/', label: 'Home', icon: Home },
+                    { href: '/wedding-destination', label: 'Destinations Directory', icon: Compass },
+                    { href: '/services', label: 'All Bespoke Services', icon: Gem },
+                    { href: '/gallery', label: 'Royal Photo Gallery', icon: ImageIcon },
+                    { href: '/blog', label: 'Wedding Journal & Guides', icon: BookOpen },
+                    { href: '/contact-us', label: 'Contact Concierge', icon: Phone },
+                  ].map(({ href, label, icon: Icon }) => (
+                    <Link
+                      key={href}
+                      href={href}
+                      onClick={closeNav}
+                      className={`flex items-center gap-3 px-4 py-3.5 font-manrope font-medium text-[15px] transition-colors ${
+                        currentPath === href ? 'text-gold-dark bg-gold/10' : 'text-charcoal-900 hover:bg-ivory-100'
+                      }`}
+                    >
+                      <Icon className="w-4 h-4 text-gold-dark shrink-0" />
+                      <span>{label}</span>
+                    </Link>
+                  ))}
+                </div>
+
+                {/* Popular Destinations Quick Links */}
+                <div>
+                  <span className="text-[10px] font-semibold uppercase tracking-[0.2em] text-gold-dark block mb-2.5">
+                    Featured Palaces
+                  </span>
+                  <div className="grid grid-cols-2 gap-2.5">
+                    <Link href={'/wedding-planner-in-udaipur'} onClick={closeNav}
+                      className="text-left p-3 rounded-xl bg-ivory-200 border border-gold/15 text-xs font-medium text-charcoal-800 hover:bg-gold/15 hover:border-gold/30 transition-colors"
+                    >
+                      Udaipur Palaces
+                    </Link>
+                    <Link href={'/wedding-planner-in-jaipur'} onClick={closeNav}
+                      className="text-left p-3 rounded-xl bg-ivory-200 border border-gold/15 text-xs font-medium text-charcoal-800 hover:bg-gold/15 hover:border-gold/30 transition-colors"
+                    >
+                      Jaipur Forts
+                    </Link>
+                    <Link href={'/wedding-planner-in-goa'} onClick={closeNav}
+                      className="text-left p-3 rounded-xl bg-ivory-200 border border-gold/15 text-xs font-medium text-charcoal-800 hover:bg-gold/15 hover:border-gold/30 transition-colors"
+                    >
+                      Goa Mandaps
+                    </Link>
+                    <Link href={'/wedding-planner-in-jodhpur'} onClick={closeNav}
+                      className="text-left p-3 rounded-xl bg-ivory-200 border border-gold/15 text-xs font-medium text-charcoal-800 hover:bg-gold/15 hover:border-gold/30 transition-colors"
+                    >
+                      Jodhpur Dunes
+                    </Link>
+                  </div>
                 </div>
               </div>
 
-              {/* Mobile CTAs */}
-              <div className="pt-2 space-y-3">
+              {/* Sticky Bottom CTAs */}
+              <div className="px-5 py-5 border-t border-gold/15 bg-ivory-100 space-y-3 shrink-0">
                 <AnimatedButton
                   variant="gold-shimmer"
                   size="md"
@@ -741,8 +766,8 @@ export const Navbar: React.FC = () => {
                   Chat on WhatsApp
                 </a>
               </div>
-            </div>
-          </motion.div>
+            </motion.aside>
+          </>
         )}
       </AnimatePresence>
     </header>

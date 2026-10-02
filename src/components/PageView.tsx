@@ -279,19 +279,7 @@ export async function PageView({ slug: cleanSlug, wpPage, media = [] }: PageView
 
   // 3. Fallback for Legal / Informational Pages (Privacy, Terms, Policies)
   const cleanTitle = wpPage?.title || cleanSlug.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
-
-  // Sanitize content from Elementor noise if present
-  let cleanContent = (wpPage?.content || '')
-    .replace(/<script[\s\S]*?<\/script>/gi, '')
-    .replace(/<(\/?)h1\b/gi, '<$1h2'); // template already renders the page H1
-  if (cleanContent.includes('elementor')) {
-    // Strip raw elementor div wrapper tags if found, keeping readable paragraphs
-    cleanContent = cleanContent
-      .replace(/<div class="elementor[^>]*>/g, '')
-      .replace(/<\/div>/g, '')
-      .replace(/<section class="elementor[^>]*>/g, '')
-      .replace(/<\/section>/g, '');
-  }
+  const cleanContent = wpPage?.content || '';
 
   return (
     <div className="pt-28 pb-24 bg-white min-h-screen text-charcoal-900">
@@ -310,10 +298,7 @@ export async function PageView({ slug: cleanSlug, wpPage, media = [] }: PageView
         </div>
 
         {cleanContent ? (
-          <div
-            className="wp-content max-w-none p-8 rounded-3xl bg-[#FAF8F5] border border-gold/20"
-            dangerouslySetInnerHTML={{ __html: cleanContent }}
-          />
+          <WpBody content={cleanContent} className="max-w-none p-8 rounded-3xl bg-[#FAF8F5] border border-gold/20" />
         ) : (
           <div className="p-8 rounded-3xl bg-[#FAF8F5] border border-gold/20 text-center space-y-4">
             <p className="text-charcoal-600 text-sm font-light">
