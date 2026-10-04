@@ -8,43 +8,45 @@ export interface HomeImage {
 }
 
 const up = (path: string, width: number, height: number, alt: string): HomeImage => ({ src: `${WP_ORIGIN}/wp-content/uploads/${path}`, width, height, alt });
+const n = (file: string, width: number, height: number, alt: string) => up(`2026/10/${file}.webp`, width, height, alt);
 
 /**
- * Photographs from the WordPress media library that carry no text/watermarks, picked per slot of the homepage layout.
- * Replace a path here to swap a picture; sizes only reserve space (no layout shift).
+ * Homepage pictures from the WordPress media library (2026/10 upload set), placed by slot:
+ * hero 16:9, featured weddings 4:3, venues mixed, experiences 3:4 portrait, Instagram 1:1, contact portrait.
+ * Replace a file name to swap a picture; sizes only reserve space (no layout shift).
  */
 export const HOME_IMAGES = {
-  hero: up('2026/09/best-wedding-venues-in-kumbhalgarh-featured.webp', 1536, 1024, 'Floral wedding mandap in front of the Aravalli hills at sunset, destination wedding in Udaipur'),
-  heroTwo: up('2024/07/ELLQ1553-scaled.jpg', 2560, 1536, 'Golden heritage-style wedding backdrop lit at night, palace wedding decor in Udaipur'),
-  heroThree: up('2023/10/15.jpg', 1920, 888, 'Decorated wedding stage and courtyard lit in warm red and gold, wedding planner in Udaipur'),
+  hero: n('golden_hour_palace_lake_wedding_mandap', 1672, 941, 'Floral wedding mandap on a lakeside palace terrace at golden hour, wedding in Udaipur'),
+  heroTwo: n('sunset_palace_wedding_by_the_lake', 1672, 941, 'Lake palace wedding setup at sunset, destination wedding in Udaipur'),
+  heroThree: n('opulent_palace_courtyard_at_dusk', 1672, 941, 'Palace courtyard at dusk lit for a wedding celebration in Rajasthan'),
   weddings: [
-    { ...up('2024/07/MLVR0388-scaled.webp', 1920, 1440, 'Royal pink and gold wedding stage designed by Rasm Weddings in Udaipur'), caption: 'A Regal Celebration in Udaipur' },
-    { ...up('2024/07/c6e90772-65c1-49ea-af0e-58620a88c7bd.jpg', 1024, 855, 'Floral wedding stage in a garden venue, wedding decorators in Udaipur'), caption: 'Garden Wedding, Rajasthan' },
-    { ...up('2024/07/IMG_20190207_093652-scaled.jpg', 2560, 1920, 'Colourful draped wedding pavilion and lounge, destination wedding decor'), caption: 'Draped Pavilion Celebration' },
-    { ...up('2024/07/DYPT5102.jpg', 960, 540, 'White and gold floral wedding setup, luxury wedding in Rajasthan'), caption: 'Floral Mandap Setup' },
+    { ...n('golden_palace_wedding_mandap_at_sunset', 1448, 1086, 'Palace wedding mandap at sunset, wedding planner in Udaipur'), caption: 'Palace Mandap at Sunset' },
+    { ...n('royal_blue_fort_wedding_at_night', 1448, 1086, 'Fort wedding with blue drapes lit at night in Rajasthan'), caption: 'Fort Wedding at Night' },
+    { ...n('opulent_indian_wedding_under_palace_lights', 1448, 1086, 'Pink and gold sangeet stage under palace lights'), caption: 'Palace Sangeet Evening' },
+    { ...n('golden_lakeside_indian_wedding', 1448, 1086, 'Lakeside Indian wedding ceremony with floral mandap and guests'), caption: 'Lakeside Mandap Ceremony' },
   ],
   venues: [
-    { ...up('2024/07/ELLQ1553-scaled.jpg', 2560, 1536, 'Palace wedding venue backdrop in Udaipur, wedding venues in Udaipur'), label: 'Historic Palaces' },
-    { ...up('2024/08/Jagmandir-Island-Palace.webp', 500, 500, 'Jagmandir Island Palace on Lake Pichola, lake palace wedding in Udaipur'), label: 'Lakeview Palaces' },
-    { ...up('2024/09/Alwar-Rasm-Wedding-1.jpg', 1200, 500, 'Aerial view of a Rajasthan heritage fort wedding venue'), label: 'Heritage Forts' },
-    { ...up('2026/09/best-wedding-venues-in-kumbhalgarh-2.webp', 1200, 800, 'Luxury hotel banquet hall with arched windows overlooking the Aravalli hills'), label: 'Luxury Hotels' },
-    { ...up('2026/09/best-wedding-venues-in-kumbhalgarh-1.webp', 1200, 800, 'Hillside heritage resort among the Aravalli hills, garden wedding venue'), label: 'Garden & Hill Venues' },
-    { ...up('2024/08/The-Ananta-Udaipur.webp', 500, 500, 'The Ananta Udaipur resort, boutique wedding resort in Udaipur'), label: 'Boutique Resorts' },
+    { ...n('golden_hour_palace_wedding_by_the_lake', 1672, 941, 'Historic palace and fort by the lake at golden hour, palace wedding venue in Udaipur'), label: 'Historic Palaces' },
+    { ...n('sunset_palace_terrace_by_the_lake', 1448, 1086, 'Floral palace terrace overlooking the lake, lakeview wedding venue'), label: 'Lakeview Palaces' },
+    { ...n('golden_fort_reflected_at_sunset', 1122, 1402, 'Fort reflected in the lake at sunset, heritage fort wedding venue'), label: 'Heritage Forts' },
+    { ...n('sunset_safari_lodge_wedding_reception', 1448, 1086, 'Poolside wedding reception dinner at sunset, luxury hotel wedding venue'), label: 'Luxury Hotels' },
+    { ...n('golden_hour_lake_palace_wedding_garden', 1672, 941, 'Garden wedding arch above the lake, garden wedding venue in Udaipur'), label: 'Garden Venues' },
+    { ...n('sunset_palace_resort_retreat', 1122, 1402, 'Palace resort terrace and pool at sunset, boutique wedding resort'), label: 'Boutique Resorts' },
   ],
   experiences: [
-    { ...up('2024/07/IMG_E5018.jpg', 1125, 1344, 'Bride with marigold floral decor at a haldi and mehndi ceremony'), label: 'Mehndi & Sangeet' },
-    { ...up('2024/07/MJLW5633.webp', 960, 720, 'Chandelier wedding mandap with floral canopy'), label: 'Wedding Decor' },
-    { ...up('2024/07/IMG_E5060.jpg', 1125, 1103, 'Long banquet table with floral centrepieces for a wedding dinner'), label: 'Gourmet Catering' },
-    { ...up('2024/07/IMG_E5199.jpg', 1125, 1098, 'Stage with lighting for a wedding sangeet and live entertainment'), label: 'Entertainment & Artists' },
+    { ...n('golden_hour_mehendi_celebration', 1122, 1402, 'Women celebrating a mehendi function with flowers by the lake'), label: 'Mehndi & Sangeet' },
+    { ...n('royal_baraat_at_golden_hour', 1122, 1402, 'Groom arriving on a decorated horse with dhol players, royal baraat'), label: 'Royal Baraat' },
+    { ...n('royal_lakefront_indian_banquet', 1122, 1402, 'Indian wedding banquet plates on a lakefront table, wedding catering'), label: 'Gourmet Catering' },
+    { ...n('glamorous_indian_wedding_dance_performance', 1122, 1402, 'Dancers performing on a pink stage at a wedding sangeet'), label: 'Entertainment & Artists' },
   ],
   instagram: [
-    up('2024/07/IMG_E5022.jpg', 1125, 841, 'Floral mandap with chandeliers, wedding photography in Udaipur'),
-    up('2024/07/IMG_E5025.jpg', 1125, 1286, 'Bride on a floral lounge at a pre-wedding function'),
-    up('2024/07/IMG_E5098.jpg', 1125, 981, 'Red wedding mandap in front of a palace courtyard'),
-    up('2024/07/IMG_E5089.jpg', 1125, 734, 'Lakeside pavilion with red drapes, lake wedding decor'),
-    up('2024/07/IMG_E5077.jpg', 1125, 816, 'White and pink floral wedding stage'),
-    up('2024/07/IMG_E5092.jpg', 1125, 861, 'Floral wedding stage with sofa seating'),
-    up('2024/07/IMG_E5084.jpg', 1125, 810, 'Red and gold wedding stage with floral backdrop'),
+    n('royal_sunset_palace_wedding_portrait', 1254, 1254, 'Wedding couple on a lakeside palace terrace, wedding photography in Udaipur'),
+    n('golden_sunset_palace_wedding_portrait', 1254, 1254, 'Couple portrait at golden hour with the lake palace behind'),
+    n('golden_hour_palace_wedding_portrait', 1254, 1254, 'Wedding couple embracing among flowers at a palace'),
+    n('golden_palace_lake_wedding', 1254, 1254, 'Couple dancing on a floral palace terrace by the lake'),
+    n('golden_hour_palace_bride', 1254, 1254, 'Bride walking along a palace terrace at sunset'),
+    n('lakeside_palace_wedding_celebration', 1254, 1254, 'Lakeside palace wedding celebration with fireworks'),
+    n('sunset_lake_palace_wedding_terrace', 1254, 1254, 'Lantern-lit palace terrace set for a wedding at sunset'),
   ],
-  contact: up('2024/07/IMG_E5020.jpg', 1125, 1323, 'Bride at a flower-covered arch, plan your destination wedding with Rasm Weddings'),
+  contact: n('golden_hour_palace_lake_wedding', 1254, 1254, 'Bride in a floral arch looking at the lake palace, plan your wedding with Rasm Weddings'),
 } as const;

@@ -7,7 +7,7 @@ import type { Destination } from '@/types';
 import { WpBody, cleanBlocks } from '@/components/WpBody';
 import { CityFacts, FaqAccordion, HowWeHelp, NearbyDestinations, RelatedGuides } from '@/components/CityParts';
 import { JsonLd } from '@/components/JsonLd';
-import { CtaBand, ExploreLinks, Facts } from '@/components/PageParts';
+import { CtaBand, ExploreLinks, Facts, WithSidebar } from '@/components/PageParts';
 import { FACTS } from '@/data/pages-content';
 import { parseElementor } from '@/lib/elementor';
 import { cityNameFromSlug, getCityProfile, parseFaqs, relatedPosts } from '@/lib/city';
@@ -87,10 +87,10 @@ export function CityLanding({ page, nearby, posts, services }: { page: WPPage; n
       )}
 
       <article className="rasm-container py-14">
-        <div className="mx-auto max-w-3xl">
+        <WithSidebar context={`${city} wedding enquiry`}>
           <WpBody content={parsed.body} />
           {parsed.tail && <div className="wp-content mt-6" dangerouslySetInnerHTML={{ __html: parsed.tail }} />}
-        </div>
+        </WithSidebar>
       </article>
 
       <HowWeHelp city={city} services={services} />

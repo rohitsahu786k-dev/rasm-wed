@@ -99,11 +99,11 @@ export function FeaturedWeddings() {
       <div className="rasm-container">
         <div className="flex items-end justify-between gap-4 mb-8">
           <div>
-            <Eyebrow>Real Stories, Royal Celebrations</Eyebrow>
-            <h2 className="font-manrope font-medium text-3xl sm:text-4xl text-charcoal-900 tracking-tight">Our Featured Weddings in Udaipur &amp; Rajasthan</h2>
-            <p className="mt-2 text-sm text-charcoal-600 font-light">Glimpses from celebrations we have planned at India&apos;s most beautiful wedding destinations.</p>
+            <Eyebrow>Featured Wedding Styles</Eyebrow>
+            <h2 className="font-manrope font-medium text-3xl sm:text-4xl text-charcoal-900 tracking-tight">Wedding Styles We Plan in Udaipur &amp; Rajasthan</h2>
+            <p className="mt-2 text-sm text-charcoal-600 font-light">Palace, fort and lakeside settings for your wedding in Udaipur and across Rajasthan.</p>
           </div>
-          <div className="hidden sm:block shrink-0"><TextLink href="/gallery/">View All Weddings</TextLink></div>
+          <div className="hidden sm:block shrink-0"><TextLink href="/gallery/">View Wedding Gallery</TextLink></div>
         </div>
         <ul className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           {HOME_IMAGES.weddings.map((w) => (
@@ -115,7 +115,7 @@ export function FeaturedWeddings() {
             </li>
           ))}
         </ul>
-        <div className="sm:hidden mt-6 text-center"><TextLink href="/gallery/">View All Weddings</TextLink></div>
+        <div className="sm:hidden mt-6 text-center"><TextLink href="/gallery/">View Wedding Gallery</TextLink></div>
       </div>
     </section>
   );

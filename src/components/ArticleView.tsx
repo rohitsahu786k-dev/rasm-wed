@@ -6,6 +6,7 @@ import { WpBody } from '@/components/WpBody';
 import { InquiryAnimatedButton } from '@/components/InquiryClient';
 import { JsonLd } from '@/components/JsonLd';
 import { breadcrumbSchema } from '@/lib/schema';
+import { WithSidebar } from '@/components/PageParts';
 
 const fmt = (iso: string) => new Date(iso).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' });
 
@@ -21,7 +22,7 @@ export function ArticleView({ post, related }: { post: WPPostFull; related: WPPo
       <JsonLd data={breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'Journal', path: '/blog/' }, { name: post.title, path: `/${post.slug}/` }])} />
       <header className="pt-32 pb-10 bg-[#FDFCFA] border-b border-gold/20">
         <div className="rasm-container">
-         <div className="mx-auto max-w-3xl">
+         <div>
           <nav aria-label="Breadcrumb" className="text-xs text-charcoal-500 mb-5">
             <ol className="flex flex-wrap items-center gap-1.5">
               <li><Link href="/" className="hover:text-charcoal-900">Home</Link></li>
@@ -43,12 +44,12 @@ export function ArticleView({ post, related }: { post: WPPostFull; related: WPPo
 
       {post.image && (
         <div className="rasm-container pt-10">
-          <Image src={post.image} alt={post.imageAlt ?? post.title} width={post.imageWidth ?? 1536} height={post.imageHeight ?? 1024} priority sizes="(min-width: 1024px) 896px, 100vw" className="mx-auto w-full max-w-4xl h-auto rounded-3xl border border-gold/20" />
+          <Image src={post.image} alt={post.imageAlt ?? post.title} width={post.imageWidth ?? 1536} height={post.imageHeight ?? 1024} priority sizes="(min-width: 1024px) 896px, 100vw" className="w-full h-auto max-h-[560px] object-cover rounded-3xl border border-gold/20" />
         </div>
       )}
 
       <article className="rasm-container py-12">
-        <div className="mx-auto max-w-3xl"><WpBody content={post.content} /></div>
+        <WithSidebar context={post.title}><WpBody content={post.content} /></WithSidebar>
       </article>
 
       <section className="py-14 bg-gradient-to-b from-[#FAF8F5] to-white text-center border-t border-gold/15">
@@ -63,7 +64,7 @@ export function ArticleView({ post, related }: { post: WPPostFull; related: WPPo
 
       {related.length > 0 && (
         <aside className="py-14 border-t border-gold/15" aria-labelledby="related">
-          <div className="rasm-container max-w-5xl">
+          <div className="rasm-container">
             <h2 id="related" className="font-manrope font-medium text-2xl sm:text-3xl tracking-tight mb-8 text-center">More from the Journal</h2>
             <ul className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               {related.map((p) => (

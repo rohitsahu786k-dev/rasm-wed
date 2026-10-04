@@ -52,21 +52,25 @@ export function ServicesPage() {
 
       <Band>
         <SectionTitle eyebrow="What We Do" title="Our Nine" accent="Wedding Planning Services" lead="Every service can be booked on its own or as part of a complete plan for your wedding in Udaipur or any of our 12 destinations." />
-        <ul className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {SERVICES.map((s) => {
+        <ul className="space-y-6 sm:space-y-8">
+          {SERVICES.map((s, i) => {
             const img = SERVICE_IMAGES[s.key];
+            const flip = i % 2 === 1;
             return (
-              <li key={s.key} id={s.key} className="rounded-3xl overflow-hidden border border-gold/25 bg-white shadow-[0_8px_30px_rgba(197,160,89,0.08)] flex flex-col">
+              <li key={s.key} id={s.key} className="scroll-mt-28 grid lg:grid-cols-12 gap-0 overflow-hidden rounded-3xl border border-gold/25 bg-white shadow-[0_8px_30px_rgba(197,160,89,0.08)]">
                 {img && (
-                  <div className="relative aspect-[3/2] bg-stone-100">
-                    <Image src={img.src} alt={img.alt} fill sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw" className="object-cover" />
+                  <div className={`relative min-h-[240px] sm:min-h-[300px] lg:min-h-full lg:col-span-5 bg-stone-100 ${flip ? 'lg:order-2' : ''}`}>
+                    <Image src={img.src} alt={img.alt} fill sizes="(min-width: 1024px) 38vw, 100vw" className="object-cover" />
                   </div>
                 )}
-                <div className="p-6 flex-1">
-                  <h3 className="font-manrope font-medium text-xl text-charcoal-900 tracking-tight">{s.title}</h3>
-                  <p className="mt-3 text-sm text-charcoal-600 font-light leading-relaxed">{s.text}</p>
-                  <ul className="mt-4 space-y-1.5 text-sm text-charcoal-700 font-light list-disc pl-5 marker:text-gold">
-                    {s.points.map((p) => <li key={p}>{p}</li>)}
+                <div className={`p-6 sm:p-10 lg:col-span-7 flex flex-col justify-center ${flip ? 'lg:order-1' : ''}`}>
+                  <p className="font-manrope text-sm font-medium gold-gradient-text mb-2">{String(i + 1).padStart(2, '0')} / {String(SERVICES.length).padStart(2, '0')}</p>
+                  <h3 className="font-manrope font-medium text-2xl sm:text-3xl text-charcoal-900 tracking-tight">{s.title}</h3>
+                  <p className="mt-3 text-charcoal-600 font-light leading-relaxed">{s.text}</p>
+                  <ul className="mt-5 grid sm:grid-cols-2 gap-x-6 gap-y-2 text-sm text-charcoal-700 font-light">
+                    {s.points.map((p) => (
+                      <li key={p} className="flex gap-2.5"><span aria-hidden="true" className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-gold" />{p}</li>
+                    ))}
                   </ul>
                 </div>
               </li>

@@ -5,6 +5,7 @@ import type { PageImage } from '@/data/page-media';
 import { InquiryAnimatedButton } from '@/components/InquiryClient';
 import { JsonLd } from '@/components/JsonLd';
 import { breadcrumbSchema, faqSchema } from '@/lib/schema';
+import { SITE } from '@/lib/site';
 
 export function Breadcrumbs({ items }: { items: { name: string; href?: string }[] }) {
   return (
@@ -169,11 +170,11 @@ export function Faq({ title = 'Frequently Asked Questions', accent, faqs, tone =
     <section aria-labelledby="faq-h" className={`${tone === 'ivory' ? 'bg-[#FDFCFA]' : tone === 'sand' ? 'bg-ivory-200' : 'bg-white'} border-b border-gold/15 py-14 sm:py-20`}>
       <JsonLd data={faqSchema(faqs)} />
       <div className="rasm-container">
-        <div className="mx-auto max-w-3xl">
+        <div>
         <div id="faq-h">
           <SectionTitle title={title} accent={accent} center />
         </div>
-        <div className="space-y-3">
+        <div className="grid lg:grid-cols-2 gap-3 items-start">
           {faqs.map((f, i) => (
             <details key={f.q} open={i === 0} className="group rounded-2xl border border-gold/25 bg-white overflow-hidden">
               <summary className="flex items-center justify-between gap-4 p-5 cursor-pointer list-none [&::-webkit-details-marker]:hidden hover:bg-ivory-100 transition-colors">
@@ -233,9 +234,9 @@ export interface ProseBlock {
 /** Long-form copy: real headings and paragraphs for readers and search engines. */
 export function Prose({ blocks }: { blocks: ProseBlock[] }) {
   return (
-    <div className="max-w-3xl mx-auto space-y-8">
+    <div className="lg:columns-2 lg:gap-14 space-y-8 lg:space-y-0">
       {blocks.map((b) => (
-        <div key={b.h}>
+        <div key={b.h} className="break-inside-avoid lg:mb-10">
           <h2 className="font-manrope font-medium text-xl sm:text-2xl text-charcoal-900 tracking-tight mb-3">{b.h}</h2>
           <div className="space-y-3 text-charcoal-600 font-light leading-relaxed text-[15px] sm:text-base">
             {b.p.map((t, i) => <p key={i}>{linkify(t, b.links)}</p>)}
@@ -263,5 +264,28 @@ export function ExploreLinks({ title = 'Explore More', links }: { title?: string
         </ul>
       </div>
     </section>
+  );
+}
+
+/** Article/city-page layout: body on the left, a sticky enquiry card on the right (desktop), stacked on mobile. */
+export function WithSidebar({ children, context }: { children: React.ReactNode; context: string }) {
+  return (
+    <div className="grid lg:grid-cols-[minmax(0,2fr)_minmax(280px,1fr)] gap-10 xl:gap-14 items-start">
+      <div className="min-w-0">{children}</div>
+      <aside className="lg:sticky lg:top-28 rounded-3xl border border-gold/25 bg-[#FDFCFA] p-6 sm:p-8 shadow-[0_8px_30px_rgba(197,160,89,0.10)]">
+        <h2 className="font-manrope font-medium text-xl text-charcoal-900 tracking-tight mb-2">Plan your wedding with Rasm</h2>
+        <p className="text-sm text-charcoal-600 font-light leading-relaxed mb-5">Share your dates, guest count and destination. Our Udaipur team replies with venue options and a written estimate.</p>
+        <InquiryAnimatedButton variant="gold-shimmer" size="md" context={context} icon={<ArrowRight className="w-4 h-4" />} className="w-full justify-center">
+          Free Consultation
+        </InquiryAnimatedButton>
+        <ul className="mt-5 space-y-2 text-sm text-charcoal-700">
+          <li><a className="hover:text-gold-dark" href={`tel:${SITE.phone.replace(/[^d+]/g, '')}`}>Call {SITE.phone}</a></li>
+          <li><a className="hover:text-gold-dark" href={`https://wa.me/${SITE.whatsapp}`} target="_blank" rel="noopener noreferrer">WhatsApp us</a></li>
+          <li><Link className="hover:text-gold-dark" href="/services/">Wedding planning services</Link></li>
+          <li><Link className="hover:text-gold-dark" href="/wedding-destination/">All wedding destinations</Link></li>
+        </ul>
+        <p className="mt-5 pt-5 border-t border-gold/20 text-xs text-charcoal-500">Packages start from Rs 30,00,000 (30 Lacs).</p>
+      </aside>
+    </div>
   );
 }

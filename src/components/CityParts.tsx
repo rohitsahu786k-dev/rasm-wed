@@ -40,11 +40,11 @@ export function FaqAccordion({ city, faqs }: { city: string; faqs: { q: string; 
   if (faqs.length === 0) return null;
   return (
     <section aria-labelledby="faq-heading" className="py-16 bg-[#FDFCFA] border-t border-gold/15">
-      <div className="rasm-container"><div className="mx-auto max-w-3xl">
+      <div className="rasm-container"><div>
         <h2 id="faq-heading" className="font-manrope font-medium text-3xl sm:text-4xl text-charcoal-900 tracking-tight text-center mb-10">
           {city} Wedding <span className="gold-gradient-text italic">Questions</span>
         </h2>
-        <div className="space-y-3">
+        <div className="grid lg:grid-cols-2 gap-3 items-start">
           {faqs.map((f, i) => (
             <details key={f.q} open={i === 0} className="group rounded-2xl border border-gold/25 bg-white overflow-hidden">
               <summary className="flex items-center justify-between gap-4 p-5 cursor-pointer list-none [&::-webkit-details-marker]:hidden hover:bg-ivory-100 transition-colors">
@@ -122,11 +122,11 @@ export function RelatedGuides({ city, posts }: { city: string; posts: WPPost[] }
   if (posts.length === 0) return null;
   return (
     <section aria-labelledby="guides-heading" className="py-16 bg-white border-t border-gold/15">
-      <div className="rasm-container"><div className="mx-auto max-w-4xl">
+      <div className="rasm-container"><div>
         <h2 id="guides-heading" className="font-manrope font-medium text-2xl sm:text-3xl text-charcoal-900 tracking-tight text-center mb-8">
           Guides for Planning in {city}
         </h2>
-        <ul className="grid gap-3">
+        <ul className="grid md:grid-cols-2 gap-3">
           {posts.map((p) => (
             <li key={p.slug}>
               <Link href={`/${p.slug}/`} className="group flex items-center justify-between gap-4 rounded-2xl border border-gold/20 p-4 hover:border-gold hover:bg-ivory-100 transition-colors">

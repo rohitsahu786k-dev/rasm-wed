@@ -149,10 +149,12 @@ const firstSentence = (t: string, max = 110) => {
 
 /** Several city pages share one generic featured image in WordPress; these give those cities their own photograph. */
 const IMAGE_OVERRIDE: Record<string, string> = {
-  jaipur: '2024/01/jaipur.png',
-  jodhpur: '2024/01/Jodhpur.png',
+  udaipur: '2026/10/golden_sunset_over_udaipur_palace.webp',
+  jaipur: '2026/10/golden_hour_at_a_rajasthani_palace.webp',
+  jodhpur: '2026/10/golden_hour_over_the_blue_city.webp',
+  jaisalmer: '2026/10/golden_desert_wedding_lounge_at_sunset.webp',
+  kumbhalgarh: '2026/10/golden_fort_reflected_at_sunset.webp',
   goa: '2024/08/Goa.webp',
-  kumbhalgarh: '2026/09/best-wedding-venues-in-kumbhalgarh-1.webp',
 };
 
 /** Destination cards built from the real WordPress city pages (text + photo), not hard-coded copy. */
