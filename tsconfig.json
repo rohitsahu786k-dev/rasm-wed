@@ -39,6 +39,7 @@
   "exclude": [
     "vite-src",
     "next-site",
+    "rasm",
     "node_modules"
   ]
 }

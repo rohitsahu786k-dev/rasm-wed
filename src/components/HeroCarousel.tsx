@@ -14,6 +14,17 @@ const subscribeReduced = (cb: () => void) => {
   return () => mq.removeEventListener('change', cb);
 };
 
+/** "*word*" in a heading renders in gold italic (e.g. "Your Palace *Wedding* Begins Here."). */
+function Accent({ text }: { text: string }) {
+  return (
+    <>
+      {text.split(/(\*[^*]+\*)/g).map((p, i) =>
+        p.startsWith('*') && p.endsWith('*') ? <span key={i} className="gold-gradient-text italic">{p.slice(1, -1)}</span> : <span key={i}>{p}</span>,
+      )}
+    </>
+  );
+}
+
 /**
  * Homepage banner carousel. Art-directed images: a landscape image on desktop and a separate portrait image on mobile
  * (<picture>), served through the Next.js image optimiser. Only the first slide is preloaded (LCP); the rest load lazily.
@@ -45,7 +56,7 @@ export function HeroCarousel({ slides, autoplaySeconds }: { slides: HeroSlide[];
     <section
       aria-roledescription="carousel"
       aria-label="Featured wedding highlights"
-      className="relative isolate w-full overflow-hidden bg-charcoal-900 text-white h-[82svh] min-h-[540px] max-h-[860px] md:h-[86vh] md:min-h-[600px]"
+      className="relative isolate w-full overflow-hidden bg-[#FDFCFA] text-charcoal-900 h-[78svh] min-h-[560px] max-h-[780px] md:h-[78vh] md:min-h-[560px]"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onKeyDown={(e) => {
@@ -85,26 +96,27 @@ export function HeroCarousel({ slides, autoplaySeconds }: { slides: HeroSlide[];
               <img
                 {...desktop.props}
                 alt={s.alt}
-                className={`absolute inset-0 h-full w-full object-cover ${isActive && !reduced ? 'hero-kenburns' : ''}`}
+                className={`absolute inset-0 h-full w-full object-cover md:object-[70%_50%] ${isActive && !reduced ? 'hero-kenburns' : ''}`}
               />
             </picture>
-            <div className="absolute inset-0" style={{ background: `linear-gradient(90deg, rgba(9,10,12,${(s.overlay / 100).toFixed(2)}) 0%, rgba(9,10,12,${(s.overlay / 200).toFixed(2)}) 55%, rgba(9,10,12,${(s.overlay / 400).toFixed(2)}) 100%), linear-gradient(0deg, rgba(9,10,12,${Math.min(0.65, s.overlay / 100 + 0.15).toFixed(2)}) 0%, rgba(9,10,12,0) 45%)` }} />
+            <div aria-hidden="true" className="absolute inset-0 md:hidden" style={{ background: `linear-gradient(0deg, rgba(253,252,250,0.97) 0%, rgba(253,252,250,0.9) 38%, rgba(253,252,250,${Math.max(0, 0.25 - s.overlay / 400).toFixed(2)}) 70%)` }} />
+            <div aria-hidden="true" className="absolute inset-0 hidden md:block" style={{ background: `linear-gradient(90deg, rgba(253,252,250,0.97) 0%, rgba(253,252,250,0.88) 30%, rgba(253,252,250,0.35) 52%, rgba(253,252,250,0) 70%)` }} />
 
             <div className="rasm-container relative h-full flex">
               <div className={`flex flex-col justify-end md:justify-center gap-5 w-full max-w-2xl pb-20 sm:pb-24 pt-0 ${align} ${s.align === 'center' ? 'mx-auto' : s.align === 'right' ? 'ml-auto' : ''}`}>
-                {s.eyebrow && <p className="text-[11px] sm:text-xs uppercase tracking-[0.3em] text-[#E2C785] font-medium">{s.eyebrow}</p>}
-                <H className={`font-manrope font-medium text-[2.1rem] leading-[1.15] sm:text-5xl lg:text-[3.75rem] tracking-tight text-white ${isActive ? 'hero-rise' : ''}`}>{s.heading}</H>
-                {s.subheading && <p className="text-base sm:text-lg text-white/85 font-light leading-relaxed max-w-xl">{s.subheading}</p>}
+                {s.eyebrow && <p className="text-[11px] sm:text-xs uppercase tracking-[0.3em] text-gold-dark font-medium">{s.eyebrow}</p>}
+                <H className={`font-manrope font-medium text-[2.1rem] leading-[1.15] sm:text-5xl lg:text-[3.75rem] tracking-tight text-charcoal-900 ${isActive ? 'hero-rise' : ''}`}><Accent text={s.heading} /></H>
+                {s.subheading && <p className="text-base sm:text-lg text-charcoal-700 font-light leading-relaxed max-w-xl">{s.subheading}</p>}
                 <div className="flex flex-wrap gap-3 pt-2">
+                  <button type="button" onClick={() => open()} className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-[#A88434] via-[#B8923A] to-[#8F6A14] text-white text-sm font-medium tracking-wide shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">
+                    Plan Your Wedding
+                    <ArrowRight className="w-4 h-4" />
+                  </button>
                   {s.buttonLabel && s.buttonHref && (
-                    <Link href={s.buttonHref} className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-[#D4AF37] via-[#F3E5AB] to-[#C5A059] text-charcoal-900 text-sm font-semibold tracking-wide shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all">
+                    <Link href={s.buttonHref} className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-gold/60 bg-white/60 text-charcoal-900 text-sm font-medium tracking-wide hover:bg-white transition-colors">
                       {s.buttonLabel}
-                      <ArrowRight className="w-4 h-4" />
                     </Link>
                   )}
-                  <button type="button" onClick={() => open()} className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-white/70 text-white text-sm font-medium tracking-wide hover:bg-white hover:text-charcoal-900 transition-colors">
-                    Plan Your Wedding
-                  </button>
                 </div>
               </div>
             </div>
@@ -124,22 +136,22 @@ export function HeroCarousel({ slides, autoplaySeconds }: { slides: HeroSlide[];
                     onClick={() => go(i)}
                     aria-label={`Go to slide ${i + 1}`}
                     aria-current={i === active}
-                    className="group grid place-items-center w-8 h-8 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#E2C785] rounded-full"
+                    className="group grid place-items-center w-8 h-8 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded-full"
                   >
-                    <span className={`block h-1.5 rounded-full transition-all duration-300 ${i === active ? 'w-9 bg-[#E2C785]' : 'w-3 bg-white/55 group-hover:bg-white'}`} />
+                    <span className={`block h-1.5 rounded-full transition-all duration-300 ${i === active ? 'w-9 bg-gold' : 'w-3 bg-charcoal-900/25 group-hover:bg-charcoal-900/50'}`} />
                   </button>
                 ))}
               </div>
               <div className="flex items-center gap-2">
                 {autoplaySeconds > 0 && (
-                  <button type="button" onClick={() => setPaused((p) => !p)} aria-label={paused ? 'Play slideshow' : 'Pause slideshow'} className="grid place-items-center w-10 h-10 rounded-full bg-white/15 backdrop-blur hover:bg-white/30 transition-colors">
+                  <button type="button" onClick={() => setPaused((p) => !p)} aria-label={paused ? 'Play slideshow' : 'Pause slideshow'} className="grid place-items-center w-10 h-10 rounded-full bg-white/80 text-charcoal-900 border border-gold/30 backdrop-blur hover:bg-white transition-colors">
                     {paused ? <Play className="w-4 h-4" /> : <Pause className="w-4 h-4" />}
                   </button>
                 )}
-                <button type="button" onClick={() => go(active - 1)} aria-label="Previous slide" className="hidden sm:grid place-items-center w-10 h-10 rounded-full bg-white/15 backdrop-blur hover:bg-white/30 transition-colors">
+                <button type="button" onClick={() => go(active - 1)} aria-label="Previous slide" className="hidden sm:grid place-items-center w-10 h-10 rounded-full bg-white/80 text-charcoal-900 border border-gold/30 backdrop-blur hover:bg-white transition-colors">
                   <ChevronLeft className="w-5 h-5" />
                 </button>
-                <button type="button" onClick={() => go(active + 1)} aria-label="Next slide" className="hidden sm:grid place-items-center w-10 h-10 rounded-full bg-white/15 backdrop-blur hover:bg-white/30 transition-colors">
+                <button type="button" onClick={() => go(active + 1)} aria-label="Next slide" className="hidden sm:grid place-items-center w-10 h-10 rounded-full bg-white/80 text-charcoal-900 border border-gold/30 backdrop-blur hover:bg-white transition-colors">
                   <ChevronRight className="w-5 h-5" />
                 </button>
               </div>
