@@ -40,7 +40,7 @@ export function FaqAccordion({ city, faqs }: { city: string; faqs: { q: string; 
   if (faqs.length === 0) return null;
   return (
     <section aria-labelledby="faq-heading" className="py-16 bg-[#FDFCFA] border-t border-gold/15">
-      <div className="rasm-container max-w-3xl">
+      <div className="rasm-container"><div className="mx-auto max-w-3xl">
         <h2 id="faq-heading" className="font-manrope font-medium text-3xl sm:text-4xl text-charcoal-900 tracking-tight text-center mb-10">
           {city} Wedding <span className="gold-gradient-text italic">Questions</span>
         </h2>
@@ -55,7 +55,7 @@ export function FaqAccordion({ city, faqs }: { city: string; faqs: { q: string; 
             </details>
           ))}
         </div>
-      </div>
+      </div></div>
     </section>
   );
 }
@@ -122,7 +122,7 @@ export function RelatedGuides({ city, posts }: { city: string; posts: WPPost[] }
   if (posts.length === 0) return null;
   return (
     <section aria-labelledby="guides-heading" className="py-16 bg-white border-t border-gold/15">
-      <div className="rasm-container max-w-4xl">
+      <div className="rasm-container"><div className="mx-auto max-w-4xl">
         <h2 id="guides-heading" className="font-manrope font-medium text-2xl sm:text-3xl text-charcoal-900 tracking-tight text-center mb-8">
           Guides for Planning in {city}
         </h2>
@@ -136,7 +136,7 @@ export function RelatedGuides({ city, posts }: { city: string; posts: WPPost[] }
             </li>
           ))}
         </ul>
-      </div>
+      </div></div>
     </section>
   );
 }

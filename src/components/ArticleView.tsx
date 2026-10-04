@@ -20,7 +20,8 @@ export function ArticleView({ post, related }: { post: WPPostFull; related: WPPo
     <div className="bg-white min-h-screen text-charcoal-900">
       <JsonLd data={breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'Journal', path: '/blog/' }, { name: post.title, path: `/${post.slug}/` }])} />
       <header className="pt-32 pb-10 bg-[#FDFCFA] border-b border-gold/20">
-        <div className="rasm-container max-w-3xl">
+        <div className="rasm-container">
+         <div className="mx-auto max-w-3xl">
           <nav aria-label="Breadcrumb" className="text-xs text-charcoal-500 mb-5">
             <ol className="flex flex-wrap items-center gap-1.5">
               <li><Link href="/" className="hover:text-charcoal-900">Home</Link></li>
@@ -36,17 +37,18 @@ export function ArticleView({ post, related }: { post: WPPostFull; related: WPPo
             <span className="inline-flex items-center gap-1.5"><Clock className="w-3.5 h-3.5 text-gold-dark" />{minutes} min read</span>
             <span>By Rasm Weddings &amp; Events</span>
           </p>
+         </div>
         </div>
       </header>
 
       {post.image && (
-        <div className="rasm-container max-w-4xl pt-10">
-          <Image src={post.image} alt={post.imageAlt ?? post.title} width={post.imageWidth ?? 1536} height={post.imageHeight ?? 1024} priority sizes="(min-width: 1024px) 896px, 100vw" className="w-full h-auto rounded-3xl border border-gold/20" />
+        <div className="rasm-container pt-10">
+          <Image src={post.image} alt={post.imageAlt ?? post.title} width={post.imageWidth ?? 1536} height={post.imageHeight ?? 1024} priority sizes="(min-width: 1024px) 896px, 100vw" className="mx-auto w-full max-w-4xl h-auto rounded-3xl border border-gold/20" />
         </div>
       )}
 
-      <article className="rasm-container max-w-3xl py-12">
-        <WpBody content={post.content} />
+      <article className="rasm-container py-12">
+        <div className="mx-auto max-w-3xl"><WpBody content={post.content} /></div>
       </article>
 
       <section className="py-14 bg-gradient-to-b from-[#FAF8F5] to-white text-center border-t border-gold/15">

@@ -1,4 +1,4 @@
-import { BedDouble, Camera, Car, ClipboardCheck, Landmark, Music2, Sparkles, Star, Utensils } from 'lucide-react';
+import { BedDouble, Camera, Car, ClipboardCheck, Landmark, Music2, Star, Utensils } from 'lucide-react';
 import { InquiryAnimatedButton } from '@/components/InquiryClient';
 
 /** Package details exactly as published on rasmwed.com (contact-us and services pages). */
@@ -18,10 +18,7 @@ export function PackagesBlock({ headingAs: H = 'h2' }: { headingAs?: 'h2' | 'h3'
     <section className="py-20 bg-gradient-to-b from-[#FDFCFA] to-white border-b border-gold/15">
       <div className="rasm-container max-w-5xl">
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 text-gold-dark text-xs uppercase tracking-[0.3em] font-medium mb-3">
-            <Sparkles className="w-4 h-4 text-gold" />
-            <span>Wedding Packages</span>
-          </div>
+          <p className="text-gold-dark text-xs uppercase tracking-[0.3em] font-medium mb-3">Wedding Packages</p>
           <H className="font-manrope font-medium text-3xl sm:text-5xl text-charcoal-900 tracking-tight leading-[1.2] mb-4">
             Plan Your Dream Wedding <span className="gold-gradient-text italic">With Rasm</span>
           </H>

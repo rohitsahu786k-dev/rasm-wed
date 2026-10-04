@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import React, { useEffect, useState } from 'react';
-import { ChevronLeft, ChevronRight, Crown, Sparkles, X } from 'lucide-react';
+import { ChevronLeft, ChevronRight, X } from 'lucide-react';
 import type { MediaItem } from '@/types';
 
 interface Props {
@@ -37,16 +37,6 @@ export const RealWeddingsGallery: React.FC<Props> = ({ media }) => {
   return (
     <section className="py-16 sm:py-20 bg-white">
       <div className="rasm-container">
-        <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-ivory-200 border border-gold/35 mb-3">
-            <Crown className="w-3.5 h-3.5 text-[#C5A059]" />
-            <span className="text-[11px] font-medium uppercase tracking-normal gold-gradient-text">Wedding Gallery</span>
-          </div>
-          <h2 className="font-manrope font-medium text-3xl sm:text-5xl text-charcoal-900 tracking-tight leading-[1.2]">
-            Moments from <span className="gold-gradient-text italic">Rasm Celebrations</span>
-          </h2>
-        </div>
-
         <div className="columns-2 md:columns-3 lg:columns-4 gap-3 sm:gap-4 [&>*]:mb-3 sm:[&>*]:mb-4">
           {media.slice(0, visible).map((m, i) => (
             <button
@@ -76,8 +66,7 @@ export const RealWeddingsGallery: React.FC<Props> = ({ media }) => {
               onClick={() => setVisible((v) => v + 24)}
               className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-[#0F1012] text-white text-sm font-medium hover:bg-black transition-colors"
             >
-              <Sparkles className="w-4 h-4 text-[#E2C785]" />
-              <span>Show more photos</span>
+              Show more photos
             </button>
           </div>
         )}

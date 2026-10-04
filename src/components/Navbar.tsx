@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { usePathname } from 'next/navigation';
 import { useSettings } from '@/components/SiteSettingsProvider';
 import { useInquiry } from '@/components/InquiryProvider';
-import { MessageCircle, Menu, X, Sparkles, ChevronDown, MapPin, Crown, ArrowRight, Building2, Home, Compass, Gem, Image as ImageIcon, BookOpen, Phone } from 'lucide-react';
+import { MessageCircle, Menu, X, Flower2, ChevronDown, MapPin, ArrowRight, Building2, Home, Compass, Gem, Image as ImageIcon, BookOpen, Phone } from 'lucide-react';
 import { AnimatedButton } from '@/components/ui/AnimatedButton';
 
 const menuTransition = {
@@ -63,14 +63,14 @@ export const Navbar: React.FC = () => {
     {
       title: 'Royal Wedding Planning',
       desc: 'End-to-end bespoke orchestration, palace permits, lake mandaps, and hospitality concierges.',
-      icon: Crown,
+      icon: Gem,
       path: '/services',
       badge: 'Signature',
     },
     {
       title: 'Traditional Decoration',
       desc: 'Artisanal marigold flower arrays, Vedic mandap architecture, and Mewari royal themes.',
-      icon: Sparkles,
+      icon: Flower2,
       path: '/traditional-decoration',
       badge: 'Vedic Craft',
     },
@@ -333,7 +333,7 @@ export const Navbar: React.FC = () => {
               variant="dark-shimmer"
               size="sm"
               onClick={onOpenInquiry}
-              icon={<Sparkles className="w-3.5 h-3.5 text-[#C5A059]" />}
+              icon={<ArrowRight className="w-3.5 h-3.5 text-[#C5A059]" />}
             >
               Plan Wedding
             </AnimatedButton>
@@ -377,7 +377,6 @@ export const Navbar: React.FC = () => {
                       <span className="text-[11px] font-semibold uppercase tracking-[0.25em] text-gold-dark">
                         Palaces of Rajasthan
                       </span>
-                      <Crown className="w-3.5 h-3.5 text-gold" />
                     </div>
                     <div className="space-y-1.5">
                       {rajasthanDestinations.map((d, i) => (
@@ -751,7 +750,7 @@ export const Navbar: React.FC = () => {
                     setMobileMenuOpen(false);
                     onOpenInquiry();
                   }}
-                  icon={<Sparkles className="w-4 h-4" />}
+                  icon={<ArrowRight className="w-4 h-4" />}
                 >
                   Plan Royal Wedding
                 </AnimatedButton>

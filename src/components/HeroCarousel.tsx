@@ -92,7 +92,6 @@ export function HeroCarousel({ slides, autoplaySeconds }: { slides: HeroSlide[];
             <picture>
               <source media="(min-width: 768px)" srcSet={desktop.props.srcSet} sizes="100vw" />
               <source media="(max-width: 767px)" srcSet={mobile.props.srcSet} sizes="100vw" />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 {...desktop.props}
                 alt={s.alt}

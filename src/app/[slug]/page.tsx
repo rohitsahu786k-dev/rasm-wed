@@ -8,16 +8,14 @@ import { getGalleryMedia } from '@/lib/media';
 import { blogPostingSchema } from '@/lib/schema';
 import { NOINDEX_SLUGS, STATIC_PAGES } from '@/data/routes';
 import { JsonLd } from '@/components/JsonLd';
-import { PageView } from '@/components/PageView';
 import { CityLanding } from '@/components/CityLanding';
 import { ArticleView } from '@/components/ArticleView';
-import { DestinationsPage, ServicesPage } from '@/components/WpPages';
-import { BlogFeed } from '@/components/BlogFeed';
+import { AboutPage, BlogIndex, ContactPage, CorporatePage, DecorationPage, DestinationsPage, GalleryPage, InfoPage, ServicesPage } from '@/components/InnerPages';
 
 export const revalidate = 3600;
 
-/** Designed pages that also render the copy written in WordPress underneath (real text for users and crawlers). */
-const WP_COPY_PAGES = new Set(['about-us', 'traditional-decoration', 'corporate-events']);
+/** Designed pages that also use the copy written in WordPress (the corporate guide). */
+const WP_COPY_PAGES = new Set(['corporate-events']);
 
 type Resolved =
   | { kind: 'static'; slug: string }
@@ -89,17 +87,14 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
   switch (r.kind) {
     case 'static': {
       if (slug === 'wedding-destination') return <DestinationsPage destinations={await getDestinations()} />;
-      if (slug === 'services') return <ServicesPage services={await getServices()} />;
-      if (slug === 'gallery') return <PageView slug={slug} media={await getGalleryMedia()} />;
-      if (slug === 'blog') {
-        const posts = await getPosts();
-        return (
-          <div className="pt-24 bg-white min-h-screen">
-            <BlogFeed posts={posts} limit={100} headingAs="h1" />
-          </div>
-        );
-      }
-      return <PageView slug={slug} wpPage={WP_COPY_PAGES.has(slug) ? await getPage(slug) : null} />;
+      if (slug === 'services') return <ServicesPage />;
+      if (slug === 'gallery') return <GalleryPage media={await getGalleryMedia()} />;
+      if (slug === 'blog') return <BlogIndex posts={await getPosts()} />;
+      if (slug === 'about-us') return <AboutPage />;
+      if (slug === 'contact-us') return <ContactPage />;
+      if (slug === 'traditional-decoration') return <DecorationPage />;
+      if (slug === 'corporate-events') return <CorporatePage wpPage={WP_COPY_PAGES.has(slug) ? await getPage(slug) : null} />;
+      return notFound();
     }
     case 'post': {
       const all = await getPosts();
@@ -124,6 +119,6 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
         const [nearby, posts, services] = await Promise.all([getDestinations(NEARBY[cityKeyFromSlug(slug)] ?? []), getPosts(), getServices()]);
         return <CityLanding page={r.page} nearby={nearby} posts={posts} services={services.map((s) => s.title)} />;
       }
-      return <PageView slug={slug} wpPage={r.page} />;
+      return <InfoPage slug={slug} wpPage={r.page} />;
   }
 }

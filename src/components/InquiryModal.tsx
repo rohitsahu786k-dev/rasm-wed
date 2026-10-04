@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { SiteSettings } from '@/types';
-import { X, Send, Sparkles, CheckCircle2 } from 'lucide-react';
+import { X, Send, CheckCircle2 } from 'lucide-react';
 import { AnimatedButton } from '@/components/ui/AnimatedButton';
 
 interface InquiryModalProps {
@@ -84,7 +84,6 @@ export const InquiryModal: React.FC<InquiryModalProps> = ({
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="flex items-center gap-2 text-gold-dark text-xs uppercase tracking-[0.2em] font-medium mb-1">
-              <Sparkles className="w-3.5 h-3.5 text-[#C5A059]" />
               <span className="gold-gradient-text font-semibold">Private Consultation</span>
             </div>
             <h3 className="font-manrope font-medium text-2xl sm:text-3xl text-charcoal-900 tracking-tight leading-snug">

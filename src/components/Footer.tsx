@@ -3,55 +3,54 @@ import Link from 'next/link';
 import React from 'react';
 import type { FullSettings } from '@/components/SiteSettingsProvider';
 import { NewsletterForm, BackToTop } from '@/components/FooterClient';
-import { MessageCircle, Mail, MapPin, Heart, Sparkles, ShieldCheck, Crown } from 'lucide-react';
+import { MessageCircle, Mail, MapPin } from 'lucide-react';
 
 const footerLinks = {
   destinations: [
-    { label: 'Udaipur Lake Palaces', href: '/wedding-planner-in-udaipur' },
-    { label: 'Jaipur Heritage Forts', href: '/wedding-planner-in-jaipur' },
-    { label: 'Jodhpur & Thar Dunes', href: '/wedding-planner-in-jodhpur' },
-    { label: 'Goa Beachfront Mandaps', href: '/wedding-planner-in-goa' },
-    { label: 'Rishikesh Ganga Retreats', href: '/why-rishikesh-is-new-destination-wedding-hotspot' },
-    { label: 'Kumbhalgarh & Aravali', href: '/wedding-planner-in-kumbhalgarh' },
-    { label: 'Thailand Royal Villas', href: '/wedding-planner-in-thailand' },
-    { label: 'Mount Abu Hill Station', href: '/wedding-planner-in-mount-abu' },
-    { label: 'Nathdwara Temple Town', href: '/wedding-planner-in-nathdwara' },
-    { label: 'Pushkar Sacred Lake', href: '/wedding-planner-in-pushkar' },
-    { label: 'Kota Chambal Palaces', href: '/wedding-planner-in-kota' },
-    { label: 'Jaisalmer Desert Camps', href: '/wedding-planner-in-jaisalmer' },
-    { label: 'Ranakpur Jain Temples', href: '/wedding-planner-in-ranakpur' },
-    { label: 'Ahmedabad Weddings', href: '/wedding-planner-in-ahmedabad' },
-    { label: 'Gandhinagar Weddings', href: '/wedding-planner-in-gandhinagar' },
+    { label: 'Wedding Planner in Udaipur', href: '/wedding-planner-in-udaipur/' },
+    { label: 'Wedding Planner in Jaipur', href: '/wedding-planner-in-jaipur/' },
+    { label: 'Wedding Planner in Jodhpur', href: '/wedding-planner-in-jodhpur/' },
+    { label: 'Wedding Planner in Jaisalmer', href: '/wedding-planner-in-jaisalmer/' },
+    { label: 'Wedding Planner in Goa', href: '/wedding-planner-in-goa/' },
+    { label: 'Wedding Planner in Kumbhalgarh', href: '/wedding-planner-in-kumbhalgarh/' },
+    { label: 'Wedding Planner in Mount Abu', href: '/wedding-planner-in-mount-abu/' },
+    { label: 'Wedding Planner in Nathdwara', href: '/wedding-planner-in-nathdwara/' },
+    { label: 'Wedding Planner in Pushkar', href: '/wedding-planner-in-pushkar/' },
+    { label: 'Wedding Planner in Kota', href: '/wedding-planner-in-kota/' },
+    { label: 'Wedding Planner in Ranakpur', href: '/wedding-planner-in-ranakpur/' },
+    { label: 'Wedding Planner in Thailand', href: '/wedding-planner-in-thailand/' },
+    { label: 'Wedding Planner in Ahmedabad', href: '/wedding-planner-in-ahmedabad/' },
+    { label: 'Wedding Planner in Gandhinagar', href: '/wedding-planner-in-gandhinagar/' },
+    { label: 'Rishikesh Destination Wedding', href: '/why-rishikesh-is-new-destination-wedding-hotspot/' },
   ],
   services: [
-    { label: 'Palatial Mandap Architecture', href: '/traditional-decoration' },
-    { label: 'White-Glove VIP Hospitality', href: '/services' },
-    { label: 'Royal Mewari Feasts & Mixology', href: '/services' },
-    { label: 'Royal Baraat & Sufi Sangeet', href: '/services' },
-    { label: 'NRI 24/7 Global Concierge', href: '/about-us' },
-    { label: '3D Spatial Simulations', href: '/services' },
-    { label: 'Corporate Heritage Galas', href: '/corporate-events' },
+    { label: 'Wedding Planning Services', href: '/services/' },
+    { label: 'Wedding Decoration in Udaipur', href: '/traditional-decoration/' },
+    { label: 'Venue Selection and Booking', href: '/services/#venues' },
+    { label: 'Wedding Catering', href: '/services/#food' },
+    { label: 'Wedding Entertainment and Artists', href: '/services/#entertainment' },
+    { label: 'Guest Hospitality', href: '/services/#hospitality' },
+    { label: 'Corporate Events in Udaipur', href: '/corporate-events/' },
   ],
   venues: [
-    { label: 'Taj Lake Palace Udaipur', href: '/wedding-planner-in-udaipur' },
-    { label: 'The Oberoi Udaivilas', href: '/wedding-planner-in-udaipur' },
-    { label: 'Jagmandir Island Palace', href: '/wedding-planner-in-udaipur' },
-    { label: 'Rambagh Palace Jaipur', href: '/wedding-planner-in-jaipur' },
-    { label: 'Umaid Bhawan Palace Jodhpur', href: '/wedding-planner-in-jodhpur' },
-    { label: 'Fairmont Jaipur', href: '/wedding-planner-in-jaipur' },
-    { label: 'Grand Hyatt Goa', href: '/wedding-planner-in-goa' },
+    { label: 'Taj Lake Palace Udaipur', href: '/wedding-planner-in-udaipur/' },
+    { label: 'The Oberoi Udaivilas', href: '/wedding-planner-in-udaipur/' },
+    { label: 'Jagmandir Island Palace', href: '/wedding-planner-in-udaipur/' },
+    { label: 'Rambagh Palace Jaipur', href: '/wedding-planner-in-jaipur/' },
+    { label: 'Umaid Bhawan Palace Jodhpur', href: '/wedding-planner-in-jodhpur/' },
+    { label: 'Fairmont Jaipur', href: '/wedding-planner-in-jaipur/' },
+    { label: 'Grand Hyatt Goa', href: '/wedding-planner-in-goa/' },
   ],
   company: [
-    { label: 'About Rasm Legacy', href: '/about-us' },
-    { label: 'Royal Photo Gallery', href: '/gallery' },
-    { label: 'Real Couple Stories', href: '/#testimonials' },
-    { label: 'Destination Lookbook', href: '/about-us' },
-    { label: 'Wedding Journal & Guides', href: '/blog' },
-    { label: 'Contact Concierge Desk', href: '/contact-us' },
-    { label: 'Privacy Policy', href: '/privacy-policy' },
-    { label: 'Terms & Conditions', href: '/terms-and-conditions' },
-    { label: 'Refund Policy', href: '/refund-policy' },
-    { label: 'Shipping Policy', href: '/shipping-policy' },
+    { label: 'About Us', href: '/about-us/' },
+    { label: 'Wedding Gallery', href: '/gallery/' },
+    { label: 'Wedding Blog', href: '/blog/' },
+    { label: 'All Wedding Destinations', href: '/wedding-destination/' },
+    { label: 'Contact Us', href: '/contact-us/' },
+    { label: 'Privacy Policy', href: '/privacy-policy/' },
+    { label: 'Terms & Conditions', href: '/terms-and-conditions/' },
+    { label: 'Refund Policy', href: '/refund-policy/' },
+    { label: 'Shipping Policy', href: '/shipping-policy/' },
   ],
 };
 
@@ -78,17 +77,12 @@ export const Footer: React.FC<{ settings: FullSettings }> = ({ settings }) => {
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             {/* Left: Text */}
             <div className="lg:col-span-7 space-y-3">
-              <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gradient-to-r from-ivory-200 to-amber-50 border border-gold/35 shadow-2xs">
-                <Crown className="w-3.5 h-3.5 text-[#C5A059]" />
-                <span className="text-[11px] font-medium tracking-normal gold-gradient-text uppercase">
-                  The Royal Lookbook
-                </span>
-              </div>
+              <p className="text-gold-dark text-[11px] uppercase tracking-[0.3em] font-medium">Wedding Planning Updates</p>
               <h3 className="font-manrope font-medium text-2xl sm:text-3xl text-charcoal-900 tracking-normal leading-snug">
-                Receive The Udaipur Palatial Wedding Lookbook
+                Get Wedding Planning Tips from Udaipur
               </h3>
               <p className="text-charcoal-600 text-sm font-normal max-w-xl leading-relaxed tracking-normal">
-                Join our private directory for royal venue pricing blueprints, sacred mahurat calendar dates, and bespoke decor concepts delivered straight to your inbox.
+                Venue ideas, season guides and decor inspiration for weddings in Udaipur and across Rajasthan, sent to your inbox.
               </p>
             </div>
 
@@ -97,10 +91,7 @@ export const Footer: React.FC<{ settings: FullSettings }> = ({ settings }) => {
               <NewsletterForm />
 
               <div className="flex items-center justify-between text-xs text-charcoal-500 pt-1 tracking-normal">
-                <span className="flex items-center gap-1.5">
-                  <ShieldCheck className="w-3.5 h-3.5 text-[#C5A059]" />
-                  <span>White-Glove Privacy Guaranteed</span>
-                </span>
+                <span>We never share your email.</span>
                 <a
                   href={`https://wa.me/${settings.whatsapp}?text=Hello%20Rasm%20Weddings,%20I%20would%20like%20to%20receive%20the%20wedding%20lookbook.`}
                   target="_blank"
@@ -108,7 +99,7 @@ export const Footer: React.FC<{ settings: FullSettings }> = ({ settings }) => {
                   className="gold-gradient-text hover:underline flex items-center gap-1 font-medium"
                 >
                   <MessageCircle className="w-3.5 h-3.5 text-[#C5A059]" />
-                  <span>Quick WhatsApp Desk</span>
+                  <span>Chat on WhatsApp</span>
                 </a>
               </div>
             </div>
@@ -128,7 +119,7 @@ export const Footer: React.FC<{ settings: FullSettings }> = ({ settings }) => {
                width={1024} height={497} sizes="100px" />
             </Link>
             <p className="text-charcoal-600 text-sm leading-relaxed font-normal tracking-normal">
-              {settings.description || 'Premier Luxury Destination Wedding Architects in Udaipur & Rajasthan'}. Crafting royal palatial celebrations, Vedic mandaps, and timeless memories across India’s most iconic palaces.
+              {settings.description || 'Luxury wedding planner in Udaipur, Rajasthan'}. We plan palace weddings, lake weddings and destination weddings across India, with venues, decor, hospitality and execution managed by one team.
             </p>
 
             {/* Social Pill Badges */}
@@ -165,7 +156,7 @@ export const Footer: React.FC<{ settings: FullSettings }> = ({ settings }) => {
             <div className="flex items-start gap-2.5 text-charcoal-600 text-xs pt-1 tracking-normal">
               <MapPin className="w-4 h-4 text-[#C5A059] shrink-0 mt-0.5" />
               <span className="leading-relaxed">
-                Haridas Ji Ki Magri, Lake Pichola Road, Udaipur, Rajasthan 313001
+                {settings.address}
               </span>
             </div>
           </div>
@@ -173,7 +164,7 @@ export const Footer: React.FC<{ settings: FullSettings }> = ({ settings }) => {
           {/* Column 2: Royal Destinations */}
           <div>
             <h4 className="font-manrope font-medium text-[16px] text-charcoal-900 mb-4 pb-1.5 border-b border-gold/20 tracking-normal">
-              Royal Destinations
+              Wedding Destinations
             </h4>
             <ul className="space-y-2.5 text-[14.5px]">
               {footerLinks.destinations.map((l) => (
@@ -191,7 +182,7 @@ export const Footer: React.FC<{ settings: FullSettings }> = ({ settings }) => {
           {/* Column 3: Bespoke Services */}
           <div>
             <h4 className="font-manrope font-medium text-[16px] text-charcoal-900 mb-4 pb-1.5 border-b border-gold/20 tracking-normal">
-              Bespoke Services
+              Wedding Services
             </h4>
             <ul className="space-y-2.5 text-[14.5px]">
               {footerLinks.services.map((l) => (
@@ -209,7 +200,7 @@ export const Footer: React.FC<{ settings: FullSettings }> = ({ settings }) => {
           {/* Column 4: Palatial Venues */}
           <div>
             <h4 className="font-manrope font-medium text-[16px] text-charcoal-900 mb-4 pb-1.5 border-b border-gold/20 tracking-normal">
-              Palatial Venues
+              Popular Wedding Venues
             </h4>
             <ul className="space-y-2.5 text-[14.5px]">
               {footerLinks.venues.map((l) => (
@@ -227,7 +218,7 @@ export const Footer: React.FC<{ settings: FullSettings }> = ({ settings }) => {
           {/* Column 5: Heritage & Trust */}
           <div>
             <h4 className="font-manrope font-medium text-[16px] text-charcoal-900 mb-4 pb-1.5 border-b border-gold/20 tracking-normal">
-              Heritage & Planning
+              Company
             </h4>
             <ul className="space-y-2.5 text-[14.5px]">
               {footerLinks.company.map((l) => (
@@ -268,7 +259,7 @@ export const Footer: React.FC<{ settings: FullSettings }> = ({ settings }) => {
           {/* Right Side: Back to Top */}
           <div className="flex items-center gap-3">
             <span className="text-xs text-charcoal-500 font-normal">
-              Udaipur · Rajasthan · Serving Worldwide
+              Udaipur, Rajasthan. Weddings across India and abroad.
             </span>
             <BackToTop />
           </div>

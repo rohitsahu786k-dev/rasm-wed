@@ -2,7 +2,6 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import Script from 'next/script';
-import { Sparkles } from 'lucide-react';
 
 type InstgrmWindow = Window & { instgrm?: { Embeds: { process: () => void } } };
 const processEmbeds = () => (window as InstgrmWindow).instgrm?.Embeds.process();
@@ -59,15 +58,10 @@ export const InstagramFeedSection: React.FC = () => {
         
         {/* Section Header */}
         <div className="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-gradient-to-r from-ivory-200 to-amber-50/60 border border-gold/35 shadow-2xs mb-3">
-            <Sparkles className="w-3.5 h-3.5 text-[#C5A059]" />
-            <span className="text-xs uppercase font-medium gold-gradient-text tracking-normal">
-              Official Instagram Feed
-            </span>
-          </div>
+          <p className="text-gold-dark text-xs uppercase tracking-[0.3em] font-medium mb-3">Official Instagram Feed</p>
 
           <h2 className="font-manrope font-medium text-3xl sm:text-4xl md:text-5xl text-charcoal-900 tracking-tight leading-[1.2]">
-            Follow Our Royal Journey on <span className="gold-gradient-text italic font-normal">Instagram</span>
+            Follow Our Wedding Stories on <span className="gold-gradient-text italic font-normal">Instagram</span>
           </h2>
 
           <p className="text-charcoal-600 text-sm sm:text-base font-light leading-relaxed mt-3 max-w-2xl mx-auto tracking-normal">

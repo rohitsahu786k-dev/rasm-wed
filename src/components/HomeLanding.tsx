@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, Castle, ClipboardList, Gem, Handshake, HeartHandshake, Landmark, PartyPopper, Play, Sparkles, Star, Users } from 'lucide-react';
+import { ArrowRight, CalendarCheck, Castle, ClipboardList, Flower2, Gem, Handshake, HeartHandshake, Landmark, Play, Star, Users } from 'lucide-react';
 import type { HomeContent } from '@/lib/acf';
 import { HOME_IMAGES } from '@/data/home-media';
 import { SITE } from '@/lib/site';
@@ -29,7 +29,7 @@ export function HeroFeatures() {
     { icon: Landmark, label: 'Iconic Venues' },
     { icon: Gem, label: 'Bespoke Planning' },
     { icon: Handshake, label: 'End-to-End Support' },
-    { icon: Sparkles, label: 'Curated Experiences' },
+    { icon: Flower2, label: 'Curated Experiences' },
   ];
   return (
     <section aria-label="Why plan your wedding with Rasm" className="bg-[#FDFCFA] border-b border-gold/15">
@@ -122,7 +122,7 @@ export function FeaturedWeddings() {
 }
 
 export function ImpactStats({ stats }: { stats: HomeContent['stats'] }) {
-  const icons = [PartyPopper, Star, Landmark, Gem, Users, Sparkles];
+  const icons = [CalendarCheck, Star, Landmark, Gem, Users, Flower2];
   return (
     <section aria-label="Rasm Weddings in numbers" className="py-12 sm:py-16 bg-ivory-200 border-b border-gold/15">
       <div className="rasm-container grid lg:grid-cols-[1fr_2fr] gap-8 lg:gap-12 items-center">

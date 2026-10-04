@@ -2,6 +2,7 @@
 import { WP_ORIGIN } from './site';
 import type { Destination } from '@/types';
 import { parseElementor } from './elementor';
+import { getCityProfile } from './city';
 
 export interface WPPage {
   slug: string;
@@ -25,10 +26,19 @@ export interface WPPost extends WPPage {
 
 const REVALIDATE = 3600; // ISR: content refreshes hourly without a redeploy.
 
+/** The site does not use emoji: remove any that were typed into WordPress content (deep walk over the REST response). */
+const EMOJI = /[🀀-🫿☀-➿⭐⭕️‍]/gu;
+function stripEmoji(v: unknown): unknown {
+  if (typeof v === 'string') return v.replace(EMOJI, '');
+  if (Array.isArray(v)) return v.map(stripEmoji);
+  if (v && typeof v === 'object') return Object.fromEntries(Object.entries(v).map(([k, x]) => [k, stripEmoji(x)]));
+  return v;
+}
+
 async function wp<T>(path: string): Promise<T | null> {
   try {
     const res = await fetch(`${WP_ORIGIN}/wp-json/wp/v2${path}`, { next: { revalidate: REVALIDATE } });
-    return res.ok ? ((await res.json()) as T) : null;
+    return res.ok ? (stripEmoji(await res.json()) as T) : null;
   } catch {
     return null;
   }
@@ -137,6 +147,14 @@ const firstSentence = (t: string, max = 110) => {
   return s1.length <= max ? s1 : `${s1.slice(0, max - 1).replace(/\s+\S*$/, '')}\u2026`;
 };
 
+/** Several city pages share one generic featured image in WordPress; these give those cities their own photograph. */
+const IMAGE_OVERRIDE: Record<string, string> = {
+  jaipur: '2024/01/jaipur.png',
+  jodhpur: '2024/01/Jodhpur.png',
+  goa: '2024/08/Goa.webp',
+  kumbhalgarh: '2026/09/best-wedding-venues-in-kumbhalgarh-1.webp',
+};
+
 /** Destination cards built from the real WordPress city pages (text + photo), not hard-coded copy. */
 export async function getDestinations(slugs: string[] = FEATURED_DESTINATIONS): Promise<Destination[]> {
   const pages = await Promise.all(slugs.map((s) => getPage(`wedding-planner-in-${s}`)));
@@ -152,10 +170,10 @@ export async function getDestinations(slugs: string[] = FEATURED_DESTINATIONS): 
       id: slugs[i],
       title: name,
       slug: p.slug,
-      tagline: lead ? firstSentence(lead) : `Destination wedding in ${name}`,
+      tagline: getCityProfile(`wedding-planner-in-${slugs[i]}`)?.tagline ?? (lead ? firstSentence(lead) : `Destination wedding in ${name}`),
       season: '',
       venues: '',
-      imageUrl: (img as string | undefined) ?? '',
+      imageUrl: IMAGE_OVERRIDE[slugs[i]] ? `${WP_ORIGIN}/wp-content/uploads/${IMAGE_OVERRIDE[slugs[i]]}` : ((img as string | undefined) ?? ''),
     }];
   });
 }

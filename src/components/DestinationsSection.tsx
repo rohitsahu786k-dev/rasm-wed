@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { useInquiry } from '@/components/InquiryProvider';
 import React, { useRef, useState, useEffect, useMemo } from 'react';
 import { Destination } from '@/types';
-import { MapPin, ArrowRight, ChevronLeft, ChevronRight, Calendar, Sparkles, Crown } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight, Calendar } from 'lucide-react';
 import { motion, useMotionValue, useTransform, animate, PanInfo, MotionValue } from 'framer-motion';
 
 interface DestinationsSectionProps {
@@ -242,10 +242,7 @@ export const DestinationsSection: React.FC<DestinationsSectionProps> = ({
 
       {/* Section Header */}
       <div className="rasm-container mb-10 md:mb-14 relative z-10 text-center">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-ivory-200 border border-gold/35 text-gold-dark text-xs uppercase tracking-[0.28em] font-semibold mb-4 shadow-2xs">
-          <Crown className="w-3.5 h-3.5 text-gold-dark" />
-          <span>✦ Rasm Destinations</span>
-        </div>
+        <p className="text-gold-dark text-xs uppercase tracking-[0.3em] font-medium mb-4">Wedding Destinations</p>
 
         <h2 className="font-manrope font-medium text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-charcoal-900 leading-[1.22] tracking-tight max-w-4xl mx-auto">
           Iconic Palaces & <span className="gold-gradient-text italic">Lake Retreats</span>
@@ -439,7 +436,6 @@ const FannedCard: React.FC<FannedCardProps> = ({
       {/* Top Pill Badge (Exact Hydroscope / 21st.dev Look) */}
       <div className="absolute top-4 right-4 sm:top-5 sm:right-5 z-20 pointer-events-none">
         <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/95 backdrop-blur-md text-[10px] sm:text-[11px] font-medium uppercase tracking-widest text-charcoal-900 shadow-md border border-black/10">
-          <Sparkles className="w-3 h-3 text-gold-dark" />
           <span>{badgeText}</span>
         </span>
       </div>

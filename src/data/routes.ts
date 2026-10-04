@@ -1,49 +1,51 @@
 /** WP pages that exist but must not be indexed or listed in the sitemap. */
 export const NOINDEX_SLUGS = new Set(['thank-you-page']);
 
-/** Dedicated-template pages: SEO copy for each. */
+/**
+ * Dedicated-template pages: fallback SEO copy for each.
+ * (Rank Math on WordPress takes priority when it provides a title/description; the site name is appended by the title template.)
+ */
 export const STATIC_PAGES: Record<string, { title: string; description: string; label: string }> = {
   'wedding-destination': {
     label: 'Wedding Destinations',
-    title: 'Royal Wedding Venues & Destinations in India',
+    title: 'Destination Wedding Planner in Rajasthan, Goa & Beyond',
     description:
-      'Browse palace, fort and heritage wedding venues across Udaipur, Jaipur, Jodhpur, Goa and beyond, curated by Rasm Weddings & Events for NRI and international couples.',
+      'Compare 12 destination wedding locations: Udaipur, Jaipur, Jodhpur, Jaisalmer, Goa and more. Rasm Weddings & Events plans palace, fort and resort weddings end to end.',
   },
   services: {
     label: 'Services',
-    title: 'Luxury Wedding Planning Services',
+    title: 'Wedding Planning Services in Udaipur',
     description:
-      'From direct palace reservations to 3D mandap simulations and royal Mewari feasts, explore the bespoke destination wedding services of Rasm Weddings & Events.',
+      'Nine wedding planning services in Udaipur: venue selection, decor, catering, entertainment, guest hospitality, logistics and budgets. Packages from Rs 30 Lacs. Free consultation.',
   },
   gallery: {
     label: 'Gallery',
-    title: 'Real Palace Wedding Gallery',
-    description: "Browse real royal wedding photography from Udaipur's lake palaces, Rajasthan's forts and beyond, planned by Rasm Weddings & Events.",
+    title: 'Wedding Gallery: Decor & Celebrations in Udaipur',
+    description: 'Browse wedding decor, mandaps, stages and celebrations planned by Rasm Weddings & Events in Udaipur and across Rajasthan.',
   },
   'about-us': {
     label: 'About Us',
-    title: 'About Us',
-    description:
-      'Founded in Udaipur, Rasm Weddings & Events has planned over 500 events for couples from India and abroad.',
+    title: 'About Us: Wedding Planner in Udaipur, 10+ Years',
+    description: 'Udaipur-based wedding and event planners with 10+ years of experience and 500+ events planned for families in India and abroad.',
   },
   'contact-us': {
     label: 'Contact',
-    title: 'Contact Our Udaipur Wedding Concierge',
-    description: 'Request a private consultation with Rasm Weddings & Events, luxury destination wedding planners in Udaipur, Rajasthan.',
+    title: 'Contact the Wedding Planner in Udaipur',
+    description: 'Call, WhatsApp or email Rasm Weddings & Events in Udaipur for a free wedding planning consultation. Office at Ashok Nagar, Udaipur.',
   },
   'traditional-decoration': {
-    label: 'Traditional Decoration',
-    title: 'Traditional Wedding Decoration & Mandap Design',
-    description: 'Palatial mandap architecture, floral scenography and traditional Rajasthani wedding decoration by Rasm Weddings & Events.',
+    label: 'Wedding Decoration',
+    title: 'Wedding Decoration in Udaipur: Mandap, Stage & Florals',
+    description: 'Wedding decorators in Udaipur for mandaps, stages, entrances, florals and lighting. Traditional Rajasthani and modern styles by Rasm Weddings & Events.',
   },
   'corporate-events': {
     label: 'Corporate Events',
-    title: 'Corporate & VIP Events in Rajasthan',
-    description: "Heritage galas, VIP logistics and corporate events at Rajasthan's palaces, produced by Rasm Weddings & Events.",
+    title: 'Corporate Event Management in Udaipur',
+    description: 'Corporate event planners in Udaipur and Rajasthan: conferences, incentive trips, gala dinners and product launches at palaces and heritage hotels.',
   },
   blog: {
-    label: 'Journal',
-    title: 'The Wedding Journal: Destination Guides & Insights',
-    description: "In-depth guides on royal Udaipur venues, realistic destination wedding budgets and bridal planning from Rajasthan's leading consultants.",
+    label: 'Blog',
+    title: 'Wedding Planning Blog: Udaipur & Destination Guides',
+    description: 'Venue guides, budget advice, rituals and decor ideas for weddings in Udaipur and across Rajasthan from Rasm Weddings & Events.',
   },
 };

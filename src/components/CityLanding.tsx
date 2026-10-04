@@ -1,12 +1,14 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowRight, Crown } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { InquiryAnimatedButton } from '@/components/InquiryClient';
 import type { WPPage, WPPost } from '@/lib/wp';
 import type { Destination } from '@/types';
 import { WpBody, cleanBlocks } from '@/components/WpBody';
 import { CityFacts, FaqAccordion, HowWeHelp, NearbyDestinations, RelatedGuides } from '@/components/CityParts';
 import { JsonLd } from '@/components/JsonLd';
+import { CtaBand, ExploreLinks, Facts } from '@/components/PageParts';
+import { FACTS } from '@/data/pages-content';
 import { parseElementor } from '@/lib/elementor';
 import { cityNameFromSlug, getCityProfile, parseFaqs, relatedPosts } from '@/lib/city';
 import { breadcrumbSchema, faqSchema, serviceSchema } from '@/lib/schema';
@@ -53,10 +55,7 @@ export function CityLanding({ page, nearby, posts, services }: { page: WPPage; n
               <li aria-current="page" className="text-charcoal-700">{city}</li>
             </ol>
           </nav>
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-ivory-200 border border-gold/40 text-gold-dark text-xs uppercase tracking-[0.28em] font-medium mb-6">
-            <Crown className="w-3.5 h-3.5" />
-            <span>Destination Weddings</span>
-          </div>
+          <p className="text-gold-dark text-xs uppercase tracking-[0.3em] font-medium mb-4">{`Wedding Planner in ${city}`}</p>
           <h1 className="font-manrope font-medium text-3xl sm:text-5xl md:text-6xl text-charcoal-900 tracking-tight leading-[1.2] mb-5">{page.title}</h1>
           {lead && <p className="text-charcoal-600 text-base sm:text-lg font-light leading-relaxed max-w-2xl mx-auto">{clip(lead, 220)}</p>}
           <div className="mt-8 flex justify-center">
@@ -65,6 +64,10 @@ export function CityLanding({ page, nearby, posts, services }: { page: WPPage; n
             </InquiryAnimatedButton>
           </div>
         </div>
+      </section>
+
+      <section aria-label="Rasm Weddings at a glance" className="bg-white border-b border-gold/15 py-10">
+        <div className="rasm-container max-w-5xl"><Facts items={FACTS} /></div>
       </section>
 
       {profile && <CityFacts city={city} facts={profile.facts} />}
@@ -83,15 +86,19 @@ export function CityLanding({ page, nearby, posts, services }: { page: WPPage; n
         </div>
       )}
 
-      <article className="rasm-container max-w-3xl py-14">
-        <WpBody content={parsed.body} />
-        {parsed.tail && <div className="wp-content mt-6" dangerouslySetInnerHTML={{ __html: parsed.tail }} />}
+      <article className="rasm-container py-14">
+        <div className="mx-auto max-w-3xl">
+          <WpBody content={parsed.body} />
+          {parsed.tail && <div className="wp-content mt-6" dangerouslySetInnerHTML={{ __html: parsed.tail }} />}
+        </div>
       </article>
 
       <HowWeHelp city={city} services={services} />
       <FaqAccordion city={city} faqs={faqs} />
       <RelatedGuides city={city} posts={relatedPosts(posts, city)} />
       <NearbyDestinations items={nearby} />
+      <ExploreLinks title={`More Ways Rasm Can Help in ${city}`} links={[{ label: 'Wedding Planning Services', href: '/services/' }, { label: 'Wedding Decoration', href: '/traditional-decoration/' }, { label: 'Corporate Events', href: '/corporate-events/' }, { label: 'All Wedding Destinations', href: '/wedding-destination/' }, { label: 'Wedding Gallery', href: '/gallery/' }, { label: 'Contact Us', href: '/contact-us/' }]} />
+      <CtaBand title={`Planning a wedding in ${city}?`} text={`Share your dates, guest count and budget. Our Udaipur team will suggest venues in ${city} and send a clear written estimate.`} context={`${city} wedding closing enquiry`} />
     </div>
   );
 }
