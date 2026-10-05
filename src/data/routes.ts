@@ -6,6 +6,12 @@ export const NOINDEX_SLUGS = new Set(['thank-you-page']);
  * (Rank Math on WordPress takes priority when it provides a title/description; the site name is appended by the title template.)
  */
 export const STATIC_PAGES: Record<string, { title: string; description: string; label: string }> = {
+  'wedding-planner-in-jodhpur': {
+    label: 'Wedding Planner in Jodhpur',
+    title: 'Luxury Destination Wedding Planner in Jodhpur | Royal Palaces & Forts | RASM',
+    description:
+      'Premier destination wedding planner in Jodhpur. Orchestrating royal celebrations at Umaid Bhawan Palace, Mehrangarh Fort, Ajit Bhawan, Bal Samand Lake Palace & luxury Thar dunes with bespoke decor, guest logistics and Marwari hospitality.',
+  },
   'wedding-destination': {
     label: 'Wedding Destinations',
     title: 'Destination Wedding Planner in Rajasthan, Goa & Beyond',

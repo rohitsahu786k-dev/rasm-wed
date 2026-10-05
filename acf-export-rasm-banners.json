@@ -1,0 +1,56 @@
+[
+  {
+    "key": "group_rasm_page_banners",
+    "title": "Rasm Page Banners (Desktop 21:9 & Mobile 1:1)",
+    "fields": [
+      {
+        "key": "field_rasm_desktop_banner",
+        "label": "Desktop Banner Image (21:9 Aspect Ratio)",
+        "name": "desktop_banner",
+        "type": "image",
+        "instructions": "Ultra-widescreen landscape banner for desktop devices (21:9 aspect ratio, recommended 2100 x 900 px). Upload clean photographs without baked-in text.",
+        "required": 0,
+        "return_format": "array",
+        "preview_size": "medium",
+        "library": "all"
+      },
+      {
+        "key": "field_rasm_mobile_banner",
+        "label": "Mobile Banner Image (1:1 Square Aspect Ratio)",
+        "name": "mobile_banner",
+        "type": "image",
+        "instructions": "Square banner for smartphones and mobile devices (1:1 aspect ratio, recommended 1080 x 1080 px). If left empty, the desktop banner will be cropped to square.",
+        "required": 0,
+        "return_format": "array",
+        "preview_size": "medium",
+        "library": "all"
+      },
+      {
+        "key": "field_rasm_banner_alt",
+        "label": "Banner Alt Text (SEO & Accessibility)",
+        "name": "banner_alt",
+        "type": "text",
+        "instructions": "Short descriptive sentence for search engines, e.g., 'Royal wedding mandap at Umaid Bhawan Palace in Jodhpur'.",
+        "required": 0
+      }
+    ],
+    "location": [
+      [
+        {
+          "param": "post_type",
+          "operator": "==",
+          "value": "page"
+        }
+      ]
+    ],
+    "menu_order": 0,
+    "position": "normal",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "Upload custom 21:9 desktop and 1:1 mobile banners for Homepage, Destination pages, and Service pages.",
+    "show_in_rest": true
+  }
+]

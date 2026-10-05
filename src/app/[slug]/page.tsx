@@ -10,6 +10,7 @@ import { NOINDEX_SLUGS, STATIC_PAGES } from '@/data/routes';
 import { JsonLd } from '@/components/JsonLd';
 import { CityLanding } from '@/components/CityLanding';
 import { ArticleView } from '@/components/ArticleView';
+import { JodhpurWeddingPage } from '@/components/JodhpurWeddingPage';
 import { AboutPage, BlogIndex, ContactPage, CorporatePage, DecorationPage, DestinationsPage, GalleryPage, InfoPage, ServicesPage } from '@/components/InnerPages';
 
 export const revalidate = 3600;
@@ -56,7 +57,12 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   switch (r.kind) {
     case 'static': {
       const s = STATIC_PAGES[slug];
-      return meta({ title: s.title, description: s.description, path });
+      return meta({
+        title: s.title,
+        description: s.description,
+        path,
+        image: slug === 'wedding-planner-in-jodhpur' ? '/images/jodhpur/umaid-bhawan-palace.jpg' : undefined,
+      });
     }
     case 'post': {
       return meta({
@@ -86,14 +92,22 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
   switch (r.kind) {
     case 'static': {
+      if (slug === 'wedding-planner-in-jodhpur') {
+        const [nearby, posts, wpPage] = await Promise.all([
+          getDestinations(NEARBY['jodhpur'] ?? []),
+          getPosts(),
+          getPage('wedding-planner-in-jodhpur'),
+        ]);
+        return <JodhpurWeddingPage nearby={nearby} posts={posts} wpPage={wpPage} />;
+      }
       if (slug === 'wedding-destination') return <DestinationsPage destinations={await getDestinations()} />;
-      if (slug === 'services') return <ServicesPage />;
+      if (slug === 'services') return <ServicesPage wpPage={await getPage('services')} />;
       if (slug === 'gallery') return <GalleryPage media={await getGalleryMedia()} />;
       if (slug === 'blog') return <BlogIndex posts={await getPosts()} />;
       if (slug === 'about-us') return <AboutPage />;
       if (slug === 'contact-us') return <ContactPage />;
-      if (slug === 'traditional-decoration') return <DecorationPage />;
-      if (slug === 'corporate-events') return <CorporatePage wpPage={WP_COPY_PAGES.has(slug) ? await getPage(slug) : null} />;
+      if (slug === 'traditional-decoration') return <DecorationPage wpPage={await getPage('traditional-decoration')} />;
+      if (slug === 'corporate-events') return <CorporatePage wpPage={await getPage('corporate-events')} />;
       return notFound();
     }
     case 'post': {

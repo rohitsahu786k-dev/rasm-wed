@@ -23,11 +23,24 @@ export function Breadcrumbs({ items }: { items: { name: string; href?: string }[
 }
 
 /**
- * Page header: breadcrumb trail, one H1 that carries the page's main keyword, a short promise and two calls to action,
- * over a photograph that fades into ivory on the text side (same look as the homepage hero).
+ * Page header with clean responsive banners (Desktop 21:9, Mobile 1:1) and text starting below:
+ * - Desktop: 21:9 aspect ratio (`aspect-[21/9]`)
+ * - Mobile: 1:1 aspect ratio (`aspect-square`)
+ * - Completely clean: No text or overlays on the image.
+ * - Text (breadcrumbs, H1, description, CTAs) starts below on a pristine ivory background.
  */
 export function PageHero({
-  crumbs, eyebrow, title, accent, lead, image, primary, secondary, schemaPath,
+  crumbs,
+  eyebrow,
+  title,
+  accent,
+  lead,
+  image,
+  desktopBanner,
+  mobileBanner,
+  primary,
+  secondary,
+  schemaPath,
 }: {
   crumbs: { name: string; href?: string }[];
   eyebrow: string;
@@ -35,48 +48,103 @@ export function PageHero({
   accent?: string;
   lead: string;
   image?: PageImage;
+  desktopBanner?: string;
+  mobileBanner?: string;
   primary?: { label: string; context: string };
   secondary?: { label: string; href: string };
   schemaPath?: string;
 }) {
+  const dSrc = desktopBanner || image?.src;
+  const mSrc = mobileBanner || dSrc;
+  const altText = image?.alt || `${title} - Rasm Weddings & Events`;
+
   return (
-    <section className="relative isolate overflow-hidden bg-[#FDFCFA] border-b border-gold/20 pt-28 sm:pt-32 pb-12 sm:pb-16">
+    <div className="w-full bg-[#FDFCFA]">
       {schemaPath && (
-        <JsonLd data={breadcrumbSchema([{ name: 'Home', path: '/' }, ...crumbs.filter((c) => c.href).map((c) => ({ name: c.name, path: c.href as string })), { name: crumbs[crumbs.length - 1].name, path: schemaPath }])} />
+        <JsonLd
+          data={breadcrumbSchema([
+            { name: 'Home', path: '/' },
+            ...crumbs.filter((c) => c.href).map((c) => ({ name: c.name, path: c.href as string })),
+            { name: crumbs[crumbs.length - 1].name, path: schemaPath },
+          ])}
+        />
       )}
-      {image && (
-        <>
-          <Image src={image.src} alt={image.alt} fill priority sizes="100vw" className="absolute inset-0 -z-20 object-cover md:object-[75%_50%]" />
-          <div aria-hidden="true" className="absolute inset-0 -z-10 bg-[#FDFCFA]/90 md:hidden" />
-          <div aria-hidden="true" className="absolute inset-0 -z-10 hidden md:block" style={{ background: 'linear-gradient(90deg, rgba(253,252,250,0.98) 0%, rgba(253,252,250,0.92) 38%, rgba(253,252,250,0.45) 62%, rgba(253,252,250,0) 82%)' }} />
-        </>
-      )}
-      <div className="rasm-container">
-        <div className="max-w-2xl">
-          <Breadcrumbs items={crumbs} />
-          <p className="text-gold-dark text-[11px] sm:text-xs uppercase tracking-[0.3em] font-medium mb-3">{eyebrow}</p>
-          <h1 className="font-manrope font-medium text-3xl sm:text-5xl text-charcoal-900 tracking-tight leading-[1.15] mb-5">
-            {title}
-            {accent && <> <span className="gold-gradient-text italic">{accent}</span></>}
-          </h1>
-          <p className="text-charcoal-700 text-base sm:text-lg font-light leading-relaxed mb-8">{lead}</p>
-          {(primary || secondary) && (
-            <div className="flex flex-wrap gap-3">
-              {primary && (
-                <InquiryAnimatedButton variant="gold-shimmer" size="lg" context={primary.context} icon={<ArrowRight className="w-4 h-4" />}>
-                  {primary.label}
-                </InquiryAnimatedButton>
-              )}
-              {secondary && (
-                <Link href={secondary.href} className="inline-flex items-center justify-center px-7 py-3.5 rounded-full border border-gold/60 bg-white/70 text-sm font-medium text-charcoal-900 hover:bg-white transition-colors">
-                  {secondary.label}
-                </Link>
-              )}
-            </div>
-          )}
+
+      {/* 1. Responsive Visual Banner (Clean: No text on image) */}
+      {dSrc && (
+        <div className="w-full relative overflow-hidden bg-stone-100 border-b border-gold/20 shadow-xs">
+          {/* Desktop 21:9 Aspect Ratio */}
+          <div className="hidden md:block relative w-full aspect-[21/9] max-h-[640px]">
+            <Image
+              src={dSrc}
+              alt={altText}
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-center"
+            />
+          </div>
+
+          {/* Mobile 1:1 Aspect Ratio (Square) */}
+          <div className="block md:hidden relative w-full aspect-square">
+            <Image
+              src={mSrc || dSrc}
+              alt={altText}
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-center"
+            />
+          </div>
         </div>
-      </div>
-    </section>
+      )}
+
+      {/* 2. Text Content Starts Cleanly Below the Banner */}
+      <section className="relative w-full bg-[#FDFCFA] border-b border-gold/20 py-10 sm:py-16">
+        <div className="rasm-container">
+          <div className="max-w-3xl">
+            <Breadcrumbs items={crumbs} />
+            <p className="text-gold-dark text-[11px] sm:text-xs uppercase tracking-[0.3em] font-semibold mb-3">
+              {eyebrow}
+            </p>
+            <h1 className="font-manrope font-medium text-3xl sm:text-5xl lg:text-6xl text-charcoal-900 tracking-tight leading-[1.14] mb-5">
+              {title}
+              {accent && (
+                <>
+                  {' '}
+                  <span className="gold-gradient-text italic">{accent}</span>
+                </>
+              )}
+            </h1>
+            <p className="text-charcoal-700 text-base sm:text-lg font-light leading-relaxed mb-8">
+              {lead}
+            </p>
+            {(primary || secondary) && (
+              <div className="flex flex-wrap gap-3.5">
+                {primary && (
+                  <InquiryAnimatedButton
+                    variant="gold-shimmer"
+                    size="lg"
+                    context={primary.context}
+                    icon={<ArrowRight className="w-4 h-4" />}
+                  >
+                    {primary.label}
+                  </InquiryAnimatedButton>
+                )}
+                {secondary && (
+                  <Link
+                    href={secondary.href}
+                    className="inline-flex items-center justify-center px-8 py-3.5 rounded-full border border-gold/40 bg-white text-sm font-medium text-charcoal-900 hover:border-gold hover:bg-gold/5 transition-all shadow-xs"
+                  >
+                    {secondary.label}
+                  </Link>
+                )}
+              </div>
+            )}
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }
 

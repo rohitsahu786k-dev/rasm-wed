@@ -32,7 +32,7 @@ const linksExcept = (...hrefs: string[]) => CORE_LINKS.filter((l) => !hrefs.incl
 
 /* ---------------------------------- Services ---------------------------------- */
 
-export function ServicesPage() {
+export function ServicesPage({ wpPage }: { wpPage?: WPPage | null } = {}) {
   return (
     <div className="bg-white min-h-screen">
       <PageHero
@@ -43,6 +43,8 @@ export function ServicesPage() {
         accent="From Venue to Farewell"
         lead="Nine services under one roof: venues, decor, food, entertainment, hospitality, logistics, vendors, budgets and invitations. Take the full package or pick only what you need."
         image={PAGE_IMAGES.heroServices}
+        desktopBanner={wpPage?.desktopBanner}
+        mobileBanner={wpPage?.mobileBanner}
         primary={{ label: 'Request a Quote', context: 'Wedding services quote' }}
         secondary={{ label: 'See Packages', href: '#packages' }}
       />
@@ -148,7 +150,7 @@ function PhotoGridAbout() {
 
 /* ---------------------------------- Decoration ---------------------------------- */
 
-export function DecorationPage() {
+export function DecorationPage({ wpPage }: { wpPage?: WPPage | null } = {}) {
   return (
     <div className="bg-white min-h-screen">
       <PageHero
@@ -159,6 +161,8 @@ export function DecorationPage() {
         accent="Designed Around Your Story"
         lead="Mandaps, stages, entrances, florals and lighting for palaces, lakesides, hotels and gardens, from traditional Rajasthani styles to modern white and gold."
         image={PAGE_IMAGES.heroDecor}
+        desktopBanner={wpPage?.desktopBanner}
+        mobileBanner={wpPage?.mobileBanner}
         primary={{ label: 'Get a Decor Quote', context: 'Wedding decoration enquiry' }}
         secondary={{ label: 'View Services', href: '/services/' }}
       />
@@ -202,6 +206,8 @@ export function CorporatePage({ wpPage }: { wpPage?: WPPage | null }) {
         accent="Planned End to End"
         lead="Conferences, incentive trips, gala dinners and product launches at palaces, heritage hotels and resorts, with hospitality, production and logistics handled by one team."
         image={PAGE_IMAGES.heroCorporate}
+        desktopBanner={wpPage?.desktopBanner}
+        mobileBanner={wpPage?.mobileBanner}
         primary={{ label: 'Plan a Corporate Event', context: 'Corporate event enquiry' }}
         secondary={{ label: 'Our Services', href: '/services/' }}
       />

@@ -3,7 +3,7 @@
 import { getImageProps } from 'next/image';
 import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react';
-import { ArrowRight, ChevronLeft, ChevronRight, Pause, Play } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight, Pause, Play, Sparkles, Award, MapPin, ShieldCheck } from 'lucide-react';
 import type { HeroSlide } from '@/lib/acf';
 import { useInquiry } from '@/components/InquiryProvider';
 
@@ -19,16 +19,25 @@ function Accent({ text }: { text: string }) {
   return (
     <>
       {text.split(/(\*[^*]+\*)/g).map((p, i) =>
-        p.startsWith('*') && p.endsWith('*') ? <span key={i} className="gold-gradient-text italic">{p.slice(1, -1)}</span> : <span key={i}>{p}</span>,
+        p.startsWith('*') && p.endsWith('*') ? (
+          <span key={i} className="gold-gradient-text italic">
+            {p.slice(1, -1)}
+          </span>
+        ) : (
+          <span key={i}>{p}</span>
+        ),
       )}
     </>
   );
 }
 
 /**
- * Homepage banner carousel. Art-directed images: a landscape image on desktop and a separate portrait image on mobile
- * (<picture>), served through the Next.js image optimiser. Only the first slide is preloaded (LCP); the rest load lazily.
- * Accessible: labelled carousel region, pause button, keyboard arrows, swipe, respects prefers-reduced-motion.
+ * Homepage Hero with Responsive Banners & Dedicated Text Content Below:
+ * - Desktop Banner: 21:9 Aspect Ratio (`aspect-[21/9]`)
+ * - Mobile Banner: 1:1 Aspect Ratio (`aspect-square`)
+ * - No text on banner image (clean, crisp luxury photography)
+ * - Text starts cleanly below the banner with zero washed-out background images
+ * - Fully editable from WordPress ACF (new-home hero slides & banners)
  */
 export function HeroCarousel({ slides, autoplaySeconds }: { slides: HeroSlide[]; autoplaySeconds: number }) {
   const [active, setActive] = useState(0);
@@ -52,82 +61,116 @@ export function HeroCarousel({ slides, autoplaySeconds }: { slides: HeroSlide[];
     return () => document.removeEventListener('visibilitychange', onVis);
   }, []);
 
+  const currentSlide = slides[active] || slides[0];
+
   return (
-    <section
-      aria-roledescription="carousel"
-      aria-label="Featured wedding highlights"
-      className="relative isolate w-full overflow-hidden bg-[#FDFCFA] text-charcoal-900 h-[78svh] min-h-[560px] max-h-[780px] md:h-[78vh] md:min-h-[560px]"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
-      onKeyDown={(e) => {
-        if (e.key === 'ArrowRight') go(active + 1);
-        if (e.key === 'ArrowLeft') go(active - 1);
-      }}
-      onTouchStart={(e) => (touchX.current = e.touches[0].clientX)}
-      onTouchEnd={(e) => {
-        if (touchX.current === null) return;
-        const dx = e.changedTouches[0].clientX - touchX.current;
-        touchX.current = null;
-        if (Math.abs(dx) > 50) go(active + (dx < 0 ? 1 : -1));
-      }}
-    >
-      {slides.map((s, i) => {
-        const isActive = i === active;
-        const common = { alt: s.alt, sizes: '100vw', quality: 75, priority: i === 0, loading: i === 0 ? ('eager' as const) : ('lazy' as const), fetchPriority: i === 0 ? ('high' as const) : ('low' as const) };
-        const desktop = getImageProps({ ...common, src: s.desktop.url, width: s.desktop.width, height: s.desktop.height });
-        const mobileSrc = s.mobile ?? s.desktop;
-        const mobile = getImageProps({ ...common, src: mobileSrc.url, width: mobileSrc.width, height: mobileSrc.height });
-        const H = i === 0 ? 'h1' : 'h2';
-        const align = s.align === 'center' ? 'items-center text-center' : s.align === 'right' ? 'items-end text-right' : 'items-start text-left';
-        return (
-          <div
-            key={i}
-            role="group"
-            aria-roledescription="slide"
-            aria-label={`${i + 1} of ${count}`}
-            aria-hidden={!isActive}
-            {...(!isActive ? { inert: true as never } : {})}
-            className={`absolute inset-0 transition-opacity duration-[900ms] ease-out ${isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'}`}
-          >
-            <picture>
-              <source media="(min-width: 768px)" srcSet={desktop.props.srcSet} sizes="100vw" />
-              <source media="(max-width: 767px)" srcSet={mobile.props.srcSet} sizes="100vw" />
-              <img
-                {...desktop.props}
-                alt={s.alt}
-                className={`absolute inset-0 h-full w-full object-cover md:object-[70%_50%] ${isActive && !reduced ? 'hero-kenburns' : ''}`}
-              />
-            </picture>
-            <div aria-hidden="true" className="absolute inset-0 md:hidden" style={{ background: `linear-gradient(0deg, rgba(253,252,250,0.97) 0%, rgba(253,252,250,0.9) 38%, rgba(253,252,250,${Math.max(0, 0.25 - s.overlay / 400).toFixed(2)}) 70%)` }} />
-            <div aria-hidden="true" className="absolute inset-0 hidden md:block" style={{ background: `linear-gradient(90deg, rgba(253,252,250,0.97) 0%, rgba(253,252,250,0.88) 30%, rgba(253,252,250,0.35) 52%, rgba(253,252,250,0) 70%)` }} />
+    <div className="w-full bg-[#FDFCFA]">
+      {/* ---------------- 1. CLEAN RESPONSIVE BANNER (NO TEXT ON IMAGE) ---------------- */}
+      <section
+        aria-roledescription="carousel"
+        aria-label="Homepage Featured Banners"
+        className="relative w-full bg-stone-100 overflow-hidden border-b border-gold/20"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+        onKeyDown={(e) => {
+          if (e.key === 'ArrowRight') go(active + 1);
+          if (e.key === 'ArrowLeft') go(active - 1);
+        }}
+        onTouchStart={(e) => (touchX.current = e.touches[0].clientX)}
+        onTouchEnd={(e) => {
+          if (touchX.current === null) return;
+          const dx = e.changedTouches[0].clientX - touchX.current;
+          touchX.current = null;
+          if (Math.abs(dx) > 50) go(active + (dx < 0 ? 1 : -1));
+        }}
+      >
+        {/* Desktop Container: 21:9 Aspect Ratio */}
+        <div className="hidden md:block relative w-full aspect-[21/9] max-h-[660px]">
+          {slides.map((s, i) => {
+            const isActive = i === active;
+            const common = {
+              alt: s.alt,
+              sizes: '100vw',
+              quality: 85,
+              priority: i === 0,
+              loading: i === 0 ? ('eager' as const) : ('lazy' as const),
+              fetchPriority: i === 0 ? ('high' as const) : ('low' as const),
+            };
+            const desktop = getImageProps({
+              ...common,
+              src: s.desktop.url,
+              width: s.desktop.width,
+              height: s.desktop.height,
+            });
 
-            <div className="rasm-container relative h-full flex">
-              <div className={`flex flex-col justify-end md:justify-center gap-5 w-full max-w-2xl pb-20 sm:pb-24 pt-0 ${align} ${s.align === 'center' ? 'mx-auto' : s.align === 'right' ? 'ml-auto' : ''}`}>
-                {s.eyebrow && <p className="text-[11px] sm:text-xs uppercase tracking-[0.3em] text-gold-dark font-medium">{s.eyebrow}</p>}
-                <H className={`font-manrope font-medium text-[2.1rem] leading-[1.15] sm:text-5xl lg:text-[3.75rem] tracking-tight text-charcoal-900 ${isActive ? 'hero-rise' : ''}`}><Accent text={s.heading} /></H>
-                {s.subheading && <p className="text-base sm:text-lg text-charcoal-700 font-light leading-relaxed max-w-xl">{s.subheading}</p>}
-                <div className="flex flex-wrap gap-3 pt-2">
-                  <button type="button" onClick={() => open()} className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-gradient-to-r from-[#A88434] via-[#B8923A] to-[#8F6A14] text-white text-sm font-medium tracking-wide shadow-md hover:shadow-lg hover:-translate-y-0.5 transition-all">
-                    Plan Your Wedding
-                    <ArrowRight className="w-4 h-4" />
-                  </button>
-                  {s.buttonLabel && s.buttonHref && (
-                    <Link href={s.buttonHref} className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full border border-gold/60 bg-white/60 text-charcoal-900 text-sm font-medium tracking-wide hover:bg-white transition-colors">
-                      {s.buttonLabel}
-                    </Link>
-                  )}
-                </div>
+            return (
+              <div
+                key={i}
+                role="group"
+                aria-roledescription="slide"
+                aria-label={`${i + 1} of ${count}`}
+                aria-hidden={!isActive}
+                className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                  isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+                }`}
+              >
+                <img
+                  {...desktop.props}
+                  alt={s.alt}
+                  className="w-full h-full object-cover object-center"
+                />
               </div>
-            </div>
-          </div>
-        );
-      })}
+            );
+          })}
+        </div>
 
-      {count > 1 && (
-        <>
-          <div className="absolute z-20 inset-x-0 bottom-6 sm:bottom-8">
+        {/* Mobile Container: 1:1 Aspect Ratio (Square) */}
+        <div className="block md:hidden relative w-full aspect-square">
+          {slides.map((s, i) => {
+            const isActive = i === active;
+            const common = {
+              alt: s.alt,
+              sizes: '100vw',
+              quality: 85,
+              priority: i === 0,
+              loading: i === 0 ? ('eager' as const) : ('lazy' as const),
+              fetchPriority: i === 0 ? ('high' as const) : ('low' as const),
+            };
+            const mobileSrc = s.mobile ?? s.desktop;
+            const mobile = getImageProps({
+              ...common,
+              src: mobileSrc.url,
+              width: mobileSrc.width,
+              height: mobileSrc.height,
+            });
+
+            return (
+              <div
+                key={i}
+                role="group"
+                aria-roledescription="slide"
+                aria-label={`${i + 1} of ${count}`}
+                aria-hidden={!isActive}
+                className={`absolute inset-0 transition-opacity duration-700 ease-in-out ${
+                  isActive ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+                }`}
+              >
+                <img
+                  {...mobile.props}
+                  alt={s.alt}
+                  className="w-full h-full object-cover object-center"
+                />
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Carousel Slide Indicators & Navigation Controls */}
+        {count > 1 && (
+          <div className="absolute z-20 inset-x-0 bottom-4 sm:bottom-6">
             <div className="rasm-container flex items-center justify-between gap-4">
-              <div className="flex items-center gap-1">
+              {/* Pagination Dots */}
+              <div className="flex items-center gap-1.5 bg-black/40 backdrop-blur-md px-3 py-1.5 rounded-full border border-white/20">
                 {slides.map((_, i) => (
                   <button
                     key={i}
@@ -135,30 +178,130 @@ export function HeroCarousel({ slides, autoplaySeconds }: { slides: HeroSlide[];
                     onClick={() => go(i)}
                     aria-label={`Go to slide ${i + 1}`}
                     aria-current={i === active}
-                    className="group grid place-items-center w-8 h-8 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold rounded-full"
+                    className="group grid place-items-center w-6 h-6 focus:outline-none rounded-full"
                   >
-                    <span className={`block h-1.5 rounded-full transition-all duration-300 ${i === active ? 'w-9 bg-gold' : 'w-3 bg-charcoal-900/25 group-hover:bg-charcoal-900/50'}`} />
+                    <span
+                      className={`block h-1.5 rounded-full transition-all duration-300 ${
+                        i === active ? 'w-7 bg-gold' : 'w-2 bg-white/60 group-hover:bg-white'
+                      }`}
+                    />
                   </button>
                 ))}
               </div>
+
+              {/* Prev / Next & Pause Controls */}
               <div className="flex items-center gap-2">
                 {autoplaySeconds > 0 && (
-                  <button type="button" onClick={() => setPaused((p) => !p)} aria-label={paused ? 'Play slideshow' : 'Pause slideshow'} className="grid place-items-center w-10 h-10 rounded-full bg-white/80 text-charcoal-900 border border-gold/30 backdrop-blur hover:bg-white transition-colors">
-                    {paused ? <Play className="w-4 h-4" /> : <Pause className="w-4 h-4" />}
+                  <button
+                    type="button"
+                    onClick={() => setPaused((p) => !p)}
+                    aria-label={paused ? 'Play slideshow' : 'Pause slideshow'}
+                    className="grid place-items-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black/40 text-white border border-white/20 backdrop-blur-md hover:bg-black/60 transition-colors"
+                  >
+                    {paused ? <Play className="w-3.5 h-3.5" /> : <Pause className="w-3.5 h-3.5" />}
                   </button>
                 )}
-                <button type="button" onClick={() => go(active - 1)} aria-label="Previous slide" className="hidden sm:grid place-items-center w-10 h-10 rounded-full bg-white/80 text-charcoal-900 border border-gold/30 backdrop-blur hover:bg-white transition-colors">
-                  <ChevronLeft className="w-5 h-5" />
+                <button
+                  type="button"
+                  onClick={() => go(active - 1)}
+                  aria-label="Previous slide"
+                  className="grid place-items-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black/40 text-white border border-white/20 backdrop-blur-md hover:bg-black/60 transition-colors"
+                >
+                  <ChevronLeft className="w-4 h-4" />
                 </button>
-                <button type="button" onClick={() => go(active + 1)} aria-label="Next slide" className="hidden sm:grid place-items-center w-10 h-10 rounded-full bg-white/80 text-charcoal-900 border border-gold/30 backdrop-blur hover:bg-white transition-colors">
-                  <ChevronRight className="w-5 h-5" />
+                <button
+                  type="button"
+                  onClick={() => go(active + 1)}
+                  aria-label="Next slide"
+                  className="grid place-items-center w-8 h-8 sm:w-9 sm:h-9 rounded-full bg-black/40 text-white border border-white/20 backdrop-blur-md hover:bg-black/60 transition-colors"
+                >
+                  <ChevronRight className="w-4 h-4" />
                 </button>
               </div>
             </div>
           </div>
-          <p className="sr-only" aria-live="polite">{`Slide ${active + 1} of ${count}`}</p>
-        </>
-      )}
-    </section>
+        )}
+      </section>
+
+      {/* ---------------- 2. TEXT CONTENT SECTION (STARTS CLEANLY BELOW THE BANNER) ---------------- */}
+      <section className="relative w-full bg-[#FDFCFA] py-10 sm:py-16 border-b border-gold/20">
+        <div className="rasm-container">
+          <div className="max-w-4xl mx-auto text-center space-y-6">
+            {/* Eyebrow Tag */}
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold/15 border border-gold/30 text-gold-dark text-xs uppercase tracking-[0.25em] font-semibold">
+              <Sparkles className="w-3.5 h-3.5 text-gold-dark" />
+              <span>
+                {currentSlide.eyebrow || 'Premier Luxury Destination Wedding Planners · Rajasthan & Worldwide'}
+              </span>
+            </div>
+
+            {/* Main H1 Title */}
+            <h1 className="font-manrope font-medium text-3xl sm:text-5xl lg:text-6xl text-charcoal-900 tracking-tight leading-[1.14]">
+              <Accent text={currentSlide.heading} />
+            </h1>
+
+            {/* Subheading / Copy */}
+            {currentSlide.subheading && (
+              <p className="text-base sm:text-xl text-charcoal-700 font-light leading-relaxed max-w-2xl mx-auto">
+                {currentSlide.subheading}
+              </p>
+            )}
+
+            {/* Primary & Secondary Action CTAs */}
+            <div className="flex flex-wrap items-center justify-center gap-3.5 pt-2">
+              <button
+                type="button"
+                onClick={() => open()}
+                className="inline-flex items-center gap-2.5 px-8 py-4 rounded-full bg-gradient-to-r from-[#D4AF37] via-[#F3E5AB] to-[#C5A059] text-charcoal-950 text-sm font-semibold tracking-wide uppercase shadow-[0_4px_20px_rgba(212,175,55,0.3)] hover:shadow-[0_8px_30px_rgba(212,175,55,0.45)] hover:-translate-y-0.5 active:translate-y-0 transition-all"
+              >
+                <span>Plan Your Wedding</span>
+                <ArrowRight className="w-4 h-4 text-charcoal-950" />
+              </button>
+
+              <Link
+                href={currentSlide.buttonHref || '/wedding-destination/'}
+                className="inline-flex items-center gap-2 px-8 py-4 rounded-full border border-gold/40 bg-white text-charcoal-800 text-sm font-medium tracking-wide hover:border-gold hover:bg-gold/5 transition-all shadow-xs"
+              >
+                <span>{currentSlide.buttonLabel || 'Explore 14 Destinations'}</span>
+              </Link>
+            </div>
+
+            {/* Trust Highlights Strip Underneath Text */}
+            <div className="pt-8 mt-6 border-t border-gold/15 grid grid-cols-2 md:grid-cols-4 gap-4 text-left">
+              <div className="flex items-center gap-3 p-3 rounded-2xl bg-white border border-gold/15 shadow-2xs">
+                <Award className="w-5 h-5 text-gold-dark shrink-0" />
+                <div>
+                  <div className="font-semibold text-charcoal-900 text-sm">10+ Years Heritage</div>
+                  <div className="text-[11px] text-charcoal-500">500+ Royal Celebrations</div>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 p-3 rounded-2xl bg-white border border-gold/15 shadow-2xs">
+                <MapPin className="w-5 h-5 text-gold-dark shrink-0" />
+                <div>
+                  <div className="font-semibold text-charcoal-900 text-sm">14 Prime Hubs</div>
+                  <div className="text-[11px] text-charcoal-500">Rajasthan, Goa & Beyond</div>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 p-3 rounded-2xl bg-white border border-gold/15 shadow-2xs">
+                <Sparkles className="w-5 h-5 text-gold-dark shrink-0" />
+                <div>
+                  <div className="font-semibold text-charcoal-900 text-sm">Full Palace Buyouts</div>
+                  <div className="text-[11px] text-charcoal-500">Lake Mandaps & Forts</div>
+                </div>
+              </div>
+              <div className="flex items-center gap-3 p-3 rounded-2xl bg-white border border-gold/15 shadow-2xs">
+                <ShieldCheck className="w-5 h-5 text-gold-dark shrink-0" />
+                <div>
+                  <div className="font-semibold text-charcoal-900 text-sm">Zero Markups</div>
+                  <div className="text-[11px] text-charcoal-500">100% Direct Vendor Rates</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   );
 }
+
+export default HeroCarousel;

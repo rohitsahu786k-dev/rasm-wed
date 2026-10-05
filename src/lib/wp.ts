@@ -14,6 +14,9 @@ export interface WPPage {
   imageAlt?: string;
   imageWidth?: number;
   imageHeight?: number;
+  desktopBanner?: string;
+  mobileBanner?: string;
+  bannerAlt?: string;
 }
 export interface WPPost extends WPPage {
   date: string;
@@ -53,6 +56,17 @@ const strip = (html: string) =>
     .replace(/\s+/g, ' ')
     .trim();
 
+function extractImageUrl(v: unknown): string | undefined {
+  if (!v) return undefined;
+  if (typeof v === 'string' && /^https?:\/\//.test(v.trim())) return v.trim();
+  if (typeof v === 'object' && v !== null) {
+    const obj = v as Record<string, unknown>;
+    if (typeof obj.url === 'string' && /^https?:\/\//.test(obj.url.trim())) return obj.url.trim();
+    if (typeof obj.source_url === 'string' && /^https?:\/\//.test(obj.source_url.trim())) return obj.source_url.trim();
+  }
+  return undefined;
+}
+
 const toPage = (p: any): WPPage => ({
   slug: p.slug,
   title: strip(p.title?.rendered ?? ''),
@@ -67,9 +81,21 @@ export async function getPages(): Promise<WPPage[]> {
 }
 
 export async function getPage(slug: string): Promise<WPPage | null> {
-  const data = await wp<any[]>(`/pages?slug=${encodeURIComponent(slug)}&_embed=wp:featuredmedia&_fields=slug,title,content,excerpt,modified_gmt,_links,_embedded`);
+  const data = await wp<any[]>(`/pages?slug=${encodeURIComponent(slug)}&_embed=wp:featuredmedia&_fields=slug,title,content,excerpt,modified_gmt,acf,_links,_embedded`);
   if (!data?.[0]) return null;
   const media = data[0]._embedded?.['wp:featuredmedia']?.[0];
+  const acf = data[0].acf && typeof data[0].acf === 'object' ? data[0].acf : {};
+  const desktopBanner =
+    extractImageUrl(acf.desktop_banner) ||
+    extractImageUrl(acf.banner_desktop) ||
+    extractImageUrl(acf.hero_desktop_banner) ||
+    media?.source_url;
+  const mobileBanner =
+    extractImageUrl(acf.mobile_banner) ||
+    extractImageUrl(acf.banner_mobile) ||
+    extractImageUrl(acf.hero_mobile_banner);
+  const bannerAlt = (typeof acf.banner_alt === 'string' && acf.banner_alt) || media?.alt_text || undefined;
+
   return {
     ...toPage(data[0]),
     excerpt: strip(data[0].excerpt?.rendered ?? ''),
@@ -77,6 +103,9 @@ export async function getPage(slug: string): Promise<WPPage | null> {
     imageAlt: media?.alt_text || undefined,
     imageWidth: media?.media_details?.width,
     imageHeight: media?.media_details?.height,
+    desktopBanner,
+    mobileBanner,
+    bannerAlt,
   };
 }
 

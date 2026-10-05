@@ -27,6 +27,15 @@ export const metadata: Metadata = {
   robots: IS_PRODUCTION ? { index: true, follow: true } : { index: false, follow: false },
   openGraph: { type: 'website', siteName: SITE.name, locale: 'en_GB' },
   twitter: { card: 'summary_large_image' },
+  icons: {
+    icon: [
+      { url: '/icon.png', sizes: '512x512', type: 'image/png' },
+      { url: '/favicon.ico', sizes: 'any' },
+    ],
+    apple: [
+      { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
+  },
   // Keeps Search Console ownership (same token as the live WordPress site).
   verification: { google: process.env.NEXT_PUBLIC_GSC_VERIFICATION ?? 'lfleq68y7a9Qsn1-rs2LHXMyXUkhm_vlteSp37KlTHM' },
 };
