@@ -200,11 +200,11 @@
   .rasm-container,
   .site-container {
     width: 90% !important;
-    max-width: 1440px !important;
+    max-width: 90% !important;
     margin-left: auto !important;
     margin-right: auto !important;
-    padding-left: 2rem !important;
-    padding-right: 2rem !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
 }
 
@@ -231,11 +231,11 @@
   .max-w-5xl.mx-auto,
   .max-w-4xl.mx-auto {
     width: 90% !important;
-    max-width: 1440px !important;
+    max-width: 90% !important;
     margin-left: auto !important;
     margin-right: auto !important;
-    padding-left: 2rem !important;
-    padding-right: 2rem !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
   }
 }
 

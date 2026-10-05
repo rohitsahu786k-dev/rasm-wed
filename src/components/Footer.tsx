@@ -14,14 +14,7 @@ const footerLinks = {
     { label: 'Wedding Planner in Goa', href: '/wedding-planner-in-goa/' },
     { label: 'Wedding Planner in Kumbhalgarh', href: '/wedding-planner-in-kumbhalgarh/' },
     { label: 'Wedding Planner in Mount Abu', href: '/wedding-planner-in-mount-abu/' },
-    { label: 'Wedding Planner in Nathdwara', href: '/wedding-planner-in-nathdwara/' },
-    { label: 'Wedding Planner in Pushkar', href: '/wedding-planner-in-pushkar/' },
-    { label: 'Wedding Planner in Kota', href: '/wedding-planner-in-kota/' },
-    { label: 'Wedding Planner in Ranakpur', href: '/wedding-planner-in-ranakpur/' },
-    { label: 'Wedding Planner in Thailand', href: '/wedding-planner-in-thailand/' },
-    { label: 'Wedding Planner in Ahmedabad', href: '/wedding-planner-in-ahmedabad/' },
-    { label: 'Wedding Planner in Gandhinagar', href: '/wedding-planner-in-gandhinagar/' },
-    { label: 'Rishikesh Destination Wedding', href: '/why-rishikesh-is-new-destination-wedding-hotspot/' },
+    { label: 'View All Destinations', href: '/wedding-destination/' },
   ],
   services: [
     { label: 'Wedding Planning Services', href: '/services/' },
@@ -45,8 +38,9 @@ const footerLinks = {
     { label: 'About Us', href: '/about-us/' },
     { label: 'Wedding Gallery', href: '/gallery/' },
     { label: 'Wedding Blog', href: '/blog/' },
-    { label: 'All Wedding Destinations', href: '/wedding-destination/' },
     { label: 'Contact Us', href: '/contact-us/' },
+  ],
+  legal: [
     { label: 'Privacy Policy', href: '/privacy-policy/' },
     { label: 'Terms & Conditions', href: '/terms-and-conditions/' },
     { label: 'Refund Policy', href: '/refund-policy/' },
@@ -256,11 +250,13 @@ export const Footer: React.FC<{ settings: FullSettings }> = ({ settings }) => {
             </span>
           </div>
 
-          {/* Right Side: Back to Top */}
-          <div className="flex items-center gap-3">
-            <span className="text-xs text-charcoal-500 font-normal">
-              Udaipur, Rajasthan. Weddings across India and abroad.
-            </span>
+          {/* Right Side: Legal links + Back to Top */}
+          <div className="flex flex-wrap items-center justify-center gap-x-4 gap-y-2">
+            {footerLinks.legal.map((l) => (
+              <Link key={l.label} href={l.href} className="text-xs text-charcoal-600 hover:text-charcoal-950 hover:underline">
+                {l.label}
+              </Link>
+            ))}
             <BackToTop />
           </div>
 
