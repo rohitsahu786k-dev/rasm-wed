@@ -1,9 +1,9 @@
-import type { NextConfig } from 'next';
 
 const wpHost = new URL(process.env.WP_ORIGIN ?? 'https://rasmwed.com').hostname;
 const siteHost = new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://rasmwed.com').hostname;
 
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   // WordPress URLs use trailing slashes; keeping them means zero redirects for existing backlinks.
   trailingSlash: true,
   poweredByHeader: false,
@@ -12,11 +12,11 @@ const nextConfig: NextConfig = {
   images: {
     qualities: [75, 85],
     formats: ['image/webp'],
-    remotePatterns: [...new Set([wpHost, siteHost])].map((hostname) => ({ protocol: 'https' as const, hostname, pathname: '/wp-content/uploads/**' })),
+    remotePatterns: [...new Set([wpHost, siteHost])].map((hostname) => ({ protocol: 'https', hostname, pathname: '/wp-content/uploads/**' })),
   },
   async redirects() {
     // Aliases that only ever existed in the Vite SPA -> canonical WordPress URLs (single hop).
-    const alias = (from: string, to: string) => ({ source: `/${from}`, destination: to, permanent: true });
+    const alias = (from, to) => ({ source: `/${from}`, destination: to, permanent: true });
     return [
       alias('venue-catalogue', '/wedding-destination/'),
       alias('destinations', '/wedding-destination/'),
