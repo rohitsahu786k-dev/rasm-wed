@@ -33,10 +33,10 @@ type Resolved =
 /** Exact-match routing only. Anything unknown is a genuine 404 (no fuzzy `includes()` matching). */
 const resolve = cache(async (slug: string): Promise<Resolved | null> => {
   if (slug in STATIC_PAGES) return { kind: 'static', slug };
-  const post = await getPost(slug);
+  const post = await getPost(slug, true);
   if (post) return { kind: 'post', slug, post };
   if (slug === 'new-home') return null;
-  const page = await getPage(slug);
+  const page = await getPage(slug, true);
   if (page) return { kind: 'page', slug, page };
   return null;
 });
@@ -68,21 +68,24 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!r) return { title: 'Page not found', robots: { index: false, follow: false } };
   const path = `/${slug}/`;
   // Rank Math on WordPress is the source of truth for SEO title/description (so auto-fixes and editor changes apply live).
-  const rm = await getRankMathMeta(slug);
+  // Rank Math is the source of truth for post titles/descriptions (editor and agent changes apply live). Designed pages
+  // use the keyword-checked copy in routes.ts instead.
+  const rm = r.kind === 'static' ? null : await getRankMathMeta(slug);
   const meta = (o: Parameters<typeof buildMetadata>[0]) =>
     buildMetadata({
       ...o,
-      ...(rm?.title ? { title: rm.title, titleIsFinal: true, preferOpts: true } : {}),
+      ...(rm?.title ? { title: rm.title, preferOpts: true } : {}),
       // Rank Math descriptions that are empty or too short for a search snippet are ignored (our page copy is used instead).
       ...(rm?.description && rm.description.length >= 70 ? { description: rm.description, preferOpts: true } : {}),
     });
   switch (r.kind) {
     case 'static': {
       const s = STATIC_PAGES[slug];
-      return meta({
+      return buildMetadata({
         title: s.title,
         description: s.description,
         path,
+        preferOpts: true,
         image: slug === 'wedding-planner-in-jodhpur' ? '/images/jodhpur/umaid-bhawan-palace.jpg' : undefined,
       });
     }
@@ -97,13 +100,18 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         modifiedTime: r.post.modified,
       });
     }
-    case 'page':
-      return meta({
-        title: r.page.title,
-        description: pageDescription(r.page),
-        path,
-        noindex: NOINDEX_SLUGS.has(slug),
-      });
+    case 'page': {
+      const city = slug.startsWith('wedding-planner-in-')
+        ? slug.replace('wedding-planner-in-', '').split('-').map((w) => w[0].toUpperCase() + w.slice(1)).join(' ')
+        : '';
+      // City pages: one clear snippet that carries the primary keyword "wedding planner in {city}".
+      const description = city
+        ? `Wedding planner in ${city}: Rasm Weddings & Events plans palace, fort and resort weddings with venues, decor, guest travel and logistics. Free consultation.`
+        : pageDescription(r.page);
+      if (city) return buildMetadata({ title: rm?.title || r.page.title, description, path, preferOpts: true });
+      return meta({ title: r.page.title, description, path, noindex: NOINDEX_SLUGS.has(slug) });
+    }
+
   }
 }
 

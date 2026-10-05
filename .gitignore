@@ -16,3 +16,7 @@ out
 next-env.d.ts
 .data
 .data-test
+
+# old Vite prototype and archive (not part of the Next.js site)
+rasm.zip
+/rasm/

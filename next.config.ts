@@ -7,6 +7,8 @@ const nextConfig: NextConfig = {
   // WordPress URLs use trailing slashes; keeping them means zero redirects for existing backlinks.
   trailingSlash: true,
   poweredByHeader: false,
+  // Fewer parallel WordPress requests while prerendering (the origin throttles bursts); retry a failed page once more.
+  experimental: { staticGenerationMaxConcurrency: 3, staticGenerationRetryCount: 2 },
   images: {
     qualities: [75, 85],
     formats: ['image/webp'],

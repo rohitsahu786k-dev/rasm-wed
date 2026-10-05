@@ -110,7 +110,7 @@ export function AboutPage() {
         crumbs={[{ name: 'Home', href: '/' }, { name: 'About Us' }]}
         schemaPath="/about-us/"
         eyebrow="About Rasm Weddings & Events"
-        title="Wedding and Event Planners in Udaipur,"
+        title="Wedding Planner in Udaipur,"
         accent="Over a Decade of Celebrations"
         lead="We are an Udaipur-based team that has planned more than 500 weddings and events for families in India and abroad, from intimate ceremonies to multi-day destination weddings."
         image={PAGE_IMAGES.heroAbout}
@@ -204,7 +204,7 @@ export function CorporatePage({ wpPage }: { wpPage?: WPPage | null }) {
         crumbs={[{ name: 'Home', href: '/' }, { name: 'Corporate Events' }]}
         schemaPath="/corporate-events/"
         eyebrow="Corporate Event Management in Udaipur"
-        title="Corporate Events in Udaipur and Rajasthan,"
+        title="Corporate Event Management in Udaipur,"
         accent="Planned End to End"
         lead="Conferences, incentive trips, gala dinners and product launches at palaces, heritage hotels and resorts, with hospitality, production and logistics handled by one team."
         image={PAGE_IMAGES.heroCorporate}
@@ -322,7 +322,7 @@ export function DestinationsPage({ destinations }: { destinations: Destination[]
         crumbs={[{ name: 'Home', href: '/' }, { name: 'Wedding Destinations' }]}
         schemaPath="/wedding-destination/"
         eyebrow="Destination Wedding Planner"
-        title="Destination Wedding Venues in Rajasthan,"
+        title="Wedding Destinations in Rajasthan,"
         accent="Goa and Beyond"
         lead="Compare 12 wedding destinations by season, access and setting, then let Rasm plan your wedding in Udaipur, Jaipur, Jodhpur, Jaisalmer, Goa, Thailand and more."
         image={PAGE_IMAGES.heroDestinations}

@@ -41,12 +41,18 @@ function stripEmoji(v: unknown): unknown {
   return v;
 }
 
-async function wp<T>(path: string): Promise<T | null> {
+/**
+ * strict: a failed request (network error or non-2xx after retries) throws instead of returning null. Page lookups use it so a
+ * WordPress hiccup during a build or revalidation fails that render (the previous good page stays live) rather than caching a 404.
+ */
+async function wp<T>(path: string, strict = false): Promise<T | null> {
   try {
     // Retry transient origin errors so a brief WordPress hiccup never turns into a cached 404 or an empty blog list.
     const res = await fetchRetry(fetch, `${WP_ORIGIN}/wp-json/wp/v2${path}`, { next: { revalidate: REVALIDATE } }, { tries: 3, baseDelayMs: 700, timeoutMs: 20_000 });
+    if (!res.ok && strict) throw new Error(`WordPress ${res.status} for ${path}`);
     return res.ok ? (stripEmoji(await res.json()) as T) : null;
-  } catch {
+  } catch (e) {
+    if (strict) throw e;
     return null;
   }
 }
@@ -90,8 +96,8 @@ export async function getPages(): Promise<WPPage[]> {
   return (data ?? []).map(toPage);
 }
 
-export async function getPage(slug: string): Promise<WPPage | null> {
-  const data = await wp<any[]>(`/pages?slug=${encodeURIComponent(slug)}&_embed=wp:featuredmedia&_fields=slug,title,content,excerpt,modified_gmt,acf,_links,_embedded`);
+export async function getPage(slug: string, strict = false): Promise<WPPage | null> {
+  const data = await wp<any[]>(`/pages?slug=${encodeURIComponent(slug)}&_embed=wp:featuredmedia&_fields=slug,title,content,excerpt,modified_gmt,acf,_links,_embedded`, strict);
   if (!data?.[0]) return null;
   const media = data[0]._embedded?.['wp:featuredmedia']?.[0];
   const acf = data[0].acf && typeof data[0].acf === 'object' ? data[0].acf : {};
@@ -149,9 +155,10 @@ export interface WPPostFull extends WPPost {
   content: string;
 }
 
-export async function getPost(slug: string): Promise<WPPostFull | null> {
+export async function getPost(slug: string, strict = false): Promise<WPPostFull | null> {
   const data = await wp<any[]>(
     `/posts?slug=${encodeURIComponent(slug)}&_embed=wp:featuredmedia,wp:term&_fields=slug,title,content,excerpt,date_gmt,modified_gmt,_links,_embedded`,
+    strict,
   );
   if (!data?.[0]) return null;
   const p = data[0];

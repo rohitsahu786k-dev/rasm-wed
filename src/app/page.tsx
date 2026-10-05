@@ -16,7 +16,7 @@ export const revalidate = 300;
 // The title/description already ranking on the live site are pinned in seo-live.json (see buildMetadata); these are the fallback.
 const HOME_TITLE = 'Wedding Planner in Udaipur | Rasm Weddings & Events';
 
-export const metadata: Metadata = buildMetadata({ title: HOME_TITLE, description: SITE.description, path: '/' });
+export const metadata: Metadata = buildMetadata({ title: HOME_TITLE, description: SITE.description, path: '/', preferOpts: true });
 
 export default async function Home() {
   const [home, destinations] = await Promise.all([getHomeContent(), getDestinations()]);
