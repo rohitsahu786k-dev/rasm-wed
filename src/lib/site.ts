@@ -20,7 +20,7 @@ export const SITE = {
   phone: '+91 80948 75504',
   phone2: '+91 91169 29135',
   whatsapp: '918094875504',
-  email: 'info@rasmwed.com',
+  email: process.env.CONTACT_EMAIL || 'rasmwed@gmail.com',
   address: '510, City Centre, Ashok Nagar, Udaipur, Rajasthan 313001',
   street: '510, City Centre, Ashok Nagar',
   postalCode: '313001',
