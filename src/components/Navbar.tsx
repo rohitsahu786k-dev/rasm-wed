@@ -24,9 +24,6 @@ import {
   BookOpen,
   Phone,
   Award,
-  Calendar,
-  ShieldCheck,
-  CheckCircle2,
   Users
 } from 'lucide-react';
 import { AnimatedButton } from '@/components/ui/AnimatedButton';

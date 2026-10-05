@@ -5,23 +5,17 @@ import {
   Calendar,
   CheckCircle2,
   ChevronDown,
-  Clock,
   Compass,
   Landmark,
-  HeartHandshake,
-  Hotel,
   MapPin,
   MessageCircle,
   Music,
-  PartyPopper,
   Phone,
   Plane,
-  ReceiptText,
   ShieldCheck,
   Flower2,
   Train,
   UtensilsCrossed,
-  Wine,
 } from 'lucide-react';
 import type { Destination } from '@/types';
 import type { WPPage, WPPost } from '@/lib/wp';

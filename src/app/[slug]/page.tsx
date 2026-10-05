@@ -24,8 +24,6 @@ const PAGE_KIND: Record<string, WebPageKind> = {
   services: 'CollectionPage',
 };
 
-/** Designed pages that also use the copy written in WordPress (the corporate guide). */
-const WP_COPY_PAGES = new Set(['corporate-events']);
 
 type Resolved =
   | { kind: 'static'; slug: string }
