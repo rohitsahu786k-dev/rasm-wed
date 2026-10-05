@@ -65,7 +65,11 @@ function toNodes(blocks: Block[]): Node[] {
  * Elementor pages. Server component, no client JS.
  */
 export function WpBody({ content, className = '' }: { content: string; className?: string }) {
-  const safe = content.replace(/<script[\s\S]*?<\/script>/gi, '');
+  // One <h1> per page (the page template owns it): demote any <h1> authored inside WordPress content.
+  const safe = content
+    .replace(/<script[\s\S]*?<\/script>/gi, '')
+    .replace(/<h1(\s|>)/gi, '<h2$1')
+    .replace(/<\/h1>/gi, '</h2>');
   if (!/elementor/.test(safe)) return <div className={`wp-content ${className}`} dangerouslySetInnerHTML={{ __html: safe }} />;
 
   const nodes = toNodes(cleanBlocks(parseElementor(safe)));

@@ -27,7 +27,7 @@ export function PageBanner({
   const mSrc = mobileSrc || desktopSrc;
 
   return (
-    <div className={`w-full relative overflow-hidden bg-stone-100 border-b border-gold/20 shadow-xs ${className}`}>
+    <div className={`w-[calc(100%-20px)] md:w-[90%] mx-auto mt-4 sm:mt-6 relative overflow-hidden rounded-2xl sm:rounded-3xl bg-stone-100 border border-gold/20 shadow-xs ${className}`}>
       {/* 1. Desktop Banner (21:9 Aspect Ratio) */}
       <div className="hidden md:block relative w-full aspect-[21/9] max-h-[660px]">
         <Image
@@ -35,7 +35,7 @@ export function PageBanner({
           alt={alt}
           fill
           priority={priority}
-          sizes="100vw"
+          sizes="(min-width: 768px) 90vw, 100vw"
           className="object-cover object-center"
         />
       </div>
@@ -47,7 +47,7 @@ export function PageBanner({
           alt={alt}
           fill
           priority={priority}
-          sizes="100vw"
+          sizes="(min-width: 768px) 90vw, 100vw"
           className="object-cover object-center"
         />
       </div>

@@ -72,7 +72,7 @@ export function PageHero({
 
       {/* 1. Responsive Visual Banner (Clean: No text on image) */}
       {dSrc && (
-        <div className="w-full relative overflow-hidden bg-stone-100 border-b border-gold/20 shadow-xs">
+        <div className="w-[calc(100%-20px)] md:w-[90%] mx-auto mt-4 sm:mt-6 relative overflow-hidden rounded-2xl sm:rounded-3xl bg-stone-100 border border-gold/20 shadow-xs">
           {/* Desktop 21:9 Aspect Ratio */}
           <div className="hidden md:block relative w-full aspect-[21/9] max-h-[640px]">
             <Image
@@ -80,7 +80,7 @@ export function PageHero({
               alt={altText}
               fill
               priority
-              sizes="100vw"
+              sizes="(min-width: 768px) 90vw, 100vw"
               className="object-cover object-center"
             />
           </div>
@@ -92,7 +92,7 @@ export function PageHero({
               alt={altText}
               fill
               priority
-              sizes="100vw"
+              sizes="(min-width: 768px) 90vw, 100vw"
               className="object-cover object-center"
             />
           </div>

@@ -29,6 +29,8 @@ export function HomeContact() {
 
   useEffect(() => {
     const ref = new URLSearchParams(window.location.search).get('ref') ?? '';
+    // Reads the query string once on the client (cannot be known during static prerender).
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setSource(`${window.location.pathname}${ref ? ` (${ref})` : ''}`);
     const hint = `${ref} ${preset}`.toLowerCase();
     const match = DESTINATIONS.find((d) => hint.includes(d.split(/[,&]/)[0].trim().toLowerCase()));
@@ -58,13 +60,14 @@ export function HomeContact() {
   };
 
   return (
-    <section id="contact" className="bg-ivory-200 border-b border-gold/15">
-      <div className="grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] items-stretch">
+    <section id="contact" className="bg-ivory-200 border-b border-gold/15 py-10 sm:py-14 scroll-mt-24">
+      <div className="rasm-container">
+      <div className="grid lg:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] items-stretch overflow-hidden rounded-2xl sm:rounded-3xl border border-gold/20 bg-[#FBF8F2]">
         <div className="relative min-h-[320px] lg:min-h-[560px]">
-          <Image src={HOME_IMAGES.contact.src} alt={HOME_IMAGES.contact.alt} fill sizes="(min-width: 1024px) 42vw, 100vw" className="object-cover object-top" />
+          <Image src={HOME_IMAGES.contact.src} alt={HOME_IMAGES.contact.alt} fill sizes="(min-width: 1024px) 38vw, 100vw" className="object-cover object-top" />
         </div>
 
-        <div className="rasm-container py-12 sm:py-16 lg:py-20 grid xl:grid-cols-[minmax(0,1fr)_220px] gap-10 items-start">
+        <div className="p-6 sm:p-10 lg:p-12 grid xl:grid-cols-[minmax(0,1fr)_220px] gap-8 items-start">
           <div>
             <p className="text-gold-dark text-[11px] sm:text-xs uppercase tracking-[0.3em] font-medium mb-3">Let&apos;s Plan Your</p>
             <h2 className="font-manrope font-medium text-3xl sm:text-5xl text-charcoal-900 tracking-tight leading-[1.15] mb-3">
@@ -124,6 +127,7 @@ export function HomeContact() {
             ))}
           </ul>
         </div>
+      </div>
       </div>
     </section>
   );

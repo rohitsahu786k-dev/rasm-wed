@@ -5,7 +5,7 @@ import { buildMetadata, clip } from '@/lib/metadata';
 import { getDestinations, getPage, getPages, getPost, getPosts, getRankMathMeta, getServices } from '@/lib/wp';
 import { NEARBY, cityKeyFromSlug } from '@/lib/city';
 import { getGalleryMedia } from '@/lib/media';
-import { blogPostingSchema } from '@/lib/schema';
+import { blogPostingSchema, itemListSchema, serviceSchema, webPageSchema, type WebPageKind } from '@/lib/schema';
 import { NOINDEX_SLUGS, STATIC_PAGES } from '@/data/routes';
 import { JsonLd } from '@/components/JsonLd';
 import { CityLanding } from '@/components/CityLanding';
@@ -14,6 +14,15 @@ import { JodhpurWeddingPage } from '@/components/JodhpurWeddingPage';
 import { AboutPage, BlogIndex, ContactPage, CorporatePage, DecorationPage, DestinationsPage, GalleryPage, InfoPage, ServicesPage } from '@/components/InnerPages';
 
 export const revalidate = 3600;
+
+const PAGE_KIND: Record<string, WebPageKind> = {
+  'about-us': 'AboutPage',
+  'contact-us': 'ContactPage',
+  blog: 'CollectionPage',
+  gallery: 'ImageGallery',
+  'wedding-destination': 'CollectionPage',
+  services: 'CollectionPage',
+};
 
 /** Designed pages that also use the copy written in WordPress (the corporate guide). */
 const WP_COPY_PAGES = new Set(['corporate-events']);
@@ -41,6 +50,20 @@ export async function generateStaticParams() {
   return [...slugs].map((slug) => ({ slug }));
 }
 
+/** Snippet-length description from the page itself (excerpt, else the opening text), with a brand sentence as the floor. */
+function pageDescription(p: { title: string; excerpt?: string; content: string }) {
+  const plain = p.content
+    .replace(/<(script|style)[\s\S]*?<\/\1>/gi, ' ')
+    .replace(/<[^>]+>/g, ' ')
+    .replace(/&[a-z#0-9]+;/gi, ' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+  const text = (p.excerpt || plain).trim();
+  const tail = ' Rasm Weddings & Events, wedding planners in Udaipur, Rajasthan.';
+  const body = text.length >= 50 ? text : `${p.title}.`;
+  return clip(body.length < 110 ? `${body}${tail}` : body);
+}
+
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const r = await resolve(slug);
@@ -52,7 +75,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     buildMetadata({
       ...o,
       ...(rm?.title ? { title: rm.title, titleIsFinal: true, preferOpts: true } : {}),
-      ...(rm?.description ? { description: rm.description, preferOpts: true } : {}),
+      // Rank Math descriptions that are empty or too short for a search snippet are ignored (our page copy is used instead).
+      ...(rm?.description && rm.description.length >= 70 ? { description: rm.description, preferOpts: true } : {}),
     });
   switch (r.kind) {
     case 'static': {
@@ -78,7 +102,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     case 'page':
       return meta({
         title: r.page.title,
-        description: `${r.page.title} – Rasm Weddings & Events, luxury destination wedding planners in Udaipur, Rajasthan.`,
+        description: pageDescription(r.page),
         path,
         noindex: NOINDEX_SLUGS.has(slug),
       });
@@ -92,6 +116,8 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
 
   switch (r.kind) {
     case 'static': {
+      const s = STATIC_PAGES[slug];
+      const base = webPageSchema({ kind: PAGE_KIND[slug], path: `/${slug}/`, name: s.title, description: s.description });
       if (slug === 'wedding-planner-in-jodhpur') {
         const [nearby, posts, wpPage] = await Promise.all([
           getDestinations(NEARBY['jodhpur'] ?? []),
@@ -100,14 +126,38 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
         ]);
         return <JodhpurWeddingPage nearby={nearby} posts={posts} wpPage={wpPage} />;
       }
-      if (slug === 'wedding-destination') return <DestinationsPage destinations={await getDestinations()} />;
-      if (slug === 'services') return <ServicesPage wpPage={await getPage('services')} />;
-      if (slug === 'gallery') return <GalleryPage media={await getGalleryMedia()} />;
-      if (slug === 'blog') return <BlogIndex posts={await getPosts()} />;
-      if (slug === 'about-us') return <AboutPage />;
-      if (slug === 'contact-us') return <ContactPage />;
-      if (slug === 'traditional-decoration') return <DecorationPage wpPage={await getPage('traditional-decoration')} />;
-      if (slug === 'corporate-events') return <CorporatePage wpPage={await getPage('corporate-events')} />;
+      if (slug === 'wedding-destination') {
+        const destinations = await getDestinations();
+        return (
+          <>
+            <JsonLd data={[base, itemListSchema('Wedding destinations', destinations.map((d) => ({ name: `Wedding planner in ${d.title}`, path: `/${d.slug}/`, image: d.imageUrl || undefined })))]} />
+            <DestinationsPage destinations={destinations} />
+          </>
+        );
+      }
+      if (slug === 'services') {
+        const [wpPage, services] = await Promise.all([getPage('services'), getServices()]);
+        return (
+          <>
+            <JsonLd data={[base, ...services.map((x) => serviceSchema({ name: x.title, description: `${x.title} for weddings in Udaipur and across Rajasthan by Rasm Weddings & Events.`, area: 'Udaipur, Rajasthan', path: '/services/' }))]} />
+            <ServicesPage wpPage={wpPage} />
+          </>
+        );
+      }
+      if (slug === 'gallery') return (<><JsonLd data={base} /><GalleryPage media={await getGalleryMedia()} /></>);
+      if (slug === 'blog') {
+        const posts = await getPosts();
+        return (
+          <>
+            <JsonLd data={[base, itemListSchema('Wedding planning blogs', posts.slice(0, 50).map((p) => ({ name: p.title, path: `/${p.slug}/`, image: p.image })))]} />
+            <BlogIndex posts={posts} />
+          </>
+        );
+      }
+      if (slug === 'about-us') return (<><JsonLd data={base} /><AboutPage /></>);
+      if (slug === 'contact-us') return (<><JsonLd data={base} /><ContactPage /></>);
+      if (slug === 'traditional-decoration') return (<><JsonLd data={base} /><DecorationPage wpPage={await getPage('traditional-decoration')} /></>);
+      if (slug === 'corporate-events') return (<><JsonLd data={base} /><CorporatePage wpPage={await getPage('corporate-events')} /></>);
       return notFound();
     }
     case 'post': {
@@ -115,14 +165,19 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
       return (
         <>
           <JsonLd
-            data={blogPostingSchema({
+            data={[
+              webPageSchema({ path: `/${slug}/`, name: r.post.title, description: clip(r.post.excerpt), image: r.post.image, modified: r.post.modified }),
+              blogPostingSchema({
               path: `/${slug}/`,
               title: r.post.title,
               description: clip(r.post.excerpt),
               image: r.post.image,
               datePublished: r.post.date,
               dateModified: r.post.modified,
-            })}
+              section: r.post.categories?.[0],
+              wordCount: r.post.content.replace(/<[^>]+>/g, ' ').split(/\s+/).filter(Boolean).length,
+              }),
+            ]}
           />
           <ArticleView post={r.post} related={all.filter((p) => p.slug !== r.post.slug).slice(0, 3)} />
         </>
@@ -131,8 +186,18 @@ export default async function Page({ params }: { params: Promise<{ slug: string 
     case 'page':
       if (slug.startsWith('wedding-planner-in-')) {
         const [nearby, posts, services] = await Promise.all([getDestinations(NEARBY[cityKeyFromSlug(slug)] ?? []), getPosts(), getServices()]);
-        return <CityLanding page={r.page} nearby={nearby} posts={posts} services={services.map((s) => s.title)} />;
+        return (
+          <>
+            <JsonLd data={webPageSchema({ path: `/${slug}/`, name: r.page.title, description: r.page.excerpt || r.page.title, image: r.page.image, modified: r.page.modified })} />
+            <CityLanding page={r.page} nearby={nearby} posts={posts} services={services.map((s) => s.title)} />
+          </>
+        );
       }
-      return <InfoPage slug={slug} wpPage={r.page} />;
+      return (
+        <>
+          <JsonLd data={webPageSchema({ path: `/${slug}/`, name: r.page.title, description: r.page.excerpt || r.page.title, modified: r.page.modified })} />
+          <InfoPage slug={slug} wpPage={r.page} />
+        </>
+      );
   }
 }

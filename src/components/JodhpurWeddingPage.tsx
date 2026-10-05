@@ -353,7 +353,7 @@ export function JodhpurWeddingPage({ nearby, posts, wpPage }: JodhpurWeddingPage
 
       {/* -------------------- 1. RESPONSIVE VISUAL BANNER (NO TEXT ON IMAGE) -------------------- */}
       {/* Desktop: 21:9 Aspect Ratio | Mobile: 1:1 Square Aspect Ratio */}
-      <div className="w-full relative overflow-hidden bg-stone-100 border-b border-gold/20 shadow-xs">
+      <div className="w-[calc(100%-20px)] md:w-[90%] mx-auto mt-4 sm:mt-6 relative overflow-hidden rounded-2xl sm:rounded-3xl bg-stone-100 border border-gold/20 shadow-xs">
         {/* Desktop Container: 21:9 Ratio */}
         <div className="hidden md:block relative w-full aspect-[21/9] max-h-[640px]">
           <Image
@@ -361,7 +361,7 @@ export function JodhpurWeddingPage({ nearby, posts, wpPage }: JodhpurWeddingPage
             alt={bannerAlt}
             fill
             priority
-            sizes="100vw"
+            sizes="(min-width: 768px) 90vw, 100vw"
             className="object-cover object-center"
           />
         </div>
@@ -373,7 +373,7 @@ export function JodhpurWeddingPage({ nearby, posts, wpPage }: JodhpurWeddingPage
             alt={bannerAlt}
             fill
             priority
-            sizes="100vw"
+            sizes="(min-width: 768px) 90vw, 100vw"
             className="object-cover object-center"
           />
         </div>

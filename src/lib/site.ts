@@ -10,7 +10,7 @@ export const SITE = {
   name: 'Rasm Weddings & Events',
   tagline: 'Luxury Destination Wedding Planner in Udaipur, India',
   description:
-    'Award-winning luxury destination wedding planners in Udaipur, Rajasthan. Specialising in palace weddings for NRI & international couples from UK, USA, UAE & beyond.',
+    'Destination wedding planners in Udaipur, Rajasthan. We plan palace, fort and resort weddings for families in India and abroad, from venue and decor to guest travel.',
   logo: '/rasm-official-logo.png',
   ogImage: `${WP_ORIGIN}/wp-content/uploads/2024/08/Jagmandir-Island-Palace.webp`,
   instagram: 'https://www.instagram.com/rasmwed/',

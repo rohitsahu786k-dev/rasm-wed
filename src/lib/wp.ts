@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { WP_ORIGIN } from './site';
+import { fetchRetry } from './net';
 import type { Destination } from '@/types';
 import { parseElementor } from './elementor';
 import { getCityProfile } from './city';
@@ -20,6 +21,7 @@ export interface WPPage {
 }
 export interface WPPost extends WPPage {
   date: string;
+  categories?: string[];
   excerpt: string;
   image?: string;
   imageAlt?: string;
@@ -41,12 +43,19 @@ function stripEmoji(v: unknown): unknown {
 
 async function wp<T>(path: string): Promise<T | null> {
   try {
-    const res = await fetch(`${WP_ORIGIN}/wp-json/wp/v2${path}`, { next: { revalidate: REVALIDATE } });
+    // Retry transient origin errors so a brief WordPress hiccup never turns into a cached 404 or an empty blog list.
+    const res = await fetchRetry(fetch, `${WP_ORIGIN}/wp-json/wp/v2${path}`, { next: { revalidate: REVALIDATE } }, { tries: 3, baseDelayMs: 700, timeoutMs: 20_000 });
     return res.ok ? (stripEmoji(await res.json()) as T) : null;
   } catch {
     return null;
   }
 }
+
+/** Category names from an embedded WordPress response ("Uncategorized" is not a useful label). */
+const categoryNames = (p: any): string[] =>
+  ((p._embedded?.['wp:term']?.[0] ?? []) as { name?: string; taxonomy?: string }[])
+    .filter((t) => t.taxonomy === 'category' && t.name && !/^uncategori[sz]ed$/i.test(t.name))
+    .map((t) => strip(t.name as string));
 
 const strip = (html: string) =>
   html
@@ -110,16 +119,24 @@ export async function getPage(slug: string): Promise<WPPage | null> {
   };
 }
 
+/** Every published WordPress post, newest first (pages through the REST API so nothing beyond the first 100 is dropped). */
 export async function getPosts(): Promise<WPPost[]> {
-  const data = await wp<any[]>(
-    '/posts?per_page=100&_embed=wp:featuredmedia&_fields=slug,title,excerpt,date_gmt,modified_gmt,_links,_embedded',
-  );
-  return (data ?? []).map((p) => {
+  const data: any[] = [];
+  for (let page = 1; page <= 10; page++) {
+    const batch = await wp<any[]>(
+      `/posts?per_page=100&page=${page}&orderby=date&order=desc&_embed=wp:featuredmedia,wp:term&_fields=slug,title,excerpt,date_gmt,modified_gmt,_links,_embedded`,
+    );
+    if (!batch?.length) break;
+    data.push(...batch);
+    if (batch.length < 100) break;
+  }
+  return data.map((p) => {
     const media = p._embedded?.['wp:featuredmedia']?.[0];
     return {
       ...toPage(p),
       date: `${p.date_gmt}Z`,
       excerpt: strip(p.excerpt?.rendered ?? ''),
+      categories: categoryNames(p),
       image: media?.source_url,
       imageAlt: media?.alt_text || undefined,
       imageWidth: media?.media_details?.width,
@@ -134,7 +151,7 @@ export interface WPPostFull extends WPPost {
 
 export async function getPost(slug: string): Promise<WPPostFull | null> {
   const data = await wp<any[]>(
-    `/posts?slug=${encodeURIComponent(slug)}&_embed=wp:featuredmedia&_fields=slug,title,content,excerpt,date_gmt,modified_gmt,_links,_embedded`,
+    `/posts?slug=${encodeURIComponent(slug)}&_embed=wp:featuredmedia,wp:term&_fields=slug,title,content,excerpt,date_gmt,modified_gmt,_links,_embedded`,
   );
   if (!data?.[0]) return null;
   const p = data[0];
@@ -143,6 +160,7 @@ export async function getPost(slug: string): Promise<WPPostFull | null> {
     ...toPage(p),
     date: `${p.date_gmt}Z`,
     excerpt: strip(p.excerpt?.rendered ?? ''),
+    categories: categoryNames(p),
     image: media?.source_url,
     imageAlt: media?.alt_text || undefined,
     imageWidth: media?.media_details?.width,

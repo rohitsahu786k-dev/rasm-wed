@@ -3,6 +3,8 @@ import Link from 'next/link';
 import { ArrowRight, Mail, MapPin, MessageCircle, Phone } from 'lucide-react';
 import type { Destination, MediaItem } from '@/types';
 import type { WPPage, WPPost } from '@/lib/wp';
+import { JsonLd } from '@/components/JsonLd';
+import { breadcrumbSchema } from '@/lib/schema';
 import { getSiteSettings } from '@/lib/acf';
 import { getCityProfile } from '@/lib/city';
 import { PAGE_IMAGES, SERVICE_IMAGES } from '@/data/page-media';
@@ -466,6 +468,7 @@ export async function InfoPage({ slug, wpPage }: { slug: string; wpPage?: WPPage
   const title = wpPage?.title || slug.split('-').map((w) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
   return (
     <div className="bg-white min-h-screen">
+      <JsonLd data={breadcrumbSchema([{ name: 'Home', path: '/' }, { name: title, path: `/${slug}/` }])} />
       <section className="pt-28 sm:pt-32 pb-10 bg-[#FDFCFA] border-b border-gold/20">
         <div className="rasm-container max-w-4xl">
           <p className="text-gold-dark text-[11px] sm:text-xs uppercase tracking-[0.3em] font-medium mb-3">Rasm Weddings & Events, Udaipur</p>
