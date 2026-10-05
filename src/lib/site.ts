@@ -1,5 +1,9 @@
 export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://rasmwed.com').replace(/\/$/, '');
-export const WP_ORIGIN = (process.env.WP_ORIGIN ?? 'https://rasmwed.com').replace(/\/$/, '');
+/**
+ * WordPress (admin.rasmwed.com) is the content backend only: REST API, media and Rank Math. The public site is SITE_URL.
+ * NEXT_PUBLIC_WP_ORIGIN lets client components see the same value (it is inlined at build time).
+ */
+export const WP_ORIGIN = (process.env.NEXT_PUBLIC_WP_ORIGIN ?? process.env.WP_ORIGIN ?? 'https://admin.rasmwed.com').replace(/\/$/, '');
 
 /** Only the production deployment is indexable; previews/staging must not compete with it. */
 export const IS_PRODUCTION = process.env.VERCEL_ENV

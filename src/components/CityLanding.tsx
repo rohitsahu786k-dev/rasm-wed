@@ -25,7 +25,7 @@ import { CtaBand, ExploreLinks, Facts } from '@/components/PageParts';
 import { NearbyDestinations, RelatedGuides } from '@/components/CityParts';
 import { breadcrumbSchema, faqSchema, serviceSchema } from '@/lib/schema';
 import { FACTS } from '@/data/pages-content';
-import { SITE } from '@/lib/site';
+import { SITE, WP_ORIGIN } from '@/lib/site';
 import { getDestinationData } from '@/data/city-destinations';
 
 interface CityLandingProps {
@@ -669,7 +669,7 @@ export function CityLanding({ page, nearby, posts }: CityLandingProps) {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             <div className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-gold/20 bg-stone-100 shadow-sm">
               <Image
-                src="https://rasmwed.com/wp-content/uploads/2026/10/golden_palace_wedding_mandap_at_sunset.webp"
+                src={`${WP_ORIGIN}/wp-content/uploads/2026/10/golden_palace_wedding_mandap_at_sunset.webp`}
                 alt={`Floral royal mandap setup for wedding in ${city}`}
                 fill
                 sizes="(min-width: 1024px) 33vw, 100vw"
@@ -684,7 +684,7 @@ export function CityLanding({ page, nearby, posts }: CityLandingProps) {
 
             <div className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-gold/20 bg-stone-100 shadow-sm">
               <Image
-                src="https://rasmwed.com/wp-content/uploads/2026/10/royal_blue_fort_wedding_at_night.webp"
+                src={`${WP_ORIGIN}/wp-content/uploads/2026/10/royal_blue_fort_wedding_at_night.webp`}
                 alt={`Illuminated evening gala for wedding in ${city}`}
                 fill
                 sizes="(min-width: 1024px) 33vw, 100vw"
@@ -699,7 +699,7 @@ export function CityLanding({ page, nearby, posts }: CityLandingProps) {
 
             <div className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-gold/20 bg-stone-100 shadow-sm">
               <Image
-                src="https://rasmwed.com/wp-content/uploads/2026/10/royal_baraat_at_golden_hour.webp"
+                src={`${WP_ORIGIN}/wp-content/uploads/2026/10/royal_baraat_at_golden_hour.webp`}
                 alt={`Royal Baraat procession in ${city}`}
                 fill
                 sizes="(min-width: 1024px) 33vw, 100vw"
@@ -714,7 +714,7 @@ export function CityLanding({ page, nearby, posts }: CityLandingProps) {
 
             <div className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-gold/20 bg-stone-100 shadow-sm">
               <Image
-                src="https://rasmwed.com/wp-content/uploads/2026/10/opulent_palace_courtyard_at_dusk.webp"
+                src={`${WP_ORIGIN}/wp-content/uploads/2026/10/opulent_palace_courtyard_at_dusk.webp`}
                 alt={`Heritage courtyard baithak in ${city}`}
                 fill
                 sizes="(min-width: 1024px) 33vw, 100vw"
@@ -729,7 +729,7 @@ export function CityLanding({ page, nearby, posts }: CityLandingProps) {
 
             <div className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-gold/20 bg-stone-100 shadow-sm">
               <Image
-                src="https://rasmwed.com/wp-content/uploads/2026/10/palace_wedding_under_blooming_chandeliers.webp"
+                src={`${WP_ORIGIN}/wp-content/uploads/2026/10/palace_wedding_under_blooming_chandeliers.webp`}
                 alt={`Beautiful chandeliers and blooms for wedding in ${city}`}
                 fill
                 sizes="(min-width: 1024px) 33vw, 100vw"
@@ -744,7 +744,7 @@ export function CityLanding({ page, nearby, posts }: CityLandingProps) {
 
             <div className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-gold/20 bg-stone-100 shadow-sm">
               <Image
-                src="https://rasmwed.com/wp-content/uploads/2026/10/glamorous_indian_wedding_dance_performance.webp"
+                src={`${WP_ORIGIN}/wp-content/uploads/2026/10/glamorous_indian_wedding_dance_performance.webp`}
                 alt={`Glamorous Sangeet entertainment performance in ${city}`}
                 fill
                 sizes="(min-width: 1024px) 33vw, 100vw"

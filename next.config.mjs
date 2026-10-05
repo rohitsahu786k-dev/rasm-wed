@@ -1,5 +1,6 @@
 
-const wpHost = new URL(process.env.WP_ORIGIN ?? 'https://rasmwed.com').hostname;
+const WP_ORIGIN = (process.env.NEXT_PUBLIC_WP_ORIGIN ?? process.env.WP_ORIGIN ?? 'https://admin.rasmwed.com').replace(/\/$/, '');
+const wpHost = new URL(WP_ORIGIN).hostname;
 const siteHost = new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://rasmwed.com').hostname;
 
 /** @type {import('next').NextConfig} */
@@ -32,8 +33,7 @@ const nextConfig = {
   async rewrites() {
     // Media stays on the WordPress origin; keep existing /wp-content/uploads URLs working on the public domain.
     if (wpHost === siteHost) return [];
-    const origin = (process.env.WP_ORIGIN ?? '').replace(/\/$/, '');
-    return [{ source: '/wp-content/uploads/:path*', destination: `${origin}/wp-content/uploads/:path*` }];
+    return [{ source: '/wp-content/uploads/:path*', destination: `${WP_ORIGIN}/wp-content/uploads/:path*` }];
   },
   async headers() {
     return [

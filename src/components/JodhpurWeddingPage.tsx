@@ -25,7 +25,7 @@ import { CtaBand, ExploreLinks, Facts } from '@/components/PageParts';
 import { NearbyDestinations, RelatedGuides } from '@/components/CityParts';
 import { breadcrumbSchema, faqSchema, serviceSchema } from '@/lib/schema';
 import { FACTS } from '@/data/pages-content';
-import { SITE } from '@/lib/site';
+import { SITE, WP_ORIGIN } from '@/lib/site';
 
 interface JodhpurWeddingPageProps {
   nearby: Destination[];
@@ -130,7 +130,7 @@ const JODHPUR_VENUES = [
     category: 'Thar Desert Oasis & Luxury Glamping',
     capacity: '100 – 400 Guests',
     tagline: 'Golden Sand Dune Sunsets, Camel Caravans & Star-Lit Bonfire Nights',
-    image: 'https://rasmwed.com/wp-content/uploads/2026/10/golden_desert_wedding_lounge_at_sunset.webp',
+    image: `${WP_ORIGIN}/wp-content/uploads/2026/10/golden_desert_wedding_lounge_at_sunset.webp`,
     costRange: '₹40 Lakhs – ₹75 Lakhs (Desert Experience & Luxury Tents)',
     description:
       'Located just a 60-minute drive outside Jodhpur, Osian offers the untamed romance of the Thar Desert. Couples and guests can celebrate under millions of stars surrounded by shimmering golden dunes, luxury air-conditioned Swiss tent villages, camel caravan processions, and acoustic folk performances by famed desert Manganiyars around crackling royal bonfires.',
@@ -889,7 +889,7 @@ export function JodhpurWeddingPage({ nearby, posts, wpPage }: JodhpurWeddingPage
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             <div className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-gold/20 bg-stone-100 shadow-sm">
               <Image
-                src="https://rasmwed.com/wp-content/uploads/2026/10/golden_palace_wedding_mandap_at_sunset.webp"
+                src={`${WP_ORIGIN}/wp-content/uploads/2026/10/golden_palace_wedding_mandap_at_sunset.webp`}
                 alt="Floral royal mandap setup on a palace terrace at sunset in Rajasthan"
                 fill
                 sizes="(min-width: 1024px) 33vw, 100vw"
@@ -904,7 +904,7 @@ export function JodhpurWeddingPage({ nearby, posts, wpPage }: JodhpurWeddingPage
 
             <div className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-gold/20 bg-stone-100 shadow-sm">
               <Image
-                src="https://rasmwed.com/wp-content/uploads/2026/10/royal_blue_fort_wedding_at_night.webp"
+                src={`${WP_ORIGIN}/wp-content/uploads/2026/10/royal_blue_fort_wedding_at_night.webp`}
                 alt="Mehrangarh Fort ramparts illuminated in royal blue for a luxury wedding gala"
                 fill
                 sizes="(min-width: 1024px) 33vw, 100vw"
@@ -919,7 +919,7 @@ export function JodhpurWeddingPage({ nearby, posts, wpPage }: JodhpurWeddingPage
 
             <div className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-gold/20 bg-stone-100 shadow-sm">
               <Image
-                src="https://rasmwed.com/wp-content/uploads/2026/10/royal_baraat_at_golden_hour.webp"
+                src={`${WP_ORIGIN}/wp-content/uploads/2026/10/royal_baraat_at_golden_hour.webp`}
                 alt="Royal Baraat procession with decorated horses and royal fanfare in Rajasthan"
                 fill
                 sizes="(min-width: 1024px) 33vw, 100vw"
@@ -949,7 +949,7 @@ export function JodhpurWeddingPage({ nearby, posts, wpPage }: JodhpurWeddingPage
 
             <div className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-gold/20 bg-stone-100 shadow-sm">
               <Image
-                src="https://rasmwed.com/wp-content/uploads/2026/10/palace_wedding_under_blooming_chandeliers.webp"
+                src={`${WP_ORIGIN}/wp-content/uploads/2026/10/palace_wedding_under_blooming_chandeliers.webp`}
                 alt="Beautiful chandeliers and blooms for a royal palace wedding reception dinner"
                 fill
                 sizes="(min-width: 1024px) 33vw, 100vw"
@@ -964,7 +964,7 @@ export function JodhpurWeddingPage({ nearby, posts, wpPage }: JodhpurWeddingPage
 
             <div className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-gold/20 bg-stone-100 shadow-sm">
               <Image
-                src="https://rasmwed.com/wp-content/uploads/2026/10/golden_desert_wedding_lounge_at_sunset.webp"
+                src={`${WP_ORIGIN}/wp-content/uploads/2026/10/golden_desert_wedding_lounge_at_sunset.webp`}
                 alt="Desert dunes wedding lounge in Osian Thar Desert near Jodhpur"
                 fill
                 sizes="(min-width: 1024px) 33vw, 100vw"

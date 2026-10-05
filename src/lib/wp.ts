@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { WP_ORIGIN } from './site';
+import { SITE_URL, WP_ORIGIN } from './site';
 import { fetchRetry } from './net';
 import type { Destination } from '@/types';
 import { parseElementor } from './elementor';
@@ -34,8 +34,17 @@ const REVALIDATE = 3600; // ISR: content refreshes hourly without a redeploy.
 /** The site does not use emoji: remove any that were typed into WordPress content (deep walk over the REST response). */
 const EMOJI = /[🀀-🫿☀-➿⭐⭕️‍]/gu;
 const OLD_EMAIL = /\b(?:info|contact|hello|enquiry|inquiry)@rasmwed\.com\b/gi; // one contact inbox site-wide
+/**
+ * WordPress runs on its own host (admin.rasmwed.com). Page links written inside WordPress content point at that host;
+ * make them relative so visitors stay on the public site (media, wp-json and wp-admin links are left alone).
+ */
+const WP_HOST = new URL(WP_ORIGIN).hostname;
+const ADMIN_LINK = WP_HOST === new URL(SITE_URL).hostname ? null : new RegExp(`(href=["'])https?://${WP_HOST.replace(/\./g, '\\.')}/(?!wp-(?:content|json|admin|includes))`, 'gi');
 function stripEmoji(v: unknown): unknown {
-  if (typeof v === 'string') return v.replace(EMOJI, '').replace(OLD_EMAIL, 'rasmwed@gmail.com');
+  if (typeof v === 'string') {
+    const clean = v.replace(EMOJI, '').replace(OLD_EMAIL, 'rasmwed@gmail.com');
+    return ADMIN_LINK ? clean.replace(ADMIN_LINK, '$1/') : clean;
+  }
   if (Array.isArray(v)) return v.map(stripEmoji);
   if (v && typeof v === 'object') return Object.fromEntries(Object.entries(v).map(([k, x]) => [k, stripEmoji(x)]));
   return v;

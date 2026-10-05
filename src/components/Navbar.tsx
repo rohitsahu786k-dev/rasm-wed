@@ -27,6 +27,7 @@ import {
   Users
 } from 'lucide-react';
 import { AnimatedButton } from '@/components/ui/AnimatedButton';
+import { WP_ORIGIN } from '@/lib/site';
 
 const menuTransition = {
   type: 'spring' as const,
@@ -551,7 +552,7 @@ export const Navbar: React.FC = () => {
                   {/* Column 3: Featured Palace Card */}
                   <div className="col-span-4 rounded-2xl overflow-hidden relative group p-6 flex flex-col justify-end bg-stone-900 shadow-md">
                     <Image
-                      src="https://rasmwed.com/wp-content/uploads/2024/08/The-Oberoi-Udaivilas.webp"
+                      src={`${WP_ORIGIN}/wp-content/uploads/2024/08/The-Oberoi-Udaivilas.webp`}
                       alt="Lake Pichola Udaipur"
                       className="absolute inset-0 w-full h-full object-cover opacity-75 group-hover:scale-105 transition-transform duration-700"
                       width={1200}

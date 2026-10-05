@@ -6,6 +6,7 @@ import React, { useRef, useState, useEffect, useMemo, useCallback } from 'react'
 import { Destination } from '@/types';
 import { ArrowRight, ChevronLeft, ChevronRight, Calendar } from 'lucide-react';
 import { motion, useMotionValue, useTransform, animate, PanInfo, MotionValue } from 'framer-motion';
+import { WP_ORIGIN } from '@/lib/site';
 
 interface DestinationsSectionProps {
   destinations: Destination[];
@@ -29,7 +30,7 @@ const FALLBACK_DESTINATIONS: Destination[] = [
     tagline: 'The City of Lakes · Famous Royal Palaces & Floating Mandaps',
     season: 'October to March',
     venues: 'The Oberoi Udaivilas, Taj Lake Palace, Jagmandir Island, The Leela Palace, Fateh Garh',
-    imageUrl: 'https://rasmwed.com/wp-content/uploads/2024/08/The-Oberoi-Udaivilas.webp',
+    imageUrl: `${WP_ORIGIN}/wp-content/uploads/2024/08/The-Oberoi-Udaivilas.webp`,
   },
   {
     id: 'jaipur',
@@ -38,7 +39,7 @@ const FALLBACK_DESTINATIONS: Destination[] = [
     tagline: 'The Pink City · Grand Fortresses, Royal Havelis & Palace Lawns',
     season: 'October to March',
     venues: 'Rambagh Palace, Fairmont Jaipur, Jai Mahal Palace, Samode Palace',
-    imageUrl: 'https://rasmwed.com/wp-content/uploads/2024/08/Fateh-Garh-Palace.webp',
+    imageUrl: `${WP_ORIGIN}/wp-content/uploads/2024/08/Fateh-Garh-Palace.webp`,
   },
   {
     id: 'jodhpur',
@@ -56,7 +57,7 @@ const FALLBACK_DESTINATIONS: Destination[] = [
     tagline: 'Golden Thar Sand Dunes & Suryagarh Desert Luxury',
     season: 'November to February',
     venues: 'Suryagarh, Jaisalmer Marriott, Fort Rajwada, Desert Tents',
-    imageUrl: 'https://rasmwed.com/wp-content/uploads/2024/07/IMG_E5217.webp',
+    imageUrl: `${WP_ORIGIN}/wp-content/uploads/2024/07/IMG_E5217.webp`,
   },
   {
     id: 'goa',
@@ -65,7 +66,7 @@ const FALLBACK_DESTINATIONS: Destination[] = [
     tagline: 'Sun-kissed Coastal Mandaps & Oceanfront Luxury Soirees',
     season: 'November to February',
     venues: 'Grand Hyatt, W Goa, Alila Diwa, ITC Grand Goa, Caravela Beach Resort',
-    imageUrl: 'https://rasmwed.com/wp-content/uploads/2024/08/Goa.webp',
+    imageUrl: `${WP_ORIGIN}/wp-content/uploads/2024/08/Goa.webp`,
   },
   {
     id: 'kumbhalgarh',
@@ -74,7 +75,7 @@ const FALLBACK_DESTINATIONS: Destination[] = [
     tagline: 'Serene Aravalli Hills & Ancient Mewar Fortress Solitude',
     season: 'Year-round Pleasant',
     venues: 'The Kumbha Bagh, Fateh Safari Lodge, Heritage Havelis Mount Abu',
-    imageUrl: 'https://rasmwed.com/wp-content/uploads/2024/08/The-Ananta-Udaipur.webp',
+    imageUrl: `${WP_ORIGIN}/wp-content/uploads/2024/08/The-Ananta-Udaipur.webp`,
   },
   {
     id: 'thailand',
@@ -83,7 +84,7 @@ const FALLBACK_DESTINATIONS: Destination[] = [
     tagline: 'Tropical Luxury Palaces & Beachfront Private Island Resorts',
     season: 'November to April',
     venues: 'Sri Panwa Phuket, The Sarojin Khao Lak, Four Seasons Koh Samui',
-    imageUrl: 'https://rasmwed.com/wp-content/uploads/2024/08/Thailand.webp',
+    imageUrl: `${WP_ORIGIN}/wp-content/uploads/2024/08/Thailand.webp`,
   },
 ];
 
