@@ -7,10 +7,9 @@ import {
   ChevronDown,
   Clock,
   Compass,
-  Crown,
+  Landmark,
   HeartHandshake,
   Hotel,
-  Landmark,
   MapPin,
   MessageCircle,
   Music,
@@ -19,7 +18,7 @@ import {
   Plane,
   ReceiptText,
   ShieldCheck,
-  Sparkles,
+  Flower2,
   Train,
   UtensilsCrossed,
   Wine,
@@ -134,7 +133,7 @@ export function CityLanding({ page, nearby, posts }: CityLandingProps) {
 
             {/* Keyword-Rich Eyebrow Tag */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold/15 border border-gold/40 text-gold-dark text-[11px] sm:text-xs uppercase tracking-[0.22em] font-semibold mb-4 shadow-2xs">
-              <Crown className="w-3.5 h-3.5 text-gold-dark" />
+              <Landmark className="w-3.5 h-3.5 text-gold-dark" />
               <span>{data.eyebrow}</span>
             </div>
 
@@ -173,10 +172,10 @@ export function CityLanding({ page, nearby, posts }: CityLandingProps) {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full border border-emerald-600/30 bg-emerald-50/80 hover:bg-emerald-50 text-xs sm:text-sm font-medium text-emerald-800 transition-colors shadow-xs"
-                title="Chat with our Wedding Concierge on WhatsApp"
+                title="Chat with our Wedding Planning team on WhatsApp"
               >
                 <MessageCircle className="w-4 h-4 text-emerald-600" />
-                <span>WhatsApp Concierge</span>
+                <span>WhatsApp Us</span>
               </a>
             </div>
 
@@ -221,8 +220,8 @@ export function CityLanding({ page, nearby, posts }: CityLandingProps) {
               Why Choose {city} for Your <span className="gold-gradient-text italic">Destination Wedding?</span>
             </h2>
             <p className="mt-3 text-charcoal-600 font-light text-base leading-relaxed">
-              Every destination carries its own distinct magic. From royal palatial architecture and lush botanical gardens to
-              picturesque lake and coastal horizons, {city} offers an unforgettable setting for your celebration.
+              Every destination carries its own distinct magic. From royal palace architecture and lush botanical gardens to
+              picturesque lake and coastal horizons, {city} offers a memorable setting for your celebration.
             </p>
           </div>
 
@@ -294,7 +293,7 @@ export function CityLanding({ page, nearby, posts }: CityLandingProps) {
                 <Compass className="w-5 h-5" />
               </span>
               <p className="text-xs sm:text-sm text-charcoal-700 font-light">
-                <strong className="font-semibold text-charcoal-900">Iconic Landmarks:</strong> {data.facts.landmarks}
+                <strong className="font-semibold text-charcoal-900">Famous Landmarks:</strong> {data.facts.landmarks}
               </p>
             </div>
             <InquiryAnimatedButton variant="gold-shimmer" size="sm" context={`${city} Venue Consultation Call`}>
@@ -309,7 +308,7 @@ export function CityLanding({ page, nearby, posts }: CityLandingProps) {
         <div className="rasm-container max-w-6xl">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <p className="text-gold-dark text-xs uppercase tracking-[0.3em] font-medium mb-3">
-              Curated Palace &amp; Resort Portfolio
+              Selected Palace &amp; Resort Portfolio
             </p>
             <h2 className="font-manrope font-medium text-3xl sm:text-5xl text-charcoal-900 tracking-tight leading-[1.2]">
               Best Wedding Venues in <span className="gold-gradient-text italic">{city}</span>
@@ -425,7 +424,7 @@ export function CityLanding({ page, nearby, posts }: CityLandingProps) {
               The 3-Day Signature <span className="gold-gradient-text italic">{city} Wedding Itinerary</span>
             </h2>
             <p className="mt-4 text-charcoal-600 font-light text-base sm:text-lg leading-relaxed">
-              Curated by RASM Weddings to balance royal ceremonial splendour, joyful guest hospitality, and effortless timing.
+              Selected by RASM Weddings to balance royal ceremonial beauty, joyful guest hospitality, and effortless timing.
             </p>
           </div>
 
@@ -510,12 +509,12 @@ export function CityLanding({ page, nearby, posts }: CityLandingProps) {
             <div className="rounded-2xl border border-gold/25 bg-[#FDFCFA] p-6 sm:p-7 hover:border-gold hover:shadow-[0_8px_25px_rgba(197,160,89,0.12)] transition-all">
               <div className="flex items-center justify-between mb-4">
                 <span className="grid place-items-center w-12 h-12 rounded-xl bg-ivory-200 text-gold-dark">
-                  <Sparkles className="w-6 h-6" />
+                  <Flower2 className="w-6 h-6" />
                 </span>
                 <span className="font-manrope text-sm font-semibold gold-gradient-text">02</span>
               </div>
               <h3 className="font-manrope font-medium text-lg sm:text-xl text-charcoal-900 tracking-tight mb-2">
-                Bespoke Royal Decor &amp; Production
+                Custom Royal Decor &amp; Production
               </h3>
               <p className="text-sm text-charcoal-600 font-light leading-relaxed">
                 Custom 3D-designed floral mandaps, handcrafted brass installations, vintage crystal chandeliers, and precision lighting tailored to the setting.
@@ -533,7 +532,7 @@ export function CityLanding({ page, nearby, posts }: CityLandingProps) {
                 Airport Fleet &amp; VIP Guest Logistics
               </h3>
               <p className="text-sm text-charcoal-600 font-light leading-relaxed">
-                Seamless arrivals at airports and railway stations. Luxury AC coaches, vintage Baraat convertibles, luggage coordination, and 24/7 dedicated hotel concierge desks.
+                Smooth arrivals at airports and railway stations. Luxury AC coaches, vintage Baraat convertibles, luggage coordination, and 24/7 dedicated hotel help desks.
               </p>
             </div>
 
@@ -548,7 +547,7 @@ export function CityLanding({ page, nearby, posts }: CityLandingProps) {
                 Royal Culinary Curation &amp; Menus
               </h3>
               <p className="text-sm text-charcoal-600 font-light leading-relaxed">
-                Curated regional banquet menus alongside high-end international culinary stations, with strict adherence to Jain, vegetarian, vegan, and global dietary preferences.
+                Selected regional banquet menus alongside high-end international culinary stations, with strict adherence to Jain, vegetarian, vegan, and global dietary preferences.
               </p>
             </div>
 
@@ -658,18 +657,18 @@ export function CityLanding({ page, nearby, posts }: CityLandingProps) {
         </div>
       </section>
 
-      {/* -------------------- 8. CURATED PHOTO GALLERY: REAL INSPIRATION -------------------- */}
+      {/* -------------------- 8. SELECTED PHOTO GALLERY: REAL INSPIRATION -------------------- */}
       <section className="py-20 bg-white border-b border-gold/15">
         <div className="rasm-container max-w-6xl">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <p className="text-gold-dark text-xs uppercase tracking-[0.3em] font-medium mb-3">
-              Visual Splendour
+              Visual Beauty
             </p>
             <h2 className="font-manrope font-medium text-3xl sm:text-5xl text-charcoal-900 tracking-tight leading-[1.2]">
               {city} Weddings &amp; <span className="gold-gradient-text italic">Decor Inspiration</span>
             </h2>
             <p className="mt-4 text-charcoal-600 font-light text-base sm:text-lg leading-relaxed">
-              Explore bespoke floral mandaps, illuminated evening galas, royal processions, and banquet settings designed by RASM.
+              Explore custom floral mandaps, illuminated evening galas, royal processions, and banquet settings designed by RASM.
             </p>
           </div>
 
@@ -707,7 +706,7 @@ export function CityLanding({ page, nearby, posts }: CityLandingProps) {
             <div className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-gold/20 bg-stone-100 shadow-sm">
               <Image
                 src="https://rasmwed.com/wp-content/uploads/2026/10/royal_baraat_at_golden_hour.webp"
-                alt={`Regal Baraat procession in ${city}`}
+                alt={`Royal Baraat procession in ${city}`}
                 fill
                 sizes="(min-width: 1024px) 33vw, 100vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -737,14 +736,14 @@ export function CityLanding({ page, nearby, posts }: CityLandingProps) {
             <div className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-gold/20 bg-stone-100 shadow-sm">
               <Image
                 src="https://rasmwed.com/wp-content/uploads/2026/10/palace_wedding_under_blooming_chandeliers.webp"
-                alt={`Opulent chandeliers and blooms for wedding in ${city}`}
+                alt={`Beautiful chandeliers and blooms for wedding in ${city}`}
                 fill
                 sizes="(min-width: 1024px) 33vw, 100vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-charcoal-950/80 via-transparent to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
               <div className="absolute bottom-4 left-4 right-4">
-                <p className="text-gold-light text-xs font-semibold uppercase tracking-wider">Imperial Banquet</p>
+                <p className="text-gold-light text-xs font-semibold uppercase tracking-wider">Grand Banquet</p>
                 <h3 className="text-white text-base font-medium font-manrope">Canopy of Chandeliers &amp; Blooms</h3>
               </div>
             </div>
@@ -818,7 +817,7 @@ export function CityLanding({ page, nearby, posts }: CityLandingProps) {
             <div className="rounded-2xl border border-gold/25 bg-white p-7 shadow-xs">
               <span className="font-manrope text-2xl font-medium gold-gradient-text block mb-2">03</span>
               <h3 className="font-manrope font-medium text-xl text-charcoal-900 mb-2">
-                Bespoke NRI &amp; International Couple Concierge
+                Custom NRI &amp; International Couple Planning
               </h3>
               <p className="text-sm text-charcoal-600 font-light leading-relaxed">
                 Over 60% of our couples reside abroad in the UK, USA, UAE, and Canada. We coordinate across time zones with

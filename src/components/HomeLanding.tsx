@@ -26,10 +26,10 @@ const TextLink = ({ href, children }: { href: string; children: React.ReactNode 
 /** Four trust points + "Watch Our Story", directly under the hero banner. */
 export function HeroFeatures() {
   const items = [
-    { icon: Landmark, label: 'Iconic Venues' },
-    { icon: Gem, label: 'Bespoke Planning' },
+    { icon: Landmark, label: 'Famous Venues' },
+    { icon: Gem, label: 'Custom Planning' },
     { icon: Handshake, label: 'End-to-End Support' },
-    { icon: Flower2, label: 'Curated Experiences' },
+    { icon: Flower2, label: 'Selected Experiences' },
   ];
   return (
     <section aria-label="Why plan your wedding with Rasm" className="bg-[#FDFCFA] border-b border-gold/15">
@@ -57,10 +57,10 @@ export function HeroFeatures() {
 
 export function WhyChoose() {
   const cards = [
-    { icon: Castle, title: 'Curated Venues', text: 'Handpicked palaces, forts and luxury properties across Udaipur and Rajasthan.' },
+    { icon: Castle, title: 'Selected Venues', text: 'Handpicked palaces, forts and luxury properties across Udaipur and Rajasthan.' },
     { icon: ClipboardList, title: 'Personalised Planning', text: 'Tailor-made weddings designed around your story, budget and guest list.' },
     { icon: Users, title: 'Trusted Network', text: 'Decorators, caterers, artists and hospitality partners we work with every season.' },
-    { icon: HeartHandshake, title: 'Seamless Execution', text: 'A dedicated on-ground team for a stress-free celebration from first call to farewell.' },
+    { icon: HeartHandshake, title: 'Smooth Execution', text: 'A dedicated on-ground team for a stress-free celebration from first call to farewell.' },
   ];
   return (
     <section className="py-16 sm:py-24 bg-white border-b border-gold/15">
@@ -68,10 +68,10 @@ export function WhyChoose() {
         <div>
           <Eyebrow>Why Choose Us</Eyebrow>
           <h2 className="font-manrope font-medium text-3xl sm:text-5xl text-charcoal-900 tracking-tight leading-[1.15] mb-5">
-            Why Discerning Couples Choose <span className="gold-gradient-text italic">Rasm</span>, the Wedding Planner in Udaipur
+            Why Careful Couples Choose <span className="gold-gradient-text italic">Rasm</span>, the Wedding Planner in Udaipur
           </h2>
           <p className="text-charcoal-600 text-base sm:text-lg font-light leading-relaxed mb-8 max-w-xl">
-            A perfect blend of royal venues, seamless planning and unforgettable experiences. Whether you are planning a wedding in Udaipur or a destination wedding anywhere in India, Rasm Weddings & Events crafts it for your special day.
+            A perfect blend of royal venues, smooth planning and memorable experiences. Whether you are planning a wedding in Udaipur or a destination wedding anywhere in India, Rasm Weddings & Events crafts it for your special day.
           </p>
           <GoldButton href="/services/">About Our Services</GoldButton>
         </div>
@@ -129,7 +129,7 @@ export function ImpactStats({ stats }: { stats: HomeContent['stats'] }) {
         <div>
           <Eyebrow>Our Impact</Eyebrow>
           <h2 className="font-manrope font-medium text-3xl sm:text-4xl text-charcoal-900 tracking-tight">Memories Beyond Numbers</h2>
-          <p className="mt-2 text-sm text-charcoal-600 font-light">A journey of trust, celebrations and unforgettable experiences.</p>
+          <p className="mt-2 text-sm text-charcoal-600 font-light">A journey of trust, celebrations and memorable experiences.</p>
         </div>
         <dl className="grid grid-cols-2 sm:grid-cols-4 gap-6">
           {stats.slice(0, 4).map((s, i) => {
@@ -167,11 +167,11 @@ export function VenuesShowcase() {
       <div className="rasm-container">
         <div className="flex items-end justify-between gap-4 mb-8">
           <div>
-            <Eyebrow>Iconic Venues</Eyebrow>
+            <Eyebrow>Famous Venues</Eyebrow>
             <h2 className="font-manrope font-medium text-3xl sm:text-4xl text-charcoal-900 tracking-tight">
               The <span className="gold-gradient-text italic">Royal Venues</span> Showcase
             </h2>
-            <p className="mt-2 text-sm text-charcoal-600 font-light max-w-xl">Step into a world of timeless beauty. Explore palaces, forts and lakefront venues for your wedding in Udaipur and across Rajasthan.</p>
+            <p className="mt-2 text-sm text-charcoal-600 font-light max-w-xl">Step into a world of classic beauty. Explore palaces, forts and lakefront venues for your wedding in Udaipur and across Rajasthan.</p>
           </div>
           <div className="hidden sm:block shrink-0"><TextLink href="/wedding-destination/">Explore All Venues</TextLink></div>
         </div>
@@ -208,7 +208,7 @@ export function CuratedExperiences() {
         <div>
           <Eyebrow>More Than a Wedding</Eyebrow>
           <h2 className="font-manrope font-medium text-3xl sm:text-4xl text-charcoal-900 tracking-tight leading-[1.2] mb-4">
-            Curated Experiences <span className="gold-gradient-text italic">for Every Celebration</span>
+            Selected Experiences <span className="gold-gradient-text italic">for Every Celebration</span>
           </h2>
           <p className="text-charcoal-600 text-sm sm:text-base font-light leading-relaxed mb-7">
             From traditional ceremonies to modern celebrations, our wedding decorators, caterers and entertainers create experiences that are uniquely yours.

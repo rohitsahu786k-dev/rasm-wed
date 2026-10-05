@@ -404,7 +404,7 @@ export function BlogIndex({ posts }: { posts: WPPost[] }) {
       <PageHero
         crumbs={[{ name: 'Home', href: '/' }, { name: 'Blog' }]}
         schemaPath="/blog/"
-        eyebrow="The Rasm Wedding Journal"
+        eyebrow="Rasm Wedding Blogs"
         title="Wedding Planning Blog:"
         accent="Udaipur and Destination Wedding Guides"
         lead="Venue guides, budget advice, rituals explained and decor ideas from the team that plans weddings in Udaipur and across Rajasthan."

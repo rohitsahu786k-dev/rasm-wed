@@ -3,7 +3,7 @@
 import { getImageProps } from 'next/image';
 import Link from 'next/link';
 import { useCallback, useEffect, useRef, useState, useSyncExternalStore } from 'react';
-import { ArrowRight, ChevronLeft, ChevronRight, Pause, Play, Sparkles, Award, MapPin, ShieldCheck } from 'lucide-react';
+import { ArrowRight, ChevronLeft, ChevronRight, Pause, Play, Flower2, Award, MapPin, ShieldCheck } from 'lucide-react';
 import type { HeroSlide } from '@/lib/acf';
 import { useInquiry } from '@/components/InquiryProvider';
 
@@ -229,7 +229,7 @@ export function HeroCarousel({ slides, autoplaySeconds }: { slides: HeroSlide[];
           <div className="max-w-4xl mx-auto text-center space-y-6">
             {/* Eyebrow Tag */}
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold/15 border border-gold/30 text-gold-dark text-xs uppercase tracking-[0.25em] font-semibold">
-              <Sparkles className="w-3.5 h-3.5 text-gold-dark" />
+              <Flower2 className="w-3.5 h-3.5 text-gold-dark" />
               <span>
                 {currentSlide.eyebrow || 'Premier Luxury Destination Wedding Planners · Rajasthan & Worldwide'}
               </span>
@@ -283,7 +283,7 @@ export function HeroCarousel({ slides, autoplaySeconds }: { slides: HeroSlide[];
                 </div>
               </div>
               <div className="flex items-center gap-3 p-3 rounded-2xl bg-white border border-gold/15 shadow-2xs">
-                <Sparkles className="w-5 h-5 text-gold-dark shrink-0" />
+                <Flower2 className="w-5 h-5 text-gold-dark shrink-0" />
                 <div>
                   <div className="font-semibold text-charcoal-900 text-sm">Full Palace Buyouts</div>
                   <div className="text-[11px] text-charcoal-500">Lake Mandaps & Forts</div>

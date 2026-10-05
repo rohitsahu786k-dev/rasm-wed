@@ -10,7 +10,7 @@ export const STATIC_PAGES: Record<string, { title: string; description: string; 
     label: 'Wedding Planner in Jodhpur',
     title: 'Luxury Destination Wedding Planner in Jodhpur | Royal Palaces & Forts | RASM',
     description:
-      'Premier destination wedding planner in Jodhpur. Orchestrating royal celebrations at Umaid Bhawan Palace, Mehrangarh Fort, Ajit Bhawan, Bal Samand Lake Palace & luxury Thar dunes with bespoke decor, guest logistics and Marwari hospitality.',
+      'Premier destination wedding planner in Jodhpur. Planning royal celebrations at Umaid Bhawan Palace, Mehrangarh Fort, Ajit Bhawan, Bal Samand Lake Palace & luxury Thar dunes with custom decor, guest logistics and Marwari hospitality.',
   },
   'wedding-destination': {
     label: 'Wedding Destinations',

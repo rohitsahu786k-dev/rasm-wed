@@ -31,7 +31,7 @@ export const HOME_SEO_CONTENT: SeoBlock[] = [
   {
     type: 'ul',
     items: [
-      'Iconic lake palaces, heritage havelis, hilltop resorts and luxury five-star hotels within a short drive of each other.',
+      'Famous lake palaces, heritage havelis, hilltop resorts and luxury five-star hotels within a short drive of each other.',
       'A pleasant wedding season from October to March, with clear skies, mild evenings and golden sunsets.',
       'Excellent air, rail and road connectivity through Maharana Pratap Airport, Udaipur City station and the Ahmedabad and Jaipur highways.',
       'Skilled local artists, decorators, caterers, photographers, musicians and folk performers who understand Rajasthani wedding traditions.',
@@ -78,7 +78,7 @@ export const HOME_SEO_CONTENT: SeoBlock[] = [
     text: 'On the wedding days, a dedicated Rasm team works on location from the first setup to the last guest departure. We run the schedule, brief vendors, manage timings of the baraat, pheras, dinner and farewell, and solve problems quietly in the background so the family never has to.',
   },
 
-  { type: 'h2', text: 'Palace Wedding in Udaipur: Iconic Venues Worth Considering' },
+  { type: 'h2', text: 'Palace Wedding in Udaipur: Famous Venues Worth Considering' },
   {
     type: 'p',
     text: 'A palace wedding in Udaipur typically means one of three experiences: a lake palace with water on every side, a city palace with grand courtyards and marble terraces, or a hilltop heritage hotel with sweeping views. Each offers a very different feeling and a different cost structure.',
@@ -109,7 +109,7 @@ export const HOME_SEO_CONTENT: SeoBlock[] = [
   },
   {
     type: 'p',
-    text: 'Wedding planner in Jodhpur: the blue city and its sandstone palaces, ideal for imperial entries and desert-style receptions.',
+    text: 'Wedding planner in Jodhpur: the blue city and its sandstone palaces, ideal for grand entries and desert-style receptions.',
     links: [{ text: 'Wedding planner in Jodhpur', href: '/wedding-planner-in-jodhpur/' }],
   },
   {

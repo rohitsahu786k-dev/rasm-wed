@@ -23,7 +23,6 @@ import {
   Image as ImageIcon,
   BookOpen,
   Phone,
-  Sparkles,
   Award,
   Calendar,
   ShieldCheck,
@@ -70,7 +69,7 @@ export const Navbar: React.FC = () => {
   // Palaces of Rajasthan (8 top royal destinations)
   const rajasthanDestinations = [
     { name: 'Udaipur Palaces', slug: 'wedding-planner-in-udaipur', desc: 'Lake Pichola & City Palace Heritage', badge: 'Signature' },
-    { name: 'Jaipur Forts & Havelis', slug: 'wedding-planner-in-jaipur', desc: 'Pink City Grandeur & Royal Mandaps', badge: 'Popular' },
+    { name: 'Jaipur Forts & Havelis', slug: 'wedding-planner-in-jaipur', desc: 'Pink City Style & Royal Mandaps', badge: 'Popular' },
     { name: 'Jodhpur Sun City', slug: 'wedding-planner-in-jodhpur', desc: 'Umaid Bhawan & Mehrangarh Fort', badge: 'Heritage' },
     { name: 'Jaisalmer Golden Dunes', slug: 'wedding-planner-in-jaisalmer', desc: 'Suryagarh & Thar Desert Magic', badge: 'Exotic' },
     { name: 'Kumbhalgarh Fortress', slug: 'wedding-planner-in-kumbhalgarh', desc: 'Historic Solitude & Hilltop Fort', badge: 'Fortress' },
@@ -93,24 +92,24 @@ export const Navbar: React.FC = () => {
   const servicesList = [
     {
       title: 'Royal Wedding Planning & Production',
-      desc: 'End-to-end orchestration, palace permits, lake mandaps, celebrity artists, and turnkey production.',
+      desc: 'End-to-end planning, palace permits, lake mandaps, celebrity artists, and turnkey production.',
       icon: Gem,
       path: '/services',
       badge: 'Turnkey Luxury',
     },
     {
-      title: 'Artisanal Floral & Vedic Decor',
+      title: 'Handmade Floral & Vedic Decor',
       desc: 'Handcrafted floral arrays, Vedic mandap architecture, Raj Gharana themes, and atmospheric lighting.',
       icon: Flower2,
       path: '/traditional-decoration',
-      badge: 'Artisan Craft',
+      badge: 'Handmade Craft',
     },
     {
-      title: 'VIP Hospitality & Guest Concierge',
+      title: 'VIP Hospitality & Guest Hospitality',
       desc: 'Airport royal reception, vintage car transfers, 24/7 guest helpline, and heritage welcome rituals.',
       icon: Users,
       path: '/services',
-      badge: '5-Star Concierge',
+      badge: '5-Star Service',
     },
     {
       title: 'Corporate Galas & Royal Summits',
@@ -145,7 +144,7 @@ export const Navbar: React.FC = () => {
           {/* Left: Brand Tagline & Key Destinations */}
           <div className="flex items-center gap-3">
             <span className="inline-flex items-center gap-1.5 text-gold font-medium">
-              <Sparkles className="w-3 h-3 text-[#D4AF37]" />
+              <Flower2 className="w-3 h-3 text-[#D4AF37]" />
               <span>Premier Luxury Destination Wedding Planners</span>
             </span>
             <span className="text-stone-600">|</span>
@@ -330,11 +329,11 @@ export const Navbar: React.FC = () => {
                 )}
               </div>
 
-              {/* Journal */}
+              {/* Blogs */}
               <div
                 className="relative"
                 onMouseEnter={() => {
-                  setHoveredNav('journal');
+                  setHoveredNav('blogs');
                   setActiveMenu(null);
                 }}
               >
@@ -345,9 +344,9 @@ export const Navbar: React.FC = () => {
                     currentPath === '/blog' ? 'text-gold-dark font-semibold' : 'hover:text-gold-dark'
                   }`}
                 >
-                  Journal
+                  Blogs
                 </Link>
-                {hoveredNav === 'journal' && (
+                {hoveredNav === 'blogs' && (
                   <motion.div
                     layoutId="navbar-pill"
                     className="absolute inset-0 bg-gold/10 border border-gold/20 rounded-xl z-0"
@@ -419,7 +418,7 @@ export const Navbar: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center gap-2 text-xs font-medium tracking-wide text-charcoal-700 hover:text-emerald-700 transition-colors px-3 py-1.5 rounded-full border border-emerald-600/25 hover:border-emerald-600/50 bg-emerald-50/60 shadow-xs"
-                title="Chat directly with our Royal Wedding Concierge"
+                title="Chat directly with our Royal Wedding Planning team"
               >
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
@@ -568,13 +567,12 @@ export const Navbar: React.FC = () => {
                         <span className="text-[10px] uppercase tracking-widest text-gold-light font-semibold bg-gold/30 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-gold/40 inline-block">
                           Flagship Capital
                         </span>
-                        <span className="text-[10px] text-stone-300 font-light">★ 4.9 · 150+ Royal Weddings</span>
                       </div>
                       <h4 className="font-manrope font-semibold text-lg text-white">
                         Lake Pichola & Umaid Bhawan
                       </h4>
                       <p className="text-[11.5px] text-stone-300 font-light leading-relaxed">
-                        Royal palace takeovers, private lake mandaps, and bespoke heritage choreography across Rajasthan.
+                        Royal palace takeovers, private lake mandaps, and custom heritage choreography across Rajasthan.
                       </p>
                       <Link
                         href="/wedding-planner-in-udaipur"
@@ -641,7 +639,7 @@ export const Navbar: React.FC = () => {
                 {/* Bottom Quick Contact Bar */}
                 <div className="mt-5 pt-4 border-t border-gold/15 flex items-center justify-between bg-gold/[0.04] -mx-7 -mb-7 px-7 py-3.5 rounded-b-3xl">
                   <div className="flex items-center gap-2 text-xs text-charcoal-700">
-                    <Sparkles className="w-4 h-4 text-gold" />
+                    <Flower2 className="w-4 h-4 text-gold" />
                     <span>Planning a 2025–2026 destination wedding? Book a direct 1-on-1 concept session with our Lead Wedding Planner.</span>
                   </div>
                   <button
@@ -685,7 +683,7 @@ export const Navbar: React.FC = () => {
                       </li>
                       <li>
                         <Link href="/services" onClick={closeNav} className="hover:text-gold-dark transition-colors flex items-center gap-1.5">
-                          <ChevronRight className="w-3 h-3 text-gold" /> Complete Bespoke Services
+                          <ChevronRight className="w-3 h-3 text-gold" /> Complete Custom Services
                         </Link>
                       </li>
                       <li>
@@ -695,7 +693,7 @@ export const Navbar: React.FC = () => {
                       </li>
                       <li>
                         <Link href="/contact-us" onClick={closeNav} className="hover:text-gold-dark transition-colors flex items-center gap-1.5">
-                          <ChevronRight className="w-3 h-3 text-gold" /> Udaipur Concierge Office
+                          <ChevronRight className="w-3 h-3 text-gold" /> Udaipur Office
                         </Link>
                       </li>
                     </ul>
@@ -772,7 +770,7 @@ export const Navbar: React.FC = () => {
                       </li>
                       <li>
                         <Link href="/shipping-policy" onClick={closeNav} className="hover:text-gold-dark transition-colors flex items-center gap-1.5">
-                          <ChevronRight className="w-3 h-3 text-gold" /> Concierge Dispatch Policy
+                          <ChevronRight className="w-3 h-3 text-gold" /> Dispatch Policy
                         </Link>
                       </li>
                     </ul>
@@ -838,7 +836,7 @@ export const Navbar: React.FC = () => {
                   className="flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-white border border-gold/25 text-charcoal-800 text-xs font-medium shadow-xs"
                 >
                   <Phone className="w-3.5 h-3.5 text-gold-dark" />
-                  <span>Call Concierge</span>
+                  <span>Call Us</span>
                 </a>
                 <a
                   href={`https://wa.me/${settings.whatsapp}?text=Hello%20Rasm%20Weddings,%20I%20am%20inquiring%20about%20a%20luxury%20destination%20wedding.`}
@@ -984,7 +982,7 @@ export const Navbar: React.FC = () => {
                     }`}
                   >
                     <BookOpen className="w-4 h-4 text-gold-dark shrink-0" />
-                    <span>Journal & Guides</span>
+                    <span>Blogs</span>
                   </Link>
 
                   <Link
@@ -1006,7 +1004,7 @@ export const Navbar: React.FC = () => {
                     }`}
                   >
                     <Phone className="w-4 h-4 text-gold-dark shrink-0" />
-                    <span>Contact Concierge Desk</span>
+                    <span>Contact Desk</span>
                   </Link>
                 </div>
               </div>
@@ -1027,7 +1025,7 @@ export const Navbar: React.FC = () => {
                 </AnimatedButton>
                 <div className="text-center">
                   <span className="text-[10px] text-charcoal-400">
-                    Bespoke Destination Planning Across 14 Royal Cities
+                    Custom Destination Planning Across 14 Royal Cities
                   </span>
                 </div>
               </div>

@@ -19,7 +19,7 @@ export function ArticleView({ post, related }: { post: WPPostFull; related: WPPo
   const minutes = Math.max(1, Math.round(words / 200));
   return (
     <div className="bg-white min-h-screen text-charcoal-900">
-      <JsonLd data={breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'Journal', path: '/blog/' }, { name: post.title, path: `/${post.slug}/` }])} />
+      <JsonLd data={breadcrumbSchema([{ name: 'Home', path: '/' }, { name: 'Blogs', path: '/blog/' }, { name: post.title, path: `/${post.slug}/` }])} />
       <header className="pt-32 pb-10 bg-[#FDFCFA] border-b border-gold/20">
         <div className="rasm-container">
          <div>
@@ -27,7 +27,7 @@ export function ArticleView({ post, related }: { post: WPPostFull; related: WPPo
             <ol className="flex flex-wrap items-center gap-1.5">
               <li><Link href="/" className="hover:text-charcoal-900">Home</Link></li>
               <li aria-hidden="true">/</li>
-              <li><Link href="/blog/" className="hover:text-charcoal-900">Journal</Link></li>
+              <li><Link href="/blog/" className="hover:text-charcoal-900">Blogs</Link></li>
               <li aria-hidden="true">/</li>
               <li aria-current="page" className="text-charcoal-700 line-clamp-1">{post.title}</li>
             </ol>
@@ -65,7 +65,7 @@ export function ArticleView({ post, related }: { post: WPPostFull; related: WPPo
       {related.length > 0 && (
         <aside className="py-14 border-t border-gold/15" aria-labelledby="related">
           <div className="rasm-container">
-            <h2 id="related" className="font-manrope font-medium text-2xl sm:text-3xl tracking-tight mb-8 text-center">More from the Journal</h2>
+            <h2 id="related" className="font-manrope font-medium text-2xl sm:text-3xl tracking-tight mb-8 text-center">More from our Blogs</h2>
             <ul className="grid grid-cols-1 sm:grid-cols-3 gap-6">
               {related.map((p) => (
                 <li key={p.slug} className="rounded-2xl border border-gold/20 overflow-hidden bg-white">

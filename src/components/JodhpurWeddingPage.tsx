@@ -7,10 +7,9 @@ import {
   ChevronDown,
   Clock,
   Compass,
-  Crown,
+  Landmark,
   HeartHandshake,
   Hotel,
-  Landmark,
   MapPin,
   MessageCircle,
   Music,
@@ -19,7 +18,7 @@ import {
   Plane,
   ReceiptText,
   ShieldCheck,
-  Sparkles,
+  Flower2,
   Train,
   UtensilsCrossed,
   Wine,
@@ -50,14 +49,14 @@ const JODHPUR_VENUES = [
     image: '/images/jodhpur/umaid-bhawan-hero.jpg',
     costRange: '₹2.0 Cr – ₹4.5 Cr+ (Buyout & Royal Extravaganza)',
     description:
-      'Perched majestically atop Chittar Hill, Umaid Bhawan Palace is one of the world’s largest private royal residences and a globally celebrated destination wedding venue. Built with golden-yellow Chittar sandstone and featuring 26 acres of manicured Baradari lawns and lavish Art Deco ballrooms, it famously hosted the high-profile wedding of Priyanka Chopra & Nick Jonas. With world-class Taj hospitality, antique royal suites, and dramatic evening lighting, Umaid Bhawan Palace represents the pinnacle of regal celebrations in India.',
+      'Perched majestically atop Chittar Hill, Umaid Bhawan Palace is one of the world’s largest private royal residences and a globally celebrated destination wedding venue. Built with golden-yellow Chittar sandstone and featuring 26 acres of manicured Baradari lawns and grand Art Deco ballrooms, it famously hosted the high-profile wedding of Priyanka Chopra & Nick Jonas. With world-class Taj hospitality, antique royal suites, and dramatic evening lighting, Umaid Bhawan Palace represents the pinnacle of royal celebrations in India.',
     highlights: [
       '26 acres of sprawling lush Baradari & Marwar lawns for grand vows and receptions',
-      'Art Deco ballrooms and imperial banquets with Michelin-calibre Taj culinary curation',
-      'Exquisite presidential suites with authentic royal family heirlooms and butler service',
+      'Art Deco ballrooms and grand banquets with Michelin-calibre Taj culinary curation',
+      'Fine presidential suites with authentic royal family heirlooms and butler service',
       'Complete private palace buyout options available for exclusive VIP & celebrity weddings',
     ],
-    bestFor: 'Grand Sangeet Galas, Imperial Pheras, & Multi-Day Royal Buyout Weddings',
+    bestFor: 'Grand Sangeet Galas, Grand Pheras, & Multi-Day Royal Buyout Weddings',
   },
   {
     id: 'mehrangarh-fort',
@@ -86,7 +85,7 @@ const JODHPUR_VENUES = [
     image: '/images/jodhpur/mehrangarh-courtyard.jpg',
     costRange: '₹50 Lakhs – ₹95 Lakhs (Full Heritage Property Buyout)',
     description:
-      'Constructed in 1927 for Maharaja Sir Ajit Singh, Ajit Bhawan is revered as India’s very first heritage hotel. Brimming with vintage royal Rajput elegance, stone-carved gazebos, an iconic vintage car collection, and tranquil swimming pool courtyards, it offers an exclusive, intimate setting where families can book out the entire property for a private, authentic Marwari royal celebration.',
+      'Constructed in 1927 for Maharaja Sir Ajit Singh, Ajit Bhawan is revered as India’s very first heritage hotel. Brimming with vintage royal Rajput elegance, stone-carved gazebos, a famous vintage car collection, and tranquil swimming pool courtyards, it offers an exclusive, intimate setting where families can book out the entire property for a private, authentic Marwari royal celebration.',
     highlights: [
       'Boutique scale allowing complete royal family property buyout and total privacy',
       'Enchanting poolside courtyard ideal for vibrant daytime Mehndi and evening cocktails',
@@ -100,18 +99,18 @@ const JODHPUR_VENUES = [
     name: 'Bal Samand Lake Palace',
     category: '17th-Century Lakeside Palace Retreat',
     capacity: '150 – 500 Guests',
-    tagline: 'Red Sandstone Splendour by Historic Waterways & Pomegranate Orchards',
+    tagline: 'Red Sandstone Beauty by Historic Waterways & Pomegranate Orchards',
     image: '/images/jodhpur/mandore-gardens.jpg',
     costRange: '₹65 Lakhs – ₹1.3 Cr (Multi-Day Destination Wedding)',
     description:
-      'Situated on the shores of a 12th-century lake and encircled by private pomegranate, lime, and mango orchards, Bal Samand Lake Palace was the legendary summer retreat of Jodhpur’s royal family. Built in ornate red sandstone, it provides a cooling, tranquil oasis with expansive lawns, peacock sanctuaries, and romantic waterfront terraces ideal for sunset pheras.',
+      'Situated on the shores of a 12th-century lake and encircled by private pomegranate, lime, and mango orchards, Bal Samand Lake Palace was the legendary summer retreat of Jodhpur’s royal family. Built in ornate red sandstone, it provides a cooling, tranquil oasis with expansive lawns, peacock retreats, and romantic waterfront terraces ideal for sunset pheras.',
     highlights: [
       'Waterfront lawns and manicured gardens overlooking the historic royal lake',
       'Red sandstone architectural pavilions designed for scenic open-air wedding rituals',
-      'Peaceful natural bird sanctuary ambience with peacocks roaming the royal grounds',
+      'Peaceful natural bird retreat ambience with peacocks roaming the royal grounds',
       'Expansive outdoor layout accommodating multi-themed carnival and dinner setups',
     ],
-    bestFor: 'Sunset Lakeside Pheras, Haldi Carnivals, & Opulent Garden Banquets',
+    bestFor: 'Sunset Lakeside Pheras, Haldi Carnivals, & Beautiful Garden Banquets',
   },
   {
     id: 'raas-jodhpur',
@@ -122,7 +121,7 @@ const JODHPUR_VENUES = [
     image: '/images/jodhpur/blue-city-jodhpur.jpg',
     costRange: '₹45 Lakhs – ₹85 Lakhs (Boutique Luxury Buyout)',
     description:
-      'Nestled right at the base of Mehrangarh Fort and overlooking the 18th-century Toorji Ka Jhalra stepwell, RAAS Jodhpur seamlessly merges four historic 18th-century Rajput sandstone havelis with sleek contemporary luxury. Highly favored by international, NRI, and discerning design-forward couples, RAAS offers an intimate, ultra-chic setting with unmatched views looking straight up at the colossal fort.',
+      'Nestled right at the base of Mehrangarh Fort and overlooking the 18th-century Toorji Ka Jhalra stepwell, RAAS Jodhpur smoothly merges four historic 18th-century Rajput sandstone havelis with sleek contemporary luxury. Highly favored by international, NRI, and careful design-forward couples, RAAS offers an intimate, ultra-chic setting with unmatched views looking straight up at the colossal fort.',
     highlights: [
       'Direct, theatrical views looking straight up at the towering Mehrangarh Fort battlements',
       'Stepwell-facing sunset cocktail terraces and tranquil heated courtyard swimming pool',
@@ -159,18 +158,18 @@ const SIGNATURE_ITINERARY = [
     events: [
       {
         time: '12:00 PM – 02:00 PM',
-        title: 'Imperial Rajput Welcome Fanfare',
-        desc: 'Traditional Nagada and Shehnai fanfare, rose petal showers from palatial jharokhas, Aarti tikka by royal attendants, and chilled saffron-pistachio thandai welcome drinks.',
+        title: 'Grand Rajput Welcome Fanfare',
+        desc: 'Traditional Nagada and Shehnai fanfare, rose petal showers from palace jharokhas, Aarti tikka by royal attendants, and chilled saffron-pistachio thandai welcome drinks.',
       },
       {
         time: '03:30 PM – 06:30 PM',
-        title: 'Shahi Mehndi & Marwari Artisan Bazaar',
+        title: 'Shahi Mehndi & Marwari Craft Bazaar',
         desc: 'Poolside cabanas draped in vibrant Leheriya and Bandhej textiles, live local lac bangle craftsmen, block-printing ateliers, and organic herbal henna artists.',
       },
       {
         time: '07:30 PM – 11:30 PM',
         title: 'Courtyard Sufi Night & Royal Rajput Banquet',
-        desc: 'Under glittering vintage crystal chandeliers, guests enjoy acoustic Sufi vocalists and a curated multi-course royal Rajasthani dawat with live sigri kebabs.',
+        desc: 'Under glittering vintage crystal chandeliers, guests enjoy acoustic Sufi vocalists and a selected multi-course royal Rajasthani dawat with live sigri kebabs.',
       },
     ],
   },
@@ -198,7 +197,7 @@ const SIGNATURE_ITINERARY = [
   },
   {
     day: 'Day 03',
-    theme: 'The Imperial Baraat, Sunset Vedic Pheras & Gala Reception',
+    theme: 'The Grand Baraat, Sunset Vedic Pheras & Gala Reception',
     sub: 'Caparisoned Horses · Floral Sandstone Mandap · Black-Tie Banquet',
     events: [
       {
@@ -213,7 +212,7 @@ const SIGNATURE_ITINERARY = [
       },
       {
         time: '08:30 PM – Midnight',
-        title: 'The Grand Imperial Reception & Fireworks',
+        title: 'The Grand Grand Reception & Fireworks',
         desc: 'Black-tie sit-down royal silver thali banquet, champagne toasts, family speeches, and a synchronized aerial fireworks display lighting up the Jodhpur night sky.',
       },
     ],
@@ -227,19 +226,19 @@ const JODHPUR_PILLARS = [
     desc: 'Direct negotiation with palace owners and the Mehrangarh Museum Trust. We secure premier winter dates, ASI heritage clearances, and private venue buyouts at net negotiated rates.',
   },
   {
-    icon: Sparkles,
-    title: 'Bespoke Royal Decor & Production',
-    desc: 'Custom 3D-designed floral mandaps, handcrafted brass installations, vintage crystal chandeliers, and precision lighting that complements Jodhpur’s architectural sandstone splendour.',
+    icon: Flower2,
+    title: 'Custom Royal Decor & Production',
+    desc: 'Custom 3D-designed floral mandaps, handcrafted brass installations, vintage crystal chandeliers, and precision lighting that complements Jodhpur’s architectural sandstone beauty.',
   },
   {
     icon: Plane,
     title: 'Airport Fleet & VIP Guest Logistics',
-    desc: 'Seamless arrivals at Jodhpur Airport (JDH) and Railway Station (JU). Luxury AC coaches, vintage Baraat convertibles, luggage coordination, and 24/7 dedicated hotel concierge desks.',
+    desc: 'Smooth arrivals at Jodhpur Airport (JDH) and Railway Station (JU). Luxury AC coaches, vintage Baraat convertibles, luggage coordination, and 24/7 dedicated hotel help desks.',
   },
   {
     icon: UtensilsCrossed,
     title: 'Royal Marwari & Global Culinary Curation',
-    desc: 'Curated royal Rajasthani banquet menus alongside high-end international culinary stations, with strict adherence to Jain, vegetarian, vegan, and global dietary preferences.',
+    desc: 'Selected royal Rajasthani banquet menus alongside high-end international culinary stations, with strict adherence to Jain, vegetarian, vegan, and global dietary preferences.',
   },
   {
     icon: Music,
@@ -259,10 +258,10 @@ const JODHPUR_BUDGET_GUIDE = [
     venues: 'Ajit Bhawan Palace, RAAS Jodhpur, Heritage Haveli properties',
     guests: '80 – 150 Guests (2 Days)',
     range: '₹45 Lakhs – ₹85 Lakhs',
-    highlight: 'Intimate royal ambience, full property buyout privacy, personalized heritage hospitality, and bespoke floral decor.',
+    highlight: 'Intimate royal ambience, full property buyout privacy, personalized heritage hospitality, and custom floral decor.',
   },
   {
-    category: 'Grand Palatial Resorts & Lake Retreats',
+    category: 'Grand Palace Resorts & Lake Retreats',
     venues: 'Bal Samand Lake Palace, Indana Palace, Welcomhotel by ITC Jodhpur',
     guests: '150 – 350 Guests (3 Days)',
     range: '₹85 Lakhs – ₹1.8 Crore',
@@ -284,11 +283,11 @@ const JODHPUR_FAQS = [
   },
   {
     q: 'How much does a luxury destination wedding in Jodhpur typically cost?',
-    a: 'Total wedding expenses in Jodhpur depend on your venue choice, guest count, and decor scale. An intimate celebration at a boutique heritage palace (80–150 guests at Ajit Bhawan or RAAS) ranges between ₹45 Lakhs and ₹85 Lakhs. A grand celebration at a luxury palatial resort (150–350 guests at Bal Samand Lake Palace or Indana Palace) typically costs between ₹85 Lakhs and ₹1.8 Crore. Ultra-luxury royal weddings at Umaid Bhawan Palace start at ₹2.2 Crore and can exceed ₹5 Crore for complete palace buyouts. Our full planning packages start from ₹30,00,000.',
+    a: 'Total wedding expenses in Jodhpur depend on your venue choice, guest count, and decor scale. An intimate celebration at a boutique heritage palace (80–150 guests at Ajit Bhawan or RAAS) ranges between ₹45 Lakhs and ₹85 Lakhs. A grand celebration at a luxury palace resort (150–350 guests at Bal Samand Lake Palace or Indana Palace) typically costs between ₹85 Lakhs and ₹1.8 Crore. Ultra-luxury royal weddings at Umaid Bhawan Palace start at ₹2.2 Crore and can exceed ₹5 Crore for complete palace buyouts. Our full planning packages start from ₹30,00,000.',
   },
   {
     q: 'Can we host wedding functions inside Mehrangarh Fort?',
-    a: 'Yes, Mehrangarh Fort is world-famous for hosting unforgettable pre-wedding Sangeet galas, Sufi nights, and royal welcome dinners. While sacred fire (pheras) ceremonies have strict monument preservation rules, the fort’s historic courtyards (such as the Zenana Deodi and ramparts) offer an unmatched nighttime spectacle. RASM manages all permissions with the Mehrangarh Museum Trust, sound restrictions, ambient lighting, security, and private guest shuttles up the fortress ramparts.',
+    a: 'Yes, Mehrangarh Fort is world-famous for hosting memorable pre-wedding Sangeet galas, Sufi nights, and royal welcome dinners. While sacred fire (pheras) ceremonies have strict monument preservation rules, the fort’s historic courtyards (such as the Zenana Deodi and ramparts) offer an unmatched nighttime spectacle. RASM manages all permissions with the Mehrangarh Museum Trust, sound restrictions, ambient lighting, security, and private guest shuttles up the fortress ramparts.',
   },
   {
     q: 'What is the best month to plan a wedding in Jodhpur?',
@@ -296,22 +295,22 @@ const JODHPUR_FAQS = [
   },
   {
     q: 'How do our outstation and international guests travel to Jodhpur?',
-    a: 'Jodhpur Airport (JDH) operates daily direct flights from major Indian aviation hubs including New Delhi, Mumbai, Ahmedabad, and Jaipur, allowing international NRI guests to connect seamlessly with just one transit stop. Jodhpur Junction is also connected by high-speed trains like the Vande Bharat Express. RASM manages complete airport reception, VIP luggage handling, and luxury air-conditioned coaches directly to your wedding hotels.',
+    a: 'Jodhpur Airport (JDH) operates daily direct flights from major Indian aviation hubs including New Delhi, Mumbai, Ahmedabad, and Jaipur, allowing international NRI guests to connect smoothly with just one transit stop. Jodhpur Junction is also connected by high-speed trains like the Vande Bharat Express. RASM manages complete airport reception, VIP luggage handling, and luxury air-conditioned coaches directly to your wedding hotels.',
   },
   {
     q: 'How far in advance should we book venues and wedding planners in Jodhpur?',
-    a: 'Because Jodhpur has a select handful of iconic royal heritage venues and high global demand during winter wedding dates (November through February), we strongly advise finalizing your wedding planner and locking in palace venues 9 to 12 months in advance. This guarantees preferred dates, prime palace suites, and the best available group rates.',
+    a: 'Because Jodhpur has a select handful of famous royal heritage venues and high global demand during winter wedding dates (November through February), we strongly advise finalizing your wedding planner and locking in palace venues 9 to 12 months in advance. This guarantees preferred dates, prime palace suites, and the best available group rates.',
   },
   {
     q: 'Can RASM manage international NRI couples with dietary preferences & time zones?',
-    a: 'Over 60% of RASM’s clientele consists of NRI and international couples living across the United States, United Kingdom, United Arab Emirates, Canada, and Australia. We bridge time zones seamlessly with scheduled virtual design presentations, 3D floor plans, digital tasting reviews, guest RSVP portals, and bilingual hospitality teams on the ground in Jodhpur.',
+    a: 'Over 60% of RASM’s clientele consists of NRI and international couples living across the United States, United Kingdom, United Arab Emirates, Canada, and Australia. We bridge time zones smoothly with scheduled virtual design presentations, 3D floor plans, digital tasting reviews, guest RSVP portals, and bilingual hospitality teams on the ground in Jodhpur.',
   },
 ];
 
 export function JodhpurWeddingPage({ nearby, posts, wpPage }: JodhpurWeddingPageProps) {
   const path = '/wedding-planner-in-jodhpur/';
   const leadDescription =
-    'RASM Weddings & Events is the premier luxury destination wedding planner in Jodhpur. Award-winning wedding design, palace bookings, and seamless execution across Umaid Bhawan Palace, Mehrangarh Fort, Ajit Bhawan, Bal Samand Lake Palace, and Thar desert dunes.';
+    'RASM Weddings & Events is the premier luxury destination wedding planner in Jodhpur. Award-winning wedding design, palace bookings, and smooth execution across Umaid Bhawan Palace, Mehrangarh Fort, Ajit Bhawan, Bal Samand Lake Palace, and Thar desert dunes.';
 
   const desktopBannerSrc = wpPage?.desktopBanner || '/images/jodhpur/umaid-bhawan-hero.jpg';
   const mobileBannerSrc = wpPage?.mobileBanner || desktopBannerSrc;
@@ -407,7 +406,7 @@ export function JodhpurWeddingPage({ nearby, posts, wpPage }: JodhpurWeddingPage
 
             {/* Keyword-Rich Eyebrow Tag */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-gold/15 border border-gold/40 text-gold-dark text-[11px] sm:text-xs uppercase tracking-[0.22em] font-semibold mb-4 shadow-2xs">
-              <Crown className="w-3.5 h-3.5 text-gold-dark" />
+              <Landmark className="w-3.5 h-3.5 text-gold-dark" />
               <span>Ranked #1 Luxury Wedding Planner in Jodhpur</span>
             </div>
 
@@ -420,13 +419,13 @@ export function JodhpurWeddingPage({ nearby, posts, wpPage }: JodhpurWeddingPage
             {/* Authoritative, Keyword-Rich Lead Paragraph */}
             <p className="text-charcoal-700 text-base sm:text-lg font-light leading-relaxed mb-8 max-w-3xl">
               Planning a royal destination wedding in the historic Sun City? At{' '}
-              <strong className="font-medium text-charcoal-900">RASM Weddings &amp; Events</strong>, we turn palatial dreams into
+              <strong className="font-medium text-charcoal-900">RASM Weddings &amp; Events</strong>, we turn palace dreams into
               flawless celebrations. From exchanging vows on the Baradari lawns of{' '}
               <strong className="font-medium text-charcoal-900">Umaid Bhawan Palace</strong> and hosting illuminated Sangeet galas
               at <strong className="font-medium text-charcoal-900">Mehrangarh Fort</strong>, to intimate heritage soirees at{' '}
               <strong className="font-medium text-charcoal-900">Ajit Bhawan</strong> and{' '}
               <strong className="font-medium text-charcoal-900">Bal Samand Lake Palace</strong>—our seasoned planners deliver
-              bespoke royal decor, NRI guest hospitality, authentic Marwari catering, and transparent budget control with zero vendor markups.
+              custom royal decor, NRI guest hospitality, authentic Marwari catering, and transparent budget control with zero vendor markups.
             </p>
 
             {/* Action Buttons */}
@@ -454,10 +453,10 @@ export function JodhpurWeddingPage({ nearby, posts, wpPage }: JodhpurWeddingPage
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-6 py-3.5 rounded-full border border-emerald-600/30 bg-emerald-50/80 hover:bg-emerald-50 text-xs sm:text-sm font-medium text-emerald-800 transition-colors shadow-xs"
-                title="Chat with our Wedding Concierge on WhatsApp"
+                title="Chat with our Wedding Planning team on WhatsApp"
               >
                 <MessageCircle className="w-4 h-4 text-emerald-600" />
-                <span>WhatsApp Concierge</span>
+                <span>WhatsApp Us</span>
               </a>
             </div>
 
@@ -537,7 +536,7 @@ export function JodhpurWeddingPage({ nearby, posts, wpPage }: JodhpurWeddingPage
               </h3>
               <p className="text-xs sm:text-sm text-charcoal-600 font-light leading-relaxed">
                 Frequent direct flights from New Delhi, Mumbai, Ahmedabad, and Jaipur. International NRI guests connect
-                seamlessly with just one short stopover.
+                smoothly with just one short stopover.
               </p>
             </div>
 
@@ -569,7 +568,7 @@ export function JodhpurWeddingPage({ nearby, posts, wpPage }: JodhpurWeddingPage
               </h3>
               <p className="text-xs sm:text-sm text-charcoal-600 font-light leading-relaxed">
                 Celebrated for royal Marwari silver-thali banquets: Shahi Dal Baati Churma, Ker Sangri, Jodhpuri Pyaaz
-                Kachori, Mirchi Vada, and artisanal Ghevar live counters.
+                Kachori, Mirchi Vada, and handmade Ghevar live counters.
               </p>
             </div>
           </div>
@@ -580,7 +579,7 @@ export function JodhpurWeddingPage({ nearby, posts, wpPage }: JodhpurWeddingPage
                 <Compass className="w-5 h-5" />
               </span>
               <p className="text-xs sm:text-sm text-charcoal-700 font-light">
-                <strong className="font-semibold text-charcoal-900">Iconic Settings Handled by RASM:</strong> Umaid
+                <strong className="font-semibold text-charcoal-900">Famous Settings Handled by RASM:</strong> Umaid
                 Bhawan Palace, Mehrangarh Fort, Jaswant Thada, Bal Samand Lake Palace, Ajit Bhawan, RAAS Jodhpur, and Osian Desert Dunes.
               </p>
             </div>
@@ -596,7 +595,7 @@ export function JodhpurWeddingPage({ nearby, posts, wpPage }: JodhpurWeddingPage
         <div className="rasm-container max-w-6xl">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <p className="text-gold-dark text-xs uppercase tracking-[0.3em] font-medium mb-3">
-              Curated Palace Portfolio
+              Selected Palace Portfolio
             </p>
             <h2 className="font-manrope font-medium text-3xl sm:text-5xl text-charcoal-900 tracking-tight leading-[1.2]">
               Best Wedding Venues in <span className="gold-gradient-text italic">Jodhpur</span>
@@ -701,7 +700,7 @@ export function JodhpurWeddingPage({ nearby, posts, wpPage }: JodhpurWeddingPage
         </div>
       </section>
 
-      {/* -------------------- 5. THE 3-DAY IMPERIAL JODHPUR WEDDING ITINERARY -------------------- */}
+      {/* -------------------- 5. THE 3-DAY GRAND JODHPUR WEDDING ITINERARY -------------------- */}
       <section className="py-20 bg-[#FDFCFA] border-b border-gold/15">
         <div className="rasm-container max-w-6xl">
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -712,7 +711,7 @@ export function JodhpurWeddingPage({ nearby, posts, wpPage }: JodhpurWeddingPage
               The 3-Day Signature <span className="gold-gradient-text italic">Jodhpur Wedding Itinerary</span>
             </h2>
             <p className="mt-4 text-charcoal-600 font-light text-base sm:text-lg leading-relaxed">
-              Curated by RASM Weddings to balance royal ceremonial splendour, joyful guest hospitality, and effortless timing.
+              Selected by RASM Weddings to balance royal ceremonial beauty, joyful guest hospitality, and effortless timing.
             </p>
           </div>
 
@@ -878,12 +877,12 @@ export function JodhpurWeddingPage({ nearby, posts, wpPage }: JodhpurWeddingPage
         </div>
       </section>
 
-      {/* -------------------- 8. CURATED PHOTO GALLERY: REAL INSPIRATION -------------------- */}
+      {/* -------------------- 8. SELECTED PHOTO GALLERY: REAL INSPIRATION -------------------- */}
       <section className="py-20 bg-white border-b border-gold/15">
         <div className="rasm-container max-w-6xl">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <p className="text-gold-dark text-xs uppercase tracking-[0.3em] font-medium mb-3">
-              Visual Splendour
+              Visual Beauty
             </p>
             <h2 className="font-manrope font-medium text-3xl sm:text-5xl text-charcoal-900 tracking-tight leading-[1.2]">
               Jodhpur Weddings &amp; <span className="gold-gradient-text italic">Decor Inspiration</span>
@@ -927,7 +926,7 @@ export function JodhpurWeddingPage({ nearby, posts, wpPage }: JodhpurWeddingPage
             <div className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-gold/20 bg-stone-100 shadow-sm">
               <Image
                 src="https://rasmwed.com/wp-content/uploads/2026/10/royal_baraat_at_golden_hour.webp"
-                alt="Regal Baraat procession with decorated horses and royal fanfare in Rajasthan"
+                alt="Royal Baraat procession with decorated horses and royal fanfare in Rajasthan"
                 fill
                 sizes="(min-width: 1024px) 33vw, 100vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -935,7 +934,7 @@ export function JodhpurWeddingPage({ nearby, posts, wpPage }: JodhpurWeddingPage
               <div className="absolute inset-0 bg-gradient-to-t from-charcoal-950/80 via-transparent to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
               <div className="absolute bottom-4 left-4 right-4">
                 <p className="text-gold-light text-xs font-semibold uppercase tracking-wider">The Baraat</p>
-                <h3 className="text-white text-base font-medium font-manrope">Imperial Rajput Procession</h3>
+                <h3 className="text-white text-base font-medium font-manrope">Grand Rajput Procession</h3>
               </div>
             </div>
 
@@ -957,14 +956,14 @@ export function JodhpurWeddingPage({ nearby, posts, wpPage }: JodhpurWeddingPage
             <div className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-gold/20 bg-stone-100 shadow-sm">
               <Image
                 src="https://rasmwed.com/wp-content/uploads/2026/10/palace_wedding_under_blooming_chandeliers.webp"
-                alt="Opulent chandeliers and blooms for a royal palace wedding reception dinner"
+                alt="Beautiful chandeliers and blooms for a royal palace wedding reception dinner"
                 fill
                 sizes="(min-width: 1024px) 33vw, 100vw"
                 className="object-cover transition-transform duration-700 group-hover:scale-105"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-charcoal-950/80 via-transparent to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
               <div className="absolute bottom-4 left-4 right-4">
-                <p className="text-gold-light text-xs font-semibold uppercase tracking-wider">Imperial Banquet</p>
+                <p className="text-gold-light text-xs font-semibold uppercase tracking-wider">Grand Banquet</p>
                 <h3 className="text-white text-base font-medium font-manrope">Canopy of Chandeliers &amp; Roses</h3>
               </div>
             </div>
@@ -1039,7 +1038,7 @@ export function JodhpurWeddingPage({ nearby, posts, wpPage }: JodhpurWeddingPage
             <div className="rounded-2xl border border-gold/25 bg-white p-7 shadow-xs">
               <span className="font-manrope text-2xl font-medium gold-gradient-text block mb-2">03</span>
               <h3 className="font-manrope font-medium text-xl text-charcoal-900 mb-2">
-                Bespoke NRI &amp; International Couple Concierge
+                Custom NRI &amp; International Couple Planning
               </h3>
               <p className="text-sm text-charcoal-600 font-light leading-relaxed">
                 Over 60% of our couples reside abroad in the UK, USA, UAE, and Canada. We coordinate across time zones with

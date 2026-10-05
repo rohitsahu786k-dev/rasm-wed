@@ -77,7 +77,7 @@ const up = (p: string, w: number, h: number): AcfImage => ({ url: `${WP_ORIGIN}/
 
 /** Defaults: real event photographs already in the media library. Replace them from ACF at any time. */
 export const DEFAULT_SLIDES: HeroSlide[] = [
-  { desktop: up('2026/10/golden_hour_palace_lake_wedding_mandap.webp', 1672, 941), alt: 'Floral wedding mandap on a lakeside palace terrace at golden hour, wedding in Udaipur', eyebrow: 'Wedding Planner in Udaipur, Rajasthan', heading: 'Your Palace *Wedding* Begins Here.', subheading: 'Royal venues, unforgettable celebrations and timeless memories. Plan your wedding in Udaipur with a team that manages everything, from venue to farewell.', buttonLabel: 'Explore Destinations', buttonHref: '/wedding-destination/', align: 'left', overlay: 0 },
+  { desktop: up('2026/10/golden_hour_palace_lake_wedding_mandap.webp', 1672, 941), alt: 'Floral wedding mandap on a lakeside palace terrace at golden hour, wedding in Udaipur', eyebrow: 'Wedding Planner in Udaipur, Rajasthan', heading: 'Your Palace *Wedding* Begins Here.', subheading: 'Royal venues, memorable celebrations and classic memories. Plan your wedding in Udaipur with a team that manages everything, from venue to farewell.', buttonLabel: 'Explore Destinations', buttonHref: '/wedding-destination/', align: 'left', overlay: 0 },
   { desktop: up('2026/10/sunset_palace_wedding_by_the_lake.webp', 1672, 941), alt: 'Lake palace wedding setup at sunset, palace wedding decor in Udaipur', eyebrow: 'Wedding Decor & Design', heading: 'Stages and Setups Designed Around *Your Story*', subheading: 'Luxury wedding decor, entertainment and guest hospitality for palace weddings in Udaipur and across Rajasthan.', buttonLabel: 'Our Services', buttonHref: '/services/', align: 'left', overlay: 0 },
   { desktop: up('2026/10/opulent_palace_courtyard_at_dusk.webp', 1672, 941), alt: 'Palace courtyard at dusk lit for a wedding celebration in Rajasthan', eyebrow: '12 Wedding Destinations', heading: 'Get Married Where the *Setting* Tells a Story', subheading: 'Destination weddings in Udaipur, Jaipur, Jodhpur, Jaisalmer, Goa and more, planned end to end.', buttonLabel: 'Choose Your Destination', buttonHref: '/wedding-destination/', align: 'left', overlay: 0 },
 ];
@@ -161,7 +161,7 @@ export async function getSiteSettings(): Promise<SiteSettings & { phone2: string
     phone: phone || SITE.phone,
     phone2: str(a.rasm_phone_number_2) || SITE.phone2,
     whatsapp: digits(str(a.rasm_whatsapp_number)) || SITE.whatsapp,
-    email: str(a.rasm_email_address) || SITE.email,
+    email: SITE.email,
     address: str(a.rasm_office_address) || SITE.address,
     instagramUrl: str(a.rasm_instagram_url) || SITE.instagram,
     facebookUrl: str(a.rasm_facebook_url) || SITE.facebook,

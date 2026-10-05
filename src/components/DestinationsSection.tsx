@@ -2,7 +2,6 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { useInquiry } from '@/components/InquiryProvider';
 import React, { useRef, useState, useEffect, useMemo, useCallback } from 'react';
 import { Destination } from '@/types';
 import { ArrowRight, ChevronLeft, ChevronRight, Calendar } from 'lucide-react';
@@ -27,7 +26,7 @@ const FALLBACK_DESTINATIONS: Destination[] = [
     id: 'udaipur',
     title: 'Udaipur, Rajasthan',
     slug: 'wedding-planner-in-udaipur',
-    tagline: 'The City of Lakes · Iconic Royal Palaces & Floating Mandaps',
+    tagline: 'The City of Lakes · Famous Royal Palaces & Floating Mandaps',
     season: 'October to March',
     venues: 'The Oberoi Udaivilas, Taj Lake Palace, Jagmandir Island, The Leela Palace, Fateh Garh',
     imageUrl: 'https://rasmwed.com/wp-content/uploads/2024/08/The-Oberoi-Udaivilas.webp',
@@ -36,7 +35,7 @@ const FALLBACK_DESTINATIONS: Destination[] = [
     id: 'jaipur',
     title: 'Jaipur, Rajasthan',
     slug: 'wedding-planner-in-jaipur',
-    tagline: 'The Pink City · Imperial Fortresses, Royal Havelis & Palatial Lawns',
+    tagline: 'The Pink City · Grand Fortresses, Royal Havelis & Palace Lawns',
     season: 'October to March',
     venues: 'Rambagh Palace, Fairmont Jaipur, Jai Mahal Palace, Samode Palace',
     imageUrl: 'https://rasmwed.com/wp-content/uploads/2024/08/Fateh-Garh-Palace.webp',
@@ -45,7 +44,7 @@ const FALLBACK_DESTINATIONS: Destination[] = [
     id: 'jodhpur',
     title: 'Jodhpur, Rajasthan',
     slug: 'wedding-planner-in-jodhpur',
-    tagline: 'Sun City Grandeur & Historic Mehrangarh Fort Ramparts',
+    tagline: 'Sun City Style & Historic Mehrangarh Fort Ramparts',
     season: 'October to March',
     venues: 'Umaid Bhawan Palace, Mehrangarh Fort, Ajit Bhawan, Bal Samand Lake Palace',
     imageUrl: '/images/jodhpur/umaid-bhawan-hero.jpg',
@@ -133,7 +132,6 @@ const getCarouselConfig = (width: number): CarouselConfig => {
 };
 
 export const DestinationsSection: React.FC<DestinationsSectionProps> = ({ destinations }) => {
-  const { open: onSelectDestination } = useInquiry();
   const displayDestinations = destinations && destinations.length > 0 ? destinations : FALLBACK_DESTINATIONS;
   const total = displayDestinations.length;
 
@@ -221,24 +219,15 @@ export const DestinationsSection: React.FC<DestinationsSectionProps> = ({ destin
     [scrollProgress, total],
   );
 
-  const handleCardClick = (idx: number, destTitle: string) => {
+  const handleCardClick = (idx: number) => {
     if (isDraggingRef.current) return;
-    const current = Math.round(scrollProgress.get());
-    let diff = (idx - current) % total;
-    if (diff > total / 2) diff -= total;
-    if (diff < -total / 2) diff += total;
-
-    if (Math.abs(diff) === 0) {
-      onSelectDestination(destTitle);
-    } else {
-      jumpToSlide(idx);
-    }
+    jumpToSlide(idx);
   };
 
   return (
     <section
       id="destinations"
-      className="py-20 sm:py-24 bg-[#FDFCFA] relative overflow-hidden border-b border-gold/15 select-none"
+      className="py-20 sm:py-24 bg-[#FDFCFA] relative isolate overflow-hidden border-b border-gold/15 select-none"
     >
       {/* Soft warm ambient background glow */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-gradient-to-tr from-gold/10 via-ivory-300 to-transparent blur-3xl pointer-events-none rounded-full" />
@@ -250,32 +239,28 @@ export const DestinationsSection: React.FC<DestinationsSectionProps> = ({ destin
         </p>
 
         <h2 className="font-manrope font-medium text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-charcoal-900 leading-[1.2] tracking-tight max-w-4xl mx-auto">
-          Iconic Palaces &amp; <span className="gold-gradient-text italic">Lake Retreats</span>
+          Famous Palaces &amp; <span className="gold-gradient-text italic">Lake Retreats</span>
         </h2>
 
         <p className="max-w-2xl mx-auto text-sm sm:text-base text-charcoal-600 font-light leading-relaxed mt-4">
-          Explore majestic Mewari courtyards, sunlit desert fortresses, and private coastal sanctuaries
-          handpicked for extraordinary Rasm wedding celebrations.
+          Explore grand Mewari courtyards, sunlit desert fortresses, and private coastal retreats
+          handpicked for special Rasm wedding celebrations.
         </p>
       </div>
 
       {/* 90% Width Deck Carousel Container */}
       <div className="w-[90%] max-w-[1520px] mx-auto relative overflow-hidden flex flex-col items-center justify-center py-4">
         <div className="relative w-full h-[470px] sm:h-[530px] md:h-[570px] lg:h-[610px] flex items-center justify-center">
-          {/* Transparent Pan/Drag Interaction Surface */}
+          {/* Fanned cards deck: the pan gesture lives on the deck, cards stay clickable */}
           <motion.div
-            drag="x"
-            dragConstraints={{ left: 0, right: 0 }}
-            onDragStart={handleDragStart}
-            onDrag={(_, info) => {
+            onPanStart={handleDragStart}
+            onPan={(_, info) => {
               const delta = -info.delta.x / config.sensitivity;
               scrollProgress.set(scrollProgress.get() + delta);
             }}
-            onDragEnd={handleDragEnd}
-            className="absolute inset-0 z-20 cursor-grab active:cursor-grabbing touch-pan-y"
-          />
-
-          {/* Fanned Cards Deck */}
+            onPanEnd={handleDragEnd}
+            className="absolute inset-0 flex items-center justify-center cursor-grab active:cursor-grabbing touch-pan-y"
+          >
           {displayDestinations.map((dest, i) => (
             <FannedCard
               key={dest.id || i}
@@ -284,9 +269,11 @@ export const DestinationsSection: React.FC<DestinationsSectionProps> = ({ destin
               total={total}
               progress={scrollProgress}
               config={config}
-              onCardClick={() => handleCardClick(i, dest.title)}
+              isActive={i === activeSlideIndex}
+              onCardClick={() => handleCardClick(i)}
             />
           ))}
+          </motion.div>
         </div>
 
         {/* Carousel Navigation Controls & Indicators */}
@@ -345,10 +332,10 @@ export const DestinationsSection: React.FC<DestinationsSectionProps> = ({ destin
         {/* Bottom CTA to View All Venues */}
         <div className="mt-6 text-center z-40">
           <Link
-            href="/wedding-destination"
+            href="/wedding-destination/"
             className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] font-bold text-charcoal-800 hover:text-gold-dark transition-colors border-b border-gold/40 pb-1"
           >
-            <span>Explore All 14 Wedding Destinations</span>
+            <span>See All Wedding Destinations</span>
             <ArrowRight className="w-3.5 h-3.5 text-gold-dark" />
           </Link>
         </div>
@@ -369,6 +356,7 @@ interface FannedCardProps {
   total: number;
   progress: MotionValue<number>;
   config: CarouselConfig;
+  isActive: boolean;
   onCardClick: () => void;
 }
 
@@ -378,6 +366,7 @@ const FannedCard: React.FC<FannedCardProps> = ({
   total,
   progress,
   config,
+  isActive,
   onCardClick,
 }) => {
   const offset = useTransform(progress, (p) => {
@@ -415,7 +404,6 @@ const FannedCard: React.FC<FannedCardProps> = ({
 
   return (
     <motion.div
-      onClick={onCardClick}
       style={{
         x,
         rotate,
@@ -426,10 +414,26 @@ const FannedCard: React.FC<FannedCardProps> = ({
       }}
       className="absolute rounded-[28px] sm:rounded-[32px] overflow-hidden bg-white cursor-pointer group shadow-[0_16px_40px_rgba(0,0,0,0.10)] hover:shadow-[0_24px_50px_rgba(197,160,89,0.22)] border border-gold/25 w-64 h-[420px] sm:w-72 sm:h-[470px] md:w-[310px] md:h-[510px] lg:w-[335px] lg:h-[530px]"
     >
+      {/* Whole card is a real link to the destination page; side cards first slide to the centre. */}
+      <Link
+        href={`/${dest.slug}/`}
+        aria-label={`${dest.title} wedding planner`}
+        tabIndex={isActive ? 0 : -1}
+        draggable={false}
+        onClick={(e) => {
+          if (!isActive) {
+            e.preventDefault();
+            onCardClick();
+          }
+        }}
+        className="absolute inset-0 z-30 rounded-[inherit] focus-visible:outline focus-visible:outline-2 focus-visible:outline-gold"
+      />
+
       {/* 1. Destination Image (Natural, Bright & Crisp - NO full black overlay) */}
       <Image
         src={dest.imageUrl}
         alt={dest.title}
+        draggable={false}
         className="absolute inset-0 w-full h-full object-cover pointer-events-none transition-transform duration-700 ease-out group-hover:scale-105"
         width={1200}
         height={800}
@@ -461,7 +465,7 @@ const FannedCard: React.FC<FannedCardProps> = ({
         {/* Season Indicator */}
         {dest.season && (
           <div className="flex items-center gap-1.5 mb-1.5">
-            <Calendar className="w-3 h-3 text-gold-dark" />
+            <Calendar className="w-3 h-3 text-gold-dark" aria-hidden="true" />
             <span className="text-[10px] font-manrope font-semibold text-gold-dark uppercase tracking-wider">
               {dest.season.split('(')[0]}
             </span>
@@ -481,7 +485,7 @@ const FannedCard: React.FC<FannedCardProps> = ({
         {/* Bottom CTA Row */}
         <div className="pt-2.5 border-t border-charcoal-200/80 flex items-center justify-between">
           <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-gold-dark group-hover:text-charcoal-950 transition-colors">
-            <span>Explore Palaces</span>
+            <span>View {dest.title.split(',')[0]} Weddings</span>
             <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
           </span>
 

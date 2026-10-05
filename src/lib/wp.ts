@@ -31,8 +31,9 @@ const REVALIDATE = 3600; // ISR: content refreshes hourly without a redeploy.
 
 /** The site does not use emoji: remove any that were typed into WordPress content (deep walk over the REST response). */
 const EMOJI = /[🀀-🫿☀-➿⭐⭕️‍]/gu;
+const OLD_EMAIL = /\b(?:info|contact|hello|enquiry|inquiry)@rasmwed\.com\b/gi; // one contact inbox site-wide
 function stripEmoji(v: unknown): unknown {
-  if (typeof v === 'string') return v.replace(EMOJI, '');
+  if (typeof v === 'string') return v.replace(EMOJI, '').replace(OLD_EMAIL, 'rasmwed@gmail.com');
   if (Array.isArray(v)) return v.map(stripEmoji);
   if (v && typeof v === 'object') return Object.fromEntries(Object.entries(v).map(([k, x]) => [k, stripEmoji(x)]));
   return v;

@@ -178,7 +178,7 @@ export const DECOR_PROSE: ProseBlock[] = [
   {
     h: 'Traditional Wedding Decoration Rooted in Rajasthani Heritage',
     p: [
-      'Traditional wedding decoration in Rajasthan draws on marigold garlands, brass urns, rich fabrics, carved arches and warm red, gold and orange palettes. We combine these elements with modern lighting and clean layouts so the result feels timeless rather than crowded.',
+      'Traditional wedding decoration in Rajasthan draws on marigold garlands, brass urns, rich fabrics, carved arches and warm red, gold and orange palettes. We combine these elements with modern lighting and clean layouts so the result feels classic rather than crowded.',
       'If you prefer something contemporary, we also design pastel, white and gold and minimal concepts, and we can mix traditions for families that celebrate more than one custom.',
     ],
   },
@@ -192,7 +192,7 @@ export const CORPORATE_TYPES = [
   { title: 'Gala dinners and award nights', text: 'Formal evenings with stage, lighting, entertainment, anchors and plated or buffet dining in palace and heritage settings.' },
   { title: 'Product launches and brand events', text: 'Stage design, guest flow, branding and technical production for launches, dealer meets and brand activations.' },
   { title: 'Annual meets and dealer conferences', text: 'Programmes that combine business sessions, recognition and entertainment for large teams travelling to Udaipur.' },
-  { title: 'VIP and delegate hospitality', text: 'Arrivals, transport, accommodation and concierge support for senior guests, speakers and international visitors.' },
+  { title: 'VIP and delegate hospitality', text: 'Arrivals, transport, accommodation and planning team support for senior guests, speakers and international visitors.' },
 ];
 
 export const CORPORATE_FAQ = [
@@ -277,7 +277,7 @@ export const BLOG_PROSE: ProseBlock[] = [
   {
     h: 'Wedding Planning Guides for Udaipur and Destination Weddings in India',
     p: [
-      'Our journal collects practical guides written from real planning experience: how to choose a wedding venue in Udaipur, how to plan a destination wedding in Rajasthan, how much a wedding can cost, rituals and traditions explained, and ideas for decor, outfits and pre-wedding shoots.',
+      'Our blogs collect practical guides written from real planning experience: how to choose a wedding venue in Udaipur, how to plan a destination wedding in Rajasthan, how much a wedding can cost, rituals and traditions explained, and ideas for decor, outfits and pre-wedding shoots.',
       'If you want help turning any of these ideas into a plan, our Udaipur team is happy to talk.',
     ],
     links: [{ text: 'Udaipur team', href: '/contact-us/' }],

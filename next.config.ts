@@ -8,6 +8,7 @@ const nextConfig: NextConfig = {
   trailingSlash: true,
   poweredByHeader: false,
   images: {
+    qualities: [75, 85],
     formats: ['image/webp'],
     remotePatterns: [...new Set([wpHost, siteHost])].map((hostname) => ({ protocol: 'https' as const, hostname, pathname: '/wp-content/uploads/**' })),
   },

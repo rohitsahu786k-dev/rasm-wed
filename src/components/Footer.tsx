@@ -173,7 +173,7 @@ export const Footer: React.FC<{ settings: FullSettings }> = ({ settings }) => {
             </ul>
           </div>
 
-          {/* Column 3: Bespoke Services */}
+          {/* Column 3: Custom Services */}
           <div>
             <h4 className="font-manrope font-medium text-[16px] text-charcoal-900 mb-4 pb-1.5 border-b border-gold/20 tracking-normal">
               Wedding Services
@@ -191,7 +191,7 @@ export const Footer: React.FC<{ settings: FullSettings }> = ({ settings }) => {
             </ul>
           </div>
 
-          {/* Column 4: Palatial Venues */}
+          {/* Column 4: Palace Venues */}
           <div>
             <h4 className="font-manrope font-medium text-[16px] text-charcoal-900 mb-4 pb-1.5 border-b border-gold/20 tracking-normal">
               Popular Wedding Venues

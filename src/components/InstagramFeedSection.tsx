@@ -65,7 +65,7 @@ export const InstagramFeedSection: React.FC = () => {
           </h2>
 
           <p className="text-charcoal-600 text-sm sm:text-base font-light leading-relaxed mt-3 max-w-2xl mx-auto tracking-normal">
-            Witness real lakeside Vedic pheras, royal procession arrivals, and breathtaking palatial decor live from Udaipur on <span className="font-medium text-charcoal-800">@rasmwed</span>.
+            Witness real lakeside Vedic pheras, royal procession arrivals, and beautiful palace decor live from Udaipur on <span className="font-medium text-charcoal-800">@rasmwed</span>.
           </p>
 
         </div>

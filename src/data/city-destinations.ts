@@ -56,13 +56,13 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
     slug: 'wedding-planner-in-udaipur',
     city: 'Udaipur',
     stateOrRegion: 'Rajasthan',
-    eyebrow: '★ RANKED #1 LUXURY WEDDING PLANNER IN UDAIPUR',
+    eyebrow: 'LUXURY WEDDING PLANNER IN UDAIPUR',
     h1Title: 'Best Wedding Planner in Udaipur:',
     h1Accent: 'Lake Palaces & Island Celebrations',
     heroImage: 'https://rasmwed.com/wp-content/uploads/2026/10/golden_palace_wedding_mandap_at_sunset.webp',
     heroAlt: 'Best Wedding Planner in Udaipur - Royal Island Palace Destination Wedding on Lake Pichola',
     leadCopy:
-      'Planning a fairytale palace wedding in the Venice of the East? At RASM Weddings & Events, our Udaipur headquarters orchestrates magical celebrations amidst the waters of Lake Pichola. From private boat processions to Jagmandir Island Palace and sunset vows at The Oberoi Udaivilas, to romantic evenings at Taj Lake Palace and The Leela Palace—we handle end-to-end palace bookings, floating mandaps, luxury decor, and international guest hospitality with total transparency and zero vendor markups.',
+      'Planning a fairytale palace wedding in the Venice of the East? At RASM Weddings & Events, our Udaipur headquarters plans magical celebrations amidst the waters of Lake Pichola. From private boat processions to Jagmandir Island Palace and sunset vows at The Oberoi Udaivilas, to romantic evenings at Taj Lake Palace and The Leela Palace—we handle end-to-end palace bookings, floating mandaps, luxury decor, and international guest hospitality with total transparency and zero vendor markups.',
     primaryKeyword: 'Best Wedding Planner in Udaipur',
     secondaryKeywords: [
       'destination wedding in Udaipur',
@@ -95,7 +95,7 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
           'Vast capacity for multi-tier concert Sangeets, royal pheras, and fireworks',
           'Complete private island buyout ensuring maximum security and prestige',
         ],
-        bestFor: 'High-Impact Sangeet Galas, Island Pheras, & Imperial Receptions',
+        bestFor: 'High-Impact Sangeet Galas, Island Pheras, & Grand Receptions',
       },
       {
         id: 'the-oberoi-udaivilas',
@@ -106,11 +106,11 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
         image: 'https://rasmwed.com/wp-content/uploads/2024/08/The-Oberoi-Udaivilas.webp',
         costRange: '₹2.5 Cr – ₹5.0 Cr+ (Complete Luxury Resort Buyout)',
         description:
-          'Consistently ranked among the best luxury hotels in the world, The Oberoi Udaivilas features sweeping Mewari courtyards, reflection pools, and manicured lawns directly overlooking City Palace. A favorite for discerning couples seeking unparalleled personalized hospitality and architectural refinement.',
+          'Consistently ranked among the best luxury hotels in the world, The Oberoi Udaivilas features sweeping Mewari courtyards, reflection pools, and manicured lawns directly overlooking City Palace. A favorite for careful couples seeking strong personalized hospitality and architectural refinement.',
         highlights: [
           'Premier lakeside setting with uninterrupted views of City Palace and Lake Pichola',
           'Private moat-like swimming pools connecting luxury heritage suites',
-          'Michelin-standard culinary team offering bespoke menus from around the globe',
+          'Michelin-standard culinary team offering custom menus from around the globe',
           'Flawless operational standards with world-renowned Oberoi hospitality',
         ],
         bestFor: 'Palace Buyouts, Intimate Royal Pheras, & Sophisticated Cocktail Galas',
@@ -120,15 +120,15 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
         name: 'Taj Lake Palace, Udaipur',
         category: 'Historic Floating Marble Palace',
         capacity: '80 – 200 Guests',
-        tagline: '18th-Century White Marble Sanctuary Floating on Lake Pichola',
+        tagline: '18th-Century White Marble Retreat Floating on Lake Pichola',
         image: 'https://rasmwed.com/wp-content/uploads/2026/10/sunset_palace_wedding_by_the_lake.webp',
         costRange: '₹2.0 Cr – ₹4.0 Cr+ (Exclusive Island Buyout)',
         description:
           'Built in 1746 as a pleasure palace by Maharana Jagat Singh II, Taj Lake Palace floats like a white marble jewel on Lake Pichola. Offering private lily ponds, carved marble arches, and royal butlers, it is the ultimate romantic setting for intimate luxury destination weddings.',
         highlights: [
           'Complete island seclusion with 360-degree panoramic lake and hill views',
-          'Exquisite heritage suites with stained glass, antique frescoes, and swing balconies',
-          'Legendary Taj royal hospitality with bespoke silver-service dinners',
+          'Fine heritage suites with stained glass, antique frescoes, and swing balconies',
+          'Legendary Taj royal hospitality with custom silver-service dinners',
           'Perfect for high-net-worth couples hosting an ultra-exclusive gathering',
         ],
         bestFor: 'Intimate Royal Vows, Lakeside High Teas, & Private Candlelit Banquets',
@@ -136,31 +136,31 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
       {
         id: 'the-leela-palace-udaipur',
         name: 'The Leela Palace Udaipur',
-        category: 'Modern Royal Palatial Luxury',
+        category: 'Modern Royal Palace Luxury',
         capacity: '100 – 350 Guests',
-        tagline: 'Contemporary Rajasthani Grandeur with Pichola Shoreline Lawns',
+        tagline: 'Contemporary Rajasthani Style with Pichola Shoreline Lawns',
         image: 'https://rasmwed.com/wp-content/uploads/2026/10/sunset_palace_terrace_by_the_lake.webp',
         costRange: '₹1.8 Cr – ₹3.5 Cr+ (Shoreline Buyout & Banqueting)',
         description:
-          'Set right on the banks of Lake Pichola with majestic views of the Aravalli hills, The Leela Palace Udaipur seamlessly combines regal Mewari aesthetics with contemporary state-of-the-art wedding amenities. Its Guava Garden and outer courtyards host spectacular waterfront ceremonies.',
+          'Set right on the banks of Lake Pichola with grand views of the Aravalli hills, The Leela Palace Udaipur smoothly combines royal Mewari aesthetics with contemporary state-of-the-art wedding amenities. Its Guava Garden and outer courtyards host spectacular waterfront ceremonies.',
         highlights: [
           'Lake-facing wedding lawns framed by traditional stone jaali pavilions',
-          'Lavish spa and heritage wellness suites for the wedding couple and VIP guests',
+          'Grand spa and heritage wellness suites for the wedding couple and VIP guests',
           'Grand royal arrival via decorated Mewari wooden boats',
-          'Superb indoor and outdoor banquet spaces with seamless weather backups',
+          'Superb indoor and outdoor banquet spaces with smooth weather backups',
         ],
         bestFor: 'Sundowner Mehndi, Poolside Cocktails, & Waterfront Pheras',
       },
       {
         id: 'fateh-garh-palace',
         name: 'Fateh Garh Palace, Udaipur',
-        category: 'Hilltop Heritage Sanctuary',
+        category: 'Hilltop Heritage Retreat',
         capacity: '150 – 500 Guests',
         tagline: 'Panoramic Aravalli Hilltop Views & Authentic Mewari Architecture',
         image: 'https://rasmwed.com/wp-content/uploads/2024/08/Fateh-Garh-Palace.webp',
         costRange: '₹60 Lakhs – ₹1.2 Cr (Multi-Day Destination Wedding)',
         description:
-          'Perched high on the western hills overlooking Udaipur and its lakes, Fateh Garh is a heritage Renaissance sanctuary built through historic reassembly. Offering vintage car collections, hillside infinity pools, and expansive wedding terraces, it provides incredible sunset vistas.',
+          'Perched high on the western hills overlooking Udaipur and its lakes, Fateh Garh is a heritage Renaissance retreat built through historic reassembly. Offering vintage car collections, hillside infinity pools, and expansive wedding terraces, it provides incredible sunset vistas.',
         highlights: [
           'Dramatic elevated hillside location offering cooler breezes and panoramic views',
           'Sprawling Dari-Khana and poolside terraces for high-energy Sangeet nights',
@@ -217,7 +217,7 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
       },
       {
         day: 'Day 03',
-        theme: 'The Royal Baraat, Sunset Lake Vows & Imperial Reception',
+        theme: 'The Royal Baraat, Sunset Lake Vows & Grand Reception',
         sub: 'Decorated Steeds · Floating Floral Mandap · Black-Tie Banquet',
         events: [
           {
@@ -232,7 +232,7 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
           },
           {
             time: '08:30 PM – Midnight',
-            title: 'The Grand Imperial Reception & Fireworks',
+            title: 'The Grand Grand Reception & Fireworks',
             desc: 'Black-tie sit-down royal silver thali banquet, champagne toasts, family speeches, and a synchronized aerial fireworks display lighting up the lake.',
           },
         ],
@@ -244,17 +244,17 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
         venues: 'Fateh Garh Palace, Chunda Palace, Labh Garh Palace Resort',
         guests: '100 – 200 Guests (2–3 Days)',
         range: '₹55 Lakhs – ₹95 Lakhs',
-        highlight: 'Intimate royal palace ambience, full family property buyouts, personalized Mewari hospitality, and bespoke floral decor.',
+        highlight: 'Intimate royal palace ambience, full family property buyouts, personalized Mewari hospitality, and custom floral decor.',
       },
       {
-        category: 'Grand Palatial Shoreline Resorts',
+        category: 'Grand Palace Shoreline Resorts',
         venues: 'The Leela Palace Udaipur, Radisson Blu Udaipur, Aurika by Lemon Tree',
         guests: '150 – 350 Guests (3 Days)',
         range: '₹95 Lakhs – ₹2.0 Crore',
         highlight: 'Expansive banquets, lakeside wedding lawns, multi-day guest room blocks, concert-grade Sangeet production, and royal Baraat.',
       },
       {
-        category: 'Ultra-Luxury Island Palaces & Iconic Buyouts',
+        category: 'Ultra-Luxury Island Palaces & Famous Buyouts',
         venues: 'Jagmandir Island Palace, The Oberoi Udaivilas, Taj Lake Palace',
         guests: '200 – 600+ Guests (3 Days)',
         range: '₹2.5 Crore – ₹5.5 Crore+',
@@ -268,11 +268,11 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
       },
       {
         q: 'How much does a luxury destination wedding in Udaipur cost?',
-        a: 'A destination wedding in Udaipur generally costs between ₹55 Lakhs to ₹95 Lakhs for a boutique heritage palace (100–150 guests). Grand lakeside five-star celebrations range between ₹95 Lakhs to ₹2.0 Crore, while ultra-luxury celebrations at iconic island palaces like Jagmandir or Udaivilas range from ₹2.5 Crore to ₹5.5 Crore+. RASM turnkey planning packages start transparently from ₹30,00,000.',
+        a: 'A destination wedding in Udaipur generally costs between ₹55 Lakhs to ₹95 Lakhs for a boutique heritage palace (100–150 guests). Grand lakeside five-star celebrations range between ₹95 Lakhs to ₹2.0 Crore, while ultra-luxury celebrations at famous island palaces like Jagmandir or Udaivilas range from ₹2.5 Crore to ₹5.5 Crore+. RASM turnkey planning packages start transparently from ₹30,00,000.',
       },
       {
         q: 'How are guest boat transfers managed for Lake Pichola venues?',
-        a: 'RASM coordinates dedicated private chartered boat fleets with safety life-jackets, floral adornments, VIP queue management, and onboard acoustic musicians. We oversee jetty logistics at City Palace Bansi Ghat so guests experience seamless, enchanting transit.',
+        a: 'RASM coordinates dedicated private chartered boat fleets with safety life-jackets, floral adornments, VIP queue management, and onboard acoustic musicians. We oversee jetty logistics at City Palace Bansi Ghat so guests experience smooth, enchanting transit.',
       },
       {
         q: 'What is the best season for an outdoor wedding in Udaipur?',
@@ -289,13 +289,13 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
     slug: 'wedding-planner-in-jaipur',
     city: 'Jaipur',
     stateOrRegion: 'Rajasthan',
-    eyebrow: '★ RANKED #1 LUXURY WEDDING PLANNER IN JAIPUR',
+    eyebrow: 'LUXURY WEDDING PLANNER IN JAIPUR',
     h1Title: 'Best Wedding Planner in Jaipur:',
-    h1Accent: 'Imperial Fortresses & Royal Palaces',
+    h1Accent: 'Grand Fortresses & Royal Palaces',
     heroImage: 'https://rasmwed.com/wp-content/uploads/2026/10/opulent_palace_courtyard_at_dusk.webp',
     heroAlt: 'Best Wedding Planner in Jaipur - Royal Palace Destination Wedding in the Pink City',
     leadCopy:
-      'Looking for a grand royal wedding in the historic Pink City? At RASM Weddings & Events, we curate extraordinary celebrations across Jaipur’s iconic palatial landmarks. From the royal Mughal gardens of Rambagh Palace and the palatial fortress grandeur of Fairmont Jaipur, to heritage havelis like Jai Mahal Palace and Samode Palace—our expert team delivers bespoke Rajput decor, elephant Baraat processions, high-fashion Sangeet galas, and seamless on-ground guest management.',
+      'Looking for a grand royal wedding in the historic Pink City? At RASM Weddings & Events, we select special celebrations across Jaipur’s famous palace landmarks. From the royal Mughal gardens of Rambagh Palace and the palace fortress style of Fairmont Jaipur, to heritage havelis like Jai Mahal Palace and Samode Palace—our expert team delivers custom Rajput decor, elephant Baraat processions, high-fashion Sangeet galas, and smooth on-ground guest management.',
     primaryKeyword: 'Best Wedding Planner in Jaipur',
     secondaryKeywords: [
       'destination wedding in Jaipur',
@@ -324,25 +324,25 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
           'Spread across 47 acres of tranquil landscaped gardens, Rambagh Palace is the former residence of the Maharaja of Jaipur. Adorned with hand-carved marble jharokhas, sandstone balustrades, and sprawling Mughal gardens, it is consistently voted among the premier luxury heritage hotels on the planet.',
         highlights: [
           '47 acres of royal Mughal gardens including the grand Mubarak and Jaigarh Lawns',
-          'Palatial dining halls, peacock-dotted courtyards, and royal polo grounds',
+          'Palace dining halls, peacock-dotted courtyards, and royal polo grounds',
           'Unrivaled Taj royal heritage hospitality with horse carriage welcomes',
           'Private royal suites with antique Rajput furnishings and heirloom artwork',
         ],
-        bestFor: 'Grand Imperial Pheras, High-Stakes Receptions, & Palatial Buyouts',
+        bestFor: 'Grand Grand Pheras, High-Stakes Receptions, & Palace Buyouts',
       },
       {
         id: 'fairmont-jaipur',
         name: 'Fairmont Jaipur',
-        category: 'Palatial Fortress Resort',
+        category: 'Palace Fortress Resort',
         capacity: '300 – 1,500+ Guests',
         tagline: 'Mughal-Rajput Fortress Scale for Large-Scale Royal Extravaganzas',
         image: 'https://rasmwed.com/wp-content/uploads/2026/10/palace_wedding_under_blooming_chandeliers.webp',
         costRange: '₹1.5 Cr – ₹3.5 Cr+ (Large-Scale Buyout & Banqueting)',
         description:
-          'Nestled against the Aravalli hills, Fairmont Jaipur is custom-designed as an imperial fortress palace. Boasting 245+ luxury rooms, massive pillar-less ballrooms, and expansive outdoor wedding lawns, it is the premier choice for large 400+ guest destination weddings in Rajasthan.',
+          'Nestled against the Aravalli hills, Fairmont Jaipur is custom-designed as a grand fortress palace. Boasting 245+ luxury rooms, massive pillar-less ballrooms, and expansive outdoor wedding lawns, it is the premier choice for large 400+ guest destination weddings in Rajasthan.',
         highlights: [
           'Massive inventory of 245+ rooms to house all your wedding guests under one roof',
-          'Vast Charbagh lawns and opulent pillarless Grand Ballroom with towering ceilings',
+          'Vast Charbagh lawns and beautiful pillarless Grand Ballroom with towering ceilings',
           'Dramatic fortress facade offering an imposing backdrop for lighting and fireworks',
           'Exceptional banqueting infrastructure designed specifically for multi-day weddings',
         ],
@@ -361,7 +361,7 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
         highlights: [
           'Authentic 18th-century palace architecture right within Jaipur city limits',
           'Sprawling Lotus Pond, Palace Lawns, and fountain courtyards for colorful setups',
-          'World-class Taj culinary teams curating bespoke regional and international spreads',
+          'World-class Taj culinary teams curating custom regional and international spreads',
           'Stunning evening lighting illuminating traditional arches and sandstone jaalis',
         ],
         bestFor: 'Outdoor Garden Pheras, Poolside Mehndi Carnivals, & Shahi Banquets',
@@ -380,7 +380,7 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
           'World-famous hand-painted fresco halls and mirror-worked Sheesh Mahal courtyards',
           'Complete private village buyout offering total intimacy and rustic royal charm',
           'Rooftop swimming pools and hill-facing terraces for atmospheric sunset cocktails',
-          'Rich artistic backdrop that requires minimal additional decor to look majestic',
+          'Rich artistic backdrop that requires minimal additional decor to look grand',
         ],
         bestFor: 'Boutique Heritage Buyouts, Royal Mehndi Baithaks, & Artistic Vows',
       },
@@ -393,7 +393,7 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
         events: [
           {
             time: '12:00 PM – 02:00 PM',
-            title: 'Imperial Rajputana Welcome',
+            title: 'Grand Rajputana Welcome',
             desc: 'Dhol drummers, Shehnai fanfare, garland welcomes by liveried royal staff, and cooling badam thandai drinks.',
           },
           {
@@ -432,7 +432,7 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
       },
       {
         day: 'Day 03',
-        theme: 'The Imperial Elephant Baraat, Sunset Pheras & Royal Reception',
+        theme: 'The Grand Elephant Baraat, Sunset Pheras & Royal Reception',
         sub: 'Vintage Convertibles · Floral Mandap · Black-Tie Banquet',
         events: [
           {
@@ -443,11 +443,11 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
           {
             time: '05:45 PM – 07:30 PM',
             title: 'Sunset Pheras at the Palace Lawns',
-            desc: 'Vedic hymns recited beneath an opulent floral mandap glowing against the illuminated palace facade at twilight.',
+            desc: 'Vedic hymns recited beneath a beautiful floral mandap glowing against the illuminated palace facade at twilight.',
           },
           {
             time: '08:30 PM – Midnight',
-            title: 'The Imperial Gala Reception & Fireworks',
+            title: 'The Grand Gala Reception & Fireworks',
             desc: 'Silver thali banquet, champagne toasts, family speeches, and aerial fireworks illuminating the Pink City sky.',
           },
         ],
@@ -462,14 +462,14 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
         highlight: 'Intimate royal ambience, full property buyout privacy, authentic Rajput architecture, and personalized hospitality.',
       },
       {
-        category: 'Grand Palatial Resorts & Fort Hotels',
+        category: 'Grand Palace Resorts & Fort Hotels',
         venues: 'Fairmont Jaipur, Le Meridien, JW Marriott Resort, Shiv Vilas',
         guests: '200 – 450 Guests (3 Days)',
         range: '₹90 Lakhs – ₹2.2 Crore',
         highlight: 'Expansive banquets, large guest room blocks under one roof, grand Sangeet production, and royal Baraat.',
       },
       {
-        category: 'Ultra-Luxury Imperial Palaces & Iconic Buyouts',
+        category: 'Ultra-Luxury Grand Palaces & Famous Buyouts',
         venues: 'Rambagh Palace (Taj), Jai Mahal Palace, Alila Fort Bishangarh',
         guests: '200 – 600+ Guests (3 Days)',
         range: '₹2.2 Crore – ₹5.0 Crore+',
@@ -479,7 +479,7 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
     faqs: [
       {
         q: 'Why choose Jaipur for a destination wedding?',
-        a: 'Jaipur, the Pink City, blends imperial Rajput history with premier luxury hospitality. Unlike smaller heritage towns, Jaipur boasts large-capacity fortress resorts like Fairmont Jaipur alongside legendary authentic royal palaces like Rambagh Palace, all within convenient reach of an international airport.',
+        a: 'Jaipur, the Pink City, blends grand Rajput history with premier luxury hospitality. Unlike smaller heritage towns, Jaipur boasts large-capacity fortress resorts like Fairmont Jaipur alongside legendary authentic royal palaces like Rambagh Palace, all within convenient reach of an international airport.',
       },
       {
         q: 'What is the average cost of a destination wedding in Jaipur?',
@@ -504,13 +504,13 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
     slug: 'wedding-planner-in-jaisalmer',
     city: 'Jaisalmer',
     stateOrRegion: 'Rajasthan',
-    eyebrow: '★ RANKED #1 LUXURY WEDDING PLANNER IN JAISALMER',
+    eyebrow: 'LUXURY WEDDING PLANNER IN JAISALMER',
     h1Title: 'Best Wedding Planner in Jaisalmer:',
     h1Accent: 'Golden Fortresses & Thar Sand Dunes',
     heroImage: 'https://rasmwed.com/wp-content/uploads/2026/09/wedding-planner-in-jaisalmer-featured.webp',
     heroAlt: 'Best Wedding Planner in Jaisalmer - Golden Sandstone Fortress & Thar Desert Wedding',
     leadCopy:
-      'Envisioning a golden desert fairytale in Rajasthan’s Golden City? At RASM Weddings & Events, we transform the breathtaking golden sandstone forts and rolling Thar dunes of Jaisalmer into royal wedding spectacles. From palatial celebrations at Suryagarh and Fort Rajwada to starry bonfire Sangeets in the Sam sand dunes—we manage desert logistics, luxury glamping, royal folk entertainment, and bespoke golden-hued decor with precision and zero hidden markups.',
+      'Envisioning a golden desert fairytale in Rajasthan’s Golden City? At RASM Weddings & Events, we transform the beautiful golden sandstone forts and rolling Thar dunes of Jaisalmer into royal wedding spectacles. From palace celebrations at Suryagarh and Fort Rajwada to starry bonfire Sangeets in the Sam sand dunes—we manage desert logistics, luxury glamping, royal folk entertainment, and custom golden-hued decor with precision and zero hidden markups.',
     primaryKeyword: 'Best Wedding Planner in Jaisalmer',
     secondaryKeywords: [
       'destination wedding in Jaisalmer',
@@ -538,7 +538,7 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
         description:
           'Constructed from radiant yellow Jaisalmer sandstone to resemble an ancient medieval desert fortress, Suryagarh is globally famous for hosting Kiara Advani & Sidharth Malhotra’s celebrity wedding. With expansive courtyards, subterranean pools, and desert dune setups, it is the benchmark of desert luxury.',
         highlights: [
-          'Iconic celebrity wedding venue built with authentic golden yellow Jaisalmer sandstone',
+          'Famous celebrity wedding venue built with authentic golden yellow Jaisalmer sandstone',
           'Vast courtyards, Baoli stepwells, and sunset dunes for multi-themed ceremonies',
           'World-class culinary and spa services tailored for high-profile international guests',
           'Complete property buyout options providing total privacy amidst the Thar Desert',
@@ -556,7 +556,7 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
         description:
           'Spread over 6 acres of serene grounds, Fort Rajwada reflects authentic Rajput stone-carving traditions designed by opera set designer Stephanie Kohn. Its tranquil courtyards, poolside terraces, and heritage suites provide an authentic royal experience.',
         highlights: [
-          'Exquisite stone jharokha craftsmanship and museum-quality antique furnishings',
+          'Fine stone jharokha craftsmanship and museum-quality antique furnishings',
           'Spacious banquet lawns and poolside terraces for colorful Haldi and Mehndi setups',
           'Warm local Rajasthani hospitality with rich regional Marwari culinary curation',
           'Convenient central location close to Jaisalmer city landmarks and airport',
@@ -566,13 +566,13 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
       {
         id: 'jaisalmer-marriott',
         name: 'Jaisalmer Marriott Resort & Spa',
-        category: 'Modern Five-Star Palatial Resort',
+        category: 'Modern Five-Star Palace Resort',
         capacity: '150 – 500 Guests',
         tagline: 'Five-Star Luxury Resort Overlooking the Golden Sonar Qila',
         image: 'https://rasmwed.com/wp-content/uploads/2026/10/opulent_palace_courtyard_at_dusk.webp',
         costRange: '₹80 Lakhs – ₹1.6 Cr (Five-Star Resort Wedding)',
         description:
-          'Blending contemporary five-star Marriott luxury with traditional golden sandstone architecture, Jaisalmer Marriott overlooks the historic Golden Fort. Offering expansive wedding lawns, grand ballrooms, and 135+ guest rooms, it delivers seamless modern destination weddings.',
+          'Blending contemporary five-star Marriott luxury with traditional golden sandstone architecture, Jaisalmer Marriott overlooks the historic Golden Fort. Offering expansive wedding lawns, grand ballrooms, and 135+ guest rooms, it delivers smooth modern destination weddings.',
         highlights: [
           '135+ spacious guest rooms and suites to accommodate large wedding guest lists',
           'Direct scenic views of Jaisalmer Fort (Sonar Qila) from sunset rooftop terraces',
@@ -640,11 +640,11 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
           {
             time: '05:45 PM – 07:30 PM',
             title: 'Sunset Pheras at the Sandstone Courtyard',
-            desc: 'Vedic hymns recited beneath an opulent floral mandap glowing against the illuminated fortress facade at twilight.',
+            desc: 'Vedic hymns recited beneath a beautiful floral mandap glowing against the illuminated fortress facade at twilight.',
           },
           {
             time: '08:30 PM – Midnight',
-            title: 'The Imperial Gala Reception & Fireworks',
+            title: 'The Grand Gala Reception & Fireworks',
             desc: 'Silver thali banquet, champagne toasts, family speeches, and aerial fireworks illuminating the Golden City desert sky.',
           },
         ],
@@ -697,13 +697,13 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
     slug: 'wedding-planner-in-goa',
     city: 'Goa',
     stateOrRegion: 'Goa',
-    eyebrow: '★ RANKED #1 LUXURY DESTINATION WEDDING PLANNER IN GOA',
+    eyebrow: 'LUXURY DESTINATION WEDDING PLANNER IN GOA',
     h1Title: 'Best Wedding Planner in Goa:',
     h1Accent: 'Beachfront Mandaps & Oceanfront Luxury',
     heroImage: 'https://rasmwed.com/wp-content/uploads/2024/08/Goa.webp',
     heroAlt: 'Best Wedding Planner in Goa - Sunset Beachfront Mandap & Luxury Ocean Resort Wedding',
     leadCopy:
-      'Dreaming of an oceanfront sunset wedding with sea breezes and golden sands? At RASM Weddings & Events, we bring five-star luxury and flawless execution to Goa’s finest beachfront resorts and heritage Portuguese estates. From beachfront pheras at Taj Exotica and barefoot luxury sundowners at W Goa, to grand ballroom galas at ITC Grand Goa and The Leela—our team delivers bespoke floral canopies, cocktail production, international DJ bookings, and stress-free guest logistics.',
+      'Dreaming of an oceanfront sunset wedding with sea breezes and golden sands? At RASM Weddings & Events, we bring five-star luxury and flawless execution to Goa’s finest beachfront resorts and heritage Portuguese estates. From beachfront pheras at Taj Exotica and barefoot luxury sundowners at W Goa, to grand ballroom galas at ITC Grand Goa and The Leela—our team delivers custom floral canopies, cocktail production, international DJ bookings, and stress-free guest logistics.',
     primaryKeyword: 'Best Wedding Planner in Goa',
     secondaryKeywords: [
       'destination wedding in Goa',
@@ -729,7 +729,7 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
         image: 'https://rasmwed.com/wp-content/uploads/2024/08/Goa.webp',
         costRange: '₹1.8 Cr – ₹3.8 Cr+ (Five-Star Beachfront Wedding)',
         description:
-          'Spanning 56 acres of lush gardens along a private stretch of Benaulim Beach in South Goa, Taj Exotica is the benchmark of luxury beach weddings in India. Its Mediterranean villa architecture, palm-fringed lawns, and direct beach access create a breathtaking coastal paradise.',
+          'Spanning 56 acres of lush gardens along a private stretch of Benaulim Beach in South Goa, Taj Exotica is the benchmark of luxury beach weddings in India. Its Mediterranean villa architecture, palm-fringed lawns, and direct beach access create a beautiful coastal paradise.',
         highlights: [
           '56 acres of manicured tropical gardens with direct access to private Benaulim Beach',
           'Sprawling oceanfront wedding lawns for sunset pheras under coconut palms',
@@ -741,7 +741,7 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
       {
         id: 'itc-grand-goa',
         name: 'ITC Grand Goa Resort & Spa',
-        category: 'Village-Style Oceanfront Sanctuary',
+        category: 'Village-Style Oceanfront Retreat',
         capacity: '200 – 1,000+ Guests',
         tagline: 'Direct Arossim Beach Access with 45 Acres of Lagoons & Coconut Groves',
         image: 'https://rasmwed.com/wp-content/uploads/2026/10/sunset_palace_resort_retreat.webp',
@@ -749,7 +749,7 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
         description:
           'Set amidst 45 acres of lush landscaped gardens with shimmering lagoons and direct access to pristine Arossim Beach, ITC Grand Goa is designed in traditional Indo-Portuguese village architecture. Offering one of Goa’s largest multi-level outdoor pools and multiple seaside lawns, it is built for grand celebrations.',
         highlights: [
-          'Direct access to serene, white-sand Arossim Beach with breathtaking sunset views',
+          'Direct access to serene, white-sand Arossim Beach with beautiful sunset views',
           'Expansive Seaside Lawns accommodating up to 1,000 guests comfortably',
           'Celebrated ITC culinary pedigree with authentic coastal and international banqueting',
           '252 luxurious rooms and suites nestled among private waterways and gardens',
@@ -765,9 +765,9 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
         image: 'https://rasmwed.com/wp-content/uploads/2026/10/glamorous_indian_wedding_dance_performance.webp',
         costRange: '₹1.6 Cr – ₹3.5 Cr+ (Chic Luxury Beach Wedding)',
         description:
-          'Situated at the foot of historic Chapora Fort overlooking Vagator Beach, W Goa brings high-energy luxury and contemporary style to destination celebrations. With its iconic Rockpool terrace, vibrant design, and world-class sound systems, it is the top choice for couples wanting an electrifying party atmosphere.',
+          'Situated at the foot of historic Chapora Fort overlooking Vagator Beach, W Goa brings high-energy luxury and contemporary style to destination celebrations. With its famous Rockpool terrace, vibrant design, and world-class sound systems, it is the top choice for couples wanting an electrifying party atmosphere.',
         highlights: [
-          'Iconic Rockpool sunset amphitheater overlooking the Arabian Sea for cocktails and Sangeet',
+          'Famous Rockpool sunset amphitheater overlooking the Arabian Sea for cocktails and Sangeet',
           'Chic, modern bohemian design that appeals strongly to international and NRI couples',
           'Exceptional technical acoustic capabilities for high-energy music and DJ performances',
           'World-class mixology and avant-garde global cuisine stations',
@@ -849,7 +849,7 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
         venues: 'Heritage Portuguese Villas, Riva Beach Resort, Caravela Beach Resort',
         guests: '100 – 200 Guests (2–3 Days)',
         range: '₹50 Lakhs – ₹95 Lakhs',
-        highlight: 'Intimate barefoot beach vibe, lush tropical lawns, personalized hospitality, and bespoke floral decor.',
+        highlight: 'Intimate barefoot beach vibe, lush tropical lawns, personalized hospitality, and custom floral decor.',
       },
       {
         category: 'Five-Star Beachfront Luxury Resorts',
@@ -859,7 +859,7 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
         highlight: 'Sprawling oceanfront lawns, large room blocks under one roof, grand Sangeet production, and beach wedding permits.',
       },
       {
-        category: 'Ultra-Luxury Iconic Beachfront Buyouts',
+        category: 'Ultra-Luxury Famous Beachfront Buyouts',
         venues: 'Taj Exotica Resort & Spa, W Goa, The Leela Goa',
         guests: '200 – 600+ Guests (3 Days)',
         range: '₹2.2 Crore – ₹4.5 Crore+',
@@ -881,7 +881,7 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
       },
       {
         q: 'What are the music and sound curfew rules in Goa?',
-        a: 'Outdoor music in Goa is strictly permitted until 10:00 PM by law. After 10:00 PM, all celebrations seamlessly transition indoors into the resort’s soundproof luxury ballrooms or nightclubs, where parties can continue until the early morning hours.',
+        a: 'Outdoor music in Goa is strictly permitted until 10:00 PM by law. After 10:00 PM, all celebrations smoothly transition indoors into the resort’s soundproof luxury ballrooms or nightclubs, where parties can continue until the early morning hours.',
       },
     ],
   },
@@ -904,7 +904,7 @@ export function getDestinationData(citySlug: string): DestinationDetail {
     slug: citySlug,
     city: cityName,
     stateOrRegion: 'Rajasthan & Beyond',
-    eyebrow: `★ RANKED #1 LUXURY WEDDING PLANNER IN ${cityName.toUpperCase()}`,
+    eyebrow: `LUXURY WEDDING PLANNER IN ${cityName.toUpperCase()}`,
     h1Title: `Best Wedding Planner in ${cityName}:`,
     h1Accent: 'Heritage Palaces, Resorts & Lawns',
     heroImage: 'https://rasmwed.com/wp-content/uploads/2026/10/golden_palace_courtyard_at_dusk.webp',
@@ -957,12 +957,12 @@ export function getDestinationData(citySlug: string): DestinationDetail {
           {
             time: '04:00 PM – 07:00 PM',
             title: 'Shahi Mehndi & Craft Fair',
-            desc: 'Poolside pavilions, live folk bangle artisans, and organic herbal henna artists.',
+            desc: 'Poolside pavilions, live folk bangle craftspeople, and organic herbal henna artists.',
           },
           {
             time: '07:30 PM – 11:30 PM',
             title: 'Courtyard Welcome Dinner',
-            desc: 'Candlelit dinner with live acoustic folk performances and curated regional delicacies.',
+            desc: 'Candlelit dinner with live acoustic folk performances and selected regional delicacies.',
           },
         ],
       },
@@ -1001,11 +1001,11 @@ export function getDestinationData(citySlug: string): DestinationDetail {
           {
             time: '05:45 PM – 07:30 PM',
             title: 'Sunset Pheras at the Lawns',
-            desc: 'Vedic hymns recited beneath an opulent floral mandap in the warm evening light.',
+            desc: 'Vedic hymns recited beneath a beautiful floral mandap in the warm evening light.',
           },
           {
             time: '08:30 PM – Midnight',
-            title: 'The Imperial Gala Reception & Fireworks',
+            title: 'The Grand Gala Reception & Fireworks',
             desc: 'Silver thali banquet, champagne toasts, family speeches, and aerial fireworks.',
           },
         ],
@@ -1014,7 +1014,7 @@ export function getDestinationData(citySlug: string): DestinationDetail {
     budgetTiers: [
       {
         category: 'Heritage Resorts & Lawns',
-        venues: `Heritage Resorts & Palatial Hotels in ${cityName}`,
+        venues: `Heritage Resorts & Palace Hotels in ${cityName}`,
         guests: '100 – 250 Guests (2–3 Days)',
         range: '₹40 Lakhs – ₹85 Lakhs',
         highlight: 'Intimate royal ambience, full property privacy, and personalized regional hospitality.',

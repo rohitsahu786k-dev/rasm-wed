@@ -10,9 +10,9 @@ export const settings: SiteSettings = {
   whatsapp: SITE.whatsapp,
   email: SITE.email,
   address: SITE.address,
-  heroHeadline: 'Where Royal Heritage Meets Timeless Romance',
+  heroHeadline: 'Where Royal Heritage Meets Classic Romance',
   heroSubheadline:
-    'Curating bespoke palatial celebrations across Udaipur, Jaipur, and iconic rasm destinations for discerning couples worldwide.',
+    'Curating custom palace celebrations across Udaipur, Jaipur, and famous rasm destinations for careful couples worldwide.',
   instagramUrl: SITE.instagram,
   stats: {
     experience: '10+ Years',
