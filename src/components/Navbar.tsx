@@ -133,6 +133,12 @@ export const Navbar: React.FC = () => {
         setActiveMenu(null);
         setHoveredNav(null);
       }}
+      onKeyDown={(event) => {
+        if (event.key === 'Escape') {
+          setActiveMenu(null);
+          setHoveredNav(null);
+        }
+      }}
     >
       {/* 1. Top Micro Bar: Premium VIP Strip (Tucks away smoothly on scroll) */}
       <div
@@ -240,9 +246,16 @@ export const Navbar: React.FC = () => {
                   setActiveMenu('destinations');
                 }}
               >
-                <Link
-                  href="/wedding-destination"
-                  onClick={closeNav}
+                <button
+                  type="button"
+                  onClick={() => setActiveMenu('destinations')}
+                  onFocus={() => {
+                    setHoveredNav('destinations');
+                    setActiveMenu('destinations');
+                  }}
+                  aria-haspopup="true"
+                  aria-expanded={activeMenu === 'destinations'}
+                  aria-controls="desktop-destinations-menu"
                   className={`relative px-3 py-1.5 rounded-xl transition-colors flex items-center gap-1.5 z-10 ${
                     currentPath.includes('wedding-planner') || currentPath === '/wedding-destination'
                       ? 'text-gold-dark font-semibold'
@@ -258,7 +271,7 @@ export const Navbar: React.FC = () => {
                       activeMenu === 'destinations' ? 'rotate-180' : ''
                     }`}
                   />
-                </Link>
+                </button>
                 {hoveredNav === 'destinations' && (
                   <motion.div
                     layoutId="navbar-pill"
@@ -276,9 +289,16 @@ export const Navbar: React.FC = () => {
                   setActiveMenu('services');
                 }}
               >
-                <Link
-                  href="/services"
-                  onClick={closeNav}
+                <button
+                  type="button"
+                  onClick={() => setActiveMenu('services')}
+                  onFocus={() => {
+                    setHoveredNav('services');
+                    setActiveMenu('services');
+                  }}
+                  aria-haspopup="true"
+                  aria-expanded={activeMenu === 'services'}
+                  aria-controls="desktop-services-menu"
                   className={`relative px-3 py-1.5 rounded-xl transition-colors flex items-center gap-1.5 z-10 ${
                     currentPath === '/services' ||
                     currentPath === '/traditional-decoration' ||
@@ -293,7 +313,7 @@ export const Navbar: React.FC = () => {
                       activeMenu === 'services' ? 'rotate-180' : ''
                     }`}
                   />
-                </Link>
+                </button>
                 {hoveredNav === 'services' && (
                   <motion.div
                     layoutId="navbar-pill"
@@ -364,6 +384,15 @@ export const Navbar: React.FC = () => {
                 }}
               >
                 <button
+                  type="button"
+                  onClick={() => setActiveMenu('explore')}
+                  onFocus={() => {
+                    setHoveredNav('explore');
+                    setActiveMenu('explore');
+                  }}
+                  aria-haspopup="true"
+                  aria-expanded={activeMenu === 'explore'}
+                  aria-controls="desktop-explore-menu"
                   className={`relative px-3 py-1.5 rounded-xl transition-colors flex items-center gap-1.5 z-10 ${
                     activeMenu === 'explore' ? 'text-gold-dark font-semibold' : 'hover:text-gold-dark'
                   }`}
@@ -463,6 +492,8 @@ export const Navbar: React.FC = () => {
         {/* Destinations Megamenu */}
         {activeMenu === 'destinations' && (
           <motion.div
+            key="destinations"
+            id="desktop-destinations-menu"
             initial={{ opacity: 0, y: 10, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 8, scale: 0.98 }}
@@ -593,6 +624,8 @@ export const Navbar: React.FC = () => {
         {/* Services Megamenu */}
         {activeMenu === 'services' && (
           <motion.div
+            key="services"
+            id="desktop-services-menu"
             initial={{ opacity: 0, y: 10, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 8, scale: 0.98 }}
@@ -661,6 +694,8 @@ export const Navbar: React.FC = () => {
         {/* Explore Megamenu */}
         {activeMenu === 'explore' && (
           <motion.div
+            key="explore"
+            id="desktop-explore-menu"
             initial={{ opacity: 0, y: 10, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 8, scale: 0.98 }}
