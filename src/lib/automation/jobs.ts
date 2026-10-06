@@ -148,6 +148,22 @@ export async function runCwvJob() {
   return { measured: results.length, field: results.filter((r) => r.source === 'field').length, alerts: alerts.length };
 }
 
+/**
+ * Node's fetch reports DNS, TLS and connection failures as a bare "fetch failed"; the real reason (for example
+ * `getaddrinfo ENOTFOUND admin.rasmwed.com`) is only on `error.cause`. Scheduled runs are reported by email, so
+ * flattening the cause chain is the difference between a useless alert and an actionable one.
+ */
+function describeError(e: unknown): string {
+  const parts: string[] = [];
+  let cur: unknown = e;
+  for (let depth = 0; depth < 4 && cur instanceof Error; depth++) {
+    const m = cur.message?.trim();
+    if (m && !parts.includes(m)) parts.push(m);
+    cur = (cur as { cause?: unknown }).cause;
+  }
+  return parts.join(' <- ') || 'unknown error';
+}
+
 /** Runs a job and converts budget/API errors into a safe, secret-free result (a cron must never crash loudly with secrets). */
 export async function runJob(name: JobName, opts: { dry?: boolean } = {}): Promise<unknown> {
   try {
@@ -163,6 +179,6 @@ export async function runJob(name: JobName, opts: { dry?: boolean } = {}): Promi
     }
   } catch (e) {
     if (e instanceof BudgetExceededError) return { status: 'skipped', reason: e.message };
-    return { status: 'error', error: redact((e as Error).message) };
+    return { status: 'error', error: redact(describeError(e)) };
   }
 }
