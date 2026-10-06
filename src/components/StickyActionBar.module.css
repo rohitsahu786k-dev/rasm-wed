@@ -1,0 +1,333 @@
+.dock {
+  position: fixed;
+  z-index: 120;
+  right: 12px;
+  bottom: max(12px, env(safe-area-inset-bottom));
+  left: 12px;
+  pointer-events: none;
+}
+
+.desktopBar {
+  display: grid;
+  grid-template-columns: 1.45fr 1.28fr 1.35fr 1.05fr .9fr .95fr 1.05fr;
+  align-items: stretch;
+  width: min(1420px, 100%);
+  min-height: 82px;
+  margin: 0 auto;
+  padding: 9px;
+  overflow: hidden;
+  border: 1px solid rgba(194, 137, 25, .72);
+  border-radius: 22px;
+  background: linear-gradient(105deg, rgba(255, 253, 248, .98), rgba(255, 249, 237, .97));
+  box-shadow: 0 17px 38px rgba(82, 49, 8, .22), 0 5px 12px rgba(120, 79, 14, .12), inset 0 1px 0 #fff;
+  pointer-events: auto;
+  backdrop-filter: blur(18px);
+}
+
+.desktopBar > * {
+  position: relative;
+}
+
+.desktopBar > * + *::before {
+  position: absolute;
+  top: 10px;
+  bottom: 10px;
+  left: 0;
+  width: 1px;
+  background: rgba(160, 111, 25, .2);
+  content: '';
+}
+
+.infoItem,
+.actionButton,
+.quoteButton {
+  min-width: 0;
+  border: 0;
+  font: inherit;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.infoItem,
+.actionButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 11px;
+  padding: 8px 12px;
+  color: #2b1a0d;
+  background: transparent;
+  transition: background-color .2s ease, transform .2s ease, color .2s ease;
+}
+
+.infoItem:hover,
+.actionButton:hover {
+  color: #78550e;
+  background: rgba(212, 175, 55, .08);
+}
+
+.infoItem:active,
+.actionButton:active,
+.quoteButton:active,
+.mobileAction:active {
+  transform: translateY(1px);
+}
+
+.infoIcon {
+  display: grid;
+  flex: 0 0 auto;
+  width: 34px;
+  height: 34px;
+  place-items: center;
+  color: #966613;
+}
+
+.infoIcon svg,
+.actionButton > svg {
+  width: 27px;
+  height: 27px;
+  stroke-width: 2.2;
+}
+
+.copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 1.16;
+}
+
+.copy strong {
+  white-space: nowrap;
+  font-size: clamp(11px, 1vw, 14px);
+  font-weight: 700;
+  letter-spacing: -.025em;
+}
+
+.copy small {
+  margin-top: 5px;
+  overflow: hidden;
+  color: #766657;
+  font-size: clamp(8px, .68vw, 10px);
+  font-weight: 500;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.quoteButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin: 0 5px;
+  padding: 9px 14px;
+  border: 1px solid rgba(164, 105, 7, .42);
+  border-radius: 16px;
+  color: #fffdf7;
+  background: linear-gradient(135deg, #d3a33d 0%, #a97012 58%, #c89127 100%);
+  box-shadow: 0 9px 19px rgba(151, 96, 8, .32), inset 0 1px 0 rgba(255, 255, 255, .32);
+  text-shadow: 0 1px 1px rgba(91, 52, 0, .22);
+  transition: filter .2s ease, transform .2s ease, box-shadow .2s ease;
+}
+
+.quoteButton::before {
+  display: none;
+}
+
+.quoteButton:hover {
+  filter: brightness(1.08);
+  box-shadow: 0 11px 23px rgba(151, 96, 8, .4), inset 0 1px 0 rgba(255, 255, 255, .38);
+}
+
+.quoteButton svg {
+  width: 24px;
+  height: 24px;
+}
+
+.quoteButton span {
+  white-space: nowrap;
+  font-size: clamp(11px, 1.05vw, 15px);
+  font-weight: 700;
+}
+
+.quoteButton .arrow {
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.whatsappButton {
+  margin: 2px 5px;
+  border-radius: 15px;
+  color: #fff;
+  background: linear-gradient(145deg, #28bf5b, #07943b);
+  box-shadow: 0 6px 15px rgba(9, 145, 58, .25), inset 0 1px 0 rgba(255, 255, 255, .25);
+}
+
+.whatsappButton:hover {
+  color: #fff;
+  background: linear-gradient(145deg, #30c966, #078b38);
+}
+
+.whatsappButton .copy small {
+  color: rgba(255, 255, 255, .86);
+}
+
+.mobileBar {
+  display: none;
+}
+
+.desktopBar a:focus-visible,
+.desktopBar button:focus-visible,
+.mobileBar a:focus-visible,
+.mobileBar button:focus-visible {
+  z-index: 2;
+  outline: 3px solid rgba(153, 115, 22, .45);
+  outline-offset: -3px;
+}
+
+@media (max-width: 1180px) {
+  .desktopBar {
+    grid-template-columns: 1.15fr 1.06fr 1.2fr repeat(4, .9fr);
+  }
+
+  .infoItem,
+  .actionButton {
+    gap: 7px;
+    padding-inline: 8px;
+  }
+
+  .copy small {
+    display: none;
+  }
+}
+
+@media (max-width: 899px) {
+  .dock {
+    right: 8px;
+    bottom: max(8px, env(safe-area-inset-bottom));
+    left: 8px;
+  }
+
+  .desktopBar {
+    display: none;
+  }
+
+  .mobileBar {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    width: min(620px, 100%);
+    min-height: 78px;
+    margin: 0 auto;
+    padding: 7px;
+    border: 1px solid rgba(194, 137, 25, .75);
+    border-radius: 22px;
+    background: linear-gradient(110deg, rgba(255, 253, 248, .99), rgba(255, 249, 237, .98));
+    box-shadow: 0 15px 32px rgba(82, 49, 8, .25), 0 4px 9px rgba(120, 79, 14, .13), inset 0 1px 0 #fff;
+    pointer-events: auto;
+    backdrop-filter: blur(18px);
+  }
+
+  .mobileAction {
+    position: relative;
+    display: flex;
+    min-width: 0;
+    min-height: 62px;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    padding: 5px 2px;
+    border: 0;
+    color: #29180b;
+    background: transparent;
+    flex-direction: column;
+    font: inherit;
+    font-size: clamp(9px, 3vw, 12px);
+    font-weight: 650;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+  .mobileAction + .mobileAction::before {
+    position: absolute;
+    top: 9px;
+    bottom: 9px;
+    left: 0;
+    width: 1px;
+    background: rgba(160, 111, 25, .23);
+    content: '';
+  }
+
+  .mobileIcon {
+    display: grid;
+    width: 34px;
+    height: 34px;
+    place-items: center;
+    border: 1px solid rgba(197, 160, 89, .38);
+    border-radius: 50%;
+    color: #8c5c0e;
+    background: rgba(255, 252, 245, .82);
+  }
+
+  .mobileIcon svg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .whatsappIcon {
+    border-color: #16a249;
+    color: #fff;
+    background: linear-gradient(145deg, #29c661, #07933c);
+    box-shadow: 0 4px 9px rgba(9, 145, 58, .22);
+  }
+
+  .mobileQuote {
+    z-index: 1;
+    margin: -3px 3px;
+    min-height: 68px;
+    border: 1px solid rgba(164, 105, 7, .42);
+    border-radius: 16px;
+    color: #fffdf7;
+    background: linear-gradient(145deg, #d3a33d, #a97012 65%, #bd8622);
+    box-shadow: 0 7px 15px rgba(151, 96, 8, .34), inset 0 1px 0 rgba(255, 255, 255, .3);
+    text-shadow: 0 1px 1px rgba(91, 52, 0, .2);
+  }
+
+  .mobileQuote::before {
+    display: none;
+  }
+
+  .mobileQuote .mobileIcon {
+    border-color: transparent;
+    color: #fff;
+    background: transparent;
+  }
+}
+
+@media (max-width: 370px) {
+  .mobileBar {
+    padding-inline: 4px;
+  }
+
+  .mobileAction {
+    font-size: 8.5px;
+  }
+
+  .mobileIcon {
+    width: 30px;
+    height: 30px;
+  }
+
+  .mobileIcon svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .infoItem,
+  .actionButton,
+  .quoteButton,
+  .mobileAction {
+    transition: none;
+  }
+}

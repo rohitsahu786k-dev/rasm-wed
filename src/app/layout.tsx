@@ -9,6 +9,7 @@ import { Navbar } from '@/components/Navbar';
 import { Footer } from '@/components/Footer';
 import { JsonLd } from '@/components/JsonLd';
 import { Analytics } from '@/components/Analytics';
+import { StickyActionBar } from '@/components/StickyActionBar';
 import { organizationSchema, websiteSchema } from '@/lib/schema';
 
 // Self-hosted (variable weight 200-800): no Google Fonts request at build time, so builds never depend on fonts.googleapis.com.
@@ -58,12 +59,13 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         <Analytics />
         <SiteSettingsProvider value={settings}>
         <InquiryProvider>
-          <div className="min-h-screen bg-white text-charcoal-900 flex flex-col selection:bg-gold selection:text-white">
+          <div className="min-h-screen bg-white text-charcoal-900 flex flex-col selection:bg-gold selection:text-white pb-[calc(98px+env(safe-area-inset-bottom))] min-[900px]:pb-[calc(106px+env(safe-area-inset-bottom))]">
             <Navbar />
             <main id="main" className="flex-grow">
               {children}
             </main>
             <Footer settings={settings} />
+            <StickyActionBar />
           </div>
         </InquiryProvider>
         </SiteSettingsProvider>
