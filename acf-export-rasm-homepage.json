@@ -179,9 +179,9 @@
         "placement": "top",
         "endpoint": 0
       },
-      { "key": "field_rasm_phone", "label": "Phone Number", "name": "rasm_phone_number", "type": "text", "instructions": "Shown in the header, footer and contact page. Include country code, e.g. +91 80948 75504." },
+      { "key": "field_rasm_phone", "label": "Phone Number", "name": "rasm_phone_number", "type": "text", "instructions": "Shown in the header, footer and contact page. Include country code, e.g. +91 99284 64259." },
       { "key": "field_rasm_phone2", "label": "Second Phone Number", "name": "rasm_phone_number_2", "type": "text" },
-      { "key": "field_rasm_whatsapp", "label": "WhatsApp Number (digits only, with country code)", "name": "rasm_whatsapp_number", "type": "text", "instructions": "Example: 918094875504" },
+      { "key": "field_rasm_whatsapp", "label": "WhatsApp Number (digits only, with country code)", "name": "rasm_whatsapp_number", "type": "text", "instructions": "Example: 919928464259" },
       { "key": "field_rasm_email", "label": "Email", "name": "rasm_email_address", "type": "email" },
       { "key": "field_rasm_address", "label": "Office Address", "name": "rasm_office_address", "type": "textarea", "rows": 3 },
       { "key": "field_rasm_instagram", "label": "Instagram URL", "name": "rasm_instagram_url", "type": "url" },

@@ -6,7 +6,7 @@
  */
 import type { SiteSettings } from '../types/index.ts';
 import { settings as baseSettings } from '../data/settings.ts';
-import { SITE, SITE_URL, WP_ORIGIN } from './site.ts';
+import { SITE, SITE_URL, WP_ORIGIN, isRetiredPhone } from './site.ts';
 
 export interface AcfImage {
   url: string;
@@ -152,15 +152,19 @@ export async function getHomeContent(): Promise<HomeContent> {
 
 const digits = (s: string) => s.replace(/\D/g, '');
 
-/** Contact details: ACF values (editable in WordPress) over the values published in code. */
-export async function getSiteSettings(): Promise<SiteSettings & { phone2: string; facebookUrl: string; youtubeUrl: string }> {
+/**
+ * Contact details: ACF values (editable in WordPress) over the values published in code.
+ * The site now publishes a single number, so `rasm_phone_number_2` is no longer read at all, and any retired
+ * number still stored in ACF is discarded (see isRetiredPhone) rather than republished.
+ */
+export async function getSiteSettings(): Promise<SiteSettings & { facebookUrl: string; youtubeUrl: string }> {
   const a = await fetchFrontPageAcf();
   const phone = str(a.rasm_phone_number);
+  const whatsapp = digits(str(a.rasm_whatsapp_number));
   return {
     ...baseSettings,
-    phone: phone || SITE.phone,
-    phone2: str(a.rasm_phone_number_2) || SITE.phone2,
-    whatsapp: digits(str(a.rasm_whatsapp_number)) || SITE.whatsapp,
+    phone: phone && !isRetiredPhone(phone) ? phone : SITE.phone,
+    whatsapp: whatsapp && !isRetiredPhone(whatsapp) ? whatsapp : SITE.whatsapp,
     email: SITE.email,
     address: str(a.rasm_office_address) || SITE.address,
     instagramUrl: str(a.rasm_instagram_url) || SITE.instagram,

@@ -252,7 +252,7 @@ export async function ContactPage() {
   const tel = (n: string) => `tel:${n.replace(/[^\d+]/g, '')}`;
   const mapQuery = encodeURIComponent(`Rasm Weddings & Events, ${s.address}`);
   const cards = [
-    { icon: Phone, label: 'Call us', lines: [{ text: s.phone, href: tel(s.phone) }, ...(s.phone2 ? [{ text: s.phone2, href: tel(s.phone2) }] : [])] },
+    { icon: Phone, label: 'Call us', lines: [{ text: s.phone, href: tel(s.phone) }] },
     { icon: MessageCircle, label: 'WhatsApp', lines: [{ text: `+${s.whatsapp}`, href: `https://wa.me/${s.whatsapp}` }] },
     { icon: Mail, label: 'Email', lines: [{ text: s.email, href: `mailto:${s.email}` }] },
     { icon: MapPin, label: 'Office, Udaipur', lines: [{ text: s.address, href: `https://www.google.com/maps/search/?api=1&query=${mapQuery}` }] },

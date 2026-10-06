@@ -13,7 +13,7 @@ The Next.js homepage reads its banner carousel, trust bar, welcome section and c
 | **Hero Banner Carousel** | Up to 6 slides. Each slide: **Desktop image** (about 1920 x 900), **Mobile image** (about 900 x 1200, portrait; optional, desktop image is used if empty), image description, small text, heading, sub heading, button text + link, text position, dark overlay. **Seconds per slide** (0 = no auto-play). |
 | **Trust Bar** | Up to 6 number + label pairs shown under the banner. |
 | **Welcome Section** | Small heading, heading, text, image, button. |
-| **Contact & Social** | Phone(s), WhatsApp (digits, e.g. 918094875504), email, address, Instagram/Facebook/YouTube. Used in the header, footer, contact form, WhatsApp buttons and Google structured data. |
+| **Contact & Social** | Phone(s), WhatsApp (digits, e.g. 919928464259), email, address, Instagram/Facebook/YouTube. Used in the header, footer, contact form, WhatsApp buttons and Google structured data. |
 
 ## Tips
 - The **first slide** is loaded first and carries the page's main heading (H1): make it your most important message.

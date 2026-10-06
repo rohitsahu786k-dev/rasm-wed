@@ -49,7 +49,9 @@ export async function generateStaticParams() {
   // prerender every city and blog URL as a 404 page. The site has dozens of WordPress pages and posts, so both
   // collections coming back empty means the backend is down, not that the content was deleted: fail loudly
   // instead of shipping a site of 404s.
-  if (pages.length === 0 && posts.length === 0) {
+  // Production builds only: `next dev` must stay usable when the backend is unreachable, so design and
+  // code-owned routes can still be worked on offline.
+  if (process.env.NODE_ENV === 'production' && pages.length === 0 && posts.length === 0) {
     throw new Error(
       `WordPress returned no pages and no posts from ${process.env.NEXT_PUBLIC_WP_ORIGIN ?? process.env.WP_ORIGIN ?? 'the configured WP_ORIGIN'}. ` +
         'Refusing to prerender: every WordPress-backed URL would become a 404 page. Check that WP_ORIGIN points at the WordPress origin and that it resolves.',

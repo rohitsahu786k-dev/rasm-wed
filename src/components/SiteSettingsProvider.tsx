@@ -3,7 +3,7 @@
 import { createContext, useContext } from 'react';
 import type { SiteSettings } from '@/types';
 
-export type FullSettings = SiteSettings & { phone2: string; facebookUrl: string; youtubeUrl: string };
+export type FullSettings = SiteSettings & { facebookUrl: string; youtubeUrl: string };
 
 const Ctx = createContext<FullSettings | null>(null);
 

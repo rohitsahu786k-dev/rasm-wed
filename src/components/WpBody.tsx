@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import { parseElementor, type Block } from '@/lib/elementor';
+import { scrubRetiredPhones } from '@/lib/site';
 
 /** Owner-written counters/badges and template leftovers from the old Elementor pages. */
 const SKIP = /^(have a look|over \d+\+? successful events|a journey of celebrations|introduction|list item|beautiful memories|about us|home|the royal setup|wedding designs|check out some of our best-selling designs|a visual tour)\b/i;
@@ -66,10 +67,13 @@ function toNodes(blocks: Block[]): Node[] {
  */
 export function WpBody({ content, className = '' }: { content: string; className?: string }) {
   // One <h1> per page (the page template owns it): demote any <h1> authored inside WordPress content.
-  const safe = content
-    .replace(/<script[\s\S]*?<\/script>/gi, '')
-    .replace(/<h1(\s|>)/gi, '<h2$1')
-    .replace(/<\/h1>/gi, '</h2>');
+  // scrubRetiredPhones also rewrites retired numbers hard-coded into legacy Elementor buttons and body copy.
+  const safe = scrubRetiredPhones(
+    content
+      .replace(/<script[\s\S]*?<\/script>/gi, '')
+      .replace(/<h1(\s|>)/gi, '<h2$1')
+      .replace(/<\/h1>/gi, '</h2>'),
+  );
   if (!/elementor/.test(safe)) return <div className={`wp-content ${className}`} dangerouslySetInnerHTML={{ __html: safe }} />;
 
   const nodes = toNodes(cleanBlocks(parseElementor(safe)));

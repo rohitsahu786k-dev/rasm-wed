@@ -461,7 +461,7 @@ test('ACF homepage parsing: valid slides used, invalid ignored, defaults when em
   assert.equal(safeHref('javascript:alert(1)'), undefined);
   assert.equal(safeHref('//evil.test'), undefined);
   assert.equal(safeHref('/about-us/'), '/about-us/');
-  assert.equal(safeHref('https://wa.me/918094875504'), 'https://wa.me/918094875504');
+  assert.equal(safeHref('https://wa.me/919928464259'), 'https://wa.me/919928464259');
   assert.equal(toImage({ url: '/relative.jpg', width: 1, height: 1 }), undefined);
 });
 

@@ -164,7 +164,7 @@ export const Navbar: React.FC = () => {
             </div>
 
             <a
-              href={`tel:${settings.phone}`}
+              href={`tel:${settings.phone.replace(/[^\d+]/g, '')}`}
               className="inline-flex items-center gap-1.5 text-stone-300 hover:text-gold-light transition-colors"
             >
               <Phone className="w-3 h-3 text-gold" />
@@ -832,7 +832,7 @@ export const Navbar: React.FC = () => {
               {/* Direct VIP Call & WhatsApp Action Strip */}
               <div className="grid grid-cols-2 gap-2 p-3 bg-gold/[0.06] border-b border-gold/15">
                 <a
-                  href={`tel:${settings.phone}`}
+                  href={`tel:${settings.phone.replace(/[^\d+]/g, '')}`}
                   className="flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl bg-white border border-gold/25 text-charcoal-800 text-xs font-medium shadow-xs"
                 >
                   <Phone className="w-3.5 h-3.5 text-gold-dark" />

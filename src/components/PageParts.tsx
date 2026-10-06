@@ -347,7 +347,8 @@ export function WithSidebar({ children, context }: { children: React.ReactNode; 
           Free Consultation
         </InquiryAnimatedButton>
         <ul className="mt-5 space-y-2 text-sm text-charcoal-700">
-          <li><a className="hover:text-gold-dark" href={`tel:${SITE.phone.replace(/[^d+]/g, '')}`}>Call {SITE.phone}</a></li>
+          {/* `[^d+]` (no backslash) stripped the digits and left just "tel:+", so this call link was dead. */}
+          <li><a className="hover:text-gold-dark" href={`tel:${SITE.phone.replace(/[^\d+]/g, '')}`}>Call {SITE.phone}</a></li>
           <li><a className="hover:text-gold-dark" href={`https://wa.me/${SITE.whatsapp}`} target="_blank" rel="noopener noreferrer">WhatsApp us</a></li>
           <li><Link className="hover:text-gold-dark" href="/services/">Wedding planning services</Link></li>
           <li><Link className="hover:text-gold-dark" href="/wedding-destination/">All wedding destinations</Link></li>
