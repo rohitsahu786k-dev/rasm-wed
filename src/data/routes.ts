@@ -31,13 +31,15 @@ export const STATIC_PAGES: Record<string, { title: string; description: string; 
   },
   'about-us': {
     label: 'About Us',
-    title: 'About Rasm: Wedding Planner in Udaipur',
-    description: 'Rasm Weddings & Events is a wedding planner in Udaipur with 10+ years of experience and 500+ events planned for families in India and abroad.',
+    // About and Contact both led with "Wedding Planner in Udaipur", the home page's primary phrase. They now
+    // target their own intent (who we are / how to reach us) so they stop competing with the home page.
+    title: 'About Rasm Weddings & Events, Udaipur',
+    description: 'Who we are: Rasm Weddings & Events is a destination wedding planning company based in Udaipur, Rajasthan, planning palace, fort and resort celebrations for families in India and abroad.',
   },
   'contact-us': {
     label: 'Contact',
-    title: 'Contact a Wedding Planner in Udaipur',
-    description: 'Call, WhatsApp or email Rasm Weddings & Events, a wedding planner in Udaipur, for a free consultation. Office at Ashok Nagar, Udaipur.',
+    title: 'Contact Rasm Weddings & Events, Udaipur',
+    description: 'Call, WhatsApp or email our Udaipur office for a free wedding planning consultation. Rasm Weddings & Events, 510 City Centre, Ashok Nagar, Udaipur, Rajasthan.',
   },
   'traditional-decoration': {
     label: 'Wedding Decoration',

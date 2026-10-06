@@ -19,6 +19,14 @@ const nextConfig = {
     // Aliases that only ever existed in the Vite SPA -> canonical WordPress URLs (single hop).
     const alias = (from, to) => ({ source: `/${from}`, destination: to, permanent: true });
     return [
+      // One canonical host. www.rasmwed.com answered 200 with a non-www canonical, so every page was
+      // reachable on two hosts; a 301 removes the duplicate instead of leaning on the canonical tag.
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: `www.${siteHost}` }],
+        destination: `https://${siteHost}/:path*`,
+        permanent: true,
+      },
       alias('venue-catalogue', '/wedding-destination/'),
       alias('destinations', '/wedding-destination/'),
       alias('venues', '/wedding-destination/'),

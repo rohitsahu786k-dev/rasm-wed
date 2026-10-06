@@ -37,6 +37,8 @@ const menuTransition = {
 };
 
 export const Navbar: React.FC = () => {
+  const currentYear = new Date().getFullYear();
+  const availabilityYears = `${currentYear}–${currentYear + 1}`;
   const settings = useSettings();
   const currentPath = (usePathname() || '/').replace(/(.)\/$/, '$1');
   const { open } = useInquiry();
@@ -158,7 +160,7 @@ export const Navbar: React.FC = () => {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
                 <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
               </span>
-              <span className="text-[10.5px]">2025–2026 Dates Available</span>
+              <span className="text-[10.5px]">{availabilityYears} Dates Available</span>
             </div>
 
             <a
@@ -638,7 +640,7 @@ export const Navbar: React.FC = () => {
                 <div className="mt-5 pt-4 border-t border-gold/15 flex items-center justify-between bg-gold/[0.04] -mx-7 -mb-7 px-7 py-3.5 rounded-b-3xl">
                   <div className="flex items-center gap-2 text-xs text-charcoal-700">
                     <Flower2 className="w-4 h-4 text-gold" />
-                    <span>Planning a 2025–2026 destination wedding? Book a direct 1-on-1 concept session with our Lead Wedding Planner.</span>
+                    <span>Planning a {availabilityYears} destination wedding? Book a direct 1-on-1 concept session with our Lead Wedding Planner.</span>
                   </div>
                   <button
                     onClick={() => {

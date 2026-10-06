@@ -58,7 +58,11 @@ async function wp<T>(path: string, strict = false): Promise<T | null> {
   try {
     // Retry transient origin errors so a brief WordPress hiccup never turns into a cached 404 or an empty blog list.
     const res = await fetchRetry(fetch, `${WP_ORIGIN}/wp-json/wp/v2${path}`, { next: { revalidate: REVALIDATE } }, { tries: 3, baseDelayMs: 700, timeoutMs: 20_000 });
-    if (!res.ok && strict) throw new Error(`WordPress ${res.status} for ${path}`);
+    // 404 means "no such resource", which is an answer, not a failure: resolve() asks for a post first and must
+    // be able to fall through to getPage() for the city and info pages. Only treat the transient/server
+    // conditions as fatal in strict mode, so a real WordPress outage still fails the build loudly instead of
+    // prerendering a site full of 404s.
+    if (!res.ok && strict && res.status !== 404) throw new Error(`WordPress ${res.status} for ${path}`);
     return res.ok ? (stripEmoji(await res.json()) as T) : null;
   } catch (e) {
     if (strict) throw e;

@@ -4,6 +4,7 @@ import { notFound } from 'next/navigation';
 import { buildMetadata, clip } from '@/lib/metadata';
 import { getDestinations, getPage, getPages, getPost, getPosts, getRankMathMeta, getServices } from '@/lib/wp';
 import { NEARBY, cityKeyFromSlug } from '@/lib/city';
+import { getDestinationData } from '@/data/city-destinations';
 import { getGalleryMedia } from '@/lib/media';
 import { blogPostingSchema, itemListSchema, serviceSchema, webPageSchema, type WebPageKind } from '@/lib/schema';
 import { NOINDEX_SLUGS, STATIC_PAGES } from '@/data/routes';
@@ -43,6 +44,17 @@ const resolve = cache(async (slug: string): Promise<Resolved | null> => {
 
 export async function generateStaticParams() {
   const [pages, posts] = await Promise.all([getPages(), getPosts()]);
+  // A 404 from WordPress now means "absent" rather than "broken" (see wp.ts), which is what lets routing fall
+  // through from post to page. The cost is that an unreachable backend would otherwise build quietly and
+  // prerender every city and blog URL as a 404 page. The site has dozens of WordPress pages and posts, so both
+  // collections coming back empty means the backend is down, not that the content was deleted: fail loudly
+  // instead of shipping a site of 404s.
+  if (pages.length === 0 && posts.length === 0) {
+    throw new Error(
+      `WordPress returned no pages and no posts from ${process.env.NEXT_PUBLIC_WP_ORIGIN ?? process.env.WP_ORIGIN ?? 'the configured WP_ORIGIN'}. ` +
+        'Refusing to prerender: every WordPress-backed URL would become a 404 page. Check that WP_ORIGIN points at the WordPress origin and that it resolves.',
+    );
+  }
   const slugs = new Set<string>(Object.keys(STATIC_PAGES));
   for (const p of [...pages, ...posts]) if (p.slug !== 'new-home') slugs.add(p.slug);
   return [...slugs].map((slug) => ({ slug }));
@@ -105,10 +117,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         ? slug.replace('wedding-planner-in-', '').split('-').map((w) => w[0].toUpperCase() + w.slice(1)).join(' ')
         : '';
       // City pages: one clear snippet that carries the primary keyword "wedding planner in {city}".
-      const description = city
-        ? `Wedding planner in ${city}: Rasm Weddings & Events plans palace, fort and resort weddings with venues, decor, guest travel and logistics. Free consultation.`
-        : pageDescription(r.page);
-      if (city) return buildMetadata({ title: rm?.title || r.page.title, description, path, preferOpts: true });
+      if (city) {
+        // One source of truth for the city's target phrase (src/data/city-destinations.ts), so the title, the H1
+        // and this description cannot drift apart. Udaipur deliberately reads "Destination Wedding Planner" there:
+        // the home page owns "wedding planner in Udaipur" and the two were cannibalising each other in Search Console.
+        // Old Rank Math titles are also skipped here because they carry unsupported "Best/Top" claims.
+        const kw = getDestinationData(slug).primaryKeyword;
+        const description = `${kw}: Rasm Weddings & Events plans palace, fort and resort weddings in ${city} with venues, decor, guest travel and logistics. Free consultation.`;
+        return buildMetadata({ title: kw, description, path, preferOpts: true });
+      }
+      const description = pageDescription(r.page);
       return meta({ title: r.page.title, description, path, noindex: NOINDEX_SLUGS.has(slug) });
     }
 

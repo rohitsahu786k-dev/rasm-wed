@@ -58,19 +58,23 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
     slug: 'wedding-planner-in-udaipur',
     city: 'Udaipur',
     stateOrRegion: 'Rajasthan',
-    eyebrow: 'LUXURY WEDDING PLANNER IN UDAIPUR',
-    h1Title: 'Best Wedding Planner in Udaipur:',
+    // Udaipur is the one city where a dedicated page would compete with the home page for the same query
+    // (Search Console confirmed both ranking for "best wedding planner in udaipur" and "udaipur wedding
+    // planner", 0 clicks between them). The home page keeps "wedding planner in Udaipur"; this page owns the
+    // destination/venue intent, which GSC shows getting impressions with no page of its own.
+    eyebrow: 'DESTINATION WEDDING PLANNER IN UDAIPUR',
+    h1Title: 'Destination Wedding Planner in Udaipur:',
     h1Accent: 'Lake Palaces & Island Celebrations',
     heroImage: `${WP_ORIGIN}/wp-content/uploads/2026/10/golden_palace_wedding_mandap_at_sunset.webp`,
-    heroAlt: 'Best Wedding Planner in Udaipur - Royal Island Palace Destination Wedding on Lake Pichola',
+    heroAlt: 'Destination wedding planner in Udaipur - island palace wedding setting on Lake Pichola',
     leadCopy:
-      'Planning a fairytale palace wedding in the Venice of the East? At RASM Weddings & Events, our Udaipur headquarters plans magical celebrations amidst the waters of Lake Pichola. From private boat processions to Jagmandir Island Palace and sunset vows at The Oberoi Udaivilas, to romantic evenings at Taj Lake Palace and The Leela Palace—we handle end-to-end palace bookings, floating mandaps, luxury decor, and international guest hospitality with total transparency and zero vendor markups.',
-    primaryKeyword: 'Best Wedding Planner in Udaipur',
+      'Udaipur is built for a destination wedding: lake-facing palaces, island courtyards and hill-view resorts within a short drive of one airport. Rasm Weddings & Events is headquartered here, and we plan celebrations across the city’s palace, heritage and resort venues end to end — venue shortlisting against your dates and guest count, decor and mandap design, catering, entertainment, guest transfers and on-site coordination through every function. Tell us your dates and rough guest count and we will tell you honestly which settings fit.',
+    primaryKeyword: 'Destination Wedding Planner in Udaipur',
     secondaryKeywords: [
       'destination wedding in Udaipur',
-      'Lake Pichola palace wedding cost',
-      'Jagmandir Island Palace wedding planner',
-      'The Oberoi Udaivilas wedding packages',
+      'Udaipur wedding venues',
+      'palace wedding in Udaipur',
+      'Lake Pichola wedding venues',
       'luxury wedding planner in Rajasthan',
     ],
     facts: {
@@ -292,13 +296,13 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
     city: 'Jaipur',
     stateOrRegion: 'Rajasthan',
     eyebrow: 'LUXURY WEDDING PLANNER IN JAIPUR',
-    h1Title: 'Best Wedding Planner in Jaipur:',
+    h1Title: 'Wedding Planner in Jaipur:',
     h1Accent: 'Grand Fortresses & Royal Palaces',
     heroImage: `${WP_ORIGIN}/wp-content/uploads/2026/10/opulent_palace_courtyard_at_dusk.webp`,
-    heroAlt: 'Best Wedding Planner in Jaipur - Royal Palace Destination Wedding in the Pink City',
+    heroAlt: 'Wedding Planner in Jaipur - Royal Palace Destination Wedding in the Pink City',
     leadCopy:
       'Looking for a grand royal wedding in the historic Pink City? At RASM Weddings & Events, we select special celebrations across Jaipur’s famous palace landmarks. From the royal Mughal gardens of Rambagh Palace and the palace fortress style of Fairmont Jaipur, to heritage havelis like Jai Mahal Palace and Samode Palace—our expert team delivers custom Rajput decor, elephant Baraat processions, high-fashion Sangeet galas, and smooth on-ground guest management.',
-    primaryKeyword: 'Best Wedding Planner in Jaipur',
+    primaryKeyword: 'Wedding Planner in Jaipur',
     secondaryKeywords: [
       'destination wedding in Jaipur',
       'Rambagh Palace wedding cost',
@@ -507,13 +511,13 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
     city: 'Jaisalmer',
     stateOrRegion: 'Rajasthan',
     eyebrow: 'LUXURY WEDDING PLANNER IN JAISALMER',
-    h1Title: 'Best Wedding Planner in Jaisalmer:',
+    h1Title: 'Wedding Planner in Jaisalmer:',
     h1Accent: 'Golden Fortresses & Thar Sand Dunes',
     heroImage: `${WP_ORIGIN}/wp-content/uploads/2026/09/wedding-planner-in-jaisalmer-featured.webp`,
-    heroAlt: 'Best Wedding Planner in Jaisalmer - Golden Sandstone Fortress & Thar Desert Wedding',
+    heroAlt: 'Wedding Planner in Jaisalmer - Golden Sandstone Fortress & Thar Desert Wedding',
     leadCopy:
       'Envisioning a golden desert fairytale in Rajasthan’s Golden City? At RASM Weddings & Events, we transform the beautiful golden sandstone forts and rolling Thar dunes of Jaisalmer into royal wedding spectacles. From palace celebrations at Suryagarh and Fort Rajwada to starry bonfire Sangeets in the Sam sand dunes—we manage desert logistics, luxury glamping, royal folk entertainment, and custom golden-hued decor with precision and zero hidden markups.',
-    primaryKeyword: 'Best Wedding Planner in Jaisalmer',
+    primaryKeyword: 'Wedding Planner in Jaisalmer',
     secondaryKeywords: [
       'destination wedding in Jaisalmer',
       'Suryagarh Jaisalmer wedding cost',
@@ -700,13 +704,13 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
     city: 'Goa',
     stateOrRegion: 'Goa',
     eyebrow: 'LUXURY DESTINATION WEDDING PLANNER IN GOA',
-    h1Title: 'Best Wedding Planner in Goa:',
+    h1Title: 'Wedding Planner in Goa:',
     h1Accent: 'Beachfront Mandaps & Oceanfront Luxury',
     heroImage: `${WP_ORIGIN}/wp-content/uploads/2024/08/Goa.webp`,
-    heroAlt: 'Best Wedding Planner in Goa - Sunset Beachfront Mandap & Luxury Ocean Resort Wedding',
+    heroAlt: 'Wedding Planner in Goa - Sunset Beachfront Mandap & Luxury Ocean Resort Wedding',
     leadCopy:
       'Dreaming of an oceanfront sunset wedding with sea breezes and golden sands? At RASM Weddings & Events, we bring five-star luxury and flawless execution to Goa’s finest beachfront resorts and heritage Portuguese estates. From beachfront pheras at Taj Exotica and barefoot luxury sundowners at W Goa, to grand ballroom galas at ITC Grand Goa and The Leela—our team delivers custom floral canopies, cocktail production, international DJ bookings, and stress-free guest logistics.',
-    primaryKeyword: 'Best Wedding Planner in Goa',
+    primaryKeyword: 'Wedding Planner in Goa',
     secondaryKeywords: [
       'destination wedding in Goa',
       'beach wedding in Goa cost',
@@ -907,12 +911,12 @@ export function getDestinationData(citySlug: string): DestinationDetail {
     city: cityName,
     stateOrRegion: 'Rajasthan & Beyond',
     eyebrow: `LUXURY WEDDING PLANNER IN ${cityName.toUpperCase()}`,
-    h1Title: `Best Wedding Planner in ${cityName}:`,
+    h1Title: `Wedding Planner in ${cityName}:`,
     h1Accent: 'Heritage Palaces, Resorts & Lawns',
     heroImage: `${WP_ORIGIN}/wp-content/uploads/2026/10/golden_palace_courtyard_at_dusk.webp`,
-    heroAlt: `Best Wedding Planner in ${cityName} - Destination Wedding by RASM Weddings`,
+    heroAlt: `Wedding Planner in ${cityName} - Destination Wedding by RASM Weddings`,
     leadCopy: `Planning a royal destination wedding in ${cityName}? At RASM Weddings & Events, our expert Rajasthan planners coordinate end-to-end celebrations. From handpicked heritage venue selections and custom floral decor, to royal catering, NRI guest hospitality, and on-ground logistics with complete budget transparency and zero vendor markups.`,
-    primaryKeyword: `Best Wedding Planner in ${cityName}`,
+    primaryKeyword: `Wedding Planner in ${cityName}`,
     secondaryKeywords: [
       `destination wedding in ${cityName}`,
       `wedding venues in ${cityName} cost`,

@@ -25,14 +25,17 @@ const footerLinks = {
     { label: 'Guest Hospitality', href: '/services/#hospitality' },
     { label: 'Corporate Events in Udaipur', href: '/corporate-events/' },
   ],
-  venues: [
-    { label: 'Taj Lake Palace Udaipur', href: '/wedding-planner-in-udaipur/' },
-    { label: 'The Oberoi Udaivilas', href: '/wedding-planner-in-udaipur/' },
-    { label: 'Jagmandir Island Palace', href: '/wedding-planner-in-udaipur/' },
-    { label: 'Rambagh Palace Jaipur', href: '/wedding-planner-in-jaipur/' },
-    { label: 'Umaid Bhawan Palace Jodhpur', href: '/wedding-planner-in-jodhpur/' },
-    { label: 'Fairmont Jaipur', href: '/wedding-planner-in-jaipur/' },
-    { label: 'Grand Hyatt Goa', href: '/wedding-planner-in-goa/' },
+  // Was a list of named hotels that all pointed at a city page: the anchor promised a venue page that does not
+  // exist, and implied a partnership we do not claim. Replaced with the pillar guides, which need site-wide
+  // links to get indexed and which anchor each topic cluster.
+  guides: [
+    { label: 'Destination Weddings in India: Guide', href: '/destination-weddings-in-india-guide/' },
+    { label: 'Palace & Heritage Weddings in Rajasthan', href: '/palace-and-heritage-weddings-in-rajasthan-guide/' },
+    { label: 'Planning an Indian Wedding from Abroad', href: '/nri-wedding-in-india-guide/' },
+    { label: 'Destination Wedding Checklist', href: '/checklist-for-your-dream-wedding/' },
+    { label: 'Top 15 Wedding Destinations in Rajasthan', href: '/top-15-wedding-destinations-in-rajasthan/' },
+    { label: 'Why Udaipur Is the Wedding Capital of India', href: '/why-udaipur-is-the-wedding-capital-of-india/' },
+    { label: 'Top Destination Wedding Planning Tips', href: '/top-destination-wedding-planning-tips/' },
   ],
   company: [
     { label: 'About Us', href: '/about-us/' },
@@ -191,13 +194,13 @@ export const Footer: React.FC<{ settings: FullSettings }> = ({ settings }) => {
             </ul>
           </div>
 
-          {/* Column 4: Palace Venues */}
+          {/* Column 4: Planning guides (pillar pages) */}
           <div>
             <h4 className="font-manrope font-medium text-[16px] text-charcoal-900 mb-4 pb-1.5 border-b border-gold/20 tracking-normal">
-              Popular Wedding Venues
+              Wedding Planning Guides
             </h4>
             <ul className="space-y-2.5 text-[14.5px]">
-              {footerLinks.venues.map((l) => (
+              {footerLinks.guides.map((l) => (
                 <li key={l.label}>
                   <Link href={l.href}
                     className="text-charcoal-600 hover:text-charcoal-950 hover:underline transition-colors text-left leading-relaxed tracking-normal inline-block"

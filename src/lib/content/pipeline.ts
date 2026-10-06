@@ -17,6 +17,7 @@ import { fetchRetry } from '../net.ts';
 import { measureUniqueness, isUniqueEnough } from './uniqueness.ts';
 import { nextCandidate, withinCaps, type Candidate } from './programmatic.ts';
 import { updateHubIndex, type SpokeRef } from './hubs.ts';
+import { PILLARS } from '../../data/pillars.ts';
 import { daysAgo, query } from '../google/search-console.ts';
 
 export interface PipelineOptions {
@@ -76,11 +77,19 @@ export async function loadContext(o: PipelineOptions, store: Store) {
     }
   }
   const memory = await store.list<{ topic: string }>('content_articles', { limit: 60 });
+  // Pillars live in code (src/data/pillars.ts), not in WordPress, so they never appeared in `posts`. The engine
+  // therefore kept offering each hub as a candidate and `hubReady()` never returned a slug, so no spoke was ever
+  // generated. Declaring them as existing stops the duplicate hub (a code route would shadow the WordPress post
+  // anyway) and releases the spokes, which are required to link back to `/{hubSlug}/`.
+  const existing = [
+    ...posts.map((p) => ({ title: decode(p.title.rendered), slug: p.slug })),
+    ...PILLARS.map((p) => ({ title: p.title, slug: p.slug })),
+  ];
   return {
-    existing: posts.map((p) => ({ title: decode(p.title.rendered), slug: p.slug })),
+    existing,
     latestPostAt: posts[0]?.date_gmt,
     links,
-    ctx: { existing: posts.map((p) => ({ title: decode(p.title.rendered), slug: p.slug })), queries, recentTopics: memory.map((m) => m.topic) } satisfies TopicContext,
+    ctx: { existing, queries, recentTopics: memory.map((m) => m.topic) } satisfies TopicContext,
   };
 }
 

@@ -29,6 +29,10 @@ const CORE_LINKS = [
   { label: 'Corporate Events', href: '/corporate-events/' },
   { label: 'Wedding Gallery', href: '/gallery/' },
   { label: 'Blog', href: '/blog/' },
+  // Pillar guides: these need links from the designed pages to be discovered and to anchor their clusters.
+  { label: 'Destination Weddings in India: Guide', href: '/destination-weddings-in-india-guide/' },
+  { label: 'Palace Weddings in Rajasthan: Guide', href: '/palace-and-heritage-weddings-in-rajasthan-guide/' },
+  { label: 'Planning a Wedding from Abroad: NRI Guide', href: '/nri-wedding-in-india-guide/' },
 ];
 const linksExcept = (...hrefs: string[]) => CORE_LINKS.filter((l) => !hrefs.includes(l.href));
 

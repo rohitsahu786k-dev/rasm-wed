@@ -126,6 +126,36 @@ export const blogPostingSchema = (p: {
   publisher: { '@id': `${SITE_URL}/#organization` },
 });
 
+/**
+ * Evergreen reference guide (pillar pages). Article rather than BlogPosting: these are not dated blog entries,
+ * so no datePublished/dateModified is asserted unless one is genuinely known.
+ */
+export const articleSchema = (p: {
+  path: string;
+  title: string;
+  description: string;
+  image?: string;
+  section?: string;
+  wordCount?: number;
+  datePublished?: string;
+  dateModified?: string;
+}): Json => ({
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  '@id': `${absoluteUrl(p.path)}#article`,
+  mainEntityOfPage: { '@id': `${absoluteUrl(p.path)}#webpage` },
+  headline: p.title.slice(0, 110),
+  description: p.description,
+  ...(p.image ? { image: [p.image] } : {}),
+  ...(p.section ? { articleSection: p.section } : {}),
+  ...(p.wordCount ? { wordCount: p.wordCount } : {}),
+  ...(p.datePublished ? { datePublished: p.datePublished } : {}),
+  ...(p.dateModified ? { dateModified: p.dateModified } : {}),
+  inLanguage: 'en',
+  author: { '@id': `${SITE_URL}/#organization` },
+  publisher: { '@id': `${SITE_URL}/#organization` },
+});
+
 export const serviceSchema = (s: { name: string; description: string; area: string; path: string }): Json => ({
   '@context': 'https://schema.org',
   '@type': 'Service',
