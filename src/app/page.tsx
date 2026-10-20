@@ -10,6 +10,7 @@ import { CuratedExperiences, FeaturedWeddings, HeroFeatures, ImpactStats, Instag
 import { DestinationsSection } from '@/components/DestinationsSection';
 import { HomeContact } from '@/components/HomeContact';
 import { ProofSection } from '@/components/ProofSection';
+import { HomeVideo } from '@/components/HomeVideo';
 import { HomeSeoContent } from '@/components/HomeSeoContent';
 
 export const revalidate = 300;
@@ -33,6 +34,7 @@ export default async function Home() {
       <HeroFeatures />
       <DestinationsSection destinations={destinations} />
       <WhyChoose />
+      <HomeVideo />
       <FeaturedWeddings />
       <ImpactStats stats={home.stats} />
       <VenuesShowcase />
