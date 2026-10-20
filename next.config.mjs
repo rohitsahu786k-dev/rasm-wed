@@ -12,6 +12,9 @@ const nextConfig = {
   experimental: { staticGenerationMaxConcurrency: 3, staticGenerationRetryCount: 2 },
   images: {
     qualities: [75, 85],
+    // Smaller maximum width (no 3840px candidates) and a long cache: optimised images are reused instead of regenerated.
+    deviceSizes: [360, 640, 828, 1080, 1280, 1600, 1920],
+    minimumCacheTTL: 2592000,
     formats: ['image/webp'],
     remotePatterns: [...new Set([wpHost, siteHost])].map((hostname) => ({ protocol: 'https', hostname, pathname: '/wp-content/uploads/**' })),
   },

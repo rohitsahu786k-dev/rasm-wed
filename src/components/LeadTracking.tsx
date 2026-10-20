@@ -16,6 +16,9 @@ export function LeadTracking() {
     const w = window as unknown as { gtag?: Gtag; fbq?: Fbq };
     const fire = (method: string, page: string) => {
       w.gtag?.('event', 'generate_lead', { method, page_path: page });
+      // Named events so each action can be reported and marked as a conversion on its own in GA4.
+      const named: Record<string, string> = { whatsapp: 'whatsapp_click', phone: 'call_click', email: 'email_click', form: 'form_submit' };
+      if (named[method]) w.gtag?.('event', named[method], { page_path: page });
       w.fbq?.('track', method === 'form' ? 'Lead' : 'Contact');
     };
     const onClick = (e: MouseEvent) => {

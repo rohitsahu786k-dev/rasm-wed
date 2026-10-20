@@ -22,10 +22,10 @@ import type { Destination } from '@/types';
 import { InquiryAnimatedButton } from '@/components/InquiryClient';
 import { JsonLd } from '@/components/JsonLd';
 import { CtaBand, ExploreLinks, Facts } from '@/components/PageParts';
-import { NearbyDestinations, RelatedGuides } from '@/components/CityParts';
+import { NearbyDestinations, RelatedGuides, VenueDisclaimer } from '@/components/CityParts';
 import { breadcrumbSchema, faqSchema, serviceSchema } from '@/lib/schema';
 import { FACTS } from '@/data/pages-content';
-import { SITE, WP_ORIGIN } from '@/lib/site';
+import { SITE, MEDIA_ORIGIN } from '@/lib/site';
 import { getDestinationData } from '@/data/city-destinations';
 
 interface CityLandingProps {
@@ -51,7 +51,7 @@ export function CityLanding({ page, nearby, posts }: CityLandingProps) {
             { name: `Wedding Planner in ${city}`, path },
           ]),
           serviceSchema({
-            name: `${data.primaryKeyword} - RASM Weddings & Events`,
+            name: `${data.primaryKeyword} - Rasm Weddings & Events`,
             description: data.leadCopy,
             area: `${city}, ${data.stateOrRegion}, India`,
             path,
@@ -152,12 +152,14 @@ export function CityLanding({ page, nearby, posts }: CityLandingProps) {
                 Plan Your {city} Wedding
               </InquiryAnimatedButton>
 
-              <a
-                href="#venues"
-                className="inline-flex items-center justify-center px-7 py-3.5 rounded-full border border-gold/60 bg-white hover:bg-gold/5 text-sm font-medium text-charcoal-900 shadow-xs hover:border-gold transition-all"
-              >
-                Explore {city} Venues
-              </a>
+              {data.venues.length > 0 && (
+                <a
+                  href="#venues"
+                  className="inline-flex items-center justify-center px-7 py-3.5 rounded-full border border-gold/60 bg-white hover:bg-gold/5 text-sm font-medium text-charcoal-900 shadow-xs hover:border-gold transition-all"
+                >
+                  Explore {city} Venues
+                </a>
+              )}
 
               <a
                 href={`https://wa.me/${SITE.whatsapp}?text=${encodeURIComponent(
@@ -185,7 +187,7 @@ export function CityLanding({ page, nearby, posts }: CityLandingProps) {
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-gold-dark shrink-0" />
-                <span>Zero Vendor Markups</span>
+                <span>Transparent Vendor Pricing</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-gold-dark shrink-0" />
@@ -298,6 +300,8 @@ export function CityLanding({ page, nearby, posts }: CityLandingProps) {
       </section>
 
       {/* -------------------- 4. DETAILED VENUES SHOWCASE WITH COSTS & HIGHLIGHTS -------------------- */}
+      {/* Only cities with real, researched venue data show a venue portfolio (no placeholder venues). */}
+      {data.venues.length > 0 && (
       <section id="venues" className="py-20 bg-white border-b border-gold/15 scroll-mt-24">
         <div className="rasm-container max-w-6xl">
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -406,6 +410,7 @@ export function CityLanding({ page, nearby, posts }: CityLandingProps) {
           </div>
         </div>
       </section>
+      )}
 
       {/* -------------------- 5. SIGNATURE WEDDING ITINERARY -------------------- */}
       <section className="py-20 bg-[#FDFCFA] border-b border-gold/15">
@@ -418,7 +423,7 @@ export function CityLanding({ page, nearby, posts }: CityLandingProps) {
               The 3-Day Signature <span className="gold-gradient-text italic">{city} Wedding Itinerary</span>
             </h2>
             <p className="mt-4 text-charcoal-600 font-light text-base sm:text-lg leading-relaxed">
-              Selected by RASM Weddings to balance royal ceremonial beauty, joyful guest hospitality, and effortless timing.
+              Selected by Rasm Weddings to balance royal ceremonial beauty, joyful guest hospitality, and effortless timing.
             </p>
           </div>
 
@@ -496,7 +501,7 @@ export function CityLanding({ page, nearby, posts }: CityLandingProps) {
                 Venue Bookings &amp; Trust Liaison
               </h3>
               <p className="text-sm text-charcoal-600 font-light leading-relaxed">
-                Direct negotiation with venue owners and heritage trusts. We secure prime dates, ASI heritage clearances, and private venue buyouts at net negotiated rates.
+                We work directly with venue owners and managers to hold preferred dates, confirm permissions and agree private venue buyouts. Rates are indicative and confirmed in writing per wedding.
               </p>
             </div>
 
@@ -568,7 +573,7 @@ export function CityLanding({ page, nearby, posts }: CityLandingProps) {
                 <span className="font-manrope text-sm font-semibold gold-gradient-text">06</span>
               </div>
               <h3 className="font-manrope font-medium text-lg sm:text-xl text-charcoal-900 tracking-tight mb-2">
-                Zero Vendor Markups &amp; Transparency
+                Transparent Vendor Pricing
               </h3>
               <p className="text-sm text-charcoal-600 font-light leading-relaxed">
                 Every vendor contract and hotel bill is transparent, signed directly with vendors at wholesale rates. Detailed itemized budgets with zero hidden kickbacks.
@@ -669,7 +674,7 @@ export function CityLanding({ page, nearby, posts }: CityLandingProps) {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             <div className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-gold/20 bg-stone-100 shadow-sm">
               <Image
-                src={`${WP_ORIGIN}/wp-content/uploads/2026/10/golden_palace_wedding_mandap_at_sunset.webp`}
+                src={`${MEDIA_ORIGIN}/wp-content/uploads/2026/10/golden_palace_wedding_mandap_at_sunset.webp`}
                 alt={`Floral royal mandap setup for wedding in ${city}`}
                 fill
                 sizes="(min-width: 1024px) 33vw, 100vw"
@@ -684,7 +689,7 @@ export function CityLanding({ page, nearby, posts }: CityLandingProps) {
 
             <div className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-gold/20 bg-stone-100 shadow-sm">
               <Image
-                src={`${WP_ORIGIN}/wp-content/uploads/2026/10/royal_blue_fort_wedding_at_night.webp`}
+                src={`${MEDIA_ORIGIN}/wp-content/uploads/2026/10/royal_blue_fort_wedding_at_night.webp`}
                 alt={`Illuminated evening gala for wedding in ${city}`}
                 fill
                 sizes="(min-width: 1024px) 33vw, 100vw"
@@ -699,7 +704,7 @@ export function CityLanding({ page, nearby, posts }: CityLandingProps) {
 
             <div className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-gold/20 bg-stone-100 shadow-sm">
               <Image
-                src={`${WP_ORIGIN}/wp-content/uploads/2026/10/royal_baraat_at_golden_hour.webp`}
+                src={`${MEDIA_ORIGIN}/wp-content/uploads/2026/10/royal_baraat_at_golden_hour.webp`}
                 alt={`Royal Baraat procession in ${city}`}
                 fill
                 sizes="(min-width: 1024px) 33vw, 100vw"
@@ -708,13 +713,13 @@ export function CityLanding({ page, nearby, posts }: CityLandingProps) {
               <div className="absolute inset-0 bg-gradient-to-t from-charcoal-950/80 via-transparent to-transparent opacity-80 group-hover:opacity-90 transition-opacity" />
               <div className="absolute bottom-4 left-4 right-4">
                 <p className="text-gold-light text-xs font-semibold uppercase tracking-wider">The Baraat</p>
-                <h3 className="text-white text-base font-medium font-manrope">Royal Rajputana Procession</h3>
+                <h3 className="text-white text-base font-medium font-manrope">Wedding Baraat Procession</h3>
               </div>
             </div>
 
             <div className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-gold/20 bg-stone-100 shadow-sm">
               <Image
-                src={`${WP_ORIGIN}/wp-content/uploads/2026/10/opulent_palace_courtyard_at_dusk.webp`}
+                src={`${MEDIA_ORIGIN}/wp-content/uploads/2026/10/opulent_palace_courtyard_at_dusk.webp`}
                 alt={`Heritage courtyard baithak in ${city}`}
                 fill
                 sizes="(min-width: 1024px) 33vw, 100vw"
@@ -729,7 +734,7 @@ export function CityLanding({ page, nearby, posts }: CityLandingProps) {
 
             <div className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-gold/20 bg-stone-100 shadow-sm">
               <Image
-                src={`${WP_ORIGIN}/wp-content/uploads/2026/10/palace_wedding_under_blooming_chandeliers.webp`}
+                src={`${MEDIA_ORIGIN}/wp-content/uploads/2026/10/palace_wedding_under_blooming_chandeliers.webp`}
                 alt={`Beautiful chandeliers and blooms for wedding in ${city}`}
                 fill
                 sizes="(min-width: 1024px) 33vw, 100vw"
@@ -744,7 +749,7 @@ export function CityLanding({ page, nearby, posts }: CityLandingProps) {
 
             <div className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-gold/20 bg-stone-100 shadow-sm">
               <Image
-                src={`${WP_ORIGIN}/wp-content/uploads/2026/10/glamorous_indian_wedding_dance_performance.webp`}
+                src={`${MEDIA_ORIGIN}/wp-content/uploads/2026/10/glamorous_indian_wedding_dance_performance.webp`}
                 alt={`Glamorous Sangeet entertainment performance in ${city}`}
                 fill
                 sizes="(min-width: 1024px) 33vw, 100vw"
@@ -800,7 +805,7 @@ export function CityLanding({ page, nearby, posts }: CityLandingProps) {
             <div className="rounded-2xl border border-gold/25 bg-white p-7 shadow-xs">
               <span className="font-manrope text-2xl font-medium gold-gradient-text block mb-2">02</span>
               <h3 className="font-manrope font-medium text-xl text-charcoal-900 mb-2">
-                100% Direct Vendor Contracts &amp; Zero Markups
+                Direct Vendor Contracts
               </h3>
               <p className="text-sm text-charcoal-600 font-light leading-relaxed">
                 We practice total financial integrity. Every hotel booking, sound contract, and floral invoice is billed directly
@@ -928,6 +933,7 @@ export function CityLanding({ page, nearby, posts }: CityLandingProps) {
 
       {/* -------------------- 12. NEARBY DESTINATIONS & RELATED GUIDES -------------------- */}
       <NearbyDestinations items={nearby} />
+      <VenueDisclaimer />
       <RelatedGuides city={city} posts={posts} />
 
       {/* -------------------- 13. EXPLORE LINKS & CLOSING CTA -------------------- */}

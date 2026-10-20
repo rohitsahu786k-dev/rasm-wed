@@ -36,7 +36,11 @@ export function ArticleView({ post, related }: { post: WPPostFull; related: WPPo
           <p className="flex flex-wrap items-center gap-4 text-xs uppercase tracking-wider text-charcoal-500">
             <span className="inline-flex items-center gap-1.5"><Calendar className="w-3.5 h-3.5 text-gold-dark" /><time dateTime={post.date}>{fmt(post.date)}</time></span>
             <span className="inline-flex items-center gap-1.5"><Clock className="w-3.5 h-3.5 text-gold-dark" />{minutes} min read</span>
-            <span>By Rasm Weddings &amp; Events</span>
+            {post.categories?.[0] && <span className="rounded-full border border-gold/30 px-2.5 py-0.5 text-gold-dark">{post.categories[0]}</span>}
+            <span>By the Rasm Weddings &amp; Events planning team, Udaipur</span>
+            {post.modified && post.modified.slice(0, 10) !== post.date.slice(0, 10) && (
+              <span>Updated <time dateTime={post.modified}>{fmt(post.modified)}</time></span>
+            )}
           </p>
          </div>
         </div>

@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { SITE_URL, WP_ORIGIN } from './site';
+import { MEDIA_ORIGIN, SITE_URL, WP_ORIGIN } from './site';
 import { fetchRetry } from './net';
 import type { Destination } from '@/types';
 import { parseElementor } from './elementor';
@@ -40,9 +40,20 @@ const OLD_EMAIL = /\b(?:info|contact|hello|enquiry|inquiry)@rasmwed\.com\b/gi; /
  */
 const WP_HOST = new URL(WP_ORIGIN).hostname;
 const ADMIN_LINK = WP_HOST === new URL(SITE_URL).hostname ? null : new RegExp(`(href=["'])https?://${WP_HOST.replace(/\./g, '\\.')}/(?!wp-(?:content|json|admin|includes))`, 'gi');
+/** Media URLs coming back from the CMS are rewritten to the public domain (see MEDIA_ORIGIN in site.ts). */
+const MEDIA_FROM = new RegExp(`https?://${WP_HOST.replace(/\./g, '\\.')}/wp-content/`, 'gi'); // includes http:// srcset candidates
+const MEDIA_TO = `${MEDIA_ORIGIN}/wp-content/`;
+/** One brand name: legacy WordPress copy says "Rasm Wedding" or "RASM Weddings" (see UX-10 of the audit). */
+const BRAND_SINGULAR = /\bRasm Wedding\b(?!s)/g;
+const BRAND_CAPS = /\bRASM Weddings\b/g;
 function stripEmoji(v: unknown): unknown {
   if (typeof v === 'string') {
-    const clean = v.replace(EMOJI, '').replace(OLD_EMAIL, 'rasmwed@gmail.com');
+    const clean = v
+      .replace(EMOJI, '')
+      .replace(OLD_EMAIL, 'rasmwed@gmail.com')
+      .replace(MEDIA_FROM, MEDIA_TO)
+      .replace(BRAND_SINGULAR, 'Rasm Weddings')
+      .replace(BRAND_CAPS, 'Rasm Weddings');
     return ADMIN_LINK ? clean.replace(ADMIN_LINK, '$1/') : clean;
   }
   if (Array.isArray(v)) return v.map(stripEmoji);
@@ -79,6 +90,8 @@ const categoryNames = (p: any): string[] =>
 const strip = (html: string) =>
   html
     .replace(/<[^>]*>/g, '')
+    // WordPress auto-excerpts end in "[…]" ("[&hellip;]"): drop the marker, it reads as unfinished copy.
+    .replace(/\s*\[(?:&hellip;|&#8230;|…|\.\.\.)\]\s*$/, '')
     .replace(/&hellip;/g, '…')
     .replace(/&#8217;/g, '’')
     .replace(/&amp;/g, '&')
@@ -243,7 +256,7 @@ export async function getDestinations(slugs: string[] = FEATURED_DESTINATIONS): 
       tagline: getCityProfile(`wedding-planner-in-${slugs[i]}`)?.tagline ?? (lead ? firstSentence(lead) : `Destination wedding in ${name}`),
       season: '',
       venues: '',
-      imageUrl: IMAGE_OVERRIDE[slugs[i]] ? `${WP_ORIGIN}/wp-content/uploads/${IMAGE_OVERRIDE[slugs[i]]}` : ((img as string | undefined) ?? ''),
+      imageUrl: IMAGE_OVERRIDE[slugs[i]] ? `${MEDIA_ORIGIN}/wp-content/uploads/${IMAGE_OVERRIDE[slugs[i]]}` : ((img as string | undefined) ?? ''),
     }];
   });
 }

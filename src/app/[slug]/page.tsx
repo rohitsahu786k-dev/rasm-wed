@@ -126,7 +126,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
         // Old Rank Math titles are also skipped here because they carry unsupported "Best/Top" claims.
         const kw = getDestinationData(slug).primaryKeyword;
         const description = `${kw}: Rasm Weddings & Events plans palace, fort and resort weddings in ${city} with venues, decor, guest travel and logistics. Free consultation.`;
-        return buildMetadata({ title: kw, description, path, preferOpts: true });
+        // Modifiers (venues, costs) in the title match what couples search; cities not ready to rank are noindexed.
+        return buildMetadata({ title: `${kw}: Venues and Costs`, description, path, preferOpts: true, noindex: NOINDEX_SLUGS.has(slug) });
       }
       const description = pageDescription(r.page);
       return meta({ title: r.page.title, description, path, noindex: NOINDEX_SLUGS.has(slug) });

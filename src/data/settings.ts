@@ -2,7 +2,7 @@ import type { SiteSettings } from '../types/index.ts';
 import { SITE, SITE_URL } from '../lib/site.ts';
 
 export const settings: SiteSettings = {
-  title: 'Rasm Wedding & Events',
+  title: 'Rasm Weddings & Events',
   description: 'Premier Luxury Destination Wedding Architects in Udaipur & Rajasthan',
   url: SITE_URL,
   logoUrl: SITE.logo,

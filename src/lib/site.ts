@@ -5,6 +5,13 @@ export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL ?? 'https://rasmwed.co
  */
 export const WP_ORIGIN = (process.env.NEXT_PUBLIC_WP_ORIGIN ?? process.env.WP_ORIGIN ?? 'https://admin.rasmwed.com').replace(/\/$/, '');
 
+/**
+ * Media is always published on the public domain (SITE_URL/wp-content/uploads/...), never on the CMS host. Next rewrites
+ * those paths to WordPress, so the CMS host (or a temporary staging host) never appears in page HTML, image tags or
+ * social-share metadata, and moving the CMS later changes nothing public.
+ */
+export const MEDIA_ORIGIN = SITE_URL;
+
 /** Only the production deployment is indexable; previews/staging must not compete with it. */
 export const IS_PRODUCTION = process.env.VERCEL_ENV
   ? process.env.VERCEL_ENV === 'production'
@@ -16,7 +23,7 @@ export const SITE = {
   description:
     'Wedding planner in Udaipur, Rajasthan. We plan palace, fort and resort weddings for families in India and abroad, from venue and decor to guest travel.',
   logo: '/rasm-official-logo.png',
-  ogImage: `${WP_ORIGIN}/wp-content/uploads/2024/08/Jagmandir-Island-Palace.webp`,
+  ogImage: `${MEDIA_ORIGIN}/wp-content/uploads/2024/08/Jagmandir-Island-Palace.webp`,
   instagram: 'https://www.instagram.com/rasmwed/',
   facebook: 'https://www.facebook.com/profile.php?id=61564418983917',
   youtube: 'https://youtube.com/@rasmwed',

@@ -118,7 +118,37 @@ export function NearbyDestinations({ items }: { items: Destination[] }) {
   );
 }
 
-export function RelatedGuides({ city, posts }: { city: string; posts: WPPost[] }) {
+/** Generic planning guides that are useful for any destination (used to fill up to five links). */
+const GENERIC_GUIDE = /checklist|planning-tips|hire-a-wedding-planner|budget|how-to-choose|destination-wedding/i;
+
+/**
+ * 3 to 5 links that are relevant to this city: posts that name the city come first, then general planning guides.
+ * (Previously every city page linked the same 26 posts, which dilutes relevance.)
+ */
+const relevantGuides = (city: string, posts: WPPost[]) => {
+  const key = city.toLowerCase().split(/[\s,]+/)[0];
+  const named = posts.filter((p) => `${p.slug} ${p.title}`.toLowerCase().includes(key));
+  const generic = posts.filter((p) => !named.includes(p) && GENERIC_GUIDE.test(p.slug));
+  return [...named, ...generic].slice(0, 5);
+};
+
+/** Plain-language notice for pages that name third-party venues and show budget ranges. */
+export function VenueDisclaimer() {
+  return (
+    <section aria-label="Venue and budget notice" className="py-8 bg-[#FDFCFA] border-t border-gold/15">
+      <div className="rasm-container">
+        <p className="text-xs sm:text-sm text-charcoal-500 leading-relaxed max-w-4xl">
+          Venue names are listed for reference only. Rasm Weddings &amp; Events is an independent wedding planner and is not owned by, or affiliated with,
+          any of these venues. Capacity and budget figures are indicative as of October 2026; the exact cost depends on your dates, guest count and
+          the vendors you choose, and is confirmed in a written estimate before you book.
+        </p>
+      </div>
+    </section>
+  );
+}
+
+export function RelatedGuides({ city, posts: allPosts }: { city: string; posts: WPPost[] }) {
+  const posts = relevantGuides(city, allPosts);
   if (posts.length === 0) return null;
   return (
     <section aria-labelledby="guides-heading" className="py-16 bg-white border-t border-gold/15">

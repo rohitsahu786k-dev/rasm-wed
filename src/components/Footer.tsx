@@ -14,6 +14,11 @@ const footerLinks = {
     { label: 'Wedding Planner in Goa', href: '/wedding-planner-in-goa/' },
     { label: 'Wedding Planner in Kumbhalgarh', href: '/wedding-planner-in-kumbhalgarh/' },
     { label: 'Wedding Planner in Mount Abu', href: '/wedding-planner-in-mount-abu/' },
+    { label: 'Wedding Planner in Nathdwara', href: '/wedding-planner-in-nathdwara/' },
+    { label: 'Wedding Planner in Pushkar', href: '/wedding-planner-in-pushkar/' },
+    { label: 'Wedding Planner in Ranakpur', href: '/wedding-planner-in-ranakpur/' },
+    { label: 'Wedding Planner in Kota', href: '/wedding-planner-in-kota/' },
+    { label: 'Wedding Planner in Thailand', href: '/wedding-planner-in-thailand/' },
     { label: 'View All Destinations', href: '/wedding-destination/' },
   ],
   services: [
@@ -47,7 +52,7 @@ const footerLinks = {
     { label: 'Privacy Policy', href: '/privacy-policy/' },
     { label: 'Terms & Conditions', href: '/terms-and-conditions/' },
     { label: 'Refund Policy', href: '/refund-policy/' },
-    { label: 'Shipping Policy', href: '/shipping-policy/' },
+    
   ],
 };
 
@@ -92,7 +97,7 @@ export const Footer: React.FC<{ settings: FullSettings }> = ({ settings }) => {
                 <a
                   href={`https://wa.me/${settings.whatsapp}?text=Hello%20Rasm%20Weddings,%20I%20would%20like%20to%20receive%20the%20wedding%20lookbook.`}
                   target="_blank"
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer nofollow"
                   className="gold-gradient-text hover:underline flex items-center gap-1 font-medium"
                 >
                   <MessageCircle className="w-3.5 h-3.5 text-[#C5A059]" />
@@ -111,7 +116,7 @@ export const Footer: React.FC<{ settings: FullSettings }> = ({ settings }) => {
             <Link href="/" className="inline-block group focus:outline-none" aria-label="Rasm Weddings Home">
               <Image
                 src="/rasm-official-logo.png"
-                alt="Rasm Wedding & Events"
+                alt="Rasm Weddings & Events"
                 className="h-12 w-auto object-contain drop-shadow-xs transition-transform duration-300 group-hover:scale-105"
                width={1024} height={497} sizes="100px" />
             </Link>
@@ -124,7 +129,7 @@ export const Footer: React.FC<{ settings: FullSettings }> = ({ settings }) => {
               <a
                 href={settings.instagramUrl}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener noreferrer nofollow"
                 className="w-10 h-10 rounded-full border border-gold/40 bg-white/80 shadow-xs flex items-center justify-center text-charcoal-700 hover:border-gold hover:text-gold-dark hover:shadow-[0_0_12px_rgba(197,160,89,0.25)] transition-all"
                 aria-label="Instagram"
               >
@@ -135,7 +140,7 @@ export const Footer: React.FC<{ settings: FullSettings }> = ({ settings }) => {
               <a
                 href={`https://wa.me/${settings.whatsapp}`}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener noreferrer nofollow"
                 className="w-10 h-10 rounded-full border border-gold/40 bg-white/80 shadow-xs flex items-center justify-center text-charcoal-700 hover:border-emerald-500 hover:text-emerald-700 hover:shadow-[0_0_12px_rgba(16,185,129,0.25)] transition-all"
                 aria-label="WhatsApp"
               >
@@ -245,7 +250,7 @@ export const Footer: React.FC<{ settings: FullSettings }> = ({ settings }) => {
               <a
                 href="https://iprixmedia.com"
                 target="_blank"
-                rel="noopener noreferrer"
+                rel="noopener noreferrer nofollow"
                 className="gold-gradient-text font-medium hover:underline inline-block"
               >
                 iprixmedia.com

@@ -6,7 +6,7 @@ import React, { useRef, useState, useEffect, useMemo, useCallback } from 'react'
 import { Destination } from '@/types';
 import { ArrowRight, ChevronLeft, ChevronRight, Calendar } from 'lucide-react';
 import { motion, useMotionValue, useTransform, animate, PanInfo, MotionValue } from 'framer-motion';
-import { WP_ORIGIN } from '@/lib/site';
+import { MEDIA_ORIGIN } from '@/lib/site';
 
 interface DestinationsSectionProps {
   destinations: Destination[];
@@ -27,10 +27,10 @@ const FALLBACK_DESTINATIONS: Destination[] = [
     id: 'udaipur',
     title: 'Udaipur, Rajasthan',
     slug: 'wedding-planner-in-udaipur',
-    tagline: 'The City of Lakes · Famous Royal Palaces & Floating Mandaps',
+    tagline: 'The City of Lakes · Royal Palaces & Floating Mandaps',
     season: 'October to March',
     venues: 'The Oberoi Udaivilas, Taj Lake Palace, Jagmandir Island, The Leela Palace, Fateh Garh',
-    imageUrl: `${WP_ORIGIN}/wp-content/uploads/2024/08/The-Oberoi-Udaivilas.webp`,
+    imageUrl: `${MEDIA_ORIGIN}/wp-content/uploads/2024/08/The-Oberoi-Udaivilas.webp`,
   },
   {
     id: 'jaipur',
@@ -39,7 +39,7 @@ const FALLBACK_DESTINATIONS: Destination[] = [
     tagline: 'The Pink City · Grand Fortresses, Royal Havelis & Palace Lawns',
     season: 'October to March',
     venues: 'Rambagh Palace, Fairmont Jaipur, Jai Mahal Palace, Samode Palace',
-    imageUrl: `${WP_ORIGIN}/wp-content/uploads/2024/08/Fateh-Garh-Palace.webp`,
+    imageUrl: `${MEDIA_ORIGIN}/wp-content/uploads/2024/08/Fateh-Garh-Palace.webp`,
   },
   {
     id: 'jodhpur',
@@ -57,7 +57,7 @@ const FALLBACK_DESTINATIONS: Destination[] = [
     tagline: 'Golden Thar Sand Dunes & Suryagarh Desert Luxury',
     season: 'November to February',
     venues: 'Suryagarh, Jaisalmer Marriott, Fort Rajwada, Desert Tents',
-    imageUrl: `${WP_ORIGIN}/wp-content/uploads/2024/07/IMG_E5217.webp`,
+    imageUrl: `${MEDIA_ORIGIN}/wp-content/uploads/2024/07/IMG_E5217.webp`,
   },
   {
     id: 'goa',
@@ -66,7 +66,7 @@ const FALLBACK_DESTINATIONS: Destination[] = [
     tagline: 'Sun-kissed Coastal Mandaps & Oceanfront Luxury Soirees',
     season: 'November to February',
     venues: 'Grand Hyatt, W Goa, Alila Diwa, ITC Grand Goa, Caravela Beach Resort',
-    imageUrl: `${WP_ORIGIN}/wp-content/uploads/2024/08/Goa.webp`,
+    imageUrl: `${MEDIA_ORIGIN}/wp-content/uploads/2024/08/Goa.webp`,
   },
   {
     id: 'kumbhalgarh',
@@ -75,7 +75,7 @@ const FALLBACK_DESTINATIONS: Destination[] = [
     tagline: 'Serene Aravalli Hills & Ancient Mewar Fortress Solitude',
     season: 'Year-round Pleasant',
     venues: 'The Kumbha Bagh, Fateh Safari Lodge, Heritage Havelis Mount Abu',
-    imageUrl: `${WP_ORIGIN}/wp-content/uploads/2024/08/The-Ananta-Udaipur.webp`,
+    imageUrl: `${MEDIA_ORIGIN}/wp-content/uploads/2024/08/The-Ananta-Udaipur.webp`,
   },
   {
     id: 'thailand',
@@ -84,7 +84,7 @@ const FALLBACK_DESTINATIONS: Destination[] = [
     tagline: 'Tropical Luxury Palaces & Beachfront Private Island Resorts',
     season: 'November to April',
     venues: 'Sri Panwa Phuket, The Sarojin Khao Lak, Four Seasons Koh Samui',
-    imageUrl: `${WP_ORIGIN}/wp-content/uploads/2024/08/Thailand.webp`,
+    imageUrl: `${MEDIA_ORIGIN}/wp-content/uploads/2024/08/Thailand.webp`,
   },
 ];
 
@@ -96,6 +96,11 @@ const BADGES: Record<string, string> = {
   goa: 'COASTAL MANDAP',
   kumbhalgarh: 'ARAVALI RETREAT',
   thailand: 'TROPICAL HAVEN',
+  nathdwara: 'TEMPLE TOWN',
+  'mount-abu': 'HILL STATION',
+  pushkar: 'LAKE AND TEMPLES',
+  ranakpur: 'ARAVALLI TEMPLES',
+  kota: 'CHAMBAL CITY',
 };
 
 const getCarouselConfig = (width: number): CarouselConfig => {
@@ -240,7 +245,7 @@ export const DestinationsSection: React.FC<DestinationsSectionProps> = ({ destin
         </p>
 
         <h2 className="font-manrope font-medium text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-charcoal-900 leading-[1.2] tracking-tight max-w-4xl mx-auto">
-          Famous Palaces &amp; <span className="gold-gradient-text italic">Lake Retreats</span>
+          Palaces &amp; <span className="gold-gradient-text italic">Lake Retreats</span>
         </h2>
 
         <p className="max-w-2xl mx-auto text-sm sm:text-base text-charcoal-600 font-light leading-relaxed mt-4">
@@ -401,7 +406,7 @@ const FannedCard: React.FC<FannedCardProps> = ({
 
   const zIndex = useTransform(offset, (o) => Math.round(100 - Math.abs(o) * 10));
 
-  const badgeText = BADGES[dest.id] || 'ROYAL PALACE';
+  const badgeText = BADGES[dest.id] || 'WEDDING DESTINATION';
 
   return (
     <motion.div

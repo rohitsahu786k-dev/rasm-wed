@@ -1,4 +1,4 @@
-import { WP_ORIGIN } from '@/lib/site';
+import { MEDIA_ORIGIN } from '@/lib/site';
 
 export interface HomeImage {
   src: string;
@@ -7,7 +7,7 @@ export interface HomeImage {
   alt: string;
 }
 
-const up = (path: string, width: number, height: number, alt: string): HomeImage => ({ src: `${WP_ORIGIN}/wp-content/uploads/${path}`, width, height, alt });
+const up = (path: string, width: number, height: number, alt: string): HomeImage => ({ src: `${MEDIA_ORIGIN}/wp-content/uploads/${path}`, width, height, alt });
 const n = (file: string, width: number, height: number, alt: string) => up(`2026/10/${file}.webp`, width, height, alt);
 
 /**

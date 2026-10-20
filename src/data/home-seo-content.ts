@@ -78,7 +78,7 @@ export const HOME_SEO_CONTENT: SeoBlock[] = [
     text: 'On the wedding days, a dedicated Rasm team works on location from the first setup to the last guest departure. We run the schedule, brief vendors, manage timings of the baraat, pheras, dinner and farewell, and solve problems quietly in the background so the family never has to.',
   },
 
-  { type: 'h2', text: 'Palace Wedding in Udaipur: Famous Venues Worth Considering' },
+  { type: 'h2', text: 'Palace Wedding in Udaipur: Venues Worth Considering' },
   {
     type: 'p',
     text: 'A palace wedding in Udaipur typically means one of three experiences: a lake palace with water on every side, a city palace with grand courtyards and marble terraces, or a hilltop heritage hotel with sweeping views. Each offers a very different feeling and a different cost structure.',

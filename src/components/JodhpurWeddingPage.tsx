@@ -22,10 +22,10 @@ import type { WPPage, WPPost } from '@/lib/wp';
 import { InquiryAnimatedButton } from '@/components/InquiryClient';
 import { JsonLd } from '@/components/JsonLd';
 import { CtaBand, ExploreLinks, Facts } from '@/components/PageParts';
-import { NearbyDestinations, RelatedGuides } from '@/components/CityParts';
+import { NearbyDestinations, RelatedGuides, VenueDisclaimer } from '@/components/CityParts';
 import { breadcrumbSchema, faqSchema, serviceSchema } from '@/lib/schema';
 import { FACTS } from '@/data/pages-content';
-import { SITE, WP_ORIGIN } from '@/lib/site';
+import { SITE, MEDIA_ORIGIN } from '@/lib/site';
 
 interface JodhpurWeddingPageProps {
   nearby: Destination[];
@@ -46,7 +46,7 @@ const JODHPUR_VENUES = [
       'Perched majestically atop Chittar Hill, Umaid Bhawan Palace is one of the world’s largest private royal residences and a globally celebrated destination wedding venue. Built with golden-yellow Chittar sandstone and featuring 26 acres of manicured Baradari lawns and grand Art Deco ballrooms, it famously hosted the high-profile wedding of Priyanka Chopra & Nick Jonas. With world-class Taj hospitality, antique royal suites, and dramatic evening lighting, Umaid Bhawan Palace represents the pinnacle of royal celebrations in India.',
     highlights: [
       '26 acres of sprawling lush Baradari & Marwar lawns for grand vows and receptions',
-      'Art Deco ballrooms and grand banquets with Michelin-calibre Taj culinary curation',
+      'Art Deco ballrooms and grand banquets with five-star hotel catering by the Taj kitchens',
       'Fine presidential suites with authentic royal family heirlooms and butler service',
       'Complete private palace buyout options available for exclusive VIP & celebrity weddings',
     ],
@@ -130,7 +130,7 @@ const JODHPUR_VENUES = [
     category: 'Thar Desert Oasis & Luxury Glamping',
     capacity: '100 – 400 Guests',
     tagline: 'Golden Sand Dune Sunsets, Camel Caravans & Star-Lit Bonfire Nights',
-    image: `${WP_ORIGIN}/wp-content/uploads/2026/10/golden_desert_wedding_lounge_at_sunset.webp`,
+    image: `${MEDIA_ORIGIN}/wp-content/uploads/2026/10/golden_desert_wedding_lounge_at_sunset.webp`,
     costRange: '₹40 Lakhs – ₹75 Lakhs (Desert Experience & Luxury Tents)',
     description:
       'Located just a 60-minute drive outside Jodhpur, Osian offers the untamed romance of the Thar Desert. Couples and guests can celebrate under millions of stars surrounded by shimmering golden dunes, luxury air-conditioned Swiss tent villages, camel caravan processions, and acoustic folk performances by famed desert Manganiyars around crackling royal bonfires.',
@@ -206,7 +206,7 @@ const SIGNATURE_ITINERARY = [
       },
       {
         time: '08:30 PM – Midnight',
-        title: 'The Grand Grand Reception & Fireworks',
+        title: 'The Grand Reception & Fireworks',
         desc: 'Black-tie sit-down royal silver thali banquet, champagne toasts, family speeches, and a synchronized aerial fireworks display lighting up the Jodhpur night sky.',
       },
     ],
@@ -217,7 +217,7 @@ const JODHPUR_PILLARS = [
   {
     icon: Landmark,
     title: 'Palace Bookings & Trust Liaison',
-    desc: 'Direct negotiation with palace owners and the Mehrangarh Museum Trust. We secure premier winter dates, ASI heritage clearances, and private venue buyouts at net negotiated rates.',
+    desc: 'We work directly with palace owners and the Mehrangarh Museum Trust to hold preferred winter dates, confirm permissions and agree private venue buyouts. Rates are indicative and confirmed in writing per wedding.',
   },
   {
     icon: Flower2,
@@ -241,8 +241,8 @@ const JODHPUR_PILLARS = [
   },
   {
     icon: ShieldCheck,
-    title: 'Zero Vendor Markups & Budget Control',
-    desc: 'Every vendor contract and hotel bill is transparent, signed directly with vendors at wholesale rates. Detailed itemized budgets with zero hidden kickbacks or surprise costs.',
+    title: 'Transparent Vendor Pricing',
+    desc: 'Every vendor contract and hotel bill is shared with you in writing. You receive itemised budgets so there are no surprise costs.',
   },
 ];
 
@@ -304,7 +304,7 @@ const JODHPUR_FAQS = [
 export function JodhpurWeddingPage({ nearby, posts, wpPage }: JodhpurWeddingPageProps) {
   const path = '/wedding-planner-in-jodhpur/';
   const leadDescription =
-    'RASM Weddings & Events is the premier luxury destination wedding planner in Jodhpur. Award-winning wedding design, palace bookings, and smooth execution across Umaid Bhawan Palace, Mehrangarh Fort, Ajit Bhawan, Bal Samand Lake Palace, and Thar desert dunes.';
+    'Rasm Weddings & Events is the premier luxury destination wedding planner in Jodhpur. Award-winning wedding design, palace bookings, and smooth execution across Umaid Bhawan Palace, Mehrangarh Fort, Ajit Bhawan, Bal Samand Lake Palace, and Thar desert dunes.';
 
   const desktopBannerSrc = wpPage?.desktopBanner || '/images/jodhpur/umaid-bhawan-hero.jpg';
   const mobileBannerSrc = wpPage?.mobileBanner || desktopBannerSrc;
@@ -323,7 +323,7 @@ export function JodhpurWeddingPage({ nearby, posts, wpPage }: JodhpurWeddingPage
             { name: 'Wedding Planner in Jodhpur', path },
           ]),
           serviceSchema({
-            name: 'Best Wedding Planner in Jodhpur - RASM Weddings & Events',
+            name: 'Best Wedding Planner in Jodhpur - Rasm Weddings & Events',
             description: leadDescription,
             area: 'Jodhpur, Rajasthan, India',
             path,
@@ -413,7 +413,7 @@ export function JodhpurWeddingPage({ nearby, posts, wpPage }: JodhpurWeddingPage
             {/* Authoritative, Keyword-Rich Lead Paragraph */}
             <p className="text-charcoal-700 text-base sm:text-lg font-light leading-relaxed mb-8 max-w-3xl">
               Planning a royal destination wedding in the historic Sun City? At{' '}
-              <strong className="font-medium text-charcoal-900">RASM Weddings &amp; Events</strong>, we turn palace dreams into
+              <strong className="font-medium text-charcoal-900">Rasm Weddings &amp; Events</strong>, we turn palace dreams into
               flawless celebrations. From exchanging vows on the Baradari lawns of{' '}
               <strong className="font-medium text-charcoal-900">Umaid Bhawan Palace</strong> and hosting illuminated Sangeet galas
               at <strong className="font-medium text-charcoal-900">Mehrangarh Fort</strong>, to intimate heritage soirees at{' '}
@@ -466,7 +466,7 @@ export function JodhpurWeddingPage({ nearby, posts, wpPage }: JodhpurWeddingPage
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-gold-dark shrink-0" />
-                <span>Zero Vendor Markups</span>
+                <span>Transparent Vendor Pricing</span>
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="w-4 h-4 text-gold-dark shrink-0" />
@@ -705,7 +705,7 @@ export function JodhpurWeddingPage({ nearby, posts, wpPage }: JodhpurWeddingPage
               The 3-Day Signature <span className="gold-gradient-text italic">Jodhpur Wedding Itinerary</span>
             </h2>
             <p className="mt-4 text-charcoal-600 font-light text-base sm:text-lg leading-relaxed">
-              Selected by RASM Weddings to balance royal ceremonial beauty, joyful guest hospitality, and effortless timing.
+              Selected by Rasm Weddings to balance royal ceremonial beauty, joyful guest hospitality, and effortless timing.
             </p>
           </div>
 
@@ -889,7 +889,7 @@ export function JodhpurWeddingPage({ nearby, posts, wpPage }: JodhpurWeddingPage
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             <div className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-gold/20 bg-stone-100 shadow-sm">
               <Image
-                src={`${WP_ORIGIN}/wp-content/uploads/2026/10/golden_palace_wedding_mandap_at_sunset.webp`}
+                src={`${MEDIA_ORIGIN}/wp-content/uploads/2026/10/golden_palace_wedding_mandap_at_sunset.webp`}
                 alt="Floral royal mandap setup on a palace terrace at sunset in Rajasthan"
                 fill
                 sizes="(min-width: 1024px) 33vw, 100vw"
@@ -904,7 +904,7 @@ export function JodhpurWeddingPage({ nearby, posts, wpPage }: JodhpurWeddingPage
 
             <div className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-gold/20 bg-stone-100 shadow-sm">
               <Image
-                src={`${WP_ORIGIN}/wp-content/uploads/2026/10/royal_blue_fort_wedding_at_night.webp`}
+                src={`${MEDIA_ORIGIN}/wp-content/uploads/2026/10/royal_blue_fort_wedding_at_night.webp`}
                 alt="Mehrangarh Fort ramparts illuminated in royal blue for a luxury wedding gala"
                 fill
                 sizes="(min-width: 1024px) 33vw, 100vw"
@@ -919,7 +919,7 @@ export function JodhpurWeddingPage({ nearby, posts, wpPage }: JodhpurWeddingPage
 
             <div className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-gold/20 bg-stone-100 shadow-sm">
               <Image
-                src={`${WP_ORIGIN}/wp-content/uploads/2026/10/royal_baraat_at_golden_hour.webp`}
+                src={`${MEDIA_ORIGIN}/wp-content/uploads/2026/10/royal_baraat_at_golden_hour.webp`}
                 alt="Royal Baraat procession with decorated horses and royal fanfare in Rajasthan"
                 fill
                 sizes="(min-width: 1024px) 33vw, 100vw"
@@ -949,7 +949,7 @@ export function JodhpurWeddingPage({ nearby, posts, wpPage }: JodhpurWeddingPage
 
             <div className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-gold/20 bg-stone-100 shadow-sm">
               <Image
-                src={`${WP_ORIGIN}/wp-content/uploads/2026/10/palace_wedding_under_blooming_chandeliers.webp`}
+                src={`${MEDIA_ORIGIN}/wp-content/uploads/2026/10/palace_wedding_under_blooming_chandeliers.webp`}
                 alt="Beautiful chandeliers and blooms for a royal palace wedding reception dinner"
                 fill
                 sizes="(min-width: 1024px) 33vw, 100vw"
@@ -964,7 +964,7 @@ export function JodhpurWeddingPage({ nearby, posts, wpPage }: JodhpurWeddingPage
 
             <div className="group relative aspect-[4/3] rounded-2xl overflow-hidden border border-gold/20 bg-stone-100 shadow-sm">
               <Image
-                src={`${WP_ORIGIN}/wp-content/uploads/2026/10/golden_desert_wedding_lounge_at_sunset.webp`}
+                src={`${MEDIA_ORIGIN}/wp-content/uploads/2026/10/golden_desert_wedding_lounge_at_sunset.webp`}
                 alt="Desert dunes wedding lounge in Osian Thar Desert near Jodhpur"
                 fill
                 sizes="(min-width: 1024px) 33vw, 100vw"
@@ -1021,7 +1021,7 @@ export function JodhpurWeddingPage({ nearby, posts, wpPage }: JodhpurWeddingPage
             <div className="rounded-2xl border border-gold/25 bg-white p-7 shadow-xs">
               <span className="font-manrope text-2xl font-medium gold-gradient-text block mb-2">02</span>
               <h3 className="font-manrope font-medium text-xl text-charcoal-900 mb-2">
-                100% Direct Vendor Contracts &amp; Zero Markups
+                Direct Vendor Contracts
               </h3>
               <p className="text-sm text-charcoal-600 font-light leading-relaxed">
                 We practice total financial integrity. Every hotel booking, sound contract, and floral invoice is billed directly
@@ -1149,6 +1149,7 @@ export function JodhpurWeddingPage({ nearby, posts, wpPage }: JodhpurWeddingPage
 
       {/* -------------------- 12. NEARBY DESTINATIONS & RELATED GUIDES -------------------- */}
       <NearbyDestinations items={nearby} />
+      <VenueDisclaimer />
       <RelatedGuides city="Jodhpur" posts={posts} />
 
       {/* -------------------- 13. EXPLORE LINKS & CLOSING CTA -------------------- */}

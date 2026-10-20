@@ -1,4 +1,4 @@
-import { WP_ORIGIN } from '@/lib/site';
+import { MEDIA_ORIGIN } from '@/lib/site';
 
 export interface PageImage {
   src: string;
@@ -7,7 +7,7 @@ export interface PageImage {
   alt: string;
 }
 
-const up = (path: string, width: number, height: number, alt: string): PageImage => ({ src: `${WP_ORIGIN}/wp-content/uploads/${path}`, width, height, alt });
+const up = (path: string, width: number, height: number, alt: string): PageImage => ({ src: `${MEDIA_ORIGIN}/wp-content/uploads/${path}`, width, height, alt });
 
 /** Text-free photographs from the WordPress media library, grouped by the page that uses them. */
 /** One photograph per planning service card (keys match SERVICES in pages-content.ts). */

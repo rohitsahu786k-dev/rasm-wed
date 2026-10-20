@@ -26,10 +26,10 @@ const TextLink = ({ href, children }: { href: string; children: React.ReactNode 
 /** Four trust points + "Watch Our Story", directly under the hero banner. */
 export function HeroFeatures() {
   const items = [
-    { icon: Landmark, label: 'Famous Venues' },
+    { icon: Landmark, label: 'Palace Venues' },
     { icon: Gem, label: 'Custom Planning' },
     { icon: Handshake, label: 'End-to-End Support' },
-    { icon: Flower2, label: 'Selected Experiences' },
+    { icon: Flower2, label: 'Wedding Experiences' },
   ];
   return (
     <section aria-label="Why plan your wedding with Rasm" className="bg-[#FDFCFA] border-b border-gold/15">
@@ -57,7 +57,7 @@ export function HeroFeatures() {
 
 export function WhyChoose() {
   const cards = [
-    { icon: Castle, title: 'Selected Venues', text: 'Handpicked palaces, forts and luxury properties across Udaipur and Rajasthan.' },
+    { icon: Castle, title: 'Venue Selection', text: 'Handpicked palaces, forts and luxury properties across Udaipur and Rajasthan.' },
     { icon: ClipboardList, title: 'Personalised Planning', text: 'Tailor-made weddings designed around your story, budget and guest list.' },
     { icon: Users, title: 'Trusted Network', text: 'Decorators, caterers, artists and hospitality partners we work with every season.' },
     { icon: HeartHandshake, title: 'Smooth Execution', text: 'A dedicated on-ground team for a stress-free celebration from first call to farewell.' },
@@ -68,7 +68,7 @@ export function WhyChoose() {
         <div>
           <Eyebrow>Why Choose Us</Eyebrow>
           <h2 className="font-manrope font-medium text-3xl sm:text-5xl text-charcoal-900 tracking-tight leading-[1.15] mb-5">
-            Why Careful Couples Choose <span className="gold-gradient-text italic">Rasm</span>, the Wedding Planner in Udaipur
+            Why Couples Choose <span className="gold-gradient-text italic">Rasm</span>, the Wedding Planner in Udaipur
           </h2>
           <p className="text-charcoal-600 text-base sm:text-lg font-light leading-relaxed mb-8 max-w-xl">
             A perfect blend of royal venues, smooth planning and memorable experiences. Whether you are planning a wedding in Udaipur or a destination wedding anywhere in India, Rasm Weddings & Events crafts it for your special day.
@@ -167,7 +167,7 @@ export function VenuesShowcase() {
       <div className="rasm-container">
         <div className="flex items-end justify-between gap-4 mb-8">
           <div>
-            <Eyebrow>Famous Venues</Eyebrow>
+            <Eyebrow>Wedding Venues</Eyebrow>
             <h2 className="font-manrope font-medium text-3xl sm:text-4xl text-charcoal-900 tracking-tight">
               The <span className="gold-gradient-text italic">Royal Venues</span> Showcase
             </h2>
@@ -208,7 +208,7 @@ export function CuratedExperiences() {
         <div>
           <Eyebrow>More Than a Wedding</Eyebrow>
           <h2 className="font-manrope font-medium text-3xl sm:text-4xl text-charcoal-900 tracking-tight leading-[1.2] mb-4">
-            Selected Experiences <span className="gold-gradient-text italic">for Every Celebration</span>
+            Wedding Experiences <span className="gold-gradient-text italic">for Every Celebration</span>
           </h2>
           <p className="text-charcoal-600 text-sm sm:text-base font-light leading-relaxed mb-7">
             From traditional ceremonies to modern celebrations, our wedding decorators, caterers and entertainers create experiences that are uniquely yours.
@@ -238,7 +238,7 @@ export function InstagramStrip() {
           <div>
             <Eyebrow>Follow Our Journey</Eyebrow>
             <h2 className="font-manrope font-medium text-3xl sm:text-4xl text-charcoal-900 tracking-tight">On Instagram</h2>
-            <p className="mt-1 text-sm text-charcoal-600 font-light">Real weddings, behind the scenes and moments of joy.</p>
+            <p className="mt-1 text-sm text-charcoal-600 font-light">Wedding inspiration, behind-the-scenes moments and celebrations from our team.</p>
           </div>
           <div className="flex items-center gap-4 shrink-0">
             <span className="hidden sm:inline text-sm text-charcoal-700">@rasmwed</span>

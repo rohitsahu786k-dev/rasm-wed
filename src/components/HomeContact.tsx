@@ -1,13 +1,18 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import { ArrowRight, CheckCircle2, Headset, Landmark, Lightbulb, ReceiptText } from 'lucide-react';
 import { useInquiry } from '@/components/InquiryProvider';
 import { useSettings } from '@/components/SiteSettingsProvider';
 import { HOME_IMAGES } from '@/data/home-media';
 
-const DESTINATIONS = ['Udaipur, Rajasthan', 'Jaipur, Rajasthan', 'Jodhpur, Rajasthan', 'Jaisalmer, Rajasthan', 'Kumbhalgarh & Mount Abu', 'Nathdwara & Pushkar', 'Goa', 'Thailand', 'Other / Multi-City'];
+// Matches the 12 destination pages on the site, plus a catch-all.
+const DESTINATIONS = [
+  'Udaipur, Rajasthan', 'Jaipur, Rajasthan', 'Jodhpur, Rajasthan', 'Jaisalmer, Rajasthan', 'Kumbhalgarh, Rajasthan', 'Mount Abu, Rajasthan',
+  'Nathdwara, Rajasthan', 'Pushkar, Rajasthan', 'Ranakpur, Rajasthan', 'Kota, Rajasthan', 'Goa', 'Thailand', 'Other / Multi-City',
+];
 
 const BENEFITS = [
   { icon: Lightbulb, label: 'Personalised Suggestions' },
@@ -94,23 +99,35 @@ export function HomeContact() {
                 <input id="hc-name" name="name" required placeholder="Your Name" autoComplete="name" className={field} />
                 <label className="sr-only" htmlFor="hc-phone">WhatsApp or phone number</label>
                 <input id="hc-phone" name="phone" type="tel" required placeholder="WhatsApp / Phone Number" autoComplete="tel" className={field} />
-                <label className="sr-only" htmlFor="hc-email">Email address</label>
-                <input id="hc-email" name="email" type="email" placeholder="Email (Optional)" autoComplete="email" className={field} />
                 <label className="sr-only" htmlFor="hc-dest">Wedding destination</label>
                 <select id="hc-dest" name="destination" value={dest} onChange={(e) => setDest(e.target.value)} className={field}>
                   {DESTINATIONS.map((x) => <option key={x}>{x}</option>)}
                 </select>
                 <label className="sr-only" htmlFor="hc-date">Wedding date</label>
                 <input id="hc-date" name="date" type="date" className={field} />
-                <label className="sr-only" htmlFor="hc-guests">Guest count</label>
-                <input id="hc-guests" name="guests" inputMode="numeric" placeholder="Guest Count" className={field} />
-                <label className="sr-only" htmlFor="hc-msg">Message</label>
-                <input id="hc-msg" name="message" placeholder="Message (Optional)" className={`${field} sm:col-span-2`} />
+                {/* Four required-feeling fields up front; the rest is an optional second step to keep completion high. */}
+                <details className="sm:col-span-2 group">
+                  <summary className="cursor-pointer text-sm font-medium text-gold-dark hover:text-charcoal-900 list-none">
+                    <span className="underline underline-offset-4">Add more details (optional)</span>
+                  </summary>
+                  <div className="grid sm:grid-cols-2 gap-3 sm:gap-4 mt-3">
+                    <label className="sr-only" htmlFor="hc-email">Email address</label>
+                    <input id="hc-email" name="email" type="email" placeholder="Email (Optional)" autoComplete="email" className={field} />
+                    <label className="sr-only" htmlFor="hc-guests">Guest count</label>
+                    <input id="hc-guests" name="guests" inputMode="numeric" placeholder="Guest Count" className={field} />
+                    <label className="sr-only" htmlFor="hc-msg">Message</label>
+                    <input id="hc-msg" name="message" placeholder="Message (Optional)" className={`${field} sm:col-span-2`} />
+                  </div>
+                </details>
                 {status === 'error' && (
                   <p role="alert" className="sm:col-span-2 text-sm text-red-700">
                     {error} You can also call {settings.phone} or write to {settings.email}.
                   </p>
                 )}
+                <p className="sm:col-span-2 text-xs text-charcoal-500 leading-relaxed">
+                  By sending this form you agree that Rasm Weddings &amp; Events may contact you about your enquiry and use these details only for that
+                  purpose. See our <Link href="/privacy-policy/" className="underline hover:text-gold-dark">Privacy Policy</Link>.
+                </p>
                 <button type="submit" disabled={status === 'sending'} className="sm:col-span-2 mt-1 inline-flex items-center justify-center gap-2 rounded-full bg-gradient-to-r from-[#A88434] via-[#B8923A] to-[#8F6A14] px-8 py-3.5 text-sm font-medium text-white shadow-md hover:shadow-lg transition-all sm:justify-self-start disabled:opacity-60">
                   {status === 'sending' ? 'Sending...' : 'Get a Free Consultation'} <ArrowRight className="w-4 h-4" />
                 </button>

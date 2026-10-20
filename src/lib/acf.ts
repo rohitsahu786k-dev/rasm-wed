@@ -6,7 +6,7 @@
  */
 import type { SiteSettings } from '../types/index.ts';
 import { settings as baseSettings } from '../data/settings.ts';
-import { SITE, SITE_URL, WP_ORIGIN, isRetiredPhone } from './site.ts';
+import { MEDIA_ORIGIN, SITE, SITE_URL, WP_ORIGIN, isRetiredPhone } from './site.ts';
 
 export interface AcfImage {
   url: string;
@@ -73,19 +73,19 @@ export function safeHref(v: unknown): string | undefined {
   }
 }
 
-const up = (p: string, w: number, h: number): AcfImage => ({ url: `${WP_ORIGIN}/wp-content/uploads/${p}`, width: w, height: h });
+const up = (p: string, w: number, h: number): AcfImage => ({ url: `${MEDIA_ORIGIN}/wp-content/uploads/${p}`, width: w, height: h });
 
 /** Defaults: real event photographs already in the media library. Replace them from ACF at any time. */
 export const DEFAULT_SLIDES: HeroSlide[] = [
-  { desktop: up('2026/10/golden_hour_palace_lake_wedding_mandap.webp', 1672, 941), alt: 'Floral wedding mandap on a lakeside palace terrace at golden hour, wedding in Udaipur', eyebrow: 'Wedding Planner in Udaipur, Rajasthan', heading: 'Wedding Planner in *Udaipur* for Your Palace Wedding', subheading: 'Royal venues, memorable celebrations and classic memories. Plan your wedding in Udaipur with a team that manages everything, from venue to farewell.', buttonLabel: 'Explore Destinations', buttonHref: '/wedding-destination/', align: 'left', overlay: 0 },
+  { desktop: up('2026/10/golden_hour_palace_lake_wedding_mandap.webp', 1672, 941), alt: 'Floral wedding mandap on a lakeside palace terrace at golden hour, wedding in Udaipur', eyebrow: 'Wedding Planner in Udaipur, Rajasthan', heading: 'Wedding Planner in *Udaipur* for Your Palace Wedding', subheading: 'Royal venues, memorable celebrations and lasting memories. Plan your wedding in Udaipur with a team that manages everything, from venue to farewell.', buttonLabel: 'Explore Destinations', buttonHref: '/wedding-destination/', align: 'left', overlay: 0 },
   { desktop: up('2026/10/sunset_palace_wedding_by_the_lake.webp', 1672, 941), alt: 'Lake palace wedding setup at sunset, palace wedding decor in Udaipur', eyebrow: 'Wedding Decor & Design', heading: 'Stages and Setups Designed Around *Your Story*', subheading: 'Luxury wedding decor, entertainment and guest hospitality for palace weddings in Udaipur and across Rajasthan.', buttonLabel: 'Our Services', buttonHref: '/services/', align: 'left', overlay: 0 },
   { desktop: up('2026/10/opulent_palace_courtyard_at_dusk.webp', 1672, 941), alt: 'Palace courtyard at dusk lit for a wedding celebration in Rajasthan', eyebrow: '12 Wedding Destinations', heading: 'Get Married Where the *Setting* Tells a Story', subheading: 'Destination weddings in Udaipur, Jaipur, Jodhpur, Jaisalmer, Goa and more, planned end to end.', buttonLabel: 'Choose Your Destination', buttonHref: '/wedding-destination/', align: 'left', overlay: 0 },
 ];
 
 export const DEFAULT_INTRO: HomeContent['intro'] = {
-  eyebrow: 'Welcome to Rasm Wedding',
+  eyebrow: 'Welcome to Rasm Weddings',
   heading: 'Best Event Management Company in Udaipur',
-  text: 'We at Rasm Wedding & Events thoroughly believe that matches might be made in heaven, yet the marriage between two souls takes place on earth. As a premier wedding event planner in Udaipur, we make sure to do everything that makes special days as outstanding as they can be.',
+  text: 'We at Rasm Weddings & Events thoroughly believe that matches might be made in heaven, yet the marriage between two souls takes place on earth. As a premier wedding event planner in Udaipur, we make sure to do everything that makes special days as outstanding as they can be.',
   image: up('2024/07/HPBI2932-scaled.jpg', 2560, 1536),
   buttonLabel: 'About Rasm',
   buttonHref: '/about-us/',

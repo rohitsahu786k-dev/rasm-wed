@@ -1,4 +1,4 @@
-import { WP_ORIGIN } from '../lib/site.ts';
+import { MEDIA_ORIGIN } from '../lib/site.ts';
 
 export interface DestinationVenue {
   id: string;
@@ -65,7 +65,7 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
     eyebrow: 'DESTINATION WEDDING PLANNER IN UDAIPUR',
     h1Title: 'Destination Wedding Planner in Udaipur:',
     h1Accent: 'Lake Palaces & Island Celebrations',
-    heroImage: `${WP_ORIGIN}/wp-content/uploads/2026/10/golden_palace_wedding_mandap_at_sunset.webp`,
+    heroImage: `${MEDIA_ORIGIN}/wp-content/uploads/2026/10/golden_palace_wedding_mandap_at_sunset.webp`,
     heroAlt: 'Destination wedding planner in Udaipur - island palace wedding setting on Lake Pichola',
     leadCopy:
       'Udaipur is built for a destination wedding: lake-facing palaces, island courtyards and hill-view resorts within a short drive of one airport. Rasm Weddings & Events is headquartered here, and we plan celebrations across the city’s palace, heritage and resort venues end to end — venue shortlisting against your dates and guest count, decor and mandap design, catering, entertainment, guest transfers and on-site coordination through every function. Tell us your dates and rough guest count and we will tell you honestly which settings fit.',
@@ -91,7 +91,7 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
         category: 'Private Island Palace',
         capacity: '200 – 1,200 Guests',
         tagline: 'The Legendary Floating Island Palace of Lake Pichola',
-        image: `${WP_ORIGIN}/wp-content/uploads/2026/10/golden_hour_palace_lake_wedding_mandap.webp`,
+        image: `${MEDIA_ORIGIN}/wp-content/uploads/2026/10/golden_hour_palace_lake_wedding_mandap.webp`,
         costRange: '₹1.5 Cr – ₹3.5 Cr+ (Island Venue Hire & Royal Decor)',
         description:
           'Accessible exclusively via royal motorized boat transfers across Lake Pichola, Jagmandir Island Palace is a 17th-century marble marvel. With colossal stone elephants, Kunwar Pada courtyards, and illuminated palace domes reflecting on black waters, it is world-renowned for hosting the most glamorous VIP and NRI weddings in India.',
@@ -109,7 +109,7 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
         category: 'Ultra-Luxury Lakeside Resort',
         capacity: '150 – 450 Guests',
         tagline: 'Architectural Masterpiece of Domes, Corridors & Private Pools',
-        image: `${WP_ORIGIN}/wp-content/uploads/2024/08/The-Oberoi-Udaivilas.webp`,
+        image: `${MEDIA_ORIGIN}/wp-content/uploads/2024/08/The-Oberoi-Udaivilas.webp`,
         costRange: '₹2.5 Cr – ₹5.0 Cr+ (Complete Luxury Resort Buyout)',
         description:
           'Consistently ranked among the best luxury hotels in the world, The Oberoi Udaivilas features sweeping Mewari courtyards, reflection pools, and manicured lawns directly overlooking City Palace. A favorite for careful couples seeking strong personalized hospitality and architectural refinement.',
@@ -127,7 +127,7 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
         category: 'Historic Floating Marble Palace',
         capacity: '80 – 200 Guests',
         tagline: '18th-Century White Marble Retreat Floating on Lake Pichola',
-        image: `${WP_ORIGIN}/wp-content/uploads/2026/10/sunset_palace_wedding_by_the_lake.webp`,
+        image: `${MEDIA_ORIGIN}/wp-content/uploads/2026/10/sunset_palace_wedding_by_the_lake.webp`,
         costRange: '₹2.0 Cr – ₹4.0 Cr+ (Exclusive Island Buyout)',
         description:
           'Built in 1746 as a pleasure palace by Maharana Jagat Singh II, Taj Lake Palace floats like a white marble jewel on Lake Pichola. Offering private lily ponds, carved marble arches, and royal butlers, it is the ultimate romantic setting for intimate luxury destination weddings.',
@@ -145,7 +145,7 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
         category: 'Modern Royal Palace Luxury',
         capacity: '100 – 350 Guests',
         tagline: 'Contemporary Rajasthani Style with Pichola Shoreline Lawns',
-        image: `${WP_ORIGIN}/wp-content/uploads/2026/10/sunset_palace_terrace_by_the_lake.webp`,
+        image: `${MEDIA_ORIGIN}/wp-content/uploads/2026/10/sunset_palace_terrace_by_the_lake.webp`,
         costRange: '₹1.8 Cr – ₹3.5 Cr+ (Shoreline Buyout & Banqueting)',
         description:
           'Set right on the banks of Lake Pichola with grand views of the Aravalli hills, The Leela Palace Udaipur smoothly combines royal Mewari aesthetics with contemporary state-of-the-art wedding amenities. Its Guava Garden and outer courtyards host spectacular waterfront ceremonies.',
@@ -163,7 +163,7 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
         category: 'Hilltop Heritage Retreat',
         capacity: '150 – 500 Guests',
         tagline: 'Panoramic Aravalli Hilltop Views & Authentic Mewari Architecture',
-        image: `${WP_ORIGIN}/wp-content/uploads/2024/08/Fateh-Garh-Palace.webp`,
+        image: `${MEDIA_ORIGIN}/wp-content/uploads/2024/08/Fateh-Garh-Palace.webp`,
         costRange: '₹60 Lakhs – ₹1.2 Cr (Multi-Day Destination Wedding)',
         description:
           'Perched high on the western hills overlooking Udaipur and its lakes, Fateh Garh is a heritage Renaissance retreat built through historic reassembly. Offering vintage car collections, hillside infinity pools, and expansive wedding terraces, it provides incredible sunset vistas.',
@@ -238,7 +238,7 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
           },
           {
             time: '08:30 PM – Midnight',
-            title: 'The Grand Grand Reception & Fireworks',
+            title: 'The Grand Reception & Fireworks',
             desc: 'Black-tie sit-down royal silver thali banquet, champagne toasts, family speeches, and a synchronized aerial fireworks display lighting up the lake.',
           },
         ],
@@ -260,7 +260,7 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
         highlight: 'Expansive banquets, lakeside wedding lawns, multi-day guest room blocks, concert-grade Sangeet production, and royal Baraat.',
       },
       {
-        category: 'Ultra-Luxury Island Palaces & Famous Buyouts',
+        category: 'Island Palaces & Full Buyouts',
         venues: 'Jagmandir Island Palace, The Oberoi Udaivilas, Taj Lake Palace',
         guests: '200 – 600+ Guests (3 Days)',
         range: '₹2.5 Crore – ₹5.5 Crore+',
@@ -298,10 +298,10 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
     eyebrow: 'LUXURY WEDDING PLANNER IN JAIPUR',
     h1Title: 'Wedding Planner in Jaipur:',
     h1Accent: 'Grand Fortresses & Royal Palaces',
-    heroImage: `${WP_ORIGIN}/wp-content/uploads/2026/10/opulent_palace_courtyard_at_dusk.webp`,
+    heroImage: `${MEDIA_ORIGIN}/wp-content/uploads/2026/10/opulent_palace_courtyard_at_dusk.webp`,
     heroAlt: 'Wedding Planner in Jaipur - Royal Palace Destination Wedding in the Pink City',
     leadCopy:
-      'Looking for a grand royal wedding in the historic Pink City? At RASM Weddings & Events, we select special celebrations across Jaipur’s famous palace landmarks. From the royal Mughal gardens of Rambagh Palace and the palace fortress style of Fairmont Jaipur, to heritage havelis like Jai Mahal Palace and Samode Palace—our expert team delivers custom Rajput decor, elephant Baraat processions, high-fashion Sangeet galas, and smooth on-ground guest management.',
+      'Looking for a grand royal wedding in the historic Pink City? At Rasm Weddings & Events, we select special celebrations across Jaipur’s famous palace landmarks. From the royal Mughal gardens of Rambagh Palace and the palace fortress style of Fairmont Jaipur, to heritage havelis like Jai Mahal Palace and Samode Palace—our expert team delivers custom Rajput decor, elephant Baraat processions, high-fashion Sangeet galas, and smooth on-ground guest management.',
     primaryKeyword: 'Wedding Planner in Jaipur',
     secondaryKeywords: [
       'destination wedding in Jaipur',
@@ -324,7 +324,7 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
         category: 'Former Royal Residence of Maharaja of Jaipur',
         capacity: '150 – 1,000+ Guests',
         tagline: 'The Jewel of the Pink City & Former Royal Residence',
-        image: `${WP_ORIGIN}/wp-content/uploads/2026/10/opulent_palace_courtyard_at_dusk.webp`,
+        image: `${MEDIA_ORIGIN}/wp-content/uploads/2026/10/opulent_palace_courtyard_at_dusk.webp`,
         costRange: '₹2.5 Cr – ₹5.0 Cr+ (Royal Palace Buyout & Grand Lawn Hire)',
         description:
           'Spread across 47 acres of tranquil landscaped gardens, Rambagh Palace is the former residence of the Maharaja of Jaipur. Adorned with hand-carved marble jharokhas, sandstone balustrades, and sprawling Mughal gardens, it is consistently voted among the premier luxury heritage hotels on the planet.',
@@ -334,7 +334,7 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
           'Unrivaled Taj royal heritage hospitality with horse carriage welcomes',
           'Private royal suites with antique Rajput furnishings and heirloom artwork',
         ],
-        bestFor: 'Grand Grand Pheras, High-Stakes Receptions, & Palace Buyouts',
+        bestFor: 'Grand Pheras, High-Stakes Receptions, & Palace Buyouts',
       },
       {
         id: 'fairmont-jaipur',
@@ -342,7 +342,7 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
         category: 'Palace Fortress Resort',
         capacity: '300 – 1,500+ Guests',
         tagline: 'Mughal-Rajput Fortress Scale for Large-Scale Royal Extravaganzas',
-        image: `${WP_ORIGIN}/wp-content/uploads/2026/10/palace_wedding_under_blooming_chandeliers.webp`,
+        image: `${MEDIA_ORIGIN}/wp-content/uploads/2026/10/palace_wedding_under_blooming_chandeliers.webp`,
         costRange: '₹1.5 Cr – ₹3.5 Cr+ (Large-Scale Buyout & Banqueting)',
         description:
           'Nestled against the Aravalli hills, Fairmont Jaipur is custom-designed as a grand fortress palace. Boasting 245+ luxury rooms, massive pillar-less ballrooms, and expansive outdoor wedding lawns, it is the premier choice for large 400+ guest destination weddings in Rajasthan.',
@@ -360,7 +360,7 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
         category: '18th-Century Indo-Saracenic Palace',
         capacity: '200 – 800 Guests',
         tagline: 'Historic Indo-Saracenic Palace Surrounded by 18 Acres of Mughal Lawns',
-        image: `${WP_ORIGIN}/wp-content/uploads/2026/10/golden_palace_courtyard_at_dusk.webp`,
+        image: `${MEDIA_ORIGIN}/wp-content/uploads/2026/10/golden_palace_courtyard_at_dusk.webp`,
         costRange: '₹1.2 Cr – ₹2.5 Cr+ (Mughal Lawns & Palace Buyout)',
         description:
           'Dating back to 1745, Jai Mahal Palace is an authentic Indo-Saracenic masterpiece nestled in the heart of Jaipur. Featuring 18 acres of geometric Mughal gardens, stone pavilions, and royal suites, it blends heritage authenticity with five-star Taj hospitality.',
@@ -378,7 +378,7 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
         category: 'Intimate Royal Heritage Palace',
         capacity: '80 – 300 Guests',
         tagline: 'Centuries-Old Royal Heritage with Sheesh Mahal Mirror Artistry',
-        image: `${WP_ORIGIN}/wp-content/uploads/2026/10/royal_blue_fort_wedding_at_night.webp`,
+        image: `${MEDIA_ORIGIN}/wp-content/uploads/2026/10/royal_blue_fort_wedding_at_night.webp`,
         costRange: '₹70 Lakhs – ₹1.4 Cr (Exclusive Heritage Buyout)',
         description:
           'Located in a tranquil village at the foot of the Aravalli range, Samode Palace is a 475-year-old jewel famous for its hand-painted Sheesh Mahal (Hall of Mirrors). Ideal for boutique luxury weddings where couples desire an enchanting, deeply artistic heritage setting.',
@@ -475,7 +475,7 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
         highlight: 'Expansive banquets, large guest room blocks under one roof, grand Sangeet production, and royal Baraat.',
       },
       {
-        category: 'Ultra-Luxury Grand Palaces & Famous Buyouts',
+        category: 'Grand Palaces & Full Buyouts',
         venues: 'Rambagh Palace (Taj), Jai Mahal Palace, Alila Fort Bishangarh',
         guests: '200 – 600+ Guests (3 Days)',
         range: '₹2.2 Crore – ₹5.0 Crore+',
@@ -513,10 +513,10 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
     eyebrow: 'LUXURY WEDDING PLANNER IN JAISALMER',
     h1Title: 'Wedding Planner in Jaisalmer:',
     h1Accent: 'Golden Fortresses & Thar Sand Dunes',
-    heroImage: `${WP_ORIGIN}/wp-content/uploads/2026/09/wedding-planner-in-jaisalmer-featured.webp`,
+    heroImage: `${MEDIA_ORIGIN}/wp-content/uploads/2026/09/wedding-planner-in-jaisalmer-featured.webp`,
     heroAlt: 'Wedding Planner in Jaisalmer - Golden Sandstone Fortress & Thar Desert Wedding',
     leadCopy:
-      'Envisioning a golden desert fairytale in Rajasthan’s Golden City? At RASM Weddings & Events, we transform the beautiful golden sandstone forts and rolling Thar dunes of Jaisalmer into royal wedding spectacles. From palace celebrations at Suryagarh and Fort Rajwada to starry bonfire Sangeets in the Sam sand dunes—we manage desert logistics, luxury glamping, royal folk entertainment, and custom golden-hued decor with precision and zero hidden markups.',
+      'Envisioning a golden desert fairytale in Rajasthan’s Golden City? At Rasm Weddings & Events, we transform the beautiful golden sandstone forts and rolling Thar dunes of Jaisalmer into royal wedding spectacles. From palace celebrations at Suryagarh and Fort Rajwada to starry bonfire Sangeets in the Sam sand dunes—we manage desert logistics, luxury glamping, royal folk entertainment, and custom golden-hued decor with precision and zero hidden markups.',
     primaryKeyword: 'Wedding Planner in Jaisalmer',
     secondaryKeywords: [
       'destination wedding in Jaisalmer',
@@ -539,7 +539,7 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
         category: 'Fortress Luxury Resort',
         capacity: '150 – 600+ Guests',
         tagline: 'The Pinnacle of Desert Luxury & Celebrity Wedding Landmark',
-        image: `${WP_ORIGIN}/wp-content/uploads/2026/10/golden_desert_wedding_lounge_at_sunset.webp`,
+        image: `${MEDIA_ORIGIN}/wp-content/uploads/2026/10/golden_desert_wedding_lounge_at_sunset.webp`,
         costRange: '₹1.8 Cr – ₹4.0 Cr+ (Full Desert Fortress Buyout)',
         description:
           'Constructed from radiant yellow Jaisalmer sandstone to resemble an ancient medieval desert fortress, Suryagarh is globally famous for hosting Kiara Advani & Sidharth Malhotra’s celebrity wedding. With expansive courtyards, subterranean pools, and desert dune setups, it is the benchmark of desert luxury.',
@@ -557,7 +557,7 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
         category: 'Heritage Sandstone Palace',
         capacity: '100 – 400 Guests',
         tagline: 'Traditional Rajput Architecture & Stone-Carved Courtyards',
-        image: `${WP_ORIGIN}/wp-content/uploads/2026/09/wedding-planner-in-jaisalmer-featured.webp`,
+        image: `${MEDIA_ORIGIN}/wp-content/uploads/2026/09/wedding-planner-in-jaisalmer-featured.webp`,
         costRange: '₹55 Lakhs – ₹1.1 Cr (Heritage Buyout & Banqueting)',
         description:
           'Spread over 6 acres of serene grounds, Fort Rajwada reflects authentic Rajput stone-carving traditions designed by opera set designer Stephanie Kohn. Its tranquil courtyards, poolside terraces, and heritage suites provide an authentic royal experience.',
@@ -575,7 +575,7 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
         category: 'Modern Five-Star Palace Resort',
         capacity: '150 – 500 Guests',
         tagline: 'Five-Star Luxury Resort Overlooking the Golden Sonar Qila',
-        image: `${WP_ORIGIN}/wp-content/uploads/2026/10/opulent_palace_courtyard_at_dusk.webp`,
+        image: `${MEDIA_ORIGIN}/wp-content/uploads/2026/10/opulent_palace_courtyard_at_dusk.webp`,
         costRange: '₹80 Lakhs – ₹1.6 Cr (Five-Star Resort Wedding)',
         description:
           'Blending contemporary five-star Marriott luxury with traditional golden sandstone architecture, Jaisalmer Marriott overlooks the historic Golden Fort. Offering expansive wedding lawns, grand ballrooms, and 135+ guest rooms, it delivers smooth modern destination weddings.',
@@ -706,10 +706,10 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
     eyebrow: 'LUXURY DESTINATION WEDDING PLANNER IN GOA',
     h1Title: 'Wedding Planner in Goa:',
     h1Accent: 'Beachfront Mandaps & Oceanfront Luxury',
-    heroImage: `${WP_ORIGIN}/wp-content/uploads/2024/08/Goa.webp`,
+    heroImage: `${MEDIA_ORIGIN}/wp-content/uploads/2024/08/Goa.webp`,
     heroAlt: 'Wedding Planner in Goa - Sunset Beachfront Mandap & Luxury Ocean Resort Wedding',
     leadCopy:
-      'Dreaming of an oceanfront sunset wedding with sea breezes and golden sands? At RASM Weddings & Events, we bring five-star luxury and flawless execution to Goa’s finest beachfront resorts and heritage Portuguese estates. From beachfront pheras at Taj Exotica and barefoot luxury sundowners at W Goa, to grand ballroom galas at ITC Grand Goa and The Leela—our team delivers custom floral canopies, cocktail production, international DJ bookings, and stress-free guest logistics.',
+      'Dreaming of an oceanfront sunset wedding with sea breezes and golden sands? At Rasm Weddings & Events, we bring five-star luxury and flawless execution to Goa’s finest beachfront resorts and heritage Portuguese estates. From beachfront pheras at Taj Exotica and barefoot luxury sundowners at W Goa, to grand ballroom galas at ITC Grand Goa and The Leela—our team delivers custom floral canopies, cocktail production, international DJ bookings, and stress-free guest logistics.',
     primaryKeyword: 'Wedding Planner in Goa',
     secondaryKeywords: [
       'destination wedding in Goa',
@@ -732,7 +732,7 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
         category: 'Mediterranean-Style Beachfront Resort',
         capacity: '150 – 800+ Guests',
         tagline: '56 Acres of Tropical Lawns Fronting Benaulim Beach',
-        image: `${WP_ORIGIN}/wp-content/uploads/2024/08/Goa.webp`,
+        image: `${MEDIA_ORIGIN}/wp-content/uploads/2024/08/Goa.webp`,
         costRange: '₹1.8 Cr – ₹3.8 Cr+ (Five-Star Beachfront Wedding)',
         description:
           'Spanning 56 acres of lush gardens along a private stretch of Benaulim Beach in South Goa, Taj Exotica is the benchmark of luxury beach weddings in India. Its Mediterranean villa architecture, palm-fringed lawns, and direct beach access create a beautiful coastal paradise.',
@@ -750,7 +750,7 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
         category: 'Village-Style Oceanfront Retreat',
         capacity: '200 – 1,000+ Guests',
         tagline: 'Direct Arossim Beach Access with 45 Acres of Lagoons & Coconut Groves',
-        image: `${WP_ORIGIN}/wp-content/uploads/2026/10/sunset_palace_resort_retreat.webp`,
+        image: `${MEDIA_ORIGIN}/wp-content/uploads/2026/10/sunset_palace_resort_retreat.webp`,
         costRange: '₹1.5 Cr – ₹3.2 Cr+ (Luxury Coastal Wedding)',
         description:
           'Set amidst 45 acres of lush landscaped gardens with shimmering lagoons and direct access to pristine Arossim Beach, ITC Grand Goa is designed in traditional Indo-Portuguese village architecture. Offering one of Goa’s largest multi-level outdoor pools and multiple seaside lawns, it is built for grand celebrations.',
@@ -768,7 +768,7 @@ export const CITY_DESTINATIONS: Record<string, DestinationDetail> = {
         category: 'Ultra-Chic Contemporary Luxury',
         capacity: '100 – 450 Guests',
         tagline: 'Trendy Bohemian Luxury Overlooking the Cliffs of Vagator Beach',
-        image: `${WP_ORIGIN}/wp-content/uploads/2026/10/glamorous_indian_wedding_dance_performance.webp`,
+        image: `${MEDIA_ORIGIN}/wp-content/uploads/2026/10/glamorous_indian_wedding_dance_performance.webp`,
         costRange: '₹1.6 Cr – ₹3.5 Cr+ (Chic Luxury Beach Wedding)',
         description:
           'Situated at the foot of historic Chapora Fort overlooking Vagator Beach, W Goa brings high-energy luxury and contemporary style to destination celebrations. With its famous Rockpool terrace, vibrant design, and world-class sound systems, it is the top choice for couples wanting an electrifying party atmosphere.',
@@ -900,6 +900,10 @@ export function getDestinationData(citySlug: string): DestinationDetail {
     return CITY_DESTINATIONS[key];
   }
 
+  // Cities outside Rajasthan must not be described as Rajasthan.
+  const REGION: Record<string, string> = { ahmedabad: 'Gujarat', gandhinagar: 'Gujarat', thailand: 'Thailand' };
+  const region = REGION[key] ?? 'Rajasthan';
+
   // Proper Capitalization of city name
   const cityName = key
     .split('-')
@@ -909,46 +913,29 @@ export function getDestinationData(citySlug: string): DestinationDetail {
   return {
     slug: citySlug,
     city: cityName,
-    stateOrRegion: 'Rajasthan & Beyond',
-    eyebrow: `LUXURY WEDDING PLANNER IN ${cityName.toUpperCase()}`,
+    stateOrRegion: region,
+    eyebrow: `WEDDING PLANNER IN ${cityName.toUpperCase()}`,
     h1Title: `Wedding Planner in ${cityName}:`,
     h1Accent: 'Heritage Palaces, Resorts & Lawns',
-    heroImage: `${WP_ORIGIN}/wp-content/uploads/2026/10/golden_palace_courtyard_at_dusk.webp`,
-    heroAlt: `Wedding Planner in ${cityName} - Destination Wedding by RASM Weddings`,
-    leadCopy: `Planning a royal destination wedding in ${cityName}? At RASM Weddings & Events, our expert Rajasthan planners coordinate end-to-end celebrations. From handpicked heritage venue selections and custom floral decor, to royal catering, NRI guest hospitality, and on-ground logistics with complete budget transparency and zero vendor markups.`,
+    heroImage: `${MEDIA_ORIGIN}/wp-content/uploads/2026/10/golden_palace_courtyard_at_dusk.webp`,
+    heroAlt: `Wedding Planner in ${cityName} - Destination Wedding by Rasm Weddings`,
+    leadCopy: `Planning a royal destination wedding in ${cityName}? At Rasm Weddings & Events, our planners handle the celebration end to end: venue shortlisting and site visits, decor, catering, guest hospitality for NRI and outstation families, and on-ground logistics, with a written budget before you commit.`,
     primaryKeyword: `Wedding Planner in ${cityName}`,
     secondaryKeywords: [
       `destination wedding in ${cityName}`,
       `wedding venues in ${cityName} cost`,
       `${cityName} wedding packages`,
-      `luxury wedding planner in Rajasthan`,
+      `destination wedding planner in ${region}`,
     ],
     facts: {
-      bestMonths: 'October to March (Pleasant sunny days, cool evenings ideal for celebrations)',
-      nearestAirport: 'Regional air connectivity with luxury road transfers managed by RASM',
-      railAccess: 'Major regional railway junction with direct express trains',
-      culinary: 'Royal Regional & Multi-Cuisine Banqueting: Authentic regional flavors & global live stations',
-      landmarks: `Historic Palaces, Heritage Havelis, and Scenic Garden Lawns across ${cityName}`,
+      bestMonths: 'Ask our team for the best dates: season, weather and venue availability vary by month',
+      nearestAirport: 'We confirm the best arrival airport and plan guest transfers for your dates',
+      railAccess: 'Rail options are checked per guest group when we plan travel',
+      culinary: 'Regional and multi-cuisine menus, with vegetarian and Jain options planned per function',
+      landmarks: `Venue shortlist shared after a short call about your dates, guest count and style`,
     },
-    venues: [
-      {
-        id: `${key}-heritage-palace`,
-        name: `Heritage Palace & Resort ${cityName}`,
-        category: 'Heritage Luxury Venue',
-        capacity: '150 – 600+ Guests',
-        tagline: `Authentic Regional Heritage with Sprawling Wedding Lawns`,
-        image: `${WP_ORIGIN}/wp-content/uploads/2026/10/opulent_palace_courtyard_at_dusk.webp`,
-        costRange: '₹50 Lakhs – ₹1.2 Cr+ (Full Destination Wedding)',
-        description: `Offering panoramic regional views, grand banquet halls, and lush outdoor lawns, this premier venue provides an enchanting setting for destination weddings in ${cityName}.`,
-        highlights: [
-          'Spacious outdoor wedding lawns and grand banqueting spaces',
-          'Authentic regional architecture, stone carvings, and evening illumination',
-          'Delightful regional catering with dedicated vegetarian and Jain arrangements',
-          'Comprehensive room blocks to host all outstation family members comfortably',
-        ],
-        bestFor: 'Grand Sangeet Galas, Sunset Vows, & Family Receptions',
-      },
-    ],
+    // No placeholder venue: a venue portfolio is shown only for cities with researched venue data.
+    venues: [],
     itinerary: [
       {
         day: 'Day 01',

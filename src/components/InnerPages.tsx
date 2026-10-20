@@ -16,6 +16,7 @@ import { Band, Cards, CtaBand, ExploreLinks, Facts, Faq, PageHero, PhotoGrid, Pr
 import { PackagesBlock } from '@/components/PackagesBlock';
 import { RealWeddingsGallery } from '@/components/RealWeddingsGallery';
 import { HomeContact } from '@/components/HomeContact';
+import { ProofSection } from '@/components/ProofSection';
 import { WpBody } from '@/components/WpBody';
 
 const CORE_LINKS = [
@@ -138,6 +139,7 @@ export function AboutPage() {
         <SectionTitle eyebrow="How We Work" title="From First Call to" accent="Last Guest Departure" center />
         <Steps steps={PROCESS} />
       </Band>
+      <ProofSection show={['team', 'testimonials', 'cases']} />
       <Faq title="About Rasm Weddings & Events:" accent="Questions" faqs={ABOUT_FAQ} />
       <ExploreLinks links={linksExcept('/blog/')} />
       <CtaBand title="Let us plan your wedding in Udaipur" text="Meet the team that will plan, design and run your celebration. The first consultation is free." context="About page closing enquiry" />
@@ -283,6 +285,33 @@ export async function ContactPage() {
         </ul>
       </Band>
       <HomeContact />
+      <Band tone="white">
+        <div className="grid lg:grid-cols-2 gap-8 items-center">
+          <div>
+            <p className="text-gold-dark text-[11px] uppercase tracking-[0.3em] font-medium mb-3">Visit Our Office</p>
+            <h2 className="font-manrope font-medium text-2xl sm:text-3xl text-charcoal-900 tracking-tight mb-4">Our Udaipur Office and Service Area</h2>
+            <p className="text-charcoal-600 font-light leading-relaxed mb-3">
+              Our office is at {s.address}. You are welcome to visit by appointment: call or message us first so a planner is available to meet you.
+            </p>
+            <p className="text-charcoal-600 font-light leading-relaxed mb-3">
+              We plan weddings and events across Rajasthan (Udaipur, Jaipur, Jodhpur, Jaisalmer, Kumbhalgarh, Mount Abu, Nathdwara, Pushkar, Ranakpur and Kota),
+              in Goa and in Thailand. Families living in the UK, USA, UAE, Canada and Australia can plan with us by phone, WhatsApp and video call.
+            </p>
+            <p className="text-sm text-charcoal-500">
+              <a href={`https://www.google.com/maps/search/?api=1&query=${mapQuery}`} target="_blank" rel="noopener noreferrer" className="underline hover:text-gold-dark">Open in Google Maps</a>
+            </p>
+          </div>
+          <div className="rounded-2xl overflow-hidden border border-gold/25 bg-stone-100 aspect-[4/3]">
+            <iframe
+              title="Rasm Weddings & Events office location in Udaipur"
+              src={`https://www.google.com/maps?q=${mapQuery}&output=embed`}
+              className="w-full h-full border-0"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+        </div>
+      </Band>
       <Faq title="Contact and Booking:" accent="Questions" faqs={CONTACT_FAQ} tone="white" />
       <ExploreLinks links={linksExcept('/blog/')} />
     </div>
@@ -410,7 +439,7 @@ export function BlogIndex({ posts }: { posts: WPPost[] }) {
       <PageHero
         crumbs={[{ name: 'Home', href: '/' }, { name: 'Blog' }]}
         schemaPath="/blog/"
-        eyebrow="Rasm Wedding Blogs"
+        eyebrow="Rasm Weddings Blogs"
         title="Wedding Planning Blog:"
         accent="Udaipur and Destination Wedding Guides"
         lead="Venue guides, budget advice, rituals explained and decor ideas from the team that plans weddings in Udaipur and across Rajasthan."

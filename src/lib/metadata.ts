@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { absoluteUrl, SITE } from './site';
+import { absoluteUrl, SITE, SITE_URL } from './site';
 import liveSeo from '../data/seo-live.json';
 
 type Live = { title?: string; description?: string };
@@ -32,6 +32,9 @@ export function cleanMetaText(raw: string): string {
     .replace(/\u00e2\u201a\u00b9/g, '₹')
     .replace(/\u00c3\u00a9/g, 'é')
     .replace(/\u00c2(?=\s)/g, '')
+    // One brand name (legacy Rank Math copy says "Rasm Wedding" / "RASM Weddings").
+    .replace(/\bRasm Wedding\b(?!s)/g, 'Rasm Weddings')
+    .replace(/\bRASM Weddings\b/g, 'Rasm Weddings')
     .replace(/\s+/g, ' ')
     .trim();
 }
@@ -48,7 +51,7 @@ const improveLegacyTitle = (title: string) => title
 
 /**
  * One consistent, SERP-safe title everywhere: "Main phrase | Rasm Weddings", at most 60 characters.
- * WordPress/Rank Math titles carry mixed suffixes ("- rasmwed.com", "| Rasm Wedding", "| RASM"); keep the first phrase only.
+ * WordPress/Rank Math titles carry mixed suffixes ("- rasmwed.com", "| Rasm Weddings", "| RASM"); keep the first phrase only.
  */
 export function tidyTitle(raw: string): string {
   let head = cleanMetaText(raw)
@@ -61,9 +64,18 @@ export function tidyTitle(raw: string): string {
   return full.length <= 60 ? full : head;
 }
 
-export const clip = (s: string, n = 158) => {
-  const clean = cleanMetaText(s);
-  return clean.length <= n ? clean : `${clean.slice(0, n - 1).replace(/\s+\S*$/, '')}…`;
+/**
+ * Meta-description length control. Never ends in a literal "..." (search results look unfinished and Google rewrites
+ * the snippet): it cuts at the last full sentence that fits, or at a word boundary and closes with a full stop.
+ */
+export const clip = (s: string, n = 155) => {
+  const clean = cleanMetaText(s).replace(/\s*\[(?:…|\.\.\.|&hellip;)\]\s*$/, '').replace(/(?:…|\.\.\.)\s*$/, '').trim();
+  if (clean.length <= n) return clean;
+  const head = clean.slice(0, n);
+  const sentenceEnd = Math.max(head.lastIndexOf('. '), head.lastIndexOf('! '), head.lastIndexOf('? '));
+  if (sentenceEnd >= 80) return head.slice(0, sentenceEnd + 1);
+  const words = head.replace(/\s+\S*$/, '').replace(/[\s,;:\-–—(]+$/, '');
+  return `${words}.`;
 };
 
 /** One place that guarantees every page self-canonicalises with unique OG/Twitter tags. */
@@ -73,7 +85,9 @@ export function buildMetadata({ title, description, path, image, type = 'website
   const live = preferOpts ? undefined : LIVE[path.endsWith("/") ? path : path + "/"];
   const finalTitle = tidyTitle(live?.title || title);
   const finalDesc = clip(live?.description || description);
-  const img = image ?? SITE.ogImage;
+  // Pages without their own photograph get a branded 1200x630 share card (title + line) instead of one shared venue photo.
+  const generated = !image;
+  const img = image ?? `${SITE_URL}/og/?title=${encodeURIComponent(finalTitle.replace(/ \| Rasm Weddings$/, ''))}&sub=${encodeURIComponent(finalDesc.split(/(?<=[.!?])\s/)[0].slice(0, 120))}`;
   return {
     title: { absolute: finalTitle },
     description: finalDesc,
@@ -85,7 +99,8 @@ export function buildMetadata({ title, description, path, image, type = 'website
       title: finalTitle,
       description: finalDesc,
       siteName: SITE.name,
-      images: [{ url: img, alt: finalTitle }],
+      locale: 'en_IN',
+      images: [{ url: img, alt: finalTitle, ...(generated ? { width: 1200, height: 630 } : {}) }],
       ...(type === 'article' ? { publishedTime, modifiedTime } : {}),
     },
     twitter: { card: 'summary_large_image', title: finalTitle, description: finalDesc, images: [img] },

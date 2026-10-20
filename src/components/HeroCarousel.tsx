@@ -262,7 +262,7 @@ export function HeroCarousel({ slides, autoplaySeconds }: { slides: HeroSlide[];
                 href={currentSlide.buttonHref || '/wedding-destination/'}
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-full border border-gold/40 bg-white text-charcoal-800 text-sm font-medium tracking-wide hover:border-gold hover:bg-gold/5 transition-all shadow-xs"
               >
-                <span>{currentSlide.buttonLabel || 'Explore 14 Destinations'}</span>
+                <span>{currentSlide.buttonLabel || 'Explore Destinations'}</span>
               </Link>
             </div>
 
@@ -278,7 +278,7 @@ export function HeroCarousel({ slides, autoplaySeconds }: { slides: HeroSlide[];
               <div className="flex items-center gap-3 p-3 rounded-2xl bg-white border border-gold/15 shadow-2xs">
                 <MapPin className="w-5 h-5 text-gold-dark shrink-0" />
                 <div>
-                  <div className="font-semibold text-charcoal-900 text-sm">14 Prime Hubs</div>
+                  <div className="font-semibold text-charcoal-900 text-sm">12 Destinations</div>
                   <div className="text-[11px] text-charcoal-500">Rajasthan, Goa & Beyond</div>
                 </div>
               </div>
@@ -293,7 +293,7 @@ export function HeroCarousel({ slides, autoplaySeconds }: { slides: HeroSlide[];
                 <ShieldCheck className="w-5 h-5 text-gold-dark shrink-0" />
                 <div>
                   <div className="font-semibold text-charcoal-900 text-sm">Zero Markups</div>
-                  <div className="text-[11px] text-charcoal-500">100% Direct Vendor Rates</div>
+                  <div className="text-[11px] text-charcoal-500">Clear Vendor Quotes</div>
                 </div>
               </div>
             </div>

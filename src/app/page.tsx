@@ -9,6 +9,7 @@ import { HeroCarousel } from '@/components/HeroCarousel';
 import { CuratedExperiences, FeaturedWeddings, HeroFeatures, ImpactStats, InstagramStrip, VenuesShowcase, WhyChoose } from '@/components/HomeLanding';
 import { DestinationsSection } from '@/components/DestinationsSection';
 import { HomeContact } from '@/components/HomeContact';
+import { ProofSection } from '@/components/ProofSection';
 import { HomeSeoContent } from '@/components/HomeSeoContent';
 
 export const revalidate = 300;
@@ -37,6 +38,7 @@ export default async function Home() {
       <VenuesShowcase />
       <CuratedExperiences />
       <InstagramStrip />
+      <ProofSection />
       <HomeContact />
       <HomeSeoContent />
     </>
